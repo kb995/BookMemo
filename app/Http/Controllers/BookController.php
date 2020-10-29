@@ -14,6 +14,7 @@ class BookController extends Controller
      */
     public function index()
     {
+        // test
         $books = Book::all()->sortByDesc('created_at');
 
         return view('books.index', compact('books'));
