@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('mypage');
-});
+Route::resource('/books', 'BookController');
 
 Auth::routes();
 
