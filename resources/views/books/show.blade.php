@@ -30,9 +30,28 @@
             <td>{{ $book->rank }}</td>
             <td>{{ $book->read_at }}</td>
             <td><a class="btn btn-info" href="{{ route('books.edit', ['book' => $book]) }}">編集</td>
-
+            <td>
+                <form action="{{ route('books.destroy', ['book' => $book]) }}" method="post" id="delete_{{ $book->id }}">
+                    @csrf
+                    @method('DELETE')
+                    <a class="btn btn-danger" data-id="{{ $book->id }}" onclick="deletePost(this);">
+                        <i class="fas fa-trash-alt pr-1"></i>
+                        削除
+                    </a>
+                </form>
+            </td>
         </tr>
     </table>
 </section>
+@endsection
 
+@section('scripts')
+<script>
+    function deletePost(e) {
+        'use strict';
+        if (confirm('本当に削除しますか?')) {
+            document.getElementById('delete_' + e.dataset.id).submit();
+        }
+    }
+</script>
 @endsection
