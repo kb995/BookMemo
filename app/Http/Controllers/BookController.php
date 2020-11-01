@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\User;
 
 class BookController extends Controller
 {
     public function index()
     {
-        $books = Book::all()->sortByDesc('created_at');
-
-        return view('books.index', compact('books'));
+        $user = User::find(Auth::id());
+        $books = $user->books()->orderBy('created_at', 'desc')->get();
+        return view('books.index', compact('books', 'user'));
     }
 
     public function create()
@@ -27,6 +29,8 @@ class BookController extends Controller
         $book->description = $request->description;
         $book->status = $request->status;
         $book->read_at = $request->read_at;
+        $book->user_id = Auth::id();
+
         $book->save();
 
         return redirect()->route('books.index');

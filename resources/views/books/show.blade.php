@@ -9,8 +9,7 @@
 
 @section('content')
 <section class="conteiner">
-<h1 class="text-center">書籍詳細</h1>
-<div class="text-center h3 my-3">書籍詳細</div>
+<h1 class="text-center my-5">書籍詳細</h1>
     <table class="table-bordered w-50 mx-auto text-center">
         <th>ID</th>
         <th>タイトル</th>
