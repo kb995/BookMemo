@@ -9,14 +9,6 @@
 
 @section('content')
 <section class="conteiner">
-
-    <div class="text-center py-5">
-        <form id="logout-form" action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button type="submit">ログアウト</button>
-        </form>
-    </div>
-
     <h1 class="text-center h3 my-5">書籍一覧</h1>
     <div class="text-center my-5">
         <a class="btn btn-outline-success" href="{{ route('books.create') }}">書籍登録</a>
