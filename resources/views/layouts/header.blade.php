@@ -8,7 +8,6 @@
             <li class="navbar-item navbar-text px-4">{{ Auth::user()->name }}さんでログイン中</li>
             <li class="navbar-item"><button class="btn btn-link text-white" form="logout-form" id="logout">ログアウト</button></li>
         </ul>
-
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         @csrf
         </form>
