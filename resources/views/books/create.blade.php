@@ -10,6 +10,17 @@
 @section('content')
 <section class="conteiner">
     <h1 class="text-center my-5">書籍登録</h1>
+
+    @if ($errors->any())
+    <div class="alert alert-danger w-50 mx-auto">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
     <form method="POST" action="{{ route('books.store') }}" class="card mx-auto w-50 p-5">
         @csrf
         <div class="form-group">
