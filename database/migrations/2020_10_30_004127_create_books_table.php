@@ -23,8 +23,8 @@ class CreateBooksTable extends Migration
             $table->integer('status')->default(0);
             $table->integer('rank')->default(0);
             $table->date('read_at')->nullable();
-            // $table->bigInteger('user_id')->unsigned();
-            // $table->foreign('user_id')->references('id')->on('users');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             // $table->bigInteger('category_id')->unsigned();
             // $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
