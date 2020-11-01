@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\User;
+
+
 
 class BookController extends Controller
 {
@@ -21,7 +24,7 @@ class BookController extends Controller
         return view('books.create');
     }
 
-    public function store(Book $book, Request $request)
+    public function store(Book $book, BookRequest $request)
     {
         $book->title = $request->title;
         $book->author = $request->author;
@@ -46,7 +49,7 @@ class BookController extends Controller
         return view('books.edit', compact('book'));
     }
 
-    public function update(Book $book, Request $request)
+    public function update(Book $book, BookRequest $request)
     {
         $book->title = $request->title;
         $book->author = $request->author;
