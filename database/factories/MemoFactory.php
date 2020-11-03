@@ -9,6 +9,6 @@ $factory->define(Memo::class, function (Faker $faker) {
     return [
         'memo' => $faker->sentence,
         'tag' => 'タグ',
-        'book_id' => 1,
+        // 'book_id' => 1,
     ];
 });
