@@ -9,7 +9,7 @@
 
 @section('content')
 <section class="conteiner">
-<h1 class="text-center my-5">書籍詳細</h1>
+    <h1 class="text-center my-5">書籍詳細</h1>
     <table class="table-bordered w-50 mx-auto text-center">
         <th>ID</th>
         <th>タイトル</th>
@@ -41,6 +41,30 @@
             </td>
         </tr>
     </table>
+
+    {{-- メモ入力フォーム --}}
+    @if ($errors->any())
+    <div class="alert alert-danger w-50 mx-auto">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
+    <form method="POST" action="" class="card mx-auto w-50 p-5">
+        @csrf
+        <div class="form-group">
+            <label for="memo"></label>
+            <input type="text" class="form-control" id="memo" name="memo" value="{{ old('memo') }}">
+            <input type="submit" class="btn btn-primary my-4">
+        </div>
+
+    </form>
+
+    {{-- メモ入力フォーム --}}
+
 </section>
 @endsection
 
