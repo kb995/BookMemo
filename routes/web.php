@@ -23,6 +23,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
         // 登録
         Route::get('/create', 'MemoController@create')->name('create');
         Route::post('/create', 'MemoController@store')->name('store');
+        // 編集
+        Route::get('/{memo}/edit', 'MemoController@edit')->name('edit');
+        // Route::patch('/{memo}/edit', 'MemoController@update')->name('update');
+        // 削除
+        // Route::delete('/{memo}/destroy', 'MemoController@destroy')->name('destroy');
+
     });
 });
 // Route::prefix('books')->name('books.')->group(function () {

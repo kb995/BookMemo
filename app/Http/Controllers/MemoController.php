@@ -37,9 +37,9 @@ class MemoController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit(Book $book, Memo $memo)
     {
-        //
+        return view('memos.edit', compact('book', 'memo'));
     }
 
 
