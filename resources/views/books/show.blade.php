@@ -46,7 +46,7 @@
 
     @include('memos.create')
 
-    {{-- @include('memos.index') --}}
+    @include('memos.index')
 
 </section>
 @endsection
