@@ -43,7 +43,11 @@ class BookController extends Controller
 
     public function show(Book $book)
     {
-        $memos = Memo::all()->sortByDesc('id');
+        // $memos = Memo::all()->sortByDesc('id');
+        // $memos = $book->memos()->get();
+
+        $book = Book::find($book->id);
+        $memos = $book->memos()->get();
 
         return view('books.show', compact('book', 'memos'));
     }
@@ -68,6 +72,9 @@ class BookController extends Controller
 
     public function destroy(Book $book)
     {
+        $book->memos()->each(function ($memo) {
+            $memo->delete();
+        });
         $book->delete();
         return redirect()->route('books.index');
 

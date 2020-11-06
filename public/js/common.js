@@ -1,7 +1,13 @@
 // 削除処理
-function deletePost(e) {
+function deleteBook(e) {
     'use strict';
     if (confirm('本当に削除しますか?')) {
-        document.getElementById('delete_' + e.dataset.id).submit();
+        document.getElementById('delete_book_' + e.dataset.id).submit();
+    }
+}
+function deleteMemo(e) {
+    'use strict';
+    if (confirm('本当に削除しますか?')) {
+        document.getElementById('delete_memo_' + e.dataset.id).submit();
     }
 }
