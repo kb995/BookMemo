@@ -47,7 +47,7 @@ class BookController extends Controller
         // $memos = $book->memos()->get();
 
         $book = Book::find($book->id);
-        $memos = $book->memos()->get();
+        $memos = $book->memos()->paginate(10);
 
         return view('books.show', compact('book', 'memos'));
     }
