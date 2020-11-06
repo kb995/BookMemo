@@ -72,6 +72,9 @@ class BookController extends Controller
 
     public function destroy(Book $book)
     {
+        $book->memos()->each(function ($memo) {
+            $memo->delete();
+        });
         $book->delete();
         return redirect()->route('books.index');
 

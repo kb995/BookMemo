@@ -30,10 +30,10 @@
             <td>{{ $book->read_at }}</td>
             <td><a class="btn btn-info" href="{{ route('books.edit', ['book' => $book]) }}">編集</td>
             <td>
-                <form action="{{ route('books.destroy', ['book' => $book]) }}" method="post" id="delete_{{ $book->id }}">
+                <form action="{{ route('books.destroy', ['book' => $book]) }}" method="post" id="delete_book_{{ $book->id }}">
                     @csrf
                     @method('DELETE')
-                    <a class="btn btn-danger" data-id="{{ $book->id }}" onclick="deletePost(this);">
+                    <a class="btn btn-danger" data-id="{{ $book->id }}" onclick="deleteBook(this);">
                         <i class="fas fa-trash-alt pr-1"></i>
                         削除
                     </a>

@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
         Route::get('/{memo}/edit', 'MemoController@edit')->name('edit');
         Route::patch('/{memo}/edit', 'MemoController@update')->name('update');
         // 削除
-        // Route::delete('/{memo}/destroy', 'MemoController@destroy')->name('destroy');
+        Route::delete('/{memo}/destroy', 'MemoController@destroy')->name('destroy');
 
     });
 });
