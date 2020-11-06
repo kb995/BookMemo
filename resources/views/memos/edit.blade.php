@@ -18,7 +18,7 @@
     @csrf
         <div class="form-group">
             <label for="memo">メモ</label>
-            <textarea type="text" class="form-control" id="memo" name="memo" value="{{ $memo->memo ?? old('title') }}"></textarea>
+            <textarea type="text" class="form-control" id="memo" name="memo">{{ $memo->memo ?? old('memo') }}</textarea>
             <input type="submit" class="btn btn-primary my-4">
         </div>
 
