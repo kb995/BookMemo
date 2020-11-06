@@ -46,6 +46,7 @@ class MemoController extends Controller
     public function update(Request $request, Book $book, Memo $memo)
     {
         $memo->memo = $request->memo;
+
         $memo->save();
 
         return redirect()->route('books.show', ['book' => $book]);

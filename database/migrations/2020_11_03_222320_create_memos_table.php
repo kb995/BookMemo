@@ -17,8 +17,8 @@ class CreateMemosTable extends Migration
             $table->bigIncrements('id');
             $table->text('memo');
             $table->string('tag')->nullable();
-            // $table->bigInteger('book_id')->unsigned();
-            // $table->foreign('book_id')->references('id')->on('books');
+            $table->bigInteger('book_id')->unsigned();
+            $table->foreign('book_id')->references('id')->on('books');
             $table->timestamps();
         });
     }
