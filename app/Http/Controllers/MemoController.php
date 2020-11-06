@@ -17,6 +17,7 @@ class MemoController extends Controller
         $memo->memo = $request->memo;
         $memo->book_id = $book->id;
         $memo->save();
+        session()->flash('flash_message', 'メモを追加しました');
 
         return redirect()->route('books.show', ['book' => $book]);
     }
@@ -30,6 +31,7 @@ class MemoController extends Controller
     {
         $memo->memo = $request->memo;
         $memo->save();
+        session()->flash('flash_message', 'メモを編集しました');
 
         return redirect()->route('books.show', ['book' => $book]);
     }
@@ -38,6 +40,8 @@ class MemoController extends Controller
     public function destroy(Book $book, Memo $memo)
     {
         $memo->delete();
+        session()->flash('flash_message', 'メモを削除しました');
+
         return redirect()->route('books.show', ['book' => $book]);
     }
 }
