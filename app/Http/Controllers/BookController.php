@@ -35,8 +35,8 @@ class BookController extends Controller
         $book->status = $request->status;
         $book->read_at = $request->read_at;
         $book->user_id = Auth::id();
-
         $book->save();
+        session()->flash('flash_message', '書籍を登録しました');
 
         return redirect()->route('books.index');
     }
@@ -66,6 +66,7 @@ class BookController extends Controller
         $book->status = $request->status;
         $book->read_at = $request->read_at;
         $book->save();
+        session()->flash('flash_message', '書籍を編集しました');
 
         return redirect()->route('books.index');
     }
@@ -76,6 +77,8 @@ class BookController extends Controller
             $memo->delete();
         });
         $book->delete();
+        session()->flash('flash_message', '書籍を削除しました');
+
         return redirect()->route('books.index');
 
     }
