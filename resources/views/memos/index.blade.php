@@ -17,4 +17,7 @@
         </div>
     </div>
     @endforeach
+
+    {{ $memos->links() }}
+
 </article>
