@@ -27,7 +27,7 @@ class LoginController extends Controller
      */
     protected function redirectTo() {
         session()->flash('flash_message', 'ログインしました');
-        return '/books';
+        return '/';
     }
     /**
      * Create a new controller instance.
