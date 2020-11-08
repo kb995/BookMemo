@@ -41,6 +41,12 @@
             </td>
         </tr>
     </table>
+    <div>
+        {{-- <img src="{{ Storage::url($book->cover) }}" style="width:100%;"/> --}}
+        {{-- <img src="/storage/uploads/{{$book->cover}}" width="100px" height="100px"> --}}
+        {{-- <img src="{{ asset('storage/uploads/' . $book->cover) }}"> --}}
+    </div>
+
 
     @include('layouts.errors')
 
