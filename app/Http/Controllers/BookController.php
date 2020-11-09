@@ -28,14 +28,14 @@ class BookController extends Controller
 
     public function store(Book $book, BookRequest $request)
     {
-        // if(is_uploaded_file($_FILES['cover']['tmp_name'])){
-        //     $upload_image = $request->file('cover');
-        //     $file_name = time() . '_' . $upload_image->getClientOriginalName();
-        //     $path = $upload_image->storeAs('uploads', $file_name);
-        //     if($path) {
-        //         $book->cover = $file_name;
-        //     }
-        // }
+        if(is_uploaded_file($_FILES['cover']['tmp_name'])){
+            $upload_image = $request->file('cover');
+            $file_name = time() . '_' . $upload_image->getClientOriginalName();
+            $path = $upload_image->storeAs('public', $file_name);
+            if($path) {
+                $book->cover = $file_name;
+            }
+        }
         $book->title = $request->title;
         $book->author = $request->author;
         $book->isbn = $request->isbn;

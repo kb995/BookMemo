@@ -44,7 +44,9 @@
     <div>
         {{-- <img src="{{ Storage::url($book->cover) }}" style="width:100%;"/> --}}
         {{-- <img src="/storage/uploads/{{$book->cover}}" width="100px" height="100px"> --}}
-        {{-- <img src="{{ asset('storage/uploads/' . $book->cover) }}"> --}}
+        {{-- <img src="{{ Storage::url('app/uploads/' . $book->cover) }}" alt=""> --}}
+        <img src="{{ asset('/storage/'.$book->cover) }}">
+
     </div>
 
 
