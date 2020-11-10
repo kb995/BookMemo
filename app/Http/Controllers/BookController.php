@@ -67,6 +67,16 @@ class BookController extends Controller
 
     public function update(Book $book, BookRequest $request)
     {
+        if(is_uploaded_file($_FILES['cover']['tmp_name'])){
+            $upload_image = $request->file('cover');
+            $file_name = time() . '_' . $upload_image->getClientOriginalName();
+            $path = $upload_image->storeAs('public', $file_name);
+            if($path) {
+                $delete_img_path = storage_path() . '/app/public/' . $book->cover;
+                \File::delete($delete_img_path);
+                $book->cover = $file_name;
+            }
+        }
         $book->title = $request->title;
         $book->author = $request->author;
         $book->isbn = $request->isbn;
@@ -84,6 +94,9 @@ class BookController extends Controller
         $book->memos()->each(function ($memo) {
             $memo->delete();
         });
+        $book_cover = $book->cover;
+        $delete_img_path = storage_path() . '/app/public/' . $book->cover;
+        \File::delete($delete_img_path);
         $book->delete();
         session()->flash('flash_message', '書籍を削除しました');
 

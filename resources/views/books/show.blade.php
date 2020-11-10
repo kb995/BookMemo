@@ -41,12 +41,9 @@
             </td>
         </tr>
     </table>
-    <div>
-        {{-- <img src="{{ Storage::url($book->cover) }}" style="width:100%;"/> --}}
-        {{-- <img src="/storage/uploads/{{$book->cover}}" width="100px" height="100px"> --}}
-        {{-- <img src="{{ Storage::url('app/uploads/' . $book->cover) }}" alt=""> --}}
-        <img src="{{ asset('/storage/'.$book->cover) }}">
 
+    <div class="text-center my-3">
+        <img src="{{ asset('/storage/'. $book->cover) }}" style="height:150px; width: 100px;">
     </div>
 
 

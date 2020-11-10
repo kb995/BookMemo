@@ -13,10 +13,16 @@
 
     @include('layouts.errors')
 
-    <form method="POST" action="{{ route('books.update', ['book' => $book]) }}" class="card mx-auto w-50 p-5">
+    <form method="POST" action="{{ route('books.update', ['book' => $book]) }}" class="card mx-auto w-50 p-5" enctype="multipart/form-data">
     @method('PATCH')
     @csrf
         <div class="form-group">
+            <div class="text-center my-3">
+                <img src="{{ asset('/storage/'. $book->cover) }}" style="height:150px; width: 100px;">
+            </div>
+            <label for="cover">表紙</label>
+            <input type="file" class="form-control p-1 mb-3" id="cover" name="cover" accept="image/png,image/jpeg" value="{{ old('cover')}}">
+
             <label for="title">書籍タイトル</label>
             <input type="text" class="form-control" id="title" name="title" value="{{ $book->title ?? old('title') }}">
 
