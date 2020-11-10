@@ -13,7 +13,7 @@
 
     @include('layouts.errors')
 
-    <form method="POST" action="{{ route('books.store') }}" class="card mx-auto w-50 p-5" 	enctype="multipart/form-data">
+    <form method="POST" action="{{ route('books.store') }}" class="card mx-auto w-50 p-5" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="cover">表紙</label>
