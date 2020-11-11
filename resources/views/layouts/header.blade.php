@@ -10,8 +10,6 @@
             <li class="navbar-item">
                 <img class="bg-white" src="{{ asset('/storage/common/default_user.jpeg') }}" style="height:50px; width: 50px;">
             </li>
-
-
         </ul>
 
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

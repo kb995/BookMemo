@@ -8,12 +8,41 @@
 @endsection
 
 @section('content')
-<section class="conteiner">
-    <h1 class="text-center h3 my-5">書籍一覧</h1>
+    <section class="header-prof">
+        <div class="prof-card-wrapper">
+            <div class="prof-card">
+                <div class="user-icon">
+                    <a href="">
+                        <img class="user-icon" src="{{ asset('/storage/common/default_user.jpeg') }}" alt="ユーザーアイコン">
+                    </a>
+                </div>
+                <div class="user-info">
+                    <h1 class="h3">{{ $user->name }}の本棚</h1>
+                    <a href="">{{ $user->name }}さん</a> | <a class="btn btn-outline-primary btn-sm ml-2" href="">編集</a>
+                    <ul class="shelf-info">
+                        <li class="shelf-info-list">
+                            <dl>
+                                <dt>登録数</dt>
+                                <dd>100</dd>
+                            </dl>
+                        </li>
+                        <li class="shelf-info-list">
+                            <dl>
+                                <dt>読了済</dt>
+                                <dd>80</dd>
+                            </dl>
+                        <li class="shelf-info-list">
+                            <dl>
+                                <dt>積読</dt>
+                                <dd>10</dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="card w-50 mx-auto text-center">
-        {{ $user->id }} : {{ $user->name }}
-    </div>
     <div class="text-center my-5">
         <a class="btn btn-outline-success" href="{{ route('books.create') }}">書籍登録</a>
     </div>
@@ -31,5 +60,4 @@
         </tr>
         @endforeach
     </table>
-</section>
 @endsection
