@@ -47,13 +47,28 @@
         <div class="book-list">
             @foreach( $books as $book)
             <div class="book-item">
-                <div class="book-cover">
-                    <i class="book-default fas fa-book"></i>
-                </div>
+                @if($book->cover)
+                <a href="{{ route('books.show', ['book' => $book]) }}">
+                    <div class="book-cover">
+                        <img style="width: 100%;" src="{{ asset('/storage/'. $book->cover) }}">
+                    </div>
+                </a>
+                @else
+                <a href="{{ route('books.show', ['book' => $book]) }}">
+                    <div class="book-cover">
+                        <i class="book-default fas fa-book"></i>
+                    </div>
+                </a>
+                @endif
                 <p class="book-title">{{ $book->title }}</p>
                 <p class="star">★★★★★</p>
             </div>
             @endforeach
+
+            <div class="text-center">
+                {{ $books->links() }}
+            </div>
+
         </div>
     </section>
 @endsection

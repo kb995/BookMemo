@@ -11003,11 +11003,20 @@ header .nav-color {
   margin: 20px auto 0 auto;
 }
 
+.book-shelf .book-list .book-item .book-cover img {
+  width: 100%;
+}
+
 .book-shelf .book-list .book-item .book-cover .book-default {
   padding-top: 40%;
   font-size: 5rem;
   text-align: center;
   color: #fff;
+}
+
+.book-shelf .book-list .book-item .book-cover:hover {
+  transform: scale(1.1);
+  transition: 0.8s;
 }
 
 .book-shelf .book-list .book-item .book-title {
