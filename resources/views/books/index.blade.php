@@ -54,6 +54,11 @@
                 <p class="star">★★★★★</p>
             </div>
             @endforeach
+
+            <div class="text-center">
+                {{ $books->links() }}
+            </div>
+
         </div>
     </section>
 @endsection
