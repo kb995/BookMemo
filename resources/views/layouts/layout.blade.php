@@ -7,6 +7,8 @@
     <title>@yield('title')</title>
     <link href="{{ asset('./css/app.css' )}}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">{{-- toastr --}}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">{{-- fontawesome --}}
+
     @yield('styles')
 </head>
 

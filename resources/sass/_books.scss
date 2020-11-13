@@ -20,6 +20,13 @@
                 height: 280px;
                 background-color: #f1f1f1;
                 margin: 20px auto 0 auto;
+
+                .book-default {
+                    padding-top: 40%;
+                    font-size: 5rem;
+                    text-align: center;
+                    color: #fff;
+                }
             }
             .book-title {
                 width: 80%;
@@ -43,4 +50,5 @@
         width: 25%;
         margin: 30px;
       }
+
 }
