@@ -43,30 +43,14 @@
         </div>
     </section>
 
-    {{-- <div class="text-center my-5">
-        <a class="btn btn-outline-success" href="{{ route('books.create') }}">書籍登録</a>
-    </div>
-    <table class="table-bordered w-50 mx-auto text-center">
-        <th>タイトル</th>
-        <th>著者</th>
-        <th>状態</th>
-        <th>user_id</th>
-        @foreach( $books as $book)
-        <tr>
-            <td><a href="{{ route('books.show', ['book' => $book] ) }}">{{ $book->title }}</a></td>
-            <td>{{ $book->author }}</td>
-            <td>{{ $book->status }}</td>
-            <td>{{ $book->user_id }}</td>
-        </tr>
-    </table> --}}
     <section class="book-shelf">
         <div class="book-list">
             @foreach( $books as $book)
             <div class="book-item">
                 <div class="book-cover">
-                    <img src="" alt="画像">
+                    <i class="book-default fas fa-book"></i>
                 </div>
-                <p class="book-title">{{$book->title}}</p>
+                <p class="book-title">{{ $book->title }}</p>
                 <p class="star">★★★★★</p>
             </div>
             @endforeach
