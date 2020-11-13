@@ -10976,3 +10976,53 @@ header .nav-color {
   font-weight: bold;
 }
 
+.book-shelf {
+  background-color: wheat;
+  padding: 100px;
+}
+
+.book-shelf .book-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.book-shelf .book-list .book-item {
+  width: 25%;
+  height: 400px;
+  border: solid 1px black;
+  background-color: #fff;
+  text-align: center;
+  margin: 50px 30px;
+}
+
+.book-shelf .book-list .book-item .book-cover {
+  width: 80%;
+  height: 280px;
+  background-color: #f1f1f1;
+  margin: 20px auto 0 auto;
+}
+
+.book-shelf .book-list .book-item .book-title {
+  width: 80%;
+  font-size: 1.1rem;
+  text-align: center;
+  margin: 10px auto 0 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.book-shelf .book-list .book-item .star {
+  font-size: 1.3rem;
+  color: yellow;
+  text-align: center;
+}
+
+.book-shelf .book-list::after {
+  content: "";
+  display: block;
+  width: 25%;
+  margin: 30px;
+}
+

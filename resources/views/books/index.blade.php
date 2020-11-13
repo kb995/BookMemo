@@ -43,7 +43,7 @@
         </div>
     </section>
 
-    <div class="text-center my-5">
+    {{-- <div class="text-center my-5">
         <a class="btn btn-outline-success" href="{{ route('books.create') }}">書籍登録</a>
     </div>
     <table class="table-bordered w-50 mx-auto text-center">
@@ -58,6 +58,18 @@
             <td>{{ $book->status }}</td>
             <td>{{ $book->user_id }}</td>
         </tr>
-        @endforeach
-    </table>
+    </table> --}}
+    <section class="book-shelf">
+        <div class="book-list">
+            @foreach( $books as $book)
+            <div class="book-item">
+                <div class="book-cover">
+                    <img src="" alt="画像">
+                </div>
+                <p class="book-title">{{$book->title}}</p>
+                <p class="star">★★★★★</p>
+            </div>
+            @endforeach
+        </div>
+    </section>
 @endsection
