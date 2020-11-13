@@ -20,6 +20,9 @@
                 height: 280px;
                 background-color: #f1f1f1;
                 margin: 20px auto 0 auto;
+                img {
+                    width: 100%;
+                }
 
                 .book-default {
                     padding-top: 40%;
@@ -28,6 +31,12 @@
                     color: #fff;
                 }
             }
+
+            .book-cover:hover{
+                transform: scale(1.1);
+                transition: .8s;
+            }
+
             .book-title {
                 width: 80%;
                 font-size: 1.1rem;
