@@ -58,7 +58,27 @@
 <section>
     <div class="row">
         <div class="side col-md-3 col-sm-12">
-            <img src="" alt="">
+            @if($book->cover)
+            {{-- <a href="{{ route('books.show', ['book' => $book]) }}"> --}}
+                <div class="book-cover">
+                    <img src="{{ asset('/storage/'. $book->cover) }}">
+                </div>
+            {{-- </a> --}}
+            @else
+            {{-- <a href="{{ route('books.show', ['book' => $book]) }}"> --}}
+                <div class="book-cover">
+                    <i class="book-default fas fa-book"></i>
+                </div>
+            {{-- </a> --}}
+            @endif
+            <p>[タイトル] {{ $book->title }} </p>
+            <p>[著者]{{ $book->author }}</p>
+            <p>[詳細]{{ $book->description }}</p>
+            <p>[isbn]{{ $book->isbn }}</p>
+            <p>[状態]{{ $book->status }}</p>
+            <p>[タグ]</p>
+            <p>[評価]<span class="star">★★★★★</span></p>
+            <p>[読了日]{{ $book->read_at }}</p>
         </div>
 
         <div class="memos col-md-9 col-sm-12">
