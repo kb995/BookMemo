@@ -11042,3 +11042,13 @@ header .nav-color {
   margin: 30px;
 }
 
+.memos {
+  background-color: lightblue;
+  min-height: 1000px;
+}
+
+.side {
+  background-color: lightcyan;
+  min-height: 1000px;
+}
+
