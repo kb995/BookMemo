@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-<section class="conteiner">
+{{-- <section class="conteiner">
     <h1 class="text-center my-5">書籍詳細</h1>
     <table class="table-bordered w-50 mx-auto text-center">
         <th>ID</th>
@@ -53,5 +53,16 @@
 
     @include('memos.index')
 
+</section> --}}
+
+<section>
+    <div class="row">
+        <div class="side col-md-3 col-sm-12">
+            <img src="" alt="">
+        </div>
+
+        <div class="memos col-md-9 col-sm-12">
+        </div>
+    </div>
 </section>
 @endsection
