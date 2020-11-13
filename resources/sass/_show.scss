@@ -6,4 +6,29 @@
 .side {
     background-color: lightcyan;
     min-height: 1000px;
+
+    .book-cover {
+        width: 80%;
+        height: 280px;
+        background-color: #f1f1f1;
+        margin: 70px auto 0 auto;
+        text-align: center;
+
+        img {
+            width: 100%;
+        }
+
+        .book-default {
+            padding-top: 40%;
+            font-size: 5rem;
+            text-align: center;
+            color: #fff;
+        }
+    }
+    .star {
+        font-size: 1.3rem;
+        color: yellow;
+        text-align: center;
+    }
+
 }

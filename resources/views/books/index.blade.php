@@ -50,7 +50,7 @@
                 @if($book->cover)
                 <a href="{{ route('books.show', ['book' => $book]) }}">
                     <div class="book-cover">
-                        <img style="width: 100%;" src="{{ asset('/storage/'. $book->cover) }}">
+                        <img src="{{ asset('/storage/'. $book->cover) }}">
                     </div>
                 </a>
                 @else
