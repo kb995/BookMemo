@@ -11047,6 +11047,10 @@ header .nav-color {
   min-height: 1000px;
 }
 
+.memos .delete-form {
+  display: inline !important;
+}
+
 .side {
   background-color: lightcyan;
   min-height: 1000px;
@@ -11075,5 +11079,18 @@ header .nav-color {
   font-size: 1.3rem;
   color: yellow;
   text-align: center;
+}
+
+.side .deleteform {
+  display: inline !important;
+}
+
+.side .book-edit {
+  margin: 30px auto;
+  text-align: center;
+}
+
+.side .book-info {
+  padding: 0 30px;
 }
 
