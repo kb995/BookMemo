@@ -18,6 +18,7 @@
                     削除
                 </a>
             </form>
+            {{ $memo->created_at }}
         </div>
     </div>
     @endforeach

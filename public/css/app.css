@@ -11054,6 +11054,7 @@ header .nav-color {
 .side {
   background-color: lightcyan;
   min-height: 1000px;
+  padding-right: 0;
 }
 
 .side .book-cover {

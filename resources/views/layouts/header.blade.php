@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-dark nav-color navbar-expand-lg px-5">
+    <nav class="navbar navbar-dark nav-color navbar-expand-lg px-5 row">
 
         <a class="navbar-brand logo" href="{{ route('books.index') }}">ブクメモ</a>
 
