@@ -12,13 +12,8 @@ $factory->define(Book::class, function (Faker $faker) {
         'author' => $faker->name,
         'isbn' => '123456789',
         'description' => $faker->paragraph,
-<<<<<<< HEAD
-        'status' => 0,
-        'rank' => 0,
-=======
         'status' => '0',
         'rank' => '0',
->>>>>>> 2c8d9788d12aa6ff7ef791df6186525aa422d805
         'user_id' => 1,
     ];
 });
