@@ -1,6 +1,10 @@
 .memos {
     background-color: lightblue;
     min-height: 1000px;
+
+    .delete-form {
+        display: inline!important;
+    }
 }
 
 .side {
@@ -29,6 +33,17 @@
         font-size: 1.3rem;
         color: yellow;
         text-align: center;
+    }
+
+    .deleteform {
+        display: inline!important;
+    }
+    .book-edit {
+        margin: 30px auto;
+        text-align: center;
+        }
+    .book-info {
+        padding: 0 30px;
     }
 
 }
