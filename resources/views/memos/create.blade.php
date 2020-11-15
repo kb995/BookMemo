@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('books.memos.store', ['book' => $book]) }}" class="card p-4 my-4">
+<form method="POST" action="{{ route('books.memos.store', ['book' => $book]) }}" class="card p-3 my-3">
     @csrf
     <div class="form-group">
         <label for="memo"></label>
