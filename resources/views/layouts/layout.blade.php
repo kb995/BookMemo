@@ -15,13 +15,15 @@
 <body>
     @include('layouts.header')
 
-    <main>
+    <main id="app">
         @yield('content')
     </main>
 
     @yield('scripts')
 
     <script src="{{ asset('/js/common.js') }}"></script>
+    <script src="{{ asset('/js/app.js') }}" defer></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>{{-- jQuery --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>{{-- torstr --}}
     <script>
