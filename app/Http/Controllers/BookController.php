@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\Memo;
+
 use App\User;
 
 
@@ -51,9 +52,6 @@ class BookController extends Controller
 
     public function show(Book $book)
     {
-        // $memos = Memo::all()->sortByDesc('id');
-        // $memos = $book->memos()->get();
-
         $book = Book::find($book->id);
         $memos = $book->memos()->orderBy('id', 'desc')->paginate(10);
 
