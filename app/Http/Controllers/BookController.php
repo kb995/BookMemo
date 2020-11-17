@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\Memo;
+use App\Models\Mtag;
 
 use App\User;
 
@@ -54,8 +55,11 @@ class BookController extends Controller
     {
         $book = Book::find($book->id);
         $memos = $book->memos()->orderBy('id', 'desc')->paginate(10);
+        $allTagNames = Mtag::all()->map(function ($tag) {
+            return ['text' => $tag->name];
+        });
 
-        return view('books.show', compact('book', 'memos'));
+        return view('books.show', compact('book', 'memos', 'allTagNames'));
     }
 
     public function edit(Book $book)

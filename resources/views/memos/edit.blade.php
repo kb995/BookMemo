@@ -19,6 +19,13 @@
         <div class="form-group">
             <label for="memo">メモ</label>
             <textarea type="text" class="form-control" id="memo" name="memo">{{ $memo->memo ?? old('memo') }}</textarea>
+
+            <book-tags-input-component
+            :initial-tags='@json($tagNames ?? [])'
+            :autocomplete-items='@json($allTagNames ?? [])'
+            >
+            </book-tags-input-component>
+
             <input type="submit" class="btn btn-primary my-4">
         </div>
 
