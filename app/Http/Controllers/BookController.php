@@ -58,6 +58,20 @@ class BookController extends Controller
         $allTagNames = Mtag::all()->map(function ($tag) {
             return ['text' => $tag->name];
         });
+        session()->forget('search_mtag');
+
+        return view('books.show', compact('book', 'memos', 'allTagNames'));
+    }
+
+    public function searchTags(Book $book, Mtag $mtag)
+    {
+        $book = Book::find($book->id);
+        $memos = $mtag->memos()->orderBy('id', 'desc')->paginate(12);
+        $allTagNames = Mtag::all()->map(function ($tag) {
+            return ['text' => $tag->name];
+        });
+        session()->forget('search_mtag');
+        session()->put('search_mtag', "#" . $mtag->name);
 
         return view('books.show', compact('book', 'memos', 'allTagNames'));
     }

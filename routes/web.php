@@ -12,6 +12,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
     Route::post('/create', 'BookController@store')->name('store');
     // 詳細
     Route::get('/{book}', 'BookController@show')->name('show');
+    // タグ検索
+    Route::get('/{book}/{mtag}', 'BookController@searchTags')->name('show.mtag');
     // 編集
     Route::get('/{book}/edit', 'BookController@edit')->name('edit');
     Route::patch('/{book}/edit', 'BookController@update')->name('update');
@@ -28,6 +30,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
         Route::patch('/{memo}/edit', 'MemoController@update')->name('update');
         // 削除
         Route::delete('/{memo}/destroy', 'MemoController@destroy')->name('destroy');
+
+        // ===== Mtag =====
+        // Route::get('/mtags/{mtag}', 'MtagController@index')->name('tags.index');
 
     });
 });

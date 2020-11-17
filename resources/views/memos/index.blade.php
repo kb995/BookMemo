@@ -1,4 +1,11 @@
 <section>
+
+    @if (Session::has('search_mtag'))
+        <div class="card my-4 py-2 px-3 h3">
+          「 {{ Session::get('search_mtag') }} 」を表示中 (1-12 / 100件中)
+        </div>
+    @endif
+
     @foreach ($memos as $memo)
     <div class="card mb-4">
         <div class="card-header">
@@ -18,15 +25,15 @@
                     削除
                 </a>
             </form>
+
             {{ $memo->created_at }}
 
-            {{-- タグ表示 --}}
             @foreach($memo->tags as $tag)
-                <a href="" class="border p-1 mr-1 mt-1 text-muted">
-                {{ $tag->name }}
+                <a href=" {{ route('books.show.mtag', ['book' => $book, 'mtag' => $tag]) }}" class="border p-1 mr-1 mt-1 text-muted">
+                {{ $tag->hashtag }}
                 </a>
             @endforeach
-            {{-- タグ表示 --}}
+
         </div>
     </div>
     @endforeach
