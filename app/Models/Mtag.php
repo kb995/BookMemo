@@ -9,4 +9,9 @@ class Mtag extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function getHashtagAttribute()
+    {
+        return '#' . $this->name;
+    }
 }

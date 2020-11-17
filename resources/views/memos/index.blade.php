@@ -23,7 +23,7 @@
             {{-- タグ表示 --}}
             @foreach($memo->tags as $tag)
                 <a href="" class="border p-1 mr-1 mt-1 text-muted">
-                {{ $tag->name }}
+                {{ $tag->hashtag }}
                 </a>
             @endforeach
             {{-- タグ表示 --}}
