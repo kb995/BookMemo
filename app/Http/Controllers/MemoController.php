@@ -30,7 +30,14 @@ class MemoController extends Controller
 
     public function edit(Book $book, Memo $memo)
     {
-        return view('memos.edit', compact('book', 'memo'));
+        $tagNames = $memo->tags->map(function ($tag) {
+            return ['text' => $tag->name];
+        });
+        $allTagNames = Mtag::all()->map(function ($tag) {
+            return ['text' => $tag->name];
+        });
+
+        return view('memos.edit', compact('book', 'memo', 'tagNames', 'allTagNames'));
     }
 
     public function update(MemoRequest $request, Book $book, Memo $memo)
@@ -38,6 +45,12 @@ class MemoController extends Controller
         $memo->memo = $request->memo;
         $memo->save();
         session()->flash('flash_message', 'メモを編集しました');
+
+        $memo->tags()->detach();
+        $request->tags->each(function ($tagName) use ($memo) {
+        $tag = Mtag::firstOrCreate(['name' => $tagName]);
+        $memo->tags()->attach($tag);
+        });
 
         return redirect()->route('books.show', ['book' => $book]);
     }
