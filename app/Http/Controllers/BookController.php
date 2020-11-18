@@ -55,25 +55,43 @@ class BookController extends Controller
     {
         $book = Book::find($book->id);
         $memos = $book->memos()->orderBy('id', 'desc')->paginate(10);
-        $allTagNames = Mtag::all()->map(function ($tag) {
+        // $allTagNames = Mtag::all()->map(function ($tag) {
+        //     return ['text' => $tag->name];
+        // });
+
+        // 他ユーザーのものが出ないようにする
+        // mtag create時にbook_idをもたせる ★
+        // 取得の際ユーザーに紐付いたbook_idで絞る
+
+        // (仮機能)タグ検索に必要なので単純にタグを取ってbladeに渡す
+        // $bookTags = Mtag::where('book_id', $book->id)->get();
+        $bookTags = Mtag::all();
+
+        // Vueコンポーネントに渡す時にbook_idも同時に入れる ★
+        $allTagNames = Mtag::where('book_id', $book->id)->get()->map(function ($tag) {
             return ['text' => $tag->name];
         });
+
+        // dd($allTagNames);
         session()->forget('search_mtag');
 
-        return view('books.show', compact('book', 'memos', 'allTagNames'));
+        return view('books.show', compact('book', 'memos', 'allTagNames', 'bookTags'));
     }
 
     public function searchTags(Book $book, Mtag $mtag)
     {
         $book = Book::find($book->id);
-        $memos = $mtag->memos()->orderBy('id', 'desc')->paginate(12);
+        $memos = $mtag->memos()->where('book_id', $book->id)->orderBy('id', 'desc')->paginate(12);
         $allTagNames = Mtag::all()->map(function ($tag) {
             return ['text' => $tag->name];
         });
+        // (仮機能)タグ検索に必要なので単純にタグを取ってbladeに渡す
+        // $bookTags = Mtag::where('book_id', $book->id)->get();
+        $bookTags = Mtag::all();
+
         session()->forget('search_mtag');
         session()->put('search_mtag', "#" . $mtag->name);
-
-        return view('books.show', compact('book', 'memos', 'allTagNames'));
+        return view('books.show', compact('book', 'memos', 'allTagNames', 'bookTags'));
     }
 
     public function edit(Book $book)

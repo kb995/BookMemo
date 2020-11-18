@@ -7,6 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Mtag::class, function (Faker $faker) {
     return [
-        'name' => 'タグ',
+        'name' => 'サンプルタグ',
+        'book_id' => 1,
     ];
 });

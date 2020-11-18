@@ -6,7 +6,7 @@
         @if(Auth::check())
         <ul class="navbar-nav ml-auto">
             {{-- <li class="navbar-item navbar-text px-4">{{ Auth::user()->name }}さんでログイン中</li> --}}
-            {{-- <li class="navbar-item"><button class="btn btn-link text-white" form="logout-form" id="logout">ログアウト</button></li> --}}
+            <li class="navbar-item"><button class="btn btn-link text-white" form="logout-form" id="logout">ログアウト</button></li>
             <li class="navbar-item">
                 <img class="bg-white" src="{{ asset('/storage/common/default_user.jpeg') }}" style="height:50px; width: 50px;">
             </li>

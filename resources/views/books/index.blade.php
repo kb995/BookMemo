@@ -41,6 +41,9 @@
                 </div>
             </div>
         </div>
+        <div class="text-center">
+            <a href="{{route('books.create')}}">書籍登録</a>
+        </div>
     </section>
 
     <section class="book-shelf">

@@ -12,6 +12,6 @@ class MtagsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Mtag::class, 10)->create();
+        factory(Mtag::class, 5)->create();
     }
 }
