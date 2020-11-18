@@ -17,6 +17,8 @@ class CreateMtagsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             // ->unique();
+            $table->bigInteger('book_id')->unsigned()->nullable();
+            $table->foreign('book_id')->references('id')->on('books');
             $table->timestamps();
         });
     }
