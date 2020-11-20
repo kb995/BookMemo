@@ -1,46 +1,46 @@
 <section>
-
     @if (Session::has('search_mtag'))
         <div class="card my-4 py-2 px-3 h3">
           「 {{ Session::get('search_mtag') }} 」を表示中 (1-12 / 100件中)
         </div>
     @endif
+
+    @if (Session::has('search_keyword'))
+        <div class="card my-4 py-2 px-3 h3">
+          「 {{ Session::get('search_keyword') }} 」を表示中 (1-12 / 100件中)
+        </div>
+    @endif
+
     <div class="card my-4 py-2 px-3">
         <div class="d-flex">
-        <span class="pl-3">
-            <a href="{{ route('books.show', ['book' => $book]) }}">メモ一覧</a>
-        </span>
-        <span class="pl-3">ストック一覧</span>
+            <span class="pl-3">
+                <a href="{{ route('books.show', ['book' => $book]) }}">メモ一覧</a>
+            </span>
 
-        {{-- <form action="" method="get" class="pl-3">
-            @csrf
-            <select onChange="location.href=value;">
-                <option value="">default</option>
-                @foreach($bookTags as $mtag)
-                <option value="{{ route(books.show.mtag, ['book' => $book, 'mtag' =>$mtag]) }}">{{ $mtag->name }}</option>
-                @endforeach
-            </select>
-        </form> --}}
+            <span class="pl-3">
+                <a href="{{ route('books.index') }}">書籍一覧</a>
+            </span>
 
-        {{--  --}}
-        <form action="" method="">
-            @csrf
-                <select onChange="location.href=value;">
-                    @foreach($bookTags as $mtag)
-                        @if ($loop->first)
-                        <option selected>タグで検索</option>
-                        @endif
-                        <option value="{{ route('books.show.mtag', ['book' => $book, 'mtag' => $mtag]) }}">
-                            {{ $mtag->name }}
-                        </option>
-                    @endforeach
-                </select>
-        </form>
-        {{--  --}}
+            <span class="pl-3">ストック一覧</span>
 
-        <span class="pl-3">キーワード検索</span>
-        <span class="pl-3"><a href="{{ route('books.index') }}">書籍一覧</a></span>
-    </div>
+            <form method="POST" action="{{ route('books.show.keyword', ['book' => $book]) }}" class="inline">
+                @csrf
+                <div class="form-group ml-3">
+                    <input type="text" name="keyword" value="{{ old('keyword') }}">
+                    <input type="submit" class="btn btn-sm btn-primary">
+                </div>
+            </form>
+        </div>
+
+        <div class="d-flex p-3">
+            @foreach($bookTags as $mtag)
+                <span class="pr-2">
+                    <a class="text-muted bg-light p-2" href="{{ route('books.show.mtag', ['book' => $book, 'mtag' => $mtag]) }}">
+                        #{{ $mtag->name }}
+                    </a>
+                </span>
+            @endforeach
+        </div>
     </div>
 
     @foreach ($memos as $memo)
