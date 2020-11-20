@@ -20,7 +20,10 @@ class BookController extends Controller
         $user = User::find(Auth::id());
         $books = $user->books()->orderBy('created_at', 'desc')->paginate(12);
 
-        return view('books.index', compact('books', 'user'));
+        $counts = [];
+        $counts['books'] = Book::where('user_id', $user->id)->count();
+
+        return view('books.index', compact('books', 'user', 'counts'));
     }
 
     public function create()

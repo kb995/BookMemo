@@ -21,10 +21,14 @@
                     <a href="">{{ $user->name }}さん</a> | <a class="btn btn-outline-primary btn-sm ml-2" href="">編集</a>
                     <ul class="shelf-info">
                         <li class="shelf-info-list">
-                            <dl>
-                                <dt>登録数</dt>
-                                <dd>100</dd>
-                            </dl>
+                            <a href="{{ route('books.index') }}">
+                                <dl>
+                                    <dt>登録数</dt>
+                                    <dd>
+                                        {{ $counts['books'] }} <span class="text-muted count-text">冊</span>
+                                    </dd>
+                                </dl>
+                            </a>
                         </li>
                         <li class="shelf-info-list">
                             <dl>

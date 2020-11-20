@@ -51,6 +51,19 @@ header {
                     margin: 5px;
                     background-color: #f2f2f2;
                     border-radius: 4px;
+                    text-decoration: none;
+                    &:hover {
+                        text-decoration: none;
+                        opacity: 0.8;
+                    }
+                    a:hover{
+                        text-decoration: none;
+                        opacity: 0.8;
+                    }
+                    dl:hover {
+                        text-decoration: none;
+                        opacity: 0.8;
+                    }
 
                     dt {
                         font-size: 17px;
@@ -64,6 +77,10 @@ header {
                         font-size: 18px;
                         color: #4ea6cc;
                         font-weight: bold;
+
+                        .count-text {
+                            font-size: .7rem;
+                        }
                     }
                 }
             }
