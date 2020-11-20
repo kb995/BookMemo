@@ -71,7 +71,7 @@ class BookController extends Controller
         $allTagNames = Mtag::where('book_id', $book->id)->get()->map(function ($tag) {
             return ['text' => $tag->name];
         });
-        session()->forget('search_mtag');
+        session()->forget(['search_keyword', 'search_mtag']);
 
         return view('books.show', compact('book', 'memos', 'allTagNames', 'bookTags'));
     }
@@ -87,7 +87,7 @@ class BookController extends Controller
         // $bookTags = Mtag::where('book_id', $book->id)->get();
         $bookTags = Mtag::all();
 
-        session()->forget('search_mtag');
+        session()->forget(['search_keyword', 'search_mtag']);
         session()->put('search_mtag', "#" . $mtag->name);
         return view('books.show', compact('book', 'memos', 'allTagNames', 'bookTags'));
     }
@@ -99,8 +99,7 @@ class BookController extends Controller
 
         if(!empty($keyword)) {
             $memos = Memo::where('memo', 'like' , '%'.$keyword.'%')->paginate(12);
-            session()->forget('search_keyword');
-            session()->forget('search_mtag');
+            session()->forget(['search_keyword', 'search_mtag']);
             session()->put('search_keyword', $keyword);
         }
 
