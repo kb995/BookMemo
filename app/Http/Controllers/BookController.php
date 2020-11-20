@@ -71,8 +71,6 @@ class BookController extends Controller
         $allTagNames = Mtag::where('book_id', $book->id)->get()->map(function ($tag) {
             return ['text' => $tag->name];
         });
-
-        // dd($allTagNames);
         session()->forget('search_mtag');
 
         return view('books.show', compact('book', 'memos', 'allTagNames', 'bookTags'));
@@ -92,6 +90,29 @@ class BookController extends Controller
         session()->forget('search_mtag');
         session()->put('search_mtag', "#" . $mtag->name);
         return view('books.show', compact('book', 'memos', 'allTagNames', 'bookTags'));
+    }
+
+    // キーワード検索
+    public function searchKeyword(Book $book, Request $request) {
+        $book = Book::find($book->id);
+        $keyword = $request->keyword;
+
+        if(!empty($keyword)) {
+            $memos = Memo::where('memo', 'like' , '%'.$keyword.'%')->paginate(12);
+            session()->forget('search_keyword');
+            session()->forget('search_mtag');
+            session()->put('search_keyword', $keyword);
+        }
+
+        // タグ(仮)
+        $allTagNames = Mtag::all()->map(function ($tag) {
+            return ['text' => $tag->name];
+        });
+        $bookTags = Mtag::all();
+
+        return view('books.show', compact('book', 'memos', 'allTagNames', 'bookTags'));
+
+
     }
 
     public function edit(Book $book)
