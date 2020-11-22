@@ -40,14 +40,49 @@
             </div>
 
             <div class="book-info">
-                <p>[タイトル] {{ $book->title }} </p>
-                <p>[著者]{{ $book->author }}</p>
-                <p>[詳細]{{ $book->description }}</p>
-                <p>[isbn]{{ $book->isbn }}</p>
-                <p>[状態]{{ $book->status }}</p>
+                <div class="text-left my-2">
+                    @if($book->status === 0)
+                    <span class="badge badge-secondary p-2">ステータス</span>
+                    @elseif($book->status === 1)
+                    <span class="badge badge-danger p-2">未読</span>
+                    @elseif($book->status === 2)
+                    <span class="badge badge-primary p-2">読書中</span>
+                    @elseif($book->status === 3)
+                    <span class="badge badge-warning p-2">積読</span>
+                    @elseif($book->status === 4)
+                    <span class="badge badge-success p-2">読了</span>
+                    @endif
+                </div>
+                <p>[タイトル]</p>
+                <p>{{ $book->title }}</p>
+                <p>[著者]</p>
+                <p>{{ $book->author }}</p>
+                <p>[詳細]</p>
+                <p>{{ $book->description }}</p>
+                <p>[isbn]</p>
+                <p>{{ $book->isbn }}</p>
                 <p>[タグ]</p>
-                <p>[評価]<span class="star">★★★★★</span></p>
-                <p>[読了日]{{ $book->read_at }}</p>
+                <p></p>
+                <p>[評価]</p>
+
+                <div class="text-left my-2">
+                    @if($book->rank === 0)
+                    <span class="star-empty">★★★★★</span>
+                    @elseif($book->rank === 1)
+                    <span class="star">★</span><span class="star-empty">★★★★</span>
+                    @elseif($book->rank === 2)
+                    <span class="star">★★</span><span class="star-empty">★★★</span>
+                    @elseif($book->rank === 3)
+                    <span class="star">★★★</span><span class="star-empty">★★</span>
+                    @elseif($book->rank === 4)
+                    <span class="star">★★★★</span><span class="star-empty">★</span>
+                    @elseif($book->rank === 5)
+                    <span class="star">★★★★★</span>
+                    @endif
+                </div>
+
+                <p>[読了日]</p>
+                <p>{{ $book->read_at }}</p>
             </div>
         </div>
 

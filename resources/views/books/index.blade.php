@@ -68,7 +68,7 @@
                 </a>
                 @endif
                 <p class="book-title">{{ $book->title }}</p>
-                <p class="star">★★★★★</p>
+                <p class="text-muted">{{ $book->author }}</p>
             </div>
             @endforeach
 

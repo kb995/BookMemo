@@ -11049,12 +11049,6 @@ header .nav-color {
   text-overflow: ellipsis;
 }
 
-.book-shelf .book-list .book-item .star {
-  font-size: 1.3rem;
-  color: yellow;
-  text-align: center;
-}
-
 .book-shelf .book-list::after {
   content: "";
   display: block;
@@ -11094,6 +11088,12 @@ header .nav-color {
   font-size: 5rem;
   text-align: center;
   color: #fff;
+}
+
+.side .star-empty {
+  font-size: 1.3rem;
+  color: lightyellow;
+  text-align: center;
 }
 
 .side .star {
