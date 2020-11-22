@@ -16,11 +16,11 @@
 |        | GET|HEAD | books/{book}/edit                 | books.edit            | App\Http\Controllers\BookController@edit                               | web,auth                                             |
 |        | POST     | books/{book}/memos/create         | books.memos.store     | App\Http\Controllers\MemoController@store                              | web,auth                                             |
 |        | GET|HEAD | books/{book}/memos/create         | books.memos.create    | App\Http\Controllers\MemoController@create                             | web,auth                                             |
+|        | POST     | books/{book}/memos/search         | books.memos.keyword   | App\Http\Controllers\MemoController@searchKeyword                      | web,auth                                             |
 |        | DELETE   | books/{book}/memos/{memo}/destroy | books.memos.destroy   | App\Http\Controllers\MemoController@destroy                            | web,auth                                             |
 |        | PATCH    | books/{book}/memos/{memo}/edit    | books.memos.update    | App\Http\Controllers\MemoController@update                             | web,auth                                             |
 |        | GET|HEAD | books/{book}/memos/{memo}/edit    | books.memos.edit      | App\Http\Controllers\MemoController@edit                               | web,auth                                             |
-|        | POST     | books/{book}/search               | books.show.keyword    | App\Http\Controllers\BookController@searchKeyword                      | web,auth                                             |
-|        | GET|HEAD | books/{book}/{mtag}               | books.show.mtag       | App\Http\Controllers\BookController@searchTags                         | web,auth                                             |
+|        | GET|HEAD | books/{book}/memos/{mtag}         | books.memos.mtag      | App\Http\Controllers\MemoController@searchTags                         | web,auth                                             |
 |        | GET|HEAD | home                              | home                  | App\Http\Controllers\HomeController@index                              | web,auth                                             |
 |        | POST     | login                             |                       | App\Http\Controllers\Auth\LoginController@login                        | web,guest                                            |
 |        | GET|HEAD | login                             | login                 | App\Http\Controllers\Auth\LoginController@showLoginForm                | web,guest                                            |
