@@ -14,16 +14,16 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
     Route::get('/{book}', 'BookController@show')->name('show');
 
     // キーワード検索
-    // Route::post('/{book}/search', 'BookController@searchKeyword')->name('show.keyword');
-
+    Route::post('/search', 'BookController@searchKeyword')->name('keyword');
+    // タグ検索
+    // Route::get('/{book}/{mtag}', 'BookController@searchTags')->name('show.mtag');
     // 編集
+
     Route::get('/{book}/edit', 'BookController@edit')->name('edit');
     Route::patch('/{book}/edit', 'BookController@update')->name('update');
     // 削除
     Route::delete('/{book}/destroy', 'BookController@destroy')->name('destroy');
 
-    // タグ検索
-    // Route::get('/{book}/{mtag}', 'BookController@searchTags')->name('show.mtag');
     // ===== Memo =====
     Route::group(['prefix' => '{book}/memos', 'as' => 'memos.'], function(){
         // キーワード検索
