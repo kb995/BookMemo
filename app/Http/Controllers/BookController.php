@@ -21,7 +21,9 @@ class BookController extends Controller
         $books = $user->books()->orderBy('created_at', 'desc')->paginate(12);
 
         $counts = [];
-        $counts['books'] = Book::where('user_id', $user->id)->count();
+        $counts['books_stock'] = Book::where('user_id', $user->id)->count();
+        $counts['books_read'] = Book::where('user_id', $user->id)->where('status', 4)->count();
+        $counts['books_pile'] = Book::where('user_id', $user->id)->where('status', 3)->count();
 
         return view('books.index', compact('books', 'user', 'counts'));
     }

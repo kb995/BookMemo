@@ -25,7 +25,7 @@
                                 <dl>
                                     <dt>登録数</dt>
                                     <dd>
-                                        {{ $counts['books'] }} <span class="text-muted count-text">冊</span>
+                                        {{ $counts['books_stock'] }} <span class="text-muted count-text">冊</span>
                                     </dd>
                                 </dl>
                             </a>
@@ -33,12 +33,16 @@
                         <li class="shelf-info-list">
                             <dl>
                                 <dt>読了済</dt>
-                                <dd>80</dd>
+                                <dd>
+                                    {{ $counts['books_read'] }} <span class="text-muted count-text">冊</span>
+                                </dd>
                             </dl>
                         <li class="shelf-info-list">
                             <dl>
                                 <dt>積読</dt>
-                                <dd>10</dd>
+                                <dd>
+                                    {{ $counts['books_pile'] }} <span class="text-muted count-text">冊</span>
+                                </dd>
                             </dl>
                         </li>
                     </ul>
