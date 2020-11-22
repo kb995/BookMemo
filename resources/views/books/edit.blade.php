@@ -37,21 +37,21 @@
 
             <label for="status">状態</label>
             <select name="status" class="form-control" id="status" value="{{ old('status') }}">
-                <option value="0">-</option>
-                <option value="1">未読</option>
-                <option value="2">読書中</option>
-                <option value="3">積読</option>
-                <option value="4">読了</option>
+                <option value="0" {{ $book->status === 0 ? 'selected' : '' }}>-</option>
+                <option value="1" {{ $book->status === 1 ? 'selected' : '' }}>未読</option>
+                <option value="2" {{ $book->status === 2 ? 'selected' : '' }}>読書中</option>
+                <option value="3" {{ $book->status === 3 ? 'selected' : '' }}>積読</option>
+                <option value="4" {{ $book->status === 4 ? 'selected' : '' }}>読了</option>
             </select>
 
             <div class="my-2">
                 <label for="rank">評価</label>
                 <select name="rank" class="form-control" id="rank" value="{{ old('rank') }}">
-                    <option value="0" {{ $book->rank === 0 ? 'selected' : '' }}>-</option>
-                    <option value="1" {{ $book->rank === 1 ? 'selected' : '' }}>★</option>
-                    <option value="2" {{ $book->rank === 2 ? 'selected' : '' }}>★★</option>
-                    <option value="3" {{ $book->rank === 3 ? 'selected' : '' }}>★★★</option>
-                    <option value="4" {{ $book->rank === 4 ? 'selected' : '' }}>★★★★</option>
+                    <option value="0" {{ $book->rank === 0 ? 'selected' : '' }}>☆☆☆☆☆</option>
+                    <option value="1" {{ $book->rank === 1 ? 'selected' : '' }}>★☆☆☆☆</option>
+                    <option value="2" {{ $book->rank === 2 ? 'selected' : '' }}>★★☆☆☆</option>
+                    <option value="3" {{ $book->rank === 3 ? 'selected' : '' }}>★★★☆☆</option>
+                    <option value="4" {{ $book->rank === 4 ? 'selected' : '' }}>★★★★☆</option>
                     <option value="5" {{ $book->rank === 5 ? 'selected' : '' }}>★★★★★</option>
                 </select>
             </div>

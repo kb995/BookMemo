@@ -33,24 +33,25 @@
 
             <label for="status">状態</label>
             <select name="status" class="form-control" id="status" value="{{ old('status') }}">
-                <option value="0">-</option>
-                <option value="1">未読</option>
-                <option value="2">読書中</option>
-                <option value="3">積読</option>
-                <option value="4">読了</option>
+                <option value="0" {{ old('rank') === '0' ? 'selected' : '' }}>-</option>
+                <option value="1" {{ old('rank') === '1' ? 'selected' : '' }}>未読</option>
+                <option value="2" {{ old('rank') === '2' ? 'selected' : '' }}>読書中</option>
+                <option value="3" {{ old('rank') === '3' ? 'selected' : '' }}>積読</option>
+                <option value="4" {{ old('rank') === '4' ? 'selected' : '' }}>読了</option>
             </select>
 
             <div class="my-2">
                 <label for="rank">評価</label>
                 <select name="rank" class="form-control" id="rank" value="{{ old('rank') }}">
-                    <option value="0">-</option>
-                    <option value="1">★</option>
-                    <option value="2">★★</option>
-                    <option value="3">★★★</option>
-                    <option value="4">★★★★</option>
-                    <option value="5">★★★★★</option>
+                    <option value="0" {{ old('rank') === '0' ? 'selected' : '' }}>☆☆☆☆☆</option>
+                    <option value="1" {{ old('rank') === '1' ? 'selected' : '' }}>★☆☆☆☆</option>
+                    <option value="2" {{ old('rank') === '2' ? 'selected' : '' }}>★★☆☆☆</option>
+                    <option value="3" {{ old('rank') === '3' ? 'selected' : '' }}>★★★☆☆</option>
+                    <option value="4" {{ old('rank') === '4' ? 'selected' : '' }}>★★★★☆</option>
+                    <option value="5" {{ old('rank') === '5' ? 'selected' : '' }}>★★★★★</option>
                 </select>
             </div>
+
 
             <label for="read_at">読了日</label>
             <div>
