@@ -67,15 +67,15 @@
 
                 <div class="text-left my-2">
                     @if($book->rank === 0)
-                    <span>未評価</span>
+                    <span class="star-empty">★★★★★</span>
                     @elseif($book->rank === 1)
-                    <span class="star">★</span>
+                    <span class="star">★</span><span class="star-empty">★★★★</span>
                     @elseif($book->rank === 2)
-                    <span class="star">★★</span>
+                    <span class="star">★★</span><span class="star-empty">★★★</span>
                     @elseif($book->rank === 3)
-                    <span class="star">★★★</span>
+                    <span class="star">★★★</span><span class="star-empty">★★</span>
                     @elseif($book->rank === 4)
-                    <span class="star">★★★★</span>
+                    <span class="star">★★★★</span><span class="star-empty">★</span>
                     @elseif($book->rank === 5)
                     <span class="star">★★★★★</span>
                     @endif

@@ -47,12 +47,12 @@
             <div class="my-2">
                 <label for="rank">評価</label>
                 <select name="rank" class="form-control" id="rank" value="{{ old('rank') }}">
-                    <option value="0">-</option>
-                    <option value="1">★</option>
-                    <option value="2">★★</option>
-                    <option value="3">★★★</option>
-                    <option value="4">★★★★</option>
-                    <option value="5">★★★★★</option>
+                    <option value="0" {{ $book->rank === 0 ? 'selected' : '' }}>-</option>
+                    <option value="1" {{ $book->rank === 1 ? 'selected' : '' }}>★</option>
+                    <option value="2" {{ $book->rank === 2 ? 'selected' : '' }}>★★</option>
+                    <option value="3" {{ $book->rank === 3 ? 'selected' : '' }}>★★★</option>
+                    <option value="4" {{ $book->rank === 4 ? 'selected' : '' }}>★★★★</option>
+                    <option value="5" {{ $book->rank === 5 ? 'selected' : '' }}>★★★★★</option>
                 </select>
             </div>
 
