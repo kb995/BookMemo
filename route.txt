@@ -10,6 +10,7 @@
 |        | GET|HEAD | books                             | books.index           | App\Http\Controllers\BookController@index                              | web,auth                                             |
 |        | POST     | books/create                      | books.store           | App\Http\Controllers\BookController@store                              | web,auth                                             |
 |        | GET|HEAD | books/create                      | books.create          | App\Http\Controllers\BookController@create                             | web,auth                                             |
+|        | POST     | books/search                      | books.keyword         | App\Http\Controllers\BookController@searchKeyword                      | web,auth                                             |
 |        | GET|HEAD | books/{book}                      | books.show            | App\Http\Controllers\BookController@show                               | web,auth                                             |
 |        | DELETE   | books/{book}/destroy              | books.destroy         | App\Http\Controllers\BookController@destroy                            | web,auth                                             |
 |        | PATCH    | books/{book}/edit                 | books.update          | App\Http\Controllers\BookController@update                             | web,auth                                             |

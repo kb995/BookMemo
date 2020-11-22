@@ -52,7 +52,14 @@
         <div class="text-center">
             <a href="{{route('books.create')}}">書籍登録</a>
         </div>
-    </section>
+        <form method="POST" action="{{ route('books.keyword') }}" class="text-center my-3">
+            @csrf
+            <div class="form-group ml-3">
+                <input type="text" name="keyword" value="{{ old('keyword') }}">
+                <input type="submit" class="btn btn-sm btn-primary">
+            </div>
+        </form>
+</section>
 
     <section class="book-shelf">
         <div class="book-list">

@@ -123,6 +123,34 @@ class BookController extends Controller
         session()->flash('flash_message', '書籍を削除しました');
 
         return redirect()->route('books.index');
-
     }
+
+    // キーワード検索
+    public function searchKeyword(Book $book, Request $request) {
+        $user = User::find(Auth::id());
+        $keyword = $request->keyword;
+
+        // $books = $user->books()->orderBy('created_at', 'desc')->paginate(12);
+        if(!empty($keyword)) {
+            $books = $user->books()
+            ->where('title', 'like' , '%'.$keyword.'%')
+            ->orWhere('author', 'like' , '%'.$keyword.'%')
+            ->orWhere('description', 'like' , '%'.$keyword.'%')
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+
+            session()->forget(['search_keyword', 'search_mtag']);
+            session()->put('search_keyword', $keyword);
+        } else {
+            return view('books.index');
+        }
+
+        $counts = [];
+        $counts['books_stock'] = Book::where('user_id', $user->id)->count();
+        $counts['books_read'] = Book::where('user_id', $user->id)->where('status', 4)->count();
+        $counts['books_pile'] = Book::where('user_id', $user->id)->where('status', 3)->count();
+
+        return view('books.index', compact('books', 'user', 'counts'));
+    }
+
 }
