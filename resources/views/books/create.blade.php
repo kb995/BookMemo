@@ -33,10 +33,11 @@
 
             <label for="status">状態</label>
             <select name="status" class="form-control" id="status" value="{{ old('status') }}">
-                <option value="0">未読</option>
-                <option value="1">読書中</option>
-                <option value="2">読了</option>
+                <option value="0">-</option>
+                <option value="1">未読</option>
+                <option value="2">読書中</option>
                 <option value="3">積読</option>
+                <option value="4">読了</option>
             </select>
 
             <div class="my-2">
@@ -56,14 +57,9 @@
                 <input type="date" name="read_at" id="read_at" class="form-control" value="{{ old('read_at') }}">
             </div>
 
-            <label for="category">カテゴリー</label>
-            <select class="form-control">
-                <option value="カテゴリー">カテゴリー</option>
-            </select>
-
             <input type="submit" class="btn btn-primary my-4">
         </div>
 
     </form>
-    </section>
+</section>
 @endsection
