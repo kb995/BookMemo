@@ -14,7 +14,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
     Route::get('/{book}', 'BookController@show')->name('show');
 
     // キーワード検索
-    Route::post('/{book}/search', 'BookController@searchKeyword')->name('show.keyword');
+    // Route::post('/{book}/search', 'BookController@searchKeyword')->name('show.keyword');
 
     // 編集
     Route::get('/{book}/edit', 'BookController@edit')->name('edit');
@@ -23,9 +23,14 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
     Route::delete('/{book}/destroy', 'BookController@destroy')->name('destroy');
 
     // タグ検索
-    Route::get('/{book}/{mtag}', 'BookController@searchTags')->name('show.mtag');
+    // Route::get('/{book}/{mtag}', 'BookController@searchTags')->name('show.mtag');
     // ===== Memo =====
     Route::group(['prefix' => '{book}/memos', 'as' => 'memos.'], function(){
+        // キーワード検索
+        Route::post('/search', 'MemoController@searchKeyword')->name('keyword');
+        // タグ検索
+        Route::get('/{mtag}', 'MemoController@searchTags')->name('mtag');
+
         // 登録
         Route::get('/create', 'MemoController@create')->name('create');
         Route::post('/create', 'MemoController@store')->name('store');

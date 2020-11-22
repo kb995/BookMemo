@@ -23,7 +23,7 @@
 
             <span class="pl-3">ストック一覧</span>
 
-            <form method="POST" action="{{ route('books.show.keyword', ['book' => $book]) }}" class="inline">
+            <form method="POST" action="{{ route('books.memos.keyword', ['book' => $book]) }}" class="inline">
                 @csrf
                 <div class="form-group ml-3">
                     <input type="text" name="keyword" value="{{ old('keyword') }}">
@@ -35,7 +35,7 @@
         <div class="d-flex p-3">
             @foreach($bookTags as $mtag)
                 <span class="pr-2">
-                    <a class="text-muted bg-light p-2" href="{{ route('books.show.mtag', ['book' => $book, 'mtag' => $mtag]) }}">
+                    <a class="text-muted bg-light p-2" href="{{ route('books.memos.mtag', ['book' => $book, 'mtag' => $mtag]) }}">
                         #{{ $mtag->name }}
                     </a>
                 </span>
@@ -66,7 +66,7 @@
             {{ $memo->created_at }}
 
             @foreach($memo->tags as $tag)
-                <a href=" {{ route('books.show.mtag', ['book' => $book, 'mtag' => $tag]) }}" class="border p-1 mr-1 mt-1 text-muted">
+                <a href=" {{ route('books.memos.mtag', ['book' => $book, 'mtag' => $tag]) }}" class="border p-1 mr-1 mt-1 text-muted">
                 {{ $tag->hashtag }}
                 </a>
             @endforeach
