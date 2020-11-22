@@ -139,6 +139,7 @@ class BookController extends Controller
         $book->isbn = $request->isbn;
         $book->description = $request->description;
         $book->status = $request->status;
+        $book->rank = $request->rank;
         $book->read_at = $request->read_at;
         $book->save();
         session()->flash('flash_message', '書籍を編集しました');
