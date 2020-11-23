@@ -20,6 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('memo-tags-input-component', require('./components/MemoTagsInput.vue').default);
 Vue.component('book-tags-input-component', require('./components/BookTagsInput.vue').default);
 
 /**

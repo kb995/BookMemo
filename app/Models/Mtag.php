@@ -8,8 +8,8 @@ use App\Models\Memo;
 class Mtag extends Model
 {
     protected $fillable = [
-        'name',
-    ];
+    'name',
+];
 
     public function getHashtagAttribute()
     {

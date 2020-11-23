@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Memo;
+use App\Models\Btag;
+
 
 class Book extends Model
 {
@@ -18,4 +20,8 @@ class Book extends Model
     public function booksReadCount() {
         return $this->where('status', 4)->count();
     }
+    public function tags() {
+        return $this->belongsToMany('App\Models\Btag');
+    }
+
 }
