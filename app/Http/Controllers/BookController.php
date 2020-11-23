@@ -8,6 +8,7 @@ use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\Memo;
 use App\Models\Mtag;
+use App\Models\Btag;
 
 use App\User;
 
@@ -51,6 +52,13 @@ class BookController extends Controller
         $book->read_at = $request->read_at;
         $book->user_id = Auth::id();
         $book->save();
+
+        $request->tags->each(function ($tagName) use ($book) {
+            $tag = Btag::firstOrCreate(['name' => $tagName]);
+            $book->tags()->attach($tag);
+        });
+
+
         session()->flash('flash_message', '書籍を登録しました');
 
         return redirect()->route('books.index');
@@ -70,7 +78,9 @@ class BookController extends Controller
 
         // (仮機能)タグ検索に必要なので単純にタグを取ってbladeに渡す
         // $bookTags = Mtag::where('book_id', $book->id)->get();
-        $bookTags = Mtag::all();
+        $memoTags = Mtag::all();
+        $bookTags = Btag::where('book_id', 1)->get();
+        // dd($bookTags);
 
         // Vueコンポーネントに渡す時にbook_idも同時に入れる ★
         $allTagNames = Mtag::where('book_id', $book->id)->get()->map(function ($tag) {
@@ -78,7 +88,7 @@ class BookController extends Controller
         });
         session()->forget(['search_keyword', 'search_mtag']);
 
-        return view('books.show', compact('book', 'memos', 'allTagNames', 'bookTags'));
+        return view('books.show', compact('book', 'memos', 'allTagNames', 'memoTags', 'bookTags'));
     }
 
     public function edit(Book $book)

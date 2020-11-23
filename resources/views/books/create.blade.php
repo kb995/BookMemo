@@ -52,11 +52,17 @@
                 </select>
             </div>
 
-
             <label for="read_at">読了日</label>
             <div>
                 <input type="date" name="read_at" id="read_at" class="form-control" value="{{ old('read_at') }}">
             </div>
+
+            <label>タグ</label>
+            <book-tags-input-component
+            :initial-tags='@json($tagNames ?? [])'
+            :autocomplete-items='@json($allTagNames ?? [])'
+            >
+            </book-tags-input-component>
 
             <input type="submit" class="btn btn-primary my-4">
         </div>

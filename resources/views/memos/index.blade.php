@@ -33,7 +33,7 @@
         </div>
 
         <div class="d-flex p-3">
-            @foreach($bookTags as $mtag)
+            @foreach($memoTags as $mtag)
                 <span class="pr-2">
                     <a class="text-muted bg-light p-2" href="{{ route('books.memos.mtag', ['book' => $book, 'mtag' => $mtag]) }}">
                         #{{ $mtag->name }}
