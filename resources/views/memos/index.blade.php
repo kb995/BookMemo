@@ -23,6 +23,7 @@
 
             <span class="pl-3">ストック一覧</span>
 
+            {{-- 書籍キーワード検索 --}}
             <form method="POST" action="{{ route('books.memos.keyword', ['book' => $book]) }}" class="inline">
                 @csrf
                 <div class="form-group ml-3">

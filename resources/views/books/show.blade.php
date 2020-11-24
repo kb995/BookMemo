@@ -62,9 +62,9 @@
                 <p>[isbn]</p>
                 <p>{{ $book->isbn }}</p>
                 <p>[タグ]</p>
-                @foreach ($bookTags as $btag)
-                    <span class="border p-1 m-2 text-muted">{{ $btag->name }} , </span>
-                @endforeach
+                {{-- @foreach ($bookTags as $btag) --}}
+                    {{-- <span class="border p-1 m-2 text-muted">{{ $btag->name }} , </span> --}}
+                {{-- @endforeach --}}
                 <p>[評価]</p>
                 <div class="text-left my-2">
                     @if($book->rank === 0)

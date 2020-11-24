@@ -17,8 +17,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
     Route::post('/search', 'BookController@searchKeyword')->name('keyword');
     // タグ検索
     // Route::get('/{book}/{mtag}', 'BookController@searchTags')->name('show.mtag');
-    // 編集
 
+    // 編集
     Route::get('/{book}/edit', 'BookController@edit')->name('edit');
     Route::patch('/{book}/edit', 'BookController@update')->name('update');
     // 削除

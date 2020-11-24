@@ -73,11 +73,12 @@ class MemoController extends Controller
         });
         // (仮機能)タグ検索に必要なので単純にタグを取ってbladeに渡す
         // $bookTags = Mtag::where('book_id', $book->id)->get();
-        $bookTags = Mtag::all();
+        $memoTags = Mtag::all();
 
         session()->forget(['search_keyword', 'search_mtag']);
         session()->put('search_mtag', "#" . $mtag->name);
-        return view('books.show', compact('book', 'memos', 'allTagNames', 'bookTags'));
+
+        return view('books.show', compact('book', 'memos', 'allTagNames', 'memoTags'));
     }
 
     // キーワード検索
@@ -95,9 +96,9 @@ class MemoController extends Controller
         $allTagNames = Mtag::all()->map(function ($tag) {
             return ['text' => $tag->name];
         });
-        $bookTags = Mtag::all();
+        $memoTags = Mtag::all();
 
-        return view('books.show', compact('book', 'memos', 'allTagNames', 'bookTags'));
+        return view('books.show', compact('book', 'memos', 'allTagNames', 'memoTags'));
 
     }
 }
