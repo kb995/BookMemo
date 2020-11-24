@@ -53,15 +53,10 @@ class BookController extends Controller
         $book->user_id = Auth::id();
         $book->save();
 
-        $request->tags->each(function ($tagName) use ($book) {
-            $tag = Btag::firstOrCreate(['name' => $tagName]);
-            $book->tags()->attach($tag);
-        });
-
 
         session()->flash('flash_message', '書籍を登録しました');
 
-        return redirect()->route('books.index');
+        return redirect()->route('books.show', ['book' => $book]);
     }
 
     public function show(Book $book)
@@ -79,7 +74,6 @@ class BookController extends Controller
         // (仮機能)タグ検索に必要なので単純にタグを取ってbladeに渡す
         // $bookTags = Mtag::where('book_id', $book->id)->get();
         $memoTags = Mtag::all();
-        $bookTags = Btag::where('book_id', 1)->get();
         // dd($bookTags);
 
         // Vueコンポーネントに渡す時にbook_idも同時に入れる ★
@@ -88,7 +82,7 @@ class BookController extends Controller
         });
         session()->forget(['search_keyword', 'search_mtag']);
 
-        return view('books.show', compact('book', 'memos', 'allTagNames', 'memoTags', 'bookTags'));
+        return view('books.show', compact('book', 'memos', 'allTagNames', 'memoTags'));
     }
 
     public function edit(Book $book)
@@ -118,7 +112,7 @@ class BookController extends Controller
         $book->save();
         session()->flash('flash_message', '書籍を編集しました');
 
-        return redirect()->route('books.index');
+        return redirect()->route('books.show', ['book' => $book]);
     }
 
     public function destroy(Book $book)
@@ -162,5 +156,4 @@ class BookController extends Controller
 
         return view('books.index', compact('books', 'user', 'counts'));
     }
-
 }

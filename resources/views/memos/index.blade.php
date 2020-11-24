@@ -1,4 +1,5 @@
 <section>
+    {{-- メモ一覧 メニュー --}}
     @if (Session::has('search_mtag'))
         <div class="card my-4 py-2 px-3 h3">
           「 {{ Session::get('search_mtag') }} 」を表示中 (1-12 / 100件中)
@@ -23,11 +24,12 @@
 
             <span class="pl-3">ストック一覧</span>
 
+            {{-- メモキーワード検索 --}}
             <form method="POST" action="{{ route('books.memos.keyword', ['book' => $book]) }}" class="inline">
                 @csrf
                 <div class="form-group ml-3">
                     <input type="text" name="keyword" value="{{ old('keyword') }}">
-                    <input type="submit" class="btn btn-sm btn-primary">
+                    <input type="submit" class="btn btn-sm btn-primary" value="検索">
                 </div>
             </form>
         </div>
@@ -53,7 +55,7 @@
         </div>
 
         <div class="card-footer memo-info">
-            <a class="inline" href="{{ route('books.memos.edit', ['book' => $book, 'memo' => $memo]) }}">編集</a>
+            <a class="inline" href="{{ route('books.memos.edit', ['book' => $book, 'memo' => $memo]) }}"><i class="far fa-edit"></i>編集</a>
             <form class="delete-form" action="{{ route('books.memos.destroy', ['book' => $book, 'memo' => $memo]) }}" method="post" id="delete_memo_{{ $memo->id }}">
                 @csrf
                 @method('DELETE')

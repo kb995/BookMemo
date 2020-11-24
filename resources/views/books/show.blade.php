@@ -11,24 +11,21 @@
 
 <section>
     <div class="row">
+        {{-- 詳細 サイドバー --}}
         <div class="side col-md-3 col-sm-12">
-
             @if($book->cover)
-            {{-- <a href="{{ route('books.show', ['book' => $book]) }}"> --}}
                 <div class="book-cover">
                     <img src="{{ asset('/storage/'. $book->cover) }}">
                 </div>
-            {{-- </a> --}}
             @else
-            {{-- <a href="{{ route('books.show', ['book' => $book]) }}"> --}}
                 <div class="book-cover">
                     <i class="book-default fas fa-book"></i>
                 </div>
-            {{-- </a> --}}
             @endif
 
             <div class="book-edit">
-                <a class="btn btn-info" href="{{ route('books.edit', ['book' => $book]) }}">編集</a>
+                <a class="btn btn-info text-white" href="{{ route('books.edit', ['book' => $book]) }}"><i class="far fa-edit text-white pr-1"></i>編集</a>
+
                 <form class="deleteform" action="{{ route('books.destroy', ['book' => $book]) }}" method="post" id="delete_book_{{ $book->id }}">
                     @csrf
                     @method('DELETE')
@@ -39,6 +36,7 @@
                 </form>
             </div>
 
+            {{-- 書籍情報 --}}
             <div class="book-info">
                 <div class="text-left my-2">
                     @if($book->status === 0)
@@ -53,18 +51,19 @@
                     <span class="badge badge-success p-2">読了</span>
                     @endif
                 </div>
+
                 <p>[タイトル]</p>
                 <p>{{ $book->title }}</p>
+
                 <p>[著者]</p>
                 <p>{{ $book->author }}</p>
+
                 <p>[詳細]</p>
                 <p>{{ $book->description }}</p>
+
                 <p>[isbn]</p>
                 <p>{{ $book->isbn }}</p>
-                <p>[タグ]</p>
-                @foreach ($bookTags as $btag)
-                    <span class="border p-1 m-2 text-muted">{{ $btag->name }} , </span>
-                @endforeach
+
                 <p>[評価]</p>
                 <div class="text-left my-2">
                     @if($book->rank === 0)
@@ -87,6 +86,7 @@
             </div>
         </div>
 
+        {{-- 書籍メモ一覧 --}}
         <div class="memos col-md-9 col-sm-12">
 
             @include('layouts.errors')

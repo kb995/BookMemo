@@ -60,8 +60,7 @@
             <div>
                 <input type="date" name="read_at" id="read_at" class="form-control" value="{{ old('read_at') }}">
             </div>
-
-            <input type="submit" class="btn btn-primary my-4">
+            <input type="submit" class="btn btn-primary my-4" value="編集">
         </div>
 
     </form>
