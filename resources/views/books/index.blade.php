@@ -50,13 +50,13 @@
             </div>
         </div>
         <div class="text-center">
-            <a href="{{route('books.create')}}">書籍登録</a>
+            <a href="{{ route('books.create') }}">書籍登録</a>
         </div>
         <form method="POST" action="{{ route('books.keyword') }}" class="text-center my-3">
             @csrf
             <div class="form-group ml-3">
-                <input type="text" name="keyword" value="{{ old('keyword') }}">
-                <input type="submit" class="btn btn-sm btn-primary">
+                <input type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワードで検索">
+                <input type="submit" class="btn btn-sm btn-primary" value="検索">
             </div>
         </form>
 </section>

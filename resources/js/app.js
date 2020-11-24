@@ -21,7 +21,6 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('memo-tags-input-component', require('./components/MemoTagsInput.vue').default);
-Vue.component('book-tags-input-component', require('./components/BookTagsInput.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

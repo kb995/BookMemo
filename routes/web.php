@@ -3,20 +3,23 @@
 Auth::routes();
 
 Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], function() {
+    Route::get('/create', 'BookController@create')->name('create');
 
     // ===== Book =====
+    // タグ検索
+    Route::get('/search/{btag}', 'BookController@searchTag')->name('btag');
+    // キーワード検索
+    Route::post('/search', 'BookController@searchKeyword')->name('keyword');
+
     // 一覧
     Route::get('/', 'BookController@index')->name('index');
-    // 登録
-    Route::get('/create', 'BookController@create')->name('create');
-    Route::post('/create', 'BookController@store')->name('store');
+
     // 詳細
     Route::get('/{book}', 'BookController@show')->name('show');
 
-    // キーワード検索
-    Route::post('/search', 'BookController@searchKeyword')->name('keyword');
-    // タグ検索
-    // Route::get('/{book}/{mtag}', 'BookController@searchTags')->name('show.mtag');
+    // 登録
+    Route::post('/create', 'BookController@store')->name('store');
+
 
     // 編集
     Route::get('/{book}/edit', 'BookController@edit')->name('edit');
@@ -40,14 +43,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
         // 削除
         Route::delete('/{memo}/destroy', 'MemoController@destroy')->name('destroy');
 
-        // ===== Mtag =====
-        // Route::get('/mtags/{mtag}', 'MtagController@index')->name('tags.index');
-
     });
 });
-// Route::prefix('books')->name('books.')->group(function () {
-
-// });
-
 
 Route::get('/home', 'HomeController@index')->name('home');
