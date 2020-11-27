@@ -9,7 +9,6 @@ use App\Models\Book;
 use App\Models\Memo;
 use App\Models\Mtag;
 use App\Models\Btag;
-
 use App\User;
 
 
@@ -20,13 +19,14 @@ class BookController extends Controller
     {
         $user = User::find(Auth::id());
         $books = $user->books()->orderBy('created_at', 'desc')->paginate(12);
+        $category_list = Book::category_list();
 
         $counts = [];
         $counts['books_stock'] = Book::where('user_id', $user->id)->count();
         $counts['books_read'] = Book::where('user_id', $user->id)->where('status', 4)->count();
         $counts['books_pile'] = Book::where('user_id', $user->id)->where('status', 3)->count();
 
-        return view('books.index', compact('books', 'user', 'counts'));
+        return view('books.index', compact('books', 'user', 'counts', 'category_list'));
     }
 
     public function create()
@@ -132,11 +132,13 @@ class BookController extends Controller
     }
 
     // キーワード検索
-    public function searchKeyword(Book $book, Request $request) {
+    public function search(Book $book, Request $request) {
         $user = User::find(Auth::id());
-        $keyword = $request->keyword;
+        $category_list = Book::category_list();
 
-        // $books = $user->books()->orderBy('created_at', 'desc')->paginate(12);
+        $keyword = $request->keyword;
+        $category = $request->category;
+
         if(!empty($keyword)) {
             $books = $user->books()
             ->where('title', 'like' , '%'.$keyword.'%')
@@ -145,10 +147,24 @@ class BookController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(12);
 
-            session()->forget(['search_keyword', 'search_mtag']);
-            session()->put('search_keyword', $keyword);
-        } else {
-            return view('books.index');
+            // session()->forget(['search_keyword', 'search_mtag']);
+            // session()->put('search_keyword', $keyword);
+        }
+
+        if(!empty($category)) {
+            $books = $user->books()
+            ->where('category', $category)
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+
+            // session()->forget(['search_keyword', 'search_mtag']);
+            // session()->put('search_keyword', $keyword);
+        }
+
+        if(empty($books)) {
+            $books = $user->books()
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
         }
 
         $counts = [];
@@ -156,6 +172,6 @@ class BookController extends Controller
         $counts['books_read'] = Book::where('user_id', $user->id)->where('status', 4)->count();
         $counts['books_pile'] = Book::where('user_id', $user->id)->where('status', 3)->count();
 
-        return view('books.index', compact('books', 'user', 'counts'));
+        return view('books.index', compact('books', 'user', 'counts', 'category_list'));
     }
 }
