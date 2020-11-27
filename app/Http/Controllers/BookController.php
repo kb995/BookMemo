@@ -107,6 +107,7 @@ class BookController extends Controller
         $book->author = $request->author;
         $book->isbn = $request->isbn;
         $book->description = $request->description;
+        $book->category = $request->category;
         $book->status = $request->status;
         $book->rank = $request->rank;
         $book->read_at = $request->read_at;

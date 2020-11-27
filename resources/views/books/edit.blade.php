@@ -35,6 +35,9 @@
             <label for="description">詳細</label>
             <input type="text" class="form-control" id="description" name="description" value="{{ $book->description ?? old('description') }}">
 
+            <label for="category">詳細</label>
+            <input type="text" class="form-control" id="category" name="category" value="{{ $book->category ?? old('category') }}">
+
             <label for="status">状態</label>
             <select name="status" class="form-control" id="status" value="{{ old('status') }}">
                 <option value="0" {{ $book->status === 0 ? 'selected' : '' }}>-</option>
