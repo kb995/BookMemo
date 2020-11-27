@@ -20,13 +20,12 @@ class CreateBooksTable extends Migration
             $table->string('author', 100)->nullable();
             $table->string('isbn')->nullable();
             $table->text('description')->nullable();
+            $table->text('category')->nullable();
             $table->integer('status')->default(0);
             $table->integer('rank')->default(0);
             $table->date('read_at')->nullable();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->bigInteger('category_id')->unsigned()->nullable();
-            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }

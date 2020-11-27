@@ -48,6 +48,7 @@ class BookController extends Controller
         $book->author = $request->author;
         $book->isbn = $request->isbn;
         $book->description = $request->description;
+        $book->category = $request->category;
         $book->status = $request->status;
         $book->read_at = $request->read_at;
         $book->user_id = Auth::id();

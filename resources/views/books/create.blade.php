@@ -31,6 +31,9 @@
             <label for="description">詳細</label>
             <input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}">
 
+            <label for="category">カテゴリー</label>
+            <input type="text" class="form-control" id="category" name="category" value="{{ old('category') }}">
+
             <label for="status">状態</label>
             <select name="status" class="form-control" id="status" value="{{ old('status') }}">
                 <option value="0" {{ old('rank') === '0' ? 'selected' : '' }}>-</option>
