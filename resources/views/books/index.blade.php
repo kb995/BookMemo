@@ -52,12 +52,28 @@
         <div class="text-center">
             <a href="{{ route('books.create') }}">書籍登録</a>
         </div>
-        <form method="POST" action="{{ route('books.keyword') }}" class="text-center my-3">
+        <form method="POST" action="{{ route('books.search') }}" class="text-center my-3">
             @csrf
             <div class="form-group ml-3">
                 <input type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワードで検索">
                 <input type="submit" class="btn btn-sm btn-primary" value="検索">
             </div>
+        </form>
+
+        <form method="POST" action="{{ route('books.search') }}" class="text-center">
+            @csrf
+            <div class="form-group ml-3">
+                <select name="category" id="category">
+                    <option value="" default>カテゴリー選択</option>
+                    @foreach ($category_list as $category)
+                    <option value="{{ $category->category }}">
+                        {{ $category->category }}
+                    </option>
+                    @endforeach
+                </select>
+                <input type="submit" class="btn btn-sm btn-primary" value="検索">
+            </div>
+
         </form>
 </section>
 

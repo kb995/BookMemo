@@ -61,6 +61,9 @@
                 <p>[詳細]</p>
                 <p>{{ $book->description }}</p>
 
+                <p>[カテゴリー]</p>
+                <p>{{ $book->category }}</p>
+
                 <p>[isbn]</p>
                 <p>{{ $book->isbn }}</p>
 

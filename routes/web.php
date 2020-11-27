@@ -9,7 +9,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
     // タグ検索
     Route::get('/search/{btag}', 'BookController@searchTag')->name('btag');
     // キーワード検索
-    Route::post('/search', 'BookController@searchKeyword')->name('keyword');
+    Route::post('/search', 'BookController@search')->name('search');
 
     // 一覧
     Route::get('/', 'BookController@index')->name('index');

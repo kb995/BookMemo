@@ -12,6 +12,7 @@ $factory->define(Book::class, function (Faker $faker) {
         'author' => $faker->name,
         'isbn' => '123456789',
         'description' => $faker->paragraph,
+        'category' => 'カテゴリー',
         'status' => '0',
         'rank' => '0',
         'user_id' => 1,
