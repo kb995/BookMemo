@@ -11,7 +11,7 @@
 
 <section>
     <div class="row">
-        {{-- 詳細 サイドバー --}}
+        {{-- サイドバー --}}
         <div class="side col-md-3 col-sm-12">
             @if($book->cover)
                 <div class="book-cover">
@@ -86,17 +86,124 @@
 
                 <p>[読了日]</p>
                 <p>{{ $book->read_at }}</p>
+
+                <p>[タグ]</p>
+                <div>
+                    @foreach($memoTags as $mtag)
+                        <span class="p-2 my-3">
+                            <a class="text-muted bg-light" href="{{ route('books.show', ['book' => $book, 'mtag' => $mtag]) }}">
+                                #{{ $mtag->name }}
+                            </a>
+                        </span>,
+                    @endforeach
+                </div>
             </div>
-        </div>
+        </div>{{-- サイドバー --}}
 
         {{-- 書籍メモ一覧 --}}
-        <div class="memos col-md-9 col-sm-12">
+        <section class="memos col-md-9 col-sm-12">
 
             @include('layouts.errors')
 
             @include('memos.create')
 
-            @include('memos.index')
+            <div class="card p-2 mb-3">
+                {{-- メモ一覧 メニュー --}}
+                @if (Session::has('search_mtag'))
+                    <div class="py-2 px-3 h3">
+                    「 {{ Session::get('search_mtag') }} 」を表示中 (1-12 / {{$memos->total()}}件中)
+                    </div>
+                @endif
+
+                @if (Session::has('search_keyword'))
+                    <div class="py-2 px-3 h3">
+                    「 {{ Session::get('search_keyword') }} 」を表示中 (1-12 / {{$memos->total()}}件中)
+                    </div>
+                @endif
+
+                <div class="py-2 px-3">
+                    <div class="d-flex">
+                        <span class="pl-3">
+                            <a href="{{ route('books.show', ['book' => $book]) }}">メモ一覧</a>
+                        </span>
+
+                        <span class="pl-3">
+                            <a href="{{ route('books.index') }}">書籍一覧</a>
+                        </span>
+
+                        <span class="pl-3">お気に入り一覧</span>
+
+                        {{-- メモキーワード検索 --}}
+                        <form method="POST" action="{{ route('books.show', ['book' => $book]) }}" class="inline">
+                            @csrf
+                            <div class="form-group ml-3">
+                                <input type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワード検索">
+                                <select name="mtag">
+                                    <option value="" default>タグ検索</option>
+                                    @foreach($memoTags as $mtag)
+                                    <option value="{{ $mtag->name }}">{{$mtag->name}}</option>
+                                    @endforeach
+                                </select>
+                                <input type="submit" class="btn btn-sm btn-primary" value="検索">
+                            </div>
+                        </form>
+
+                        {{--  登録タグ  --}}
+                        {{--  @foreach($memoTags as $mtag)  --}}
+                        {{--  <form method="POST" action="{{ route('books.show', ['book' => $book, 'mtag' => $mtag]) }}" class="w-50">
+                            @csrf
+                            <div class="form-group ml-3">  --}}
+                                {{--  <input type="hidden"   value="{{ $mtag->name }}">  --}}
+                                {{--  <span class="p-2 my-3">  --}}
+                                    {{--  <input class="text-muted bg-light" href="{{ route('books.show', ['book' => $book, 'mtag' => $mtag]) }}">  --}}
+                                    {{--  <input type="text" name="mtag" value="{{ $mtag->name }}">
+                                    </input>  --}}
+                                {{--  </span>  --}}
+                                {{--  <input type="submit">
+                            </div>
+                        </form>
+                        @endforeach  --}}
+
+                    </div>
+                </div>
+            </div>
+
+            @foreach ($memos as $memo)
+            <div class="card mb-4">
+                <div class="card-header">
+                    {{ $memo->id }}
+                </div>
+                <div class="card-body">
+                    {{ $memo->memo }}
+                </div>
+
+                <div class="card-footer memo-info">
+                    <a class="inline" href="{{ route('books.memos.edit', ['book' => $book, 'memo' => $memo]) }}"><i class="far fa-edit"></i>編集</a>
+                    <form class="delete-form" action="{{ route('books.memos.destroy', ['book' => $book, 'memo' => $memo]) }}" method="post" id="delete_memo_{{ $memo->id }}">
+                        @csrf
+                        @method('DELETE')
+                        <a class="inline text-danger" data-id="{{ $memo->id }}" onclick="deleteMemo(this);">
+                            <i class="fas fa-trash-alt"></i>
+                            削除
+                        </a>
+                    </form>
+
+                    {{ $memo->created_at }}
+
+                    @foreach($memo->tags as $tag)
+                        <a href=" {{ route('books.show', ['book' => $book, 'mtag' => $tag]) }}" class="border p-1 mr-1 mt-1 text-muted">
+                        {{ $tag->hashtag }}
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+            @endforeach
+
+            <div class="text-center">
+                {{ $memos->appends(request()->input())->links() }}
+            </div>
+        </section>
+
         </div>
     </div>
 </section>

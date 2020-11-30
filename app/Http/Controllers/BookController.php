@@ -8,7 +8,6 @@ use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\Memo;
 use App\Models\Mtag;
-use App\Models\Btag;
 use App\User;
 
 
@@ -19,14 +18,10 @@ class BookController extends Controller
     {
         $user = User::find(Auth::id());
         $books = $user->books()->orderBy('created_at', 'desc')->paginate(12);
-        $category_list = Book::category_list();
+        $category_list = Book::categoryList();
+        $book_counts = Book::bookCounts();
 
-        $counts = [];
-        $counts['books_stock'] = Book::where('user_id', $user->id)->count();
-        $counts['books_read'] = Book::where('user_id', $user->id)->where('status', 4)->count();
-        $counts['books_pile'] = Book::where('user_id', $user->id)->where('status', 3)->count();
-
-        return view('books.index', compact('books', 'user', 'counts', 'category_list'));
+        return view('books.index', compact('books', 'user', 'book_counts', 'category_list'));
     }
 
     public function create()
@@ -53,17 +48,50 @@ class BookController extends Controller
         $book->read_at = $request->read_at;
         $book->user_id = Auth::id();
         $book->save();
-
-
         session()->flash('flash_message', '書籍を登録しました');
 
         return redirect()->route('books.show', ['book' => $book]);
     }
 
-    public function show(Book $book)
+    public function show(Book $book, Request $request)
     {
         $book = Book::find($book->id);
-        $memos = $book->memos()->orderBy('id', 'desc')->paginate(10);
+        $keyword = $request->keyword;
+        $mtag = $request->mtag;
+
+        if(!empty($keyword)) {
+            $memos = $book->memos()
+            ->where('memo', 'like' , '%'.$keyword.'%')
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+            // session()->forget(['search_keyword', 'search_mtag']);
+            // session()->put('search_keyword', $keyword);
+        }
+
+        // if(!empty($mtag)) {
+        //     $memos = $book->memos()
+        //     ->where('category', 'like' , '%'.$category.'%')
+        //     ->orderBy('created_at', 'desc')
+        //     ->paginate(12);
+            // session()->forget(['search_keyword', 'search_mtag']);
+            // session()->put('search_keyword', $keyword);
+
+            // タグキーワードで検索 & ユーザidが一致 & ほしいのはメモ
+            // 1)キーワードでタグ検索
+            // 2)
+            // 3)メモ取得
+            // $aaa = Mtag::searchTaggedMemo($mtag, $book->id);
+            // dd($aaa);
+        // }
+
+        if(empty($memos)) {
+            $memos = $book->memos()
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+        }
+
+        // ************************************************
+        // タグ修正
         // $allTagNames = Mtag::all()->map(function ($tag) {
         //     return ['text' => $tag->name];
         // });
@@ -74,16 +102,17 @@ class BookController extends Controller
 
         // (仮機能)タグ検索に必要なので単純にタグを取ってbladeに渡す
         // $bookTags = Mtag::where('book_id', $book->id)->get();
-        $memoTags = Mtag::all();
         // dd($bookTags);
+        // Vueコンポーネントに渡す時にbook_idも同時に入れる
+        // ************************************************
 
-        // Vueコンポーネントに渡す時にbook_idも同時に入れる ★
-        $allTagNames = Mtag::where('book_id', $book->id)->get()->map(function ($tag) {
-            return ['text' => $tag->name];
-        });
+        $memoTags = Mtag::where('book_id', $book->id)->get();
+        // $allTagNames = Mtag::where('book_id', $book->id)->get()->map(function ($tag) {
+        //     return ['text' => $tag->name];
+        // });
         session()->forget(['search_keyword', 'search_mtag']);
 
-        return view('books.show', compact('book', 'memos', 'allTagNames', 'memoTags'));
+        return view('books.show', compact('book', 'memos', 'memoTags'));
     }
 
     public function edit(Book $book)
@@ -131,11 +160,11 @@ class BookController extends Controller
         return redirect()->route('books.index');
     }
 
-    // キーワード検索
+    // 書籍検索
     public function search(Book $book, Request $request) {
         $user = User::find(Auth::id());
-        $category_list = Book::category_list();
-
+        $category_list = Book::categoryList();
+        $book_counts = Book::bookCounts();
         $keyword = $request->keyword;
         $category = $request->category;
 
@@ -167,11 +196,6 @@ class BookController extends Controller
             ->paginate(12);
         }
 
-        $counts = [];
-        $counts['books_stock'] = Book::where('user_id', $user->id)->count();
-        $counts['books_read'] = Book::where('user_id', $user->id)->where('status', 4)->count();
-        $counts['books_pile'] = Book::where('user_id', $user->id)->where('status', 3)->count();
-
-        return view('books.index', compact('books', 'user', 'counts', 'category_list'));
+        return view('books.index', compact('books', 'user', 'book_counts', 'category_list'));
     }
 }

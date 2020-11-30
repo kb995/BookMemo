@@ -25,7 +25,7 @@
                                 <dl>
                                     <dt>登録数</dt>
                                     <dd>
-                                        {{ $counts['books_stock'] }} <span class="text-muted count-text">冊</span>
+                                        {{ $book_counts['books_all'] }} <span class="text-muted count-text">冊</span>
                                     </dd>
                                 </dl>
                             </a>
@@ -34,14 +34,14 @@
                             <dl>
                                 <dt>読了済</dt>
                                 <dd>
-                                    {{ $counts['books_read'] }} <span class="text-muted count-text">冊</span>
+                                    {{ $book_counts['books_read'] }} <span class="text-muted count-text">冊</span>
                                 </dd>
                             </dl>
                         <li class="shelf-info-list">
                             <dl>
                                 <dt>積読</dt>
                                 <dd>
-                                    {{ $counts['books_pile'] }} <span class="text-muted count-text">冊</span>
+                                    {{ $book_counts['books_pile'] }} <span class="text-muted count-text">冊</span>
                                 </dd>
                             </dl>
                         </li>
@@ -55,26 +55,37 @@
         <form method="POST" action="{{ route('books.search') }}" class="text-center my-3">
             @csrf
             <div class="form-group ml-3">
-                <input type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワードで検索">
-                <input type="submit" class="btn btn-sm btn-primary" value="検索">
-            </div>
-        </form>
 
-        <form method="POST" action="{{ route('books.search') }}" class="text-center">
-            @csrf
-            <div class="form-group ml-3">
+                <input type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワードで検索">
+
                 <select name="category" id="category">
                     <option value="" default>カテゴリー選択</option>
                     @foreach ($category_list as $category)
-                    <option value="{{ $category->category }}">
+                    <option value="{{ $category->category }}" {{ old('category') === $category->category ? 'selected' : '' }}>
                         {{ $category->category }}
                     </option>
                     @endforeach
                 </select>
+
                 <input type="submit" class="btn btn-sm btn-primary" value="検索">
             </div>
-
         </form>
+
+        {{--  <form method="POST" action="{{ route('books.search') }}" class="text-center">
+            @csrf
+            <div class="form-group ml-3">  --}}
+                {{--  <select name="category" id="category">
+                    <option value="" default>カテゴリー選択</option>
+                    @foreach ($category_list as $category)
+                    <option value="{{ $category->category }}" {{ old('category') === $category->category ? 'selected' : '' }}>
+                        {{ $category->category }}
+                    </option>
+                    @endforeach
+                </select>
+                <input type="submit" class="btn btn-sm btn-primary" value="検索">  --}}
+            {{--  </div>
+
+        </form>  --}}
 </section>
 
     <section class="book-shelf">
@@ -99,10 +110,11 @@
             </div>
             @endforeach
 
-            <div class="text-center">
-                {{ $books->links() }}
-            </div>
 
+        </div>
+
+        <div class="text-center">
+            {{ $books->appends(request()->input())->links() }}
         </div>
     </section>
 @endsection

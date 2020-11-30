@@ -5,7 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Memo;
-use App\Models\Btag;
+use App\User;
+
+
+const BOOK_STATUS_UNREAD = 1;
+const BOOK_STATUS_READING = 2;
+const BOOK_STATUS_PILE = 3;
+const BOOK_STATUS_READ = 4;
 
 
 class Book extends Model
@@ -14,15 +20,19 @@ class Book extends Model
         return $this->hasMany('App\Models\Memo', 'book_id');
     }
 
-    public function booksCount() {
-        return $this->count();
+    public static function bookCounts() {
+        $user = User::find(Auth::id());
+        $counts = [];
+        $counts['books_all'] = Book::where('user_id', $user->id)->count();
+        $counts['books_unread'] = Book::where('user_id', $user->id)->where('status', BOOK_STATUS_UNREAD)->count();
+        $counts['books_reading'] = Book::where('user_id', $user->id)->where('status', BOOK_STATUS_READING)->count();
+        $counts['books_pile'] = Book::where('user_id', $user->id)->where('status', BOOK_STATUS_PILE)->count();
+        $counts['books_read'] = Book::where('user_id', $user->id)->where('status', BOOK_STATUS_READ)->count();
+
+        return $counts;
     }
 
-    public function booksReadCount() {
-        return $this->where('status', 4)->count();
-    }
-
-     static public function category_list() {
+     static public function categoryList() {
         $category = Book::where('user_id', Auth::id())->get();
         $category_list = $category->unique('category');
 
