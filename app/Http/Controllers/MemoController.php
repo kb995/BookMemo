@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\MemoRequest;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Book;
 use App\Models\Memo;
 use App\Models\Mtag;
@@ -20,8 +21,11 @@ class MemoController extends Controller
         $memo->save();
         session()->flash('flash_message', 'メモを追加しました');
 
-        $request->tags->each(function ($tagName) use ($memo) {
+        $request->tags->each(function ($tagName) use ($memo, $book) {
             $tag = Mtag::firstOrCreate(['name' => $tagName]);
+            $tag->book_id = $book->id;
+            $tag->user_id = Auth::id();
+            $tag->save();
             $memo->tags()->attach($tag);
         });
 
@@ -64,41 +68,42 @@ class MemoController extends Controller
         return redirect()->route('books.show', ['book' => $book]);
     }
 
-    public function searchTags(Book $book, Mtag $mtag)
-    {
-        $book = Book::find($book->id);
-        $memos = $mtag->memos()->where('book_id', $book->id)->orderBy('id', 'desc')->paginate(12);
-        $allTagNames = Mtag::all()->map(function ($tag) {
-            return ['text' => $tag->name];
-        });
+    // public function searchTags(Book $book, Mtag $mtag)
+    // {
+    //     $book = Book::find($book->id);
+    //     $memos = $mtag->memos()->where('book_id', $book->id)->orderBy('id', 'desc')->paginate(12);
+    //     $allTagNames = Mtag::all()->map(function ($tag) {
+    //         return ['text' => $tag->name];
+    //     });
         // (仮機能)タグ検索に必要なので単純にタグを取ってbladeに渡す
         // $bookTags = Mtag::where('book_id', $book->id)->get();
-        $memoTags = Mtag::all();
+    //     $memoTags = Mtag::all();
 
-        session()->forget(['search_keyword', 'search_mtag']);
-        session()->put('search_mtag', "#" . $mtag->name);
+    //     session()->forget(['search_keyword', 'search_mtag']);
+    //     session()->put('search_mtag', "#" . $mtag->name);
 
-        return view('books.show', compact('book', 'memos', 'allTagNames', 'memoTags'));
-    }
+    //     return view('books.show', compact('book', 'memos', 'allTagNames', 'memoTags'));
+    // }
 
     // キーワード検索
-    public function searchKeyword(Book $book, Request $request) {
-        $book = Book::find($book->id);
-        $keyword = $request->keyword;
+    // public function searchKeyword(Book $book, Request $request) {
+    //     $book = Book::find($book->id);
+    //     $keyword = $request->keyword;
 
-        if(!empty($keyword)) {
-            $memos = Memo::where('memo', 'like' , '%'.$keyword.'%')->paginate(12);
-            session()->forget(['search_keyword', 'search_mtag']);
-            session()->put('search_keyword', $keyword);
-        }
+    //     if(!empty($keyword)) {
+    //         $memos = Memo::where('memo', 'like' , '%'.$keyword.'%')->paginate(12);
+
+    //         session()->forget(['search_keyword', 'search_mtag']);
+    //         session()->put('search_keyword', $keyword);
+    //     }
 
         // タグ(仮)
-        $allTagNames = Mtag::all()->map(function ($tag) {
-            return ['text' => $tag->name];
-        });
-        $memoTags = Mtag::all();
+    //     $allTagNames = Mtag::all()->map(function ($tag) {
+    //         return ['text' => $tag->name];
+    //     });
+    //     $memoTags = Mtag::all();
 
-        return view('books.show', compact('book', 'memos', 'allTagNames', 'memoTags'));
+    //     return view('books.show', compact('book', 'memos', 'allTagNames', 'memoTags'));
 
-    }
+    // }
 }
