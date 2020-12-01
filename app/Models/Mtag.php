@@ -23,6 +23,10 @@ class Mtag extends Model
 
     public function memos()
     {
+        return $this->belongsToMany('App\Models\Memo', );
+    }
+
+    public function tagMemos() {
         return $this->belongsToMany('App\Models\Memo');
     }
 

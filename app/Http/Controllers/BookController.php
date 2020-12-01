@@ -68,43 +68,18 @@ class BookController extends Controller
             // session()->put('search_keyword', $keyword);
         }
 
-        // if(!empty($mtag)) {
-        //     $memos = $book->memos()
-        //     ->where('category', 'like' , '%'.$category.'%')
-        //     ->orderBy('created_at', 'desc')
-        //     ->paginate(12);
+        if(!empty($mtag)) {
+            $tag = Mtag::where('user_id', Auth::id())->where('name', $mtag)->first();
+            $memos = $tag->tagMemos()->paginate(12);
             // session()->forget(['search_keyword', 'search_mtag']);
             // session()->put('search_keyword', $keyword);
-
-            // タグキーワードで検索 & ユーザidが一致 & ほしいのはメモ
-            // 1)キーワードでタグ検索
-            // 2)
-            // 3)メモ取得
-            // $aaa = Mtag::searchTaggedMemo($mtag, $book->id);
-            // dd($aaa);
-        // }
+        }
 
         if(empty($memos)) {
             $memos = $book->memos()
             ->orderBy('created_at', 'desc')
             ->paginate(12);
         }
-
-        // ************************************************
-        // タグ修正
-        // $allTagNames = Mtag::all()->map(function ($tag) {
-        //     return ['text' => $tag->name];
-        // });
-
-        // 他ユーザーのものが出ないようにする
-        // mtag create時にbook_idをもたせる ★
-        // 取得の際ユーザーに紐付いたbook_idで絞る
-
-        // (仮機能)タグ検索に必要なので単純にタグを取ってbladeに渡す
-        // $bookTags = Mtag::where('book_id', $book->id)->get();
-        // dd($bookTags);
-        // Vueコンポーネントに渡す時にbook_idも同時に入れる
-        // ************************************************
 
         $memoTags = Mtag::where('book_id', $book->id)->get();
         // $allTagNames = Mtag::where('book_id', $book->id)->get()->map(function ($tag) {

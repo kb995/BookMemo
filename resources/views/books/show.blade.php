@@ -139,7 +139,7 @@
                             <div class="form-group ml-3">
                                 <input type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワード検索">
                                 <select name="mtag">
-                                    <option value="" default>タグ検索</option>
+                            <option value="" default>タグ検索</option>
                                     @foreach($memoTags as $mtag)
                                     <option value="{{ $mtag->name }}">{{$mtag->name}}</option>
                                     @endforeach
