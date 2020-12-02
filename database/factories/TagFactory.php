@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Mtag;
+use App\Models\Tag;
 use Faker\Generator as Faker;
 
-$factory->define(Mtag::class, function (Faker $faker) {
+$factory->define(Tag::class, function (Faker $faker) {
     return [
         'name' => 'サンプルタグ',
         'book_id' => 1,
