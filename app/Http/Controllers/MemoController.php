@@ -7,7 +7,7 @@ use App\Http\Requests\MemoRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Book;
 use App\Models\Memo;
-use App\Models\Mtag;
+use App\Models\Tag;
 use App\User;
 
 class MemoController extends Controller
@@ -21,7 +21,7 @@ class MemoController extends Controller
         session()->flash('flash_message', 'メモを追加しました');
 
         $request->tags->each(function ($tagName) use ($memo, $book) {
-            $tag = Mtag::firstOrCreate(['name' => $tagName]);
+            $tag = Tag::firstOrCreate(['name' => $tagName]);
             $tag->book_id = $book->id;
             $tag->user_id = Auth::id();
             $tag->save();
@@ -36,7 +36,7 @@ class MemoController extends Controller
         $tagNames = $memo->tags->map(function ($tag) {
             return ['text' => $tag->name];
         });
-        $allTagNames = Mtag::all()->map(function ($tag) {
+        $allTagNames = Tag::all()->map(function ($tag) {
             return ['text' => $tag->name];
         });
 
@@ -51,7 +51,7 @@ class MemoController extends Controller
 
         $memo->tags()->detach();
         $request->tags->each(function ($tagName) use ($memo) {
-        $tag = Mtag::firstOrCreate(['name' => $tagName]);
+        $tag = Tag::firstOrCreate(['name' => $tagName]);
         $memo->tags()->attach($tag);
         });
 

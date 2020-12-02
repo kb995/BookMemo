@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
         // メモキーワード検索
         // Route::post('/search', 'MemoController@searchKeyword')->name('keyword');
         // メモタグ検索
-        // Route::get('/{mtag}', 'MemoController@searchTags')->name('mtag');
+        // Route::get('/{tag}', 'MemoController@searchTags')->name('tag');
 
         // メモ登録
         Route::get('/create', 'MemoController@create')->name('create');
