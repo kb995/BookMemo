@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\Memo;
-use App\Models\Mtag;
+use App\Models\Tag;
 use App\User;
 
 class BookController extends Controller
@@ -69,16 +69,11 @@ class BookController extends Controller
                 $book->cover = $file_name;
             }
         }
-        $book->title = $request->title;
-        $book->author = $request->author;
-        $book->isbn = $request->isbn;
-        $book->description = $request->description;
-        $book->category = $request->category;
-        $book->status = $request->status;
-        $book->rank = $request->rank;
-        $book->read_at = $request->read_at;
+
+        $book->fill($request->all());
         $book->user_id = Auth::id();
         $book->save();
+
         session()->flash('flash_message', '書籍を登録しました');
 
         return redirect()->route('books.show', ['book' => $book]);
@@ -88,7 +83,7 @@ class BookController extends Controller
     {
         $book = Book::find($book->id);
         $keyword = $request->keyword;
-        $mtag = $request->mtag;
+        $tag = $request->tag;
 
         if(!empty($keyword)) {
             $memos = $book->memos()
@@ -99,12 +94,12 @@ class BookController extends Controller
             session()->put('search', $keyword);
         }
 
-        if(!empty($mtag)) {
-            $tag = Mtag::where('user_id', Auth::id())->where('name', $mtag)->first();
+        if(!empty($tag)) {
+            $tag = Tag::where('user_id', Auth::id())->where('name', $tag)->first();
             $memos = $tag->tagMemos()->paginate(12);
 
             session()->forget(['search']);
-            session()->put('search', $mtag);
+            session()->put('search', $tag);
         }
 
         if(empty($memos)) {
@@ -114,7 +109,7 @@ class BookController extends Controller
             session()->forget(['search']);
         }
 
-        $memoTags = Mtag::where('book_id', $book->id)->get();
+        $memoTags = Tag::where('book_id', $book->id)->get();
 
         return view('books.show', compact('book', 'memos', 'memoTags'));
     }
@@ -136,15 +131,10 @@ class BookController extends Controller
                 $book->cover = $file_name;
             }
         }
-        $book->title = $request->title;
-        $book->author = $request->author;
-        $book->isbn = $request->isbn;
-        $book->description = $request->description;
-        $book->category = $request->category;
-        $book->status = $request->status;
-        $book->rank = $request->rank;
-        $book->read_at = $request->read_at;
+
+        $book->fill($request->all());
         $book->save();
+
         session()->flash('flash_message', '書籍を編集しました');
 
         return redirect()->route('books.show', ['book' => $book]);

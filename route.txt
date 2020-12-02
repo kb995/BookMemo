@@ -22,7 +22,7 @@
 |        | DELETE   | books/{book}/memos/{memo}/destroy | books.memos.destroy   | App\Http\Controllers\MemoController@destroy                            | web,auth                                             |
 |        | PATCH    | books/{book}/memos/{memo}/edit    | books.memos.update    | App\Http\Controllers\MemoController@update                             | web,auth                                             |
 |        | GET|HEAD | books/{book}/memos/{memo}/edit    | books.memos.edit      | App\Http\Controllers\MemoController@edit                               | web,auth                                             |
-|        | GET|HEAD | books/{book}/memos/{mtag}         | books.memos.mtag      | App\Http\Controllers\MemoController@searchTags                         | web,auth                                             |
+|        | GET|HEAD | books/{book}/memos/{tag}         | books.memos.tag      | App\Http\Controllers\MemoController@searchTags                         | web,auth                                             |
 |        | GET|HEAD | home                              | home                  | App\Http\Controllers\HomeController@index                              | web,auth                                             |
 |        | GET|HEAD | login                             | login                 | App\Http\Controllers\Auth\LoginController@showLoginForm                | web,guest                                            |
 |        | POST     | login                             |                       | App\Http\Controllers\Auth\LoginController@login                        | web,guest                                            |
