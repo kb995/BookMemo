@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Mtag;
+use App\Models\Tag;
 
-class MtagsTableSeeder extends Seeder
+class TagsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class MtagsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Mtag::class, 5)->create();
+        factory(Tag::class, 5)->create();
     }
 }

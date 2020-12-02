@@ -7,10 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\Memo;
-use App\Models\Mtag;
+use App\Models\Tag;
 use App\User;
-
-
 
 class BookController extends Controller
 {
@@ -71,16 +69,11 @@ class BookController extends Controller
                 $book->cover = $file_name;
             }
         }
-        $book->title = $request->title;
-        $book->author = $request->author;
-        $book->isbn = $request->isbn;
-        $book->description = $request->description;
-        $book->category = $request->category;
-        $book->status = $request->status;
-        $book->rank = $request->rank;
-        $book->read_at = $request->read_at;
+
+        $book->fill($request->all());
         $book->user_id = Auth::id();
         $book->save();
+
         session()->flash('flash_message', '書籍を登録しました');
 
         return redirect()->route('books.show', ['book' => $book]);
@@ -90,7 +83,7 @@ class BookController extends Controller
     {
         $book = Book::find($book->id);
         $keyword = $request->keyword;
-        $mtag = $request->mtag;
+        $tag = $request->tag;
 
         if(!empty($keyword)) {
             $memos = $book->memos()
@@ -101,12 +94,12 @@ class BookController extends Controller
             session()->put('search', $keyword);
         }
 
-        if(!empty($mtag)) {
-            $tag = Mtag::where('user_id', Auth::id())->where('name', $mtag)->first();
+        if(!empty($tag)) {
+            $tag = Tag::where('user_id', Auth::id())->where('name', $tag)->first();
             $memos = $tag->tagMemos()->paginate(12);
 
             session()->forget(['search']);
-            session()->put('search', $mtag);
+            session()->put('search', $tag);
         }
 
         if(empty($memos)) {
@@ -116,7 +109,7 @@ class BookController extends Controller
             session()->forget(['search']);
         }
 
-        $memoTags = Mtag::where('book_id', $book->id)->get();
+        $memoTags = Tag::where('book_id', $book->id)->get();
 
         return view('books.show', compact('book', 'memos', 'memoTags'));
     }
@@ -138,15 +131,10 @@ class BookController extends Controller
                 $book->cover = $file_name;
             }
         }
-        $book->title = $request->title;
-        $book->author = $request->author;
-        $book->isbn = $request->isbn;
-        $book->description = $request->description;
-        $book->category = $request->category;
-        $book->status = $request->status;
-        $book->rank = $request->rank;
-        $book->read_at = $request->read_at;
+
+        $book->fill($request->all());
         $book->save();
+
         session()->flash('flash_message', '書籍を編集しました');
 
         return redirect()->route('books.show', ['book' => $book]);
@@ -160,49 +148,11 @@ class BookController extends Controller
         $book_cover = $book->cover;
         $delete_img_path = storage_path() . '/app/public/' . $book->cover;
         \File::delete($delete_img_path);
+
         $book->delete();
         session()->flash('flash_message', '書籍を削除しました');
 
         return redirect()->route('books.index');
     }
 
-    // 書籍検索
-    // public function search(Book $book, Request $request) {
-    //     $user = User::find(Auth::id());
-    //     $category_list = Book::categoryList();
-    //     $book_counts = Book::bookCounts();
-    //     $keyword = $request->keyword;
-    //     $category = $request->category;
-
-
-    //     if(!empty($keyword)) {
-    //         $books = $user->books()
-    //         ->where('title', 'like' , '%'.$keyword.'%')
-    //         ->orWhere('author', 'like' , '%'.$keyword.'%')
-    //         ->orWhere('description', 'like' , '%'.$keyword.'%')
-    //         ->orderBy('created_at', 'desc')
-    //         ->paginate(12);
-
-    //         session()->forget(['search']);
-    //         session()->put('search', $keyword);
-    //     }
-
-    //     if(!empty($category)) {
-    //         $books = $user->books()
-    //         ->where('category', $category)
-    //         ->orderBy('created_at', 'desc')
-    //         ->paginate(12);
-
-    //         session()->forget(['search']);
-    //         session()->put('search', $category);
-    //     }
-
-    //     if(empty($books)) {
-    //         $books = $user->books()
-    //         ->orderBy('created_at', 'desc')
-    //         ->paginate(12);
-    //     }
-
-    //     return view('books.index', compact('books', 'user', 'book_counts', 'category_list'));
-    // }
 }

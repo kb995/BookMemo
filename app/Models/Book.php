@@ -14,8 +14,21 @@ const BOOK_STATUS_PILE = 3;
 const BOOK_STATUS_READ = 4;
 
 
+
 class Book extends Model
 {
+
+    protected $fillable = [
+        'title',
+        'author',
+        'isbn',
+        'description',
+        'category',
+        'status',
+        'rank',
+        'read_at',
+        ];
+
     public function memos() {
         return $this->hasMany('App\Models\Memo', 'book_id');
     }
@@ -38,4 +51,11 @@ class Book extends Model
 
         return $category_list;
     }
+
+    public function getMemoCountAttribute() {
+        $book = Book::find($this->id);
+        $count = Memo::where('book_id', (int)$book->id)->count();
+        return $count;
+    }
+
 }

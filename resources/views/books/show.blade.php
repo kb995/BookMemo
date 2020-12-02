@@ -89,10 +89,10 @@
 
                 <p>[タグ]</p>
                 <div>
-                    @foreach($memoTags as $mtag)
+                    @foreach($memoTags as $tag)
                         <span class="p-2 my-3">
-                            <a class="text-muted bg-light" href="{{ route('books.show', ['book' => $book, 'mtag' => $mtag]) }}">
-                                #{{ $mtag->name }}
+                            <a class="text-muted bg-light" href="{{ route('books.show', ['book' => $book, 'tag' => $tag]) }}">
+                                #{{ $tag->name }}
                             </a>
                         </span>,
                     @endforeach
@@ -132,10 +132,10 @@
                             @csrf
                             <div class="form-group ml-3">
                                 <input type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワード検索">
-                                <select name="mtag">
+                                <select name="tag">
                             <option value="" default>タグ検索</option>
-                                    @foreach($memoTags as $mtag)
-                                    <option value="{{ $mtag->name }}">{{$mtag->name}}</option>
+                                    @foreach($memoTags as $tag)
+                                    <option value="{{ $tag->name }}">{{$tag->name}}</option>
                                     @endforeach
                                 </select>
                                 <input type="submit" class="btn btn-sm btn-primary" value="検索">
@@ -168,7 +168,7 @@
                     {{ $memo->created_at }}
 
                     @foreach($memo->tags as $tag)
-                        <a href=" {{ route('books.show', ['book' => $book, 'mtag' => $tag]) }}" class="border p-1 mr-1 mt-1 text-muted">
+                        <a href=" {{ route('books.show', ['book' => $book, 'tag' => $tag]) }}" class="border p-1 mr-1 mt-1 text-muted">
                         {{ $tag->hashtag }}
                         </a>
                     @endforeach
