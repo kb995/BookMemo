@@ -45,6 +45,7 @@ class BookController extends Controller
         $book->description = $request->description;
         $book->category = $request->category;
         $book->status = $request->status;
+        $book->rank = $request->rank;
         $book->read_at = $request->read_at;
         $book->user_id = Auth::id();
         $book->save();
@@ -71,6 +72,7 @@ class BookController extends Controller
         if(!empty($mtag)) {
             $tag = Mtag::where('user_id', Auth::id())->where('name', $mtag)->first();
             $memos = $tag->tagMemos()->paginate(12);
+
             // session()->forget(['search_keyword', 'search_mtag']);
             // session()->put('search_keyword', $keyword);
         }
