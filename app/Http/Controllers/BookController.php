@@ -10,8 +10,6 @@ use App\Models\Memo;
 use App\Models\Mtag;
 use App\User;
 
-
-
 class BookController extends Controller
 {
     public function index(Request $request)
@@ -166,43 +164,4 @@ class BookController extends Controller
         return redirect()->route('books.index');
     }
 
-    // 書籍検索
-    // public function search(Book $book, Request $request) {
-    //     $user = User::find(Auth::id());
-    //     $category_list = Book::categoryList();
-    //     $book_counts = Book::bookCounts();
-    //     $keyword = $request->keyword;
-    //     $category = $request->category;
-
-
-    //     if(!empty($keyword)) {
-    //         $books = $user->books()
-    //         ->where('title', 'like' , '%'.$keyword.'%')
-    //         ->orWhere('author', 'like' , '%'.$keyword.'%')
-    //         ->orWhere('description', 'like' , '%'.$keyword.'%')
-    //         ->orderBy('created_at', 'desc')
-    //         ->paginate(12);
-
-    //         session()->forget(['search']);
-    //         session()->put('search', $keyword);
-    //     }
-
-    //     if(!empty($category)) {
-    //         $books = $user->books()
-    //         ->where('category', $category)
-    //         ->orderBy('created_at', 'desc')
-    //         ->paginate(12);
-
-    //         session()->forget(['search']);
-    //         session()->put('search', $category);
-    //     }
-
-    //     if(empty($books)) {
-    //         $books = $user->books()
-    //         ->orderBy('created_at', 'desc')
-    //         ->paginate(12);
-    //     }
-
-    //     return view('books.index', compact('books', 'user', 'book_counts', 'category_list'));
-    // }
 }
