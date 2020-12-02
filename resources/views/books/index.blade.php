@@ -52,7 +52,7 @@
         <div class="text-center">
             <a href="{{ route('books.create') }}">書籍登録</a>
         </div>
-        <form method="POST" action="{{ route('books.search') }}" class="text-center my-3">
+        <form method="POST" action="{{ route('books.index') }}" class="text-center my-3">
             @csrf
             <div class="form-group ml-3">
 

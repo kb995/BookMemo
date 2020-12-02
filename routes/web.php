@@ -16,13 +16,13 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
     // 書籍一覧
     Route::get('/', 'BookController@index')->name('index');
     // 書籍一覧 (キーワード&カテゴリー 検索)
-    Route::post('/search', 'BookController@search')->name('search');
+    Route::post('/', 'BookController@index')->name('index');
 
     // 書籍詳細 画面
     Route::get('/{book}', 'BookController@show')->name('show');
 
     // 書籍詳細(メモ キーワード&タグ検索)
-    Route::post('/{book}/{memo?}', 'BookController@show')->name('show');
+    Route::post('/{book}', 'BookController@show')->name('show');
 
     // 書籍編集 画面
     Route::get('/{book}/edit', 'BookController@edit')->name('edit');
