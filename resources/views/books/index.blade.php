@@ -50,8 +50,17 @@
             </div>
         </div>
         <div class="text-center">
+            @if (Session::has('search'))
+            <div class="py-2 px-3 h3">
+            「 {{ Session::get('search') }} 」を表示中 ( {{ $books->firstItem() }} - {{ $books->lastItem() }} /  {{ $books->total() }} 件中 )
+            </div>
+            @endif
+        </div>
+
+        <div class="text-center">
             <a href="{{ route('books.create') }}">書籍登録</a>
         </div>
+
         <form method="POST" action="{{ route('books.index') }}" class="text-center my-3">
             @csrf
             <div class="form-group ml-3">
@@ -70,23 +79,7 @@
                 <input type="submit" class="btn btn-sm btn-primary" value="検索">
             </div>
         </form>
-
-        {{--  <form method="POST" action="{{ route('books.search') }}" class="text-center">
-            @csrf
-            <div class="form-group ml-3">  --}}
-                {{--  <select name="category" id="category">
-                    <option value="" default>カテゴリー選択</option>
-                    @foreach ($category_list as $category)
-                    <option value="{{ $category->category }}" {{ old('category') === $category->category ? 'selected' : '' }}>
-                        {{ $category->category }}
-                    </option>
-                    @endforeach
-                </select>
-                <input type="submit" class="btn btn-sm btn-primary" value="検索">  --}}
-            {{--  </div>
-
-        </form>  --}}
-</section>
+    </section>
 
     <section class="book-shelf">
         <div class="book-list">

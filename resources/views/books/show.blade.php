@@ -109,15 +109,9 @@
 
             <div class="card p-2 mb-3">
                 {{-- メモ一覧 メニュー --}}
-                @if (Session::has('search_mtag'))
+                @if (Session::has('search'))
                     <div class="py-2 px-3 h3">
-                    「 {{ Session::get('search_mtag') }} 」を表示中 (1-12 / {{$memos->total()}}件中)
-                    </div>
-                @endif
-
-                @if (Session::has('search_keyword'))
-                    <div class="py-2 px-3 h3">
-                    「 {{ Session::get('search_keyword') }} 」を表示中 (1-12 / {{$memos->total()}}件中)
+                    「 {{ Session::get('search') }} 」を表示中 (1-12 / {{$memos->total()}}件中)
                     </div>
                 @endif
 
