@@ -14,12 +14,44 @@ use App\User;
 
 class BookController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $user = User::find(Auth::id());
-        $books = $user->books()->orderBy('created_at', 'desc')->paginate(12);
         $category_list = Book::categoryList();
         $book_counts = Book::bookCounts();
+
+        $keyword = $request->keyword;
+        $category = $request->category;
+
+
+        if(!empty($keyword)) {
+            $books = $user->books()
+            ->where('title', 'like' , '%'.$keyword.'%')
+            ->orWhere('author', 'like' , '%'.$keyword.'%')
+            ->orWhere('description', 'like' , '%'.$keyword.'%')
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+
+            session()->forget(['search']);
+            session()->put('search', $keyword);
+        }
+
+        if(!empty($category)) {
+            $books = $user->books()
+            ->where('category', $category)
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+
+            session()->forget(['search']);
+            session()->put('search', $category);
+        }
+
+        if(empty($books)) {
+            $books = $user->books()
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+            session()->forget(['search']);
+        }
 
         return view('books.index', compact('books', 'user', 'book_counts', 'category_list'));
     }
@@ -65,29 +97,26 @@ class BookController extends Controller
             ->where('memo', 'like' , '%'.$keyword.'%')
             ->orderBy('created_at', 'desc')
             ->paginate(12);
-            // session()->forget(['search_keyword', 'search_mtag']);
-            // session()->put('search_keyword', $keyword);
+            session()->forget(['search']);
+            session()->put('search', $keyword);
         }
 
         if(!empty($mtag)) {
             $tag = Mtag::where('user_id', Auth::id())->where('name', $mtag)->first();
             $memos = $tag->tagMemos()->paginate(12);
 
-            // session()->forget(['search_keyword', 'search_mtag']);
-            // session()->put('search_keyword', $keyword);
+            session()->forget(['search']);
+            session()->put('search', $mtag);
         }
 
         if(empty($memos)) {
             $memos = $book->memos()
             ->orderBy('created_at', 'desc')
             ->paginate(12);
+            session()->forget(['search']);
         }
 
         $memoTags = Mtag::where('book_id', $book->id)->get();
-        // $allTagNames = Mtag::where('book_id', $book->id)->get()->map(function ($tag) {
-        //     return ['text' => $tag->name];
-        // });
-        session()->forget(['search_keyword', 'search_mtag']);
 
         return view('books.show', compact('book', 'memos', 'memoTags'));
     }
@@ -138,41 +167,42 @@ class BookController extends Controller
     }
 
     // 書籍検索
-    public function search(Book $book, Request $request) {
-        $user = User::find(Auth::id());
-        $category_list = Book::categoryList();
-        $book_counts = Book::bookCounts();
-        $keyword = $request->keyword;
-        $category = $request->category;
+    // public function search(Book $book, Request $request) {
+    //     $user = User::find(Auth::id());
+    //     $category_list = Book::categoryList();
+    //     $book_counts = Book::bookCounts();
+    //     $keyword = $request->keyword;
+    //     $category = $request->category;
 
-        if(!empty($keyword)) {
-            $books = $user->books()
-            ->where('title', 'like' , '%'.$keyword.'%')
-            ->orWhere('author', 'like' , '%'.$keyword.'%')
-            ->orWhere('description', 'like' , '%'.$keyword.'%')
-            ->orderBy('created_at', 'desc')
-            ->paginate(12);
 
-            // session()->forget(['search_keyword', 'search_mtag']);
-            // session()->put('search_keyword', $keyword);
-        }
+    //     if(!empty($keyword)) {
+    //         $books = $user->books()
+    //         ->where('title', 'like' , '%'.$keyword.'%')
+    //         ->orWhere('author', 'like' , '%'.$keyword.'%')
+    //         ->orWhere('description', 'like' , '%'.$keyword.'%')
+    //         ->orderBy('created_at', 'desc')
+    //         ->paginate(12);
 
-        if(!empty($category)) {
-            $books = $user->books()
-            ->where('category', $category)
-            ->orderBy('created_at', 'desc')
-            ->paginate(12);
+    //         session()->forget(['search']);
+    //         session()->put('search', $keyword);
+    //     }
 
-            // session()->forget(['search_keyword', 'search_mtag']);
-            // session()->put('search_keyword', $keyword);
-        }
+    //     if(!empty($category)) {
+    //         $books = $user->books()
+    //         ->where('category', $category)
+    //         ->orderBy('created_at', 'desc')
+    //         ->paginate(12);
 
-        if(empty($books)) {
-            $books = $user->books()
-            ->orderBy('created_at', 'desc')
-            ->paginate(12);
-        }
+    //         session()->forget(['search']);
+    //         session()->put('search', $category);
+    //     }
 
-        return view('books.index', compact('books', 'user', 'book_counts', 'category_list'));
-    }
+    //     if(empty($books)) {
+    //         $books = $user->books()
+    //         ->orderBy('created_at', 'desc')
+    //         ->paginate(12);
+    //     }
+
+    //     return view('books.index', compact('books', 'user', 'book_counts', 'category_list'));
+    // }
 }

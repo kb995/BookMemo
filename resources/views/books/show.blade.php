@@ -109,15 +109,9 @@
 
             <div class="card p-2 mb-3">
                 {{-- メモ一覧 メニュー --}}
-                @if (Session::has('search_mtag'))
+                @if (Session::has('search'))
                     <div class="py-2 px-3 h3">
-                    「 {{ Session::get('search_mtag') }} 」を表示中 (1-12 / {{$memos->total()}}件中)
-                    </div>
-                @endif
-
-                @if (Session::has('search_keyword'))
-                    <div class="py-2 px-3 h3">
-                    「 {{ Session::get('search_keyword') }} 」を表示中 (1-12 / {{$memos->total()}}件中)
+                    「 {{ Session::get('search') }} 」を表示中 ( {{ $memos->firstItem() }} - {{ $memos->lastItem() }} /  {{ $memos->total() }} 件中 )
                     </div>
                 @endif
 
@@ -147,23 +141,6 @@
                                 <input type="submit" class="btn btn-sm btn-primary" value="検索">
                             </div>
                         </form>
-
-                        {{--  登録タグ  --}}
-                        {{--  @foreach($memoTags as $mtag)  --}}
-                        {{--  <form method="POST" action="{{ route('books.show', ['book' => $book, 'mtag' => $mtag]) }}" class="w-50">
-                            @csrf
-                            <div class="form-group ml-3">  --}}
-                                {{--  <input type="hidden"   value="{{ $mtag->name }}">  --}}
-                                {{--  <span class="p-2 my-3">  --}}
-                                    {{--  <input class="text-muted bg-light" href="{{ route('books.show', ['book' => $book, 'mtag' => $mtag]) }}">  --}}
-                                    {{--  <input type="text" name="mtag" value="{{ $mtag->name }}">
-                                    </input>  --}}
-                                {{--  </span>  --}}
-                                {{--  <input type="submit">
-                            </div>
-                        </form>
-                        @endforeach  --}}
-
                     </div>
                 </div>
             </div>
