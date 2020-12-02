@@ -148,6 +148,7 @@ class BookController extends Controller
         $book_cover = $book->cover;
         $delete_img_path = storage_path() . '/app/public/' . $book->cover;
         \File::delete($delete_img_path);
+
         $book->delete();
         session()->flash('flash_message', '書籍を削除しました');
 

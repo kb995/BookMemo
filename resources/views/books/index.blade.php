@@ -100,6 +100,7 @@
                 @endif
                 <p class="book-title">{{ $book->title }}</p>
                 <p class="text-muted">{{ $book->author }}</p>
+                <p class="text-muted text-right m-2"><i class="fas fa-comment pr-1"></i>{{ $book->memo_count }}</p>
             </div>
             @endforeach
 
