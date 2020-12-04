@@ -11131,3 +11131,16 @@ header .nav-text {
   padding: 0 30px;
 }
 
+.register-button {
+  background-color: #F3993E;
+}
+
+.register-button .register-link {
+  color: #fff;
+}
+
+.register-button:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}
+
