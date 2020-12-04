@@ -54,7 +54,7 @@
                         </div>
 
                         <div class="form-group mb-0 text-center">
-                            <button type="submit" class="btn btn-outline-primary w-75 mx-auto my-3">
+                            <button type="submit" class="btn btn-lg btn-outline-primary w-75 mx-auto my-3">
                                 {{ __('Login') }}
                             </button>
 
@@ -73,7 +73,7 @@
                     <p class="font-weight-bold py-4 text-center">アカウントをお持ちでない方はこちら</p>
 
                     <div class="text-center">
-                        <button class="register-button btn w-75 mx-auto">
+                        <button class="register-button btn btn-lg w-75 mx-auto">
                             <a class="register-link" href="{{ route('register') }}">
                                 新規会員登録
                             </a>

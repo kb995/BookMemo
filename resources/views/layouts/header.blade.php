@@ -17,8 +17,8 @@
         </form>
         @else
         <ul class="navbar-nav ml-auto">
-            <li class="navbar-item"><a class="nav-text nav-link btn btn-sm btn-light" href="{{ route('register') }}">新規会員登録</a></li>
-            <li class="navbar-item"><a class="nav-text nav-link btn btn-sm btn-light" href="{{ route('login') }}">ログイン</a></li>
+            <li class="navbar-item"><a class="nav-text nav-link btn btn-md font-weight-bold" href="{{ route('login') }}">ログイン</a></li>
+            <li class="navbar-item"><a class="nav-text nav-link btn btn-md register-button text-white" href="{{ route('register') }}">新規会員登録</a></li>
         </ul>
         @endif
     </nav>
