@@ -84,4 +84,9 @@
         </div>
     </div>
 </div>
+
+<div class="text-center py-1 mt-5">
+    Copyright © 2020 ***. All Rights Reserved.
+
+</div>
 @endsection
