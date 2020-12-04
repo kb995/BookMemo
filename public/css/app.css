@@ -10903,8 +10903,24 @@ a.text-dark:focus {
   }
 }
 
-header .nav-color {
-  background-color: #4ea6cc;
+header {
+  padding: 10px 50px;
+  background-color: #F3993E;
+}
+
+header .logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+}
+
+header .logo-icon {
+  font-size: 30px;
+}
+
+header .nav-text {
+  color: #333;
+  margin: 0 10px;
 }
 
 .header-prof {
@@ -11113,5 +11129,18 @@ header .nav-color {
 
 .side .book-info {
   padding: 0 30px;
+}
+
+.register-button {
+  background-color: #f5b629;
+}
+
+.register-button .register-link {
+  color: #fff;
+}
+
+.register-button:hover {
+  opacity: 0.8;
+  text-decoration: none;
 }
 

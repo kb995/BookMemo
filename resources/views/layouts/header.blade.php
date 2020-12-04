@@ -1,6 +1,6 @@
 <header>
-    <nav class="navbar navbar-dark nav-color navbar-expand-lg px-5 row">
-
+    <nav class="navbar navbar-expand-lg px-5 row">
+        <i class="fas fa-book logo-icon"></i>
         <a class="navbar-brand logo" href="{{ route('books.index') }}">ブクメモ</a>
 
         @if(Auth::check())
@@ -17,8 +17,8 @@
         </form>
         @else
         <ul class="navbar-nav ml-auto">
-            <li class="navbar-item"><a class="nav-link" href="{{ route('login') }}">ログイン</a></li>
-            <li class="navbar-item"><a class="nav-link" href="{{ route('register') }}">会員登録</a></li>
+            <li class="navbar-item"><a class="nav-text nav-link btn btn-md font-weight-bold" href="{{ route('login') }}">ログイン</a></li>
+            <li class="navbar-item"><a class="nav-text nav-link btn btn-md register-button text-white" href="{{ route('register') }}">新規会員登録</a></li>
         </ul>
         @endif
     </nav>
