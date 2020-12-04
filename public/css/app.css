@@ -10923,93 +10923,15 @@ header .nav-text {
   margin: 0 10px;
 }
 
-.header-prof {
-  height: 350px;
+.shelfinfo-wrapper {
+  width: 100%;
+  height: 150px;
   background-color: #E4E4E4;
+  margin: 0 auto;
   padding: 50px 0;
-}
-
-.header-prof .prof-card-wrapper {
-  position: relative;
-  height: 250px;
-  background-color: #f0f0f0;
-}
-
-.header-prof .prof-card-wrapper .prof-card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
-  width: 70%;
-  height: 200px;
-  margin: auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-}
-
-.header-prof .prof-card-wrapper .prof-card .user-icon {
-  width: 70px;
-  height: 70px;
-  display: inline-block;
-}
-
-.header-prof .prof-card-wrapper .prof-card .user-info {
-  display: inline-block;
-  width: 85%;
-  margin-left: 30px;
-  vertical-align: top;
-}
-
-.header-prof .prof-card-wrapper .prof-card .shelf-info {
-  margin-top: 10px;
-  padding-left: 0;
-}
-
-.header-prof .prof-card-wrapper .prof-card .shelf-info .shelf-info-list {
-  min-width: 70px;
-  list-style: none;
-  display: inline-block;
-  text-align: center;
-  padding: 10px 10px 0 10px;
-  margin: 5px;
-  background-color: #f2f2f2;
-  border-radius: 4px;
-  text-decoration: none;
-}
-
-.header-prof .prof-card-wrapper .prof-card .shelf-info .shelf-info-list:hover {
-  text-decoration: none;
-  opacity: 0.8;
-}
-
-.header-prof .prof-card-wrapper .prof-card .shelf-info .shelf-info-list a:hover {
-  text-decoration: none;
-  opacity: 0.8;
-}
-
-.header-prof .prof-card-wrapper .prof-card .shelf-info .shelf-info-list dl:hover {
-  text-decoration: none;
-  opacity: 0.8;
-}
-
-.header-prof .prof-card-wrapper .prof-card .shelf-info .shelf-info-list dt {
-  font-size: 17px;
-  text-decoration: none;
-  text-align: center;
-  padding-bottom: 5px;
-  color: #A1A1A1;
-}
-
-.header-prof .prof-card-wrapper .prof-card .shelf-info .shelf-info-list dd {
-  text-align: center;
-  font-size: 18px;
-  color: #4ea6cc;
-  font-weight: bold;
-}
-
-.header-prof .prof-card-wrapper .prof-card .shelf-info .shelf-info-list dd .count-text {
-  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .book-shelf {

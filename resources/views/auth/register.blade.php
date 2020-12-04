@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h1 class="text-center my-4">ユーザー登録</h1>
-            <h4 class="text-center mb-4 text-muted">ブクメモにようこそ</h4>
+            <h4 class="text-center mb-4 text-muted">読書をアウトプットしましょう</h4>
             <div class="card">
                 <div class="card-body p-5">
                     <form method="POST" action="{{ route('register') }}">
@@ -66,14 +66,6 @@
                                 新規登録
                             </button>
                         </div>
-
-                        {{--  <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>  --}}
                     </form>
                 </div>
             </div>

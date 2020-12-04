@@ -8,17 +8,43 @@
 @endsection
 
 @section('content')
-    <section class="header-prof">
+    {{--  <section class="shelfinfo-wrapper">
+        <div class="info-card">
+            <div class="user-info">
+                <p>aaa</p>
+
+            </div>
+            <div class="book-info">
+                <p>bbb</p>
+
+            </div>
+        </div>  --}}
+
+        {{--  <div class="user-info">
+            <div class="user-icon">
+                <img src="{{ asset('/storage/common/default_user.jpeg') }}" alt="ユーザーアイコン">
+            </div>
+            <p class="user-name">{{ $user->name }}の本棚 </p>
+            <a href="">{{ $user->name }}さん</a> | <a class="btn btn-outline-primary btn-sm ml-2" href="">編集</a>
+        </div>
+
+        <div class="shelf-info">
+
+        </div>  --}}
+
+    </section>
+    {{--  <section class="header-bg">
         <div class="prof-card-wrapper">
-            <div class="prof-card">
-                <div class="user-icon">
-                    <a href="">
-                        <img class="user-icon" src="{{ asset('/storage/common/default_user.jpeg') }}" alt="ユーザーアイコン">
-                    </a>
-                </div>
-                <div class="user-info">
+            <div class="prof-card row">
+                <div class="col-6">
+                        <div class="user-icon">
+                            <img class="user-icon" src="{{ asset('/storage/common/default_user.jpeg') }}" alt="ユーザーアイコン">
+                        </div>
                     <h1 class="h3">{{ $user->name }}の本棚</h1>
                     <a href="">{{ $user->name }}さん</a> | <a class="btn btn-outline-primary btn-sm ml-2" href="">編集</a>
+                </div>
+
+                <div class="col-6">
                     <ul class="shelf-info">
                         <li class="shelf-info-list">
                             <a href="{{ route('books.index') }}">
@@ -48,8 +74,12 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        <div class="text-center">
+        </div>  --}}
+
+
+
+
+        {{--  <div class="text-center">
             @if (Session::has('search'))
             <div class="py-2 px-3 h3">
             「 {{ Session::get('search') }} 」を表示中 ( {{ $books->firstItem() }} - {{ $books->lastItem() }} /  {{ $books->total() }} 件中 )
@@ -110,6 +140,6 @@
 
         <div class="text-center">
             {{ $books->appends(request()->input())->links() }}
-        </div>
+        </div>  --}}
     </section>
 @endsection
