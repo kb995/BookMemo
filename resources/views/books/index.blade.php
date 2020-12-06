@@ -57,6 +57,60 @@
     </div>
 </section>
 
+<section class="shelf-serach">
+    <form method="POST" action="{{ route('books.index') }}" class="text-center my-3">
+        @csrf
+        <div class="form-group ml-3">
+            <label class="shelf-serach-label" for="keyword">本棚から探す</label>
+            <input class="shelf-serach-input" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワードで検索">
+
+            {{--  <select name="category" id="category">
+                <option value="" default>カテゴリー選択</option>
+                @foreach ($category_list as $category)
+                <option value="{{ $category->category }}" {{ old('category') === $category->category ? 'selected' : '' }}>
+                    {{ $category->category }}
+                </option>
+                @endforeach
+            </select>  --}}
+
+            <input type="submit" class="shelf-serach-btn" value="検索">
+        </div>
+    </form>
+</section>
+
+<section class="book-shelf">
+    <div class="book-list">
+        @foreach( $books as $book)
+        <div class="book-item">
+            @if($book->cover)
+            <div class="book-cover">
+                <a href="{{ route('books.show', ['book' => $book]) }}">
+                    <img src="{{ asset('/storage/common/'. $book->cover) }}">
+                </a>
+            </div>
+            @elseif($book->cover == null)
+            <div class="book-cover">
+                <a href="{{ route('books.show', ['book' => $book]) }}">
+                    <i class="book-default fas fa-book"></i>
+                </a>
+            </div>
+            @endif
+
+            <div class="book-item-info">
+                <p class="book-title">{{ $book->title }}</p>
+                <p class="text-muted mb-0">{{ $book->author }}</p>
+                <p class="text-muted text-right mx-3"><i class="far fa-comment pr-1"></i>{{ $book->memo_count }}</p>
+            </div>
+        </div>
+        @endforeach
+    </div>
+
+    <div class="text-center">
+        {{ $books->appends(request()->input())->links() }}
+    </div>
+</section>
+
+
         {{--  <div class="text-center">
             @if (Session::has('search'))
             <div class="py-2 px-3 h3">
@@ -88,34 +142,4 @@
             </div>
         </form>  --}}
 
-    {{--  <section class="book-shelf">
-        <div class="book-list">
-            @foreach( $books as $book)
-            <div class="book-item">
-                @if($book->cover)
-                <a href="{{ route('books.show', ['book' => $book]) }}">
-                    <div class="book-cover">
-                        <img src="{{ asset('/storage/'. $book->cover) }}">
-                    </div>
-                </a>
-                @else
-                <a href="{{ route('books.show', ['book' => $book]) }}">
-                    <div class="book-cover">
-                        <i class="book-default fas fa-book"></i>
-                    </div>
-                </a>
-                @endif
-                <p class="book-title">{{ $book->title }}</p>
-                <p class="text-muted">{{ $book->author }}</p>
-                <p class="text-muted text-right m-2"><i class="fas fa-comment pr-1"></i>{{ $book->memo_count }}</p>
-            </div>
-            @endforeach
-
-
-        </div>
-
-        <div class="text-center">
-            {{ $books->appends(request()->input())->links() }}
-        </div>
-    </section>  --}}
 @endsection
