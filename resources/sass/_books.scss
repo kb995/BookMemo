@@ -41,7 +41,7 @@
 
 .book-shelf {
 
-    background-color: rgb(245, 231, 205);
+    background-color: rgb(247, 238, 222);
     padding: 100px;
 
     .book-list {
@@ -103,4 +103,9 @@
         width: 25%;
         height: 0;
       }
+}
+
+.pagination {
+    justify-content: center!important;
+    margin-top: 50px!important;
 }

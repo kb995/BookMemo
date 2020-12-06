@@ -11067,7 +11067,7 @@ header .dropdown-location {
 }
 
 .book-shelf {
-  background-color: #f5e7cd;
+  background-color: #f7eede;
   padding: 100px;
 }
 
@@ -11131,6 +11131,11 @@ header .dropdown-location {
   margin: 30px;
   width: 25%;
   height: 0;
+}
+
+.pagination {
+  justify-content: center !important;
+  margin-top: 50px !important;
 }
 
 .memos {
