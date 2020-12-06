@@ -4,7 +4,6 @@
 
         @if(Auth::check())
         <ul class="navbar-nav ml-auto">
-            {{--  <li class="navbar-item"><button class="btn btn-link text-white" form="logout-form" id="logout">ログアウト</button></li>  --}}
             <li class="navbar-item">
                 <a class="btn btn-lg btn-primary mx-2 shadow" href="">
                     本をさがす
@@ -12,7 +11,7 @@
             </li>
             <li class="navbar-item">
                 <a class="btn btn-lg btn-success mx-2 mr-5 shadow" href="">
-                    マイ本棚
+                    本棚
                 </a>
             </li>
             <li class="navbar-item user-icon dropdown">
@@ -30,21 +29,10 @@
             </li>
         </ul>
 
-        {{--  <div class="dropdown">
-            <button type="button" id="dropdown1"
-                class="dropdown-toggle"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false">
-                <img src="{{ asset('/storage/common/default_user.jpeg') }}">
-
-            </button>
-
-          </div>  --}}
-
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         @csrf
         </form>
+
         @else
         <ul class="navbar-nav ml-auto">
             <li class="navbar-item"><a class="nav-text nav-link btn btn-md font-weight-bold" href="{{ route('login') }}">ログイン</a></li>
