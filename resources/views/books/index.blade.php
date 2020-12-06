@@ -8,7 +8,80 @@
 @endsection
 
 @section('content')
-    <section class="header-prof">
+<section class="info-wrapper">
+    <div class="user-info">
+        <div class="user-icon">
+            <img src="{{ asset('/storage/common/default_user.jpeg') }}" alt="ユーザーアイコン">
+        </div>
+        <h1 class="user-name h3">{{ $user->name }}の本棚 </h1>
+        <p class="user-edit"><a href="">{{ $user->name }}さん</a> | <a class="btn btn-outline-primary btn-sm ml-2" href="">編集</a></p>
+
+    </div>
+
+    <div class="book-info">
+        <ul class="mb-0 p-0">
+            <a href="">
+                <li class="book-count">
+                    <dl>
+                        <dt>登録本</dt>
+                        <dd>
+                            {{ $book_counts['books_all'] }} <span class="text-muted count-text">冊</span>
+                        </dd>
+                    </dl>
+                </li>
+            </a>
+
+            <a href="">
+                <li class="book-count">
+                    <dl>
+                        <dt>読了本</dt>
+                        <dd>
+                            {{ $book_counts['books_read'] }} <span class="text-muted count-text">冊</span>
+                        </dd>
+                    </dl>
+                </li>
+            </a>
+
+            <a href="">
+                <li class="book-count">
+                    <dl>
+                        <dt>積読本</dt>
+                        <dd>
+                            {{ $book_counts['books_pile'] }} <span class="text-muted count-text">冊</span>
+                        </dd>
+                    </dl>
+                </li>
+            </a>
+        </ul>
+    </div>
+</section>
+    {{--  <section class="shelfinfo-wrapper">
+        <div class="info-card">
+            <div class="user-info">
+                <p>aaa</p>
+
+            </div>
+            <div class="book-info">
+                <p>bbb</p>
+
+            </div>
+        </div>  --}}
+
+        {{--  <div class="user-info">
+            <div class="user-icon">
+                <img src="{{ asset('/storage/common/default_user.jpeg') }}" alt="ユーザーアイコン">
+            </div>
+            <p class="user-name">{{ $user->name }}の本棚 </p>
+            <a href="">{{ $user->name }}さん</a> | <a class="btn btn-outline-primary btn-sm ml-2" href="">編集</a>
+        </div>
+
+        <div class="shelf-info">
+
+        </div>  --}}
+
+    </section>
+    {{--  <section class="header-bg">
+>>>>>>> Stashed changes
         <div class="prof-card-wrapper">
             <div class="prof-card">
                 <div class="user-icon">
