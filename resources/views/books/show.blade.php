@@ -98,7 +98,7 @@
                     @endforeach
                 </div>
             </div>
-        </div>{{-- サイドバー --}}
+        </div>{{-- サイドバー --}} test
 
         {{-- 書籍メモ一覧 --}}
         <section class="memos col-md-9 col-sm-12">

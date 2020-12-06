@@ -140,6 +140,5 @@
 
                 <input type="submit" class="btn btn-sm btn-primary" value="検索">
             </div>
-        </form>  --}}
-
+        </form>
 @endsection
