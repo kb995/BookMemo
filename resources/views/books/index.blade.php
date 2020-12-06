@@ -14,14 +14,15 @@
             <img src="{{ asset('/storage/common/default_user.jpeg') }}" alt="ユーザーアイコン">
         </div>
         <h1 class="user-name h3">{{ $user->name }}の本棚 </h1>
-        <p class="user-edit"><a href="">{{ $user->name }}さん</a> | <a class="btn btn-outline-primary btn-sm ml-2" href="">編集</a></p>
+        <p class="user-edit"><a href="">{{ $user->name }}さん</a><a class="btn btn-outline-primary btn-sm ml-2" href="">編集</a></p>
+
 
     </div>
 
     <div class="book-info">
         <ul class="mb-0 p-0">
             <a href="">
-                <li class="book-count">
+                <li class="book-count shadow">
                     <dl>
                         <dt>登録本</dt>
                         <dd>
@@ -32,7 +33,7 @@
             </a>
 
             <a href="">
-                <li class="book-count">
+                <li class="book-count shadow">
                     <dl>
                         <dt>読了本</dt>
                         <dd>
@@ -43,7 +44,7 @@
             </a>
 
             <a href="">
-                <li class="book-count">
+                <li class="book-count shadow">
                     <dl>
                         <dt>積読本</dt>
                         <dd>
@@ -55,74 +56,8 @@
         </ul>
     </div>
 </section>
-    {{--  <section class="shelfinfo-wrapper">
-        <div class="info-card">
-            <div class="user-info">
-                <p>aaa</p>
 
-            </div>
-            <div class="book-info">
-                <p>bbb</p>
-
-            </div>
-        </div>  --}}
-
-        {{--  <div class="user-info">
-            <div class="user-icon">
-                <img src="{{ asset('/storage/common/default_user.jpeg') }}" alt="ユーザーアイコン">
-            </div>
-            <p class="user-name">{{ $user->name }}の本棚 </p>
-            <a href="">{{ $user->name }}さん</a> | <a class="btn btn-outline-primary btn-sm ml-2" href="">編集</a>
-        </div>
-
-        <div class="shelf-info">
-
-        </div>  --}}
-
-    </section>
-    {{--  <section class="header-bg">
->>>>>>> Stashed changes
-        <div class="prof-card-wrapper">
-            <div class="prof-card">
-                <div class="user-icon">
-                    <a href="">
-                        <img class="user-icon" src="{{ asset('/storage/common/default_user.jpeg') }}" alt="ユーザーアイコン">
-                    </a>
-                </div>
-                <div class="user-info">
-                    <h1 class="h3">{{ $user->name }}の本棚</h1>
-                    <a href="">{{ $user->name }}さん</a> | <a class="btn btn-outline-primary btn-sm ml-2" href="">編集</a>
-                    <ul class="shelf-info">
-                        <li class="shelf-info-list">
-                            <a href="{{ route('books.index') }}">
-                                <dl>
-                                    <dt>登録数</dt>
-                                    <dd>
-                                        {{ $book_counts['books_all'] }} <span class="text-muted count-text">冊</span>
-                                    </dd>
-                                </dl>
-                            </a>
-                        </li>
-                        <li class="shelf-info-list">
-                            <dl>
-                                <dt>読了済</dt>
-                                <dd>
-                                    {{ $book_counts['books_read'] }} <span class="text-muted count-text">冊</span>
-                                </dd>
-                            </dl>
-                        <li class="shelf-info-list">
-                            <dl>
-                                <dt>積読</dt>
-                                <dd>
-                                    {{ $book_counts['books_pile'] }} <span class="text-muted count-text">冊</span>
-                                </dd>
-                            </dl>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="text-center">
+        {{--  <div class="text-center">
             @if (Session::has('search'))
             <div class="py-2 px-3 h3">
             「 {{ Session::get('search') }} 」を表示中 ( {{ $books->firstItem() }} - {{ $books->lastItem() }} /  {{ $books->total() }} 件中 )
@@ -151,10 +86,9 @@
 
                 <input type="submit" class="btn btn-sm btn-primary" value="検索">
             </div>
-        </form>
-    </section>
+        </form>  --}}
 
-    <section class="book-shelf">
+    {{--  <section class="book-shelf">
         <div class="book-list">
             @foreach( $books as $book)
             <div class="book-item">
@@ -183,5 +117,5 @@
         <div class="text-center">
             {{ $books->appends(request()->input())->links() }}
         </div>
-    </section>
+    </section>  --}}
 @endsection
