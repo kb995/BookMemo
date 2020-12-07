@@ -10978,7 +10978,7 @@ header .dropdown-location {
 }
 
 .info-wrapper .book-info {
-  width: 70%;
+  width: 25%;
   height: 150px;
   padding: 20px;
   background-color: #fff;
@@ -11024,12 +11024,26 @@ header .dropdown-location {
   font-size: 0.7rem;
 }
 
+.info-wrapper .link-info {
+  width: 30%;
+  height: 150px;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.info-wrapper .link-info .link-btn {
+  width: 100%;
+  margin: 5px auto;
+  display: block;
+}
+
 .shelf-serach {
   width: 50%;
   padding: 20px;
   margin: 50px auto;
   border: 3px solid #F3993E;
   border-radius: 4px;
+  background-color: #fff;
 }
 
 .shelf-serach-label {
@@ -11066,9 +11080,13 @@ header .dropdown-location {
   border-radius: 3px;
 }
 
+.shelf-serach-btn:hover {
+  opacity: 0.8;
+}
+
 .book-shelf {
-  background-color: #f7eede;
-  padding: 100px;
+  background-color: #F8FAFC;
+  padding: 50px 100px;
 }
 
 .book-shelf .book-list {
@@ -11133,68 +11151,139 @@ header .dropdown-location {
   height: 0;
 }
 
+.btn-detail {
+  font-weight: bold;
+  color: #666;
+}
+
+.btn-detail:hover {
+  text-decoration: none;
+  border: none;
+  box-shadow: none;
+}
+
+.btn-detail:focus {
+  text-decoration: none;
+  border: none;
+  box-shadow: none;
+}
+
 .pagination {
   justify-content: center !important;
   margin-top: 50px !important;
 }
 
-.memos {
-  background-color: lightblue;
-  min-height: 1000px;
-}
-
-.memos .delete-form {
-  display: inline !important;
-}
-
-.side {
-  background-color: lightcyan;
-  min-height: 1000px;
-  padding-right: 0;
-}
-
-.side .book-cover {
-  width: 80%;
-  height: 280px;
-  background-color: #f1f1f1;
-  margin: 70px auto 0 auto;
-  text-align: center;
-}
-
-.side .book-cover img {
+.detail-search-label {
   width: 100%;
+  font-size: 0.9rem;
+  text-align: left;
+  font-weight: bold;
+  margin: 0 10px 0 0;
+  padding-bottom: 3px;
 }
 
-.side .book-cover .book-default {
-  padding-top: 40%;
-  font-size: 5rem;
-  text-align: center;
+.detail-search-input {
+  width: 100%;
+  height: 40px;
+  padding: 2px 10px;
+  font-size: 1.3rem;
+  color: #333;
+  border: 1px solid #666;
+  border-radius: 3px;
+}
+
+.detail-search-input:focus {
+  border: 2px solid #F3993E;
+}
+
+.detail-search-input:hover {
+  border: 1px solid #F3993E;
+}
+
+.detail-search-btn {
+  width: 30%;
+  background-color: #F3993E;
   color: #fff;
-}
-
-.side .star-empty {
+  font-weight: bold;
   font-size: 1.3rem;
-  color: lightyellow;
-  text-align: center;
+  border: none;
+  padding: 9px 15px;
+  margin-top: 50px;
+  border-radius: 3px;
+  display: inline-block;
 }
 
-.side .star {
+.detail-search-btn:hover {
+  opacity: 0.8;
+}
+
+.detail-search-btn-clear {
+  width: 30%;
+  background-color: #f1f1f1;
+  color: #555;
+  font-weight: bold;
   font-size: 1.3rem;
-  color: yellow;
+  border: none;
+  padding: 9px 15px;
+  margin-top: 50px;
+  margin-left: 20px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.detail-search-btn-clear:hover {
+  opacity: 0.8;
+}
+
+.book-show-info {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px 0;
+  height: 300px;
+  background-color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-show-info .book-cover-wrapper {
+  width: 20%;
+  height: 230px;
+  background-color: lightblue;
+}
+
+.book-show-info .book-cover-wrapper .book-cover {
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin: 0 auto;
   text-align: center;
 }
 
-.side .deleteform {
-  display: inline !important;
+.book-show-info .book-cover-wrapper .book-cover img {
+  width: 150px;
+  height: auto;
 }
 
-.side .book-edit {
-  margin: 30px auto;
-  text-align: center;
+.book-show-info .book-info-wrapper {
+  width: 50%;
+  height: 230px;
+  padding: 10px;
+  background-color: lightgreen;
+  overflow: hidden;
 }
 
-.side .book-info {
-  padding: 0 30px;
+.book-show-info .book-info-wrapper dl {
+  margin: 0;
+}
+
+.book-show-info .book-info-wrapper dt {
+  float: left;
+  padding-right: 5px;
+}
+
+.book-show-info .book-info-wrapper dd {
+  margin: 0;
 }
 
 .register-button {

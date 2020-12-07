@@ -53,33 +53,76 @@
             </a>
         </ul>
     </div>
+
+    <div class="link-info">
+        <p><a href="{{ route('books.create') }}" class="btn px-5 py-2 btn-outline-success"><i class="fas fa-pen pr-2"></i>本を登録</a></p>
+        <p><a class="btn px-5 py-2 btn-outline-primary"><i class="fas fa-search pr-2"></i>本を検索</a></p>
+    </div>
 </section>
 
 <section class="shelf-serach">
     <form method="POST" action="{{ route('books.index') }}" class="text-center my-3">
         @csrf
         <div class="form-group ml-3">
-            <label class="shelf-serach-label" for="keyword">本棚から探す</label>
+            <label class="shelf-serach-label block" for="keyword">本棚から探す</label>
             <input class="shelf-serach-input" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワードで検索">
-
-            {{--  <select name="category" id="category">
-                <option value="" default>カテゴリー選択</option>
-                @foreach ($category_list as $category)
-                <option value="{{ $category->category }}" {{ old('category') === $category->category ? 'selected' : '' }}>
-                    {{ $category->category }}
-                </option>
-                @endforeach
-            </select>  --}}
-
             <input type="submit" class="shelf-serach-btn" value="検索">
         </div>
     </form>
+
+    {{--  詳細検索フォーム  --}}
+    <div class="text-center detail-search">
+        <button class="btn btn-link btn-detail"
+        data-toggle="collapse"
+        data-target="#input"
+        aria-expand="false"
+        aria-controls="input-1">
+        詳細検索<i class="fas fa-chevron-circle-down pl-2"></i>
+        </button>
+
+        <form method="POST" action="" class="collapse p-5" id="input">
+            <div class="form-group ml-3">
+                <div class="row">
+                    <div class="col-6">
+                        <label class="detail-search-label" for="keyword">カテゴリーから探す</label>
+                        <select class="detail-search-input" name="category" id="category">
+                            <option value="" default>カテゴリー選択</option>
+                            @foreach ($category_list as $category)
+                            {{--  <option value="{{ $category->category }}" {{ old('category') === $category->category ? 'selected' : '' }}>  --}}
+                            <option value="{{ $category->category }}">
+                                {{ $category->category }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <label class="detail-search-label" for="">著者名から探す</label>
+                        <input class="detail-search-input" name="" id="" placeholder="著者名">
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <label class="detail-search-label" for="">ISBNから探す</label>
+                        <input class="detail-search-input" name="" id="" placeholder="13桁の書籍ID">
+                    </div>
+                    <div class="col-6">
+                        <label class="detail-search-label" for="">読書状態から探す</label>
+                        <input class="detail-search-input" name="" id="" placeholder="未読 or 既読 or 積読">
+                    </div>
+                </div>
+
+                <input type="submit" class="detail-search-btn" value="検索">
+                <input type="submit" class="detail-search-btn-clear" value="検索をクリア">
+            </div>
+        </form>
+    </div>
 </section>
 
 <section class="book-shelf">
     <div class="book-list">
         @foreach( $books as $book)
-        <div class="book-item">
+        <div class="book-item shadow">
             @if($book->cover)
             <div class="book-cover">
                 <a href="{{ route('books.show', ['book' => $book]) }}">
@@ -109,70 +152,19 @@
 </section>
 
 
-        {{--  <div class="text-center">
+      {{--  <div class="text-center">
             @if (Session::has('search'))
             <div class="py-2 px-3 h3">
             「 {{ Session::get('search') }} 」を表示中 ( {{ $books->firstItem() }} - {{ $books->lastItem() }} /  {{ $books->total() }} 件中 )
             </div>
             @endif
-        </div>
+    </div>
 
         <div class="text-center">
             <a href="{{ route('books.create') }}">書籍登録</a>
-        </div>
-
-        <form method="POST" action="{{ route('books.index') }}" class="text-center my-3">
-            @csrf
-            <div class="form-group ml-3">
-
-                <input type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワードで検索">
-
-                <select name="category" id="category">
-                    <option value="" default>カテゴリー選択</option>
-                    @foreach ($category_list as $category)
-                    <option value="{{ $category->category }}" {{ old('category') === $category->category ? 'selected' : '' }}>
-                        {{ $category->category }}
-                    </option>
-                    @endforeach
-                </select>
-
-                <input type="submit" class="btn btn-sm btn-primary" value="検索">
-            </div>
-        </form>
-<<<<<<< HEAD
-    </section>
-
-    <section class="book-shelf">
-        <div class="book-list">
-            @foreach( $books as $book)
-            <div class="book-item">
-                @if($book->cover)
-                <a href="{{ route('books.show', ['book' => $book]) }}">
-                    <div class="book-cover">
-                        <img src="{{ asset('/storage/'. $book->cover) }}">
-                    </div>
-                </a>
-                @else
-                <a href="{{ route('books.show', ['book' => $book]) }}">
-                    <div class="book-cover">
-                        <i class="book-default fas fa-book"></i>
-                    </div>
-                </a>
-                @endif
-                <p class="book-title">{{ $book->title }}</p>
-                <p class="text-muted">{{ $book->author }}</p>
-                <p class="text-muted text-right m-2"><i class="fas fa-comment pr-1"></i>{{ $book->memo_count }}</p>
-            </div>
-
-            @endforeach
-
-
-        </div>
-
-        <div class="text-center">
-            {{ $books->appends(request()->input())->links() }}
         </div>  --}}
-    </section>
-=======
->>>>>>> 367abd62214bd041ba663ada8be79937141b9936
+
+        <div class="text-center py-1 mt-5">
+            Copyright © 2020 ***. All Rights Reserved.
+        </div>
 @endsection
