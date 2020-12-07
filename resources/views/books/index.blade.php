@@ -8,77 +8,6 @@
 @endsection
 
 @section('content')
-<<<<<<< HEAD
-    {{--  <section class="shelfinfo-wrapper">
-        <div class="info-card">
-            <div class="user-info">
-                <p>aaa</p>
-
-            </div>
-            <div class="book-info">
-                <p>bbb</p>
-
-            </div>
-        </div>  --}}
-
-        {{--  <div class="user-info">
-            <div class="user-icon">
-                <img src="{{ asset('/storage/common/default_user.jpeg') }}" alt="ユーザーアイコン">
-            </div>
-            <p class="user-name">{{ $user->name }}の本棚 </p>
-            <a href="">{{ $user->name }}さん</a> | <a class="btn btn-outline-primary btn-sm ml-2" href="">編集</a>
-        </div>
-
-        <div class="shelf-info">
-
-        </div>  --}}
-
-    </section>
-    {{--  <section class="header-bg">
-        <div class="prof-card-wrapper">
-            <div class="prof-card row">
-                <div class="col-6">
-                        <div class="user-icon">
-                            <img class="user-icon" src="{{ asset('/storage/common/default_user.jpeg') }}" alt="ユーザーアイコン">
-                        </div>
-                    <h1 class="h3">{{ $user->name }}の本棚</h1>
-                    <a href="">{{ $user->name }}さん</a> | <a class="btn btn-outline-primary btn-sm ml-2" href="">編集</a>
-                </div>
-
-                <div class="col-6">
-                    <ul class="shelf-info">
-                        <li class="shelf-info-list">
-                            <a href="{{ route('books.index') }}">
-                                <dl>
-                                    <dt>登録数</dt>
-                                    <dd>
-                                        {{ $book_counts['books_all'] }} <span class="text-muted count-text">冊</span>
-                                    </dd>
-                                </dl>
-                            </a>
-                        </li>
-                        <li class="shelf-info-list">
-                            <dl>
-                                <dt>読了済</dt>
-                                <dd>
-                                    {{ $book_counts['books_read'] }} <span class="text-muted count-text">冊</span>
-                                </dd>
-                            </dl>
-                        <li class="shelf-info-list">
-                            <dl>
-                                <dt>積読</dt>
-                                <dd>
-                                    {{ $book_counts['books_pile'] }} <span class="text-muted count-text">冊</span>
-                                </dd>
-                            </dl>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>  --}}
-
-
-=======
 <section class="info-wrapper">
     <div class="user-info">
         <div class="user-icon">
@@ -86,8 +15,6 @@
         </div>
         <h1 class="user-name h3">{{ $user->name }}の本棚 </h1>
         <p class="user-edit"><a href="">{{ $user->name }}さん</a><a class="btn btn-outline-primary btn-sm ml-2" href="">編集</a></p>
-
-
     </div>
 
     <div class="book-info">
@@ -180,7 +107,6 @@
         {{ $books->appends(request()->input())->links() }}
     </div>
 </section>
->>>>>>> 367abd62214bd041ba663ada8be79937141b9936
 
 
         {{--  <div class="text-center">
