@@ -53,6 +53,11 @@
             </a>
         </ul>
     </div>
+
+    <div class="link-info">
+        <p><a href="{{ route('books.create') }}" class="btn px-5 py-2 btn-outline-success"><i class="fas fa-pen pr-2"></i>本を登録</a></p>
+        <p><a class="btn px-5 py-2 btn-outline-primary"><i class="fas fa-search pr-2"></i>本を検索</a></p>
+    </div>
 </section>
 
 <section class="shelf-serach">
@@ -158,4 +163,8 @@
         <div class="text-center">
             <a href="{{ route('books.create') }}">書籍登録</a>
         </div>  --}}
+
+        <div class="text-center py-1 mt-5">
+            Copyright © 2020 ***. All Rights Reserved.
+        </div>
 @endsection

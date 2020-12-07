@@ -34,7 +34,7 @@
     }
 
     .book-info {
-        width: 70%;
+        width: 25%;
         height: 150px;
         padding: 20px;
         background-color: #fff;
@@ -80,6 +80,18 @@
             }
         }
     }
+
+    .link-info {
+        width: 30%;
+        height: 150px;
+        padding: 20px;
+        background-color: #fff;
+        .link-btn {
+            width: 100%;
+            margin: 5px auto;
+            display: block;
+        }
+    }
 }
 
 
@@ -89,6 +101,7 @@
     margin: 50px auto;
     border: 3px solid #F3993E ;
     border-radius: 4px;
+    background-color: #fff;
 
     &-label {
         font-size: 20px;
@@ -130,8 +143,8 @@
 
 .book-shelf {
 
-    background-color: rgb(247, 238, 222);
-    padding: 100px;
+    background-color: #F8FAFC;
+    padding: 50px 100px;
 
     .book-list {
         display: flex;
