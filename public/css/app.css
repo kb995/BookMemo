@@ -10978,7 +10978,7 @@ header .dropdown-location {
 }
 
 .info-wrapper .book-info {
-  width: 70%;
+  width: 25%;
   height: 150px;
   padding: 20px;
   background-color: #fff;
@@ -11024,12 +11024,26 @@ header .dropdown-location {
   font-size: 0.7rem;
 }
 
+.info-wrapper .link-info {
+  width: 30%;
+  height: 150px;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.info-wrapper .link-info .link-btn {
+  width: 100%;
+  margin: 5px auto;
+  display: block;
+}
+
 .shelf-serach {
   width: 50%;
   padding: 20px;
   margin: 50px auto;
   border: 3px solid #F3993E;
   border-radius: 4px;
+  background-color: #fff;
 }
 
 .shelf-serach-label {
@@ -11071,8 +11085,8 @@ header .dropdown-location {
 }
 
 .book-shelf {
-  background-color: #f7eede;
-  padding: 100px;
+  background-color: #F8FAFC;
+  padding: 50px 100px;
 }
 
 .book-shelf .book-list {

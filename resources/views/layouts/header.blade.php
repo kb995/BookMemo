@@ -4,7 +4,7 @@
 
         @if(Auth::check())
         <ul class="navbar-nav ml-auto">
-            <li class="navbar-item">
+            {{--  <li class="navbar-item">
                 <a class="btn btn-lg btn-primary mx-2 shadow" href="">
                     本をさがす
                 </a>
@@ -13,7 +13,7 @@
                 <a class="btn btn-lg btn-success mx-2 mr-5 shadow" href="">
                     本棚
                 </a>
-            </li>
+            </li>  --}}
             <li class="navbar-item user-icon dropdown">
                 <img src="{{ asset('/storage/common/default_user.jpeg') }}" id="dropdown1"
                 class="dropdown-toggle"
