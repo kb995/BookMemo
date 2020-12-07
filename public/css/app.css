@@ -11235,63 +11235,55 @@ header .dropdown-location {
   opacity: 0.8;
 }
 
-.memos {
-  background-color: lightblue;
-  min-height: 1000px;
-}
-
-.memos .delete-form {
-  display: inline !important;
-}
-
-.side {
-  background-color: lightcyan;
-  min-height: 1000px;
-  padding-right: 0;
-}
-
-.side .book-cover {
+.book-show-info {
   width: 80%;
-  height: 280px;
-  background-color: #f1f1f1;
-  margin: 70px auto 0 auto;
+  margin: 0 auto;
+  padding: 20px 0;
+  height: 300px;
+  background-color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-show-info .book-cover-wrapper {
+  width: 20%;
+  height: 230px;
+  background-color: lightblue;
+}
+
+.book-show-info .book-cover-wrapper .book-cover {
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin: 0 auto;
   text-align: center;
 }
 
-.side .book-cover img {
-  width: 100%;
+.book-show-info .book-cover-wrapper .book-cover img {
+  width: 150px;
+  height: auto;
 }
 
-.side .book-cover .book-default {
-  padding-top: 40%;
-  font-size: 5rem;
-  text-align: center;
-  color: #fff;
+.book-show-info .book-info-wrapper {
+  width: 50%;
+  height: 230px;
+  padding: 10px;
+  background-color: lightgreen;
+  overflow: hidden;
 }
 
-.side .star-empty {
-  font-size: 1.3rem;
-  color: lightyellow;
-  text-align: center;
+.book-show-info .book-info-wrapper dl {
+  margin: 0;
 }
 
-.side .star {
-  font-size: 1.3rem;
-  color: yellow;
-  text-align: center;
+.book-show-info .book-info-wrapper dt {
+  float: left;
+  padding-right: 5px;
 }
 
-.side .deleteform {
-  display: inline !important;
-}
-
-.side .book-edit {
-  margin: 30px auto;
-  text-align: center;
-}
-
-.side .book-info {
-  padding: 0 30px;
+.book-show-info .book-info-wrapper dd {
+  margin: 0;
 }
 
 .register-button {

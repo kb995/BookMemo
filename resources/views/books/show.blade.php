@@ -8,10 +8,67 @@
 @endsection
 
 @section('content')
-
 <section>
-    <div class="row">
-        {{-- サイドバー --}}
+    <div class="book-show-info">
+
+        <div class="book-cover-wrapper">
+            @if($book->cover)
+            <div class="book-cover">
+                <img src="{{ asset('/storage/common/'. $book->cover) }}">
+            </div>
+            @else
+            <div class="book-cover">
+                <i class="book-default fas fa-book"></i>
+            </div>
+            @endif
+        </div>
+
+        <div class="book-info-wrapper">
+            <h1 class="h2">{{ $book->title }}</h1>
+            <dl>
+                <dt>著者 : </dt>
+                <dd>{{ $book->author }}</dd>
+                <dt>カテゴリー : </dt>
+                <dd>{{ $book->category }}</dd>
+                <dt>ISBN : </dt>
+                <dd>{{ $book->isbn }}</dd>
+                <dt>出版日 : </dt>
+                <dd></dd>
+                <dt>詳細 : </dt>
+                <dd>{{ $book->description }}</dd>
+                <dt>評価 : </dt>
+                @if($book->rank === 0)
+                <dd class="star-empty">★★★★★</dd>
+                @elseif($book->rank === 1)
+                <dd class="star">★</dd><dd class="star-empty">★★★★</dd>
+                @elseif($book->rank === 2)
+                <dd class="star">★★</dd><dd class="star-empty">★★★</dd>
+                @elseif($book->rank === 3)
+                <dd class="star">★★★</dd><dd class="star-empty">★★</dd>
+                @elseif($book->rank === 4)
+                <dd class="star">★★★★</dd><dd class="star-empty">★</dd>
+                @elseif($book->rank === 5)
+                <dd class="star">★★★★★</dd>
+                @endif
+                <dt>ステータス : </dt>
+                @if($book->status === 0)
+                <dd class="badge badge-secondary p-2">ステータス</dd>
+                @elseif($book->status === 1)
+                <dd class="badge badge-danger p-2">未読</dd>
+                @elseif($book->status === 2)
+                <dd class="badge badge-primary p-2">読書中</dd>
+                @elseif($book->status === 3)
+                <dd class="badge badge-warning p-2">積読</dd>
+                @elseif($book->status === 4)
+                <dd class="badge badge-success p-2">読了</dd>
+                @endif
+            </dl>
+        </div>
+
+    </div>
+</section>
+
+    {{--  <div class="row">
         <div class="side col-md-3 col-sm-12">
             @if($book->cover)
                 <div class="book-cover">
@@ -36,7 +93,6 @@
                 </form>
             </div>
 
-            {{-- 書籍情報 --}}
             <div class="book-info">
                 <div class="text-left my-2">
                     @if($book->status === 0)
@@ -98,17 +154,16 @@
                     @endforeach
                 </div>
             </div>
-        </div>{{-- サイドバー --}} test
+        </div>  --}}
 
         {{-- 書籍メモ一覧 --}}
-        <section class="memos col-md-9 col-sm-12">
+        {{--  <section class="memos col-md-9 col-sm-12">
 
             @include('layouts.errors')
 
             @include('memos.create')
 
             <div class="card p-2 mb-3">
-                {{-- メモ一覧 メニュー --}}
                 @if (Session::has('search'))
                     <div class="py-2 px-3 h3">
                     「 {{ Session::get('search') }} 」を表示中 ( {{ $memos->firstItem() }} - {{ $memos->lastItem() }} /  {{ $memos->total() }} 件中 )
@@ -127,7 +182,6 @@
 
                         <span class="pl-3">お気に入り一覧</span>
 
-                        {{-- メモキーワード検索 --}}
                         <form method="POST" action="{{ route('books.show', ['book' => $book]) }}" class="inline">
                             @csrf
                             <div class="form-group ml-3">
@@ -183,5 +237,5 @@
 
         </div>
     </div>
-</section>
+    --}}
 @endsection
