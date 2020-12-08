@@ -77,4 +77,9 @@
         <input type="submit" class="btn btn-outline-success my-4" value="登録">
     </form>
 </section>
+
+<div class="text-center py-1 mt-5">
+    Copyright © 2020 ***. All Rights Reserved.
+</div>
+
 @endsection
