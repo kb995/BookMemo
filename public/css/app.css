@@ -11270,7 +11270,7 @@ header .dropdown-location {
   height: 230px;
   padding: 10px;
   background-color: lightgreen;
-  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .book-show-info .book-info-wrapper dl {
@@ -11284,6 +11284,26 @@ header .dropdown-location {
 
 .book-show-info .book-info-wrapper dd {
   margin: 0;
+}
+
+.memo-form-wrapper {
+  background-color: #f1f1f1;
+}
+
+.memo-form-wrapper .memo-form {
+  width: 75%;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.memo-form-wrapper .memo-form textarea {
+  font-size: 1.4rem;
+}
+
+.memo-form-wrapper .memo-form .vue-tags-input {
+  font-size: 1.4rem;
+  padding: 0;
+  margin: 20px 0;
 }
 
 .register-button {

@@ -32,7 +32,7 @@
         height: 230px;
         padding: 10px;
         background-color: lightgreen;
-        overflow: hidden;
+        overflow-y: scroll;
 
         dl {
             margin: 0;
@@ -60,6 +60,26 @@
     }
 }
 
+.memo-form-wrapper {
+    background-color: #f1f1f1;
+    .memo-form {
+        width: 75%;
+        margin: 0 auto;
+        padding: 30px;
+        textarea {
+            font-size: 1.4rem;
+        }
+        .vue-tags-input {
+            font-size: 1.4rem;
+            padding: 0;
+            margin: 20px 0;
+        }
+    }
+}
+
+.memos {
+
+}
 // .memos {
 //     background-color: lightblue;
 //     min-height: 1000px;
