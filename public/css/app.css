@@ -10903,6 +10903,14 @@ a.text-dark:focus {
   }
 }
 
+table tbody th {
+  padding: 20px !important;
+}
+
+table tbody td {
+  padding: 0;
+}
+
 header {
   padding: 10px 50px;
   background-color: #F3993E;
