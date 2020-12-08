@@ -9,7 +9,7 @@
 
 @section('content')
 <section class="conteiner">
-    <h1 class="text-center my-5">メモ編集</h1>
+    <h1 class="text-left w-50 my-5 mx-auto h2">メモ編集</h1>
 
     @include('layouts.errors')
 
@@ -17,7 +17,6 @@
     @method('PATCH')
     @csrf
         <div class="form-group">
-            <label for="memo">メモ</label>
             <textarea type="text" class="form-control" id="memo" name="memo">{{ $memo->memo ?? old('memo') }}</textarea>
 
             <memo-tags-input-component
@@ -26,9 +25,13 @@
             >
             </memo-tags-input-component>
 
-            <input type="submit" class="btn btn-primary my-4" value="編集">
+            <input type="submit" class="btn btn-outline-success w-100 my-4" value="編集する">
         </div>
-
     </form>
     </section>
+
+    <div class="text-center py-1 mt-5">
+        Copyright © 2020 ***. All Rights Reserved.
+    </div>
+
 @endsection

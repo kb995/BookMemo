@@ -9,7 +9,7 @@
 
 @section('content')
 <section>
-    <div class="book-show-info">
+    <div class="book-show-info shadow">
 
         <div class="book-cover-wrapper">
             @if($book->cover)
@@ -63,99 +63,104 @@
                 <dd class="badge badge-success p-2">読了</dd>
                 @endif
             </dl>
+            <a class="btn btn-info text-white" href="{{ route('books.edit', ['book' => $book]) }}"><i class="far fa-edit text-white pr-1"></i>編集</a>
+            <form class="deleteform" action="{{ route('books.destroy', ['book' => $book]) }}" method="post" id="delete_book_{{ $book->id }}">
+                @csrf
+                @method('DELETE')
+                <a class="btn btn-danger inline" data-id="{{ $book->id }}" onclick="deleteBook(this);">
+                    <i class="fas fa-trash-alt pr-1"></i>
+                    削除
+                </a>
+            </form>
         </div>
-
     </div>
 </section>
 
-    {{--  <div class="row">
-        <div class="side col-md-3 col-sm-12">
-            @if($book->cover)
-                <div class="book-cover">
-                    <img src="{{ asset('/storage/'. $book->cover) }}">
-                </div>
-            @else
-                <div class="book-cover">
-                    <i class="book-default fas fa-book"></i>
-                </div>
-            @endif
+<section class="memo-form-wrapper">
+    @include('layouts.errors')
+    {{--  メモ登録フォーム  --}}
+    <form method="POST" action="{{ route('books.memos.store', ['book' => $book]) }}" class="memo-form">
+        @csrf
+        <div class="form-group">
+            <label for="memo"></label>
+            <textarea class="form-control" id="memo" name="memo" value="{{ old('memo') }}" rows="4" cols="40" placeholder="読書メモ"></textarea>
 
-            <div class="book-edit">
-                <a class="btn btn-info text-white" href="{{ route('books.edit', ['book' => $book]) }}"><i class="far fa-edit text-white pr-1"></i>編集</a>
-
-                <form class="deleteform" action="{{ route('books.destroy', ['book' => $book]) }}" method="post" id="delete_book_{{ $book->id }}">
-                    @csrf
-                    @method('DELETE')
-                    <a class="btn btn-danger" data-id="{{ $book->id }}" onclick="deleteBook(this);">
-                        <i class="fas fa-trash-alt pr-1"></i>
-                        削除
-                    </a>
-                </form>
+            <memo-tags-input-component
+            :initial-tags='@json($tagNames ?? [])'
+            :autocomplete-items='@json($allTagNames ?? [])'
+            >
+            </memo-tags-input-component>
+            <div class="text-center">
+                <input type="submit" class="btn btn-lg btn-success my-2 w-100">
             </div>
+        </div>
+    </form>
 
-            <div class="book-info">
-                <div class="text-left my-2">
-                    @if($book->status === 0)
-                    <span class="badge badge-secondary p-2">ステータス</span>
-                    @elseif($book->status === 1)
-                    <span class="badge badge-danger p-2">未読</span>
-                    @elseif($book->status === 2)
-                    <span class="badge badge-primary p-2">読書中</span>
-                    @elseif($book->status === 3)
-                    <span class="badge badge-warning p-2">積読</span>
-                    @elseif($book->status === 4)
-                    <span class="badge badge-success p-2">読了</span>
-                    @endif
-                </div>
+</section>
 
-                <p>[タイトル]</p>
-                <p>{{ $book->title }}</p>
+{{--  メモ検索フォーム  --}}
+<section class="memo-search">
+    <form method="POST" action="{{ route('books.show', ['book' => $book]) }}" class="inline memo-search-form">
+        @csrf
+        @if (Session::has('search'))
+        <div class="h4 text-left mt-3">
+        「 {{ Session::get('search') }} 」を表示中 ( {{ $memos->firstItem() }} - {{ $memos->lastItem() }} /  {{ $memos->total() }} 件中 )
+        </div>
+        @endif
+        <div class="form-group">
+            <input type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワード検索">
+            {{--  <select name="tag">
+                <option value="" default>タグ検索</option>
+                @foreach($memoTags as $tag)
+                <option value="{{ $tag->name }}">{{$tag->name}}</option>
+                @endforeach
+            </select>  --}}
+            <input type="submit" class="btn btn-outline-info py-1" value="検索">
+        </div>
+    </form>
 
-                <p>[著者]</p>
-                <p>{{ $book->author }}</p>
+</section>
 
-                <p>[詳細]</p>
-                <p>{{ $book->description }}</p>
+{{--  メモ一覧  --}}
+<section class="memos mt-5">
+@foreach ($memos as $memo)
+<article class="card mb-4 memo-item shadow">
+    <div class="card-body">
+        {{ $memo->memo }}
+    </div>
 
-                <p>[カテゴリー]</p>
-                <p>{{ $book->category }}</p>
+    <div class="card-footer memo-info text-right">
+        <a class="inline" href="{{ route('books.memos.edit', ['book' => $book, 'memo' => $memo]) }}"><i class="far fa-edit"></i>編集</a>
+        <form class="delete-form" action="{{ route('books.memos.destroy', ['book' => $book, 'memo' => $memo]) }}" method="post" id="delete_memo_{{ $memo->id }}">
+            @csrf
+            @method('DELETE')
+            <a class="inline text-danger" data-id="{{ $memo->id }}" onclick="deleteMemo(this);">
+                <i class="fas fa-trash-alt"></i>
+                削除
+            </a>
+        </form>
+        <span>id:{{ $memo->id }}</span>
 
-                <p>[isbn]</p>
-                <p>{{ $book->isbn }}</p>
+        {{ $memo->created_at }}
 
-                <p>[評価]</p>
-                <div class="text-left my-2">
-                    @if($book->rank === 0)
-                    <span class="star-empty">★★★★★</span>
-                    @elseif($book->rank === 1)
-                    <span class="star">★</span><span class="star-empty">★★★★</span>
-                    @elseif($book->rank === 2)
-                    <span class="star">★★</span><span class="star-empty">★★★</span>
-                    @elseif($book->rank === 3)
-                    <span class="star">★★★</span><span class="star-empty">★★</span>
-                    @elseif($book->rank === 4)
-                    <span class="star">★★★★</span><span class="star-empty">★</span>
-                    @elseif($book->rank === 5)
-                    <span class="star">★★★★★</span>
-                    @endif
-                </div>
+        @foreach($memo->tags as $tag)
+            <a href=" {{ route('books.show', ['book' => $book, 'tag' => $tag]) }}" class="border p-1 mr-1 mt-1 text-muted">
+            {{ $tag->hashtag }}
+            </a>
+        @endforeach
+    </div>
+</article>
+@endforeach
 
-                <p>[読了日]</p>
-                <p>{{ $book->read_at }}</p>
+<div class="text-center">
+    {{ $memos->appends(request()->input())->links() }}
+</div>
 
-                <p>[タグ]</p>
-                <div>
-                    @foreach($memoTags as $tag)
-                        <span class="p-2 my-3">
-                            <a class="text-muted bg-light" href="{{ route('books.show', ['book' => $book, 'tag' => $tag]) }}">
-                                #{{ $tag->name }}
-                            </a>
-                        </span>,
-                    @endforeach
-                </div>
-            </div>
-        </div>  --}}
+</section>
 
+<div class="text-center py-1 mt-5">
+    Copyright © 2020 ***. All Rights Reserved.
+</div>
         {{-- 書籍メモ一覧 --}}
         {{--  <section class="memos col-md-9 col-sm-12">
 
@@ -230,12 +235,13 @@
             </div>
             @endforeach
 
-            <div class="text-center">
-                {{ $memos->appends(request()->input())->links() }}
-            </div>
+        <div class="text-center">
+            {{ $memos->appends(request()->input())->links() }}
+        </div>
         </section>
 
         </div>
     </div>
     --}}
+
 @endsection
