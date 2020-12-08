@@ -11240,7 +11240,6 @@ header .dropdown-location {
   margin: 0 auto;
   padding: 20px 0;
   height: 300px;
-  background-color: gray;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11249,7 +11248,6 @@ header .dropdown-location {
 .book-show-info .book-cover-wrapper {
   width: 20%;
   height: 230px;
-  background-color: lightblue;
 }
 
 .book-show-info .book-cover-wrapper .book-cover {
@@ -11269,7 +11267,6 @@ header .dropdown-location {
   width: 50%;
   height: 230px;
   padding: 10px;
-  background-color: lightgreen;
   overflow-y: scroll;
 }
 
@@ -11304,6 +11301,39 @@ header .dropdown-location {
   font-size: 1.4rem;
   padding: 0;
   margin: 20px 0;
+}
+
+.memos {
+  width: 75%;
+  min-height: 1000px;
+  margin: 0 auto;
+}
+
+.memos .memo-item {
+  min-height: 150px;
+  font-size: 1.3rem;
+}
+
+.memos .memo-item .delete-form {
+  display: inline !important;
+}
+
+.memos .memo-item .memo-info {
+  font-size: 0.8rem;
+}
+
+.memo-search {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.memo-search .memo-search-form {
+  text-align: right;
+}
+
+.memo-search .memo-search-form input {
+  height: 30px;
+  padding: 5px;
 }
 
 .register-button {

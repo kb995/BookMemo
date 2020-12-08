@@ -9,7 +9,7 @@
 
 @section('content')
 <section>
-    <div class="book-show-info">
+    <div class="book-show-info shadow">
 
         <div class="book-cover-wrapper">
             @if($book->cover)
@@ -67,13 +67,12 @@
             <form class="deleteform" action="{{ route('books.destroy', ['book' => $book]) }}" method="post" id="delete_book_{{ $book->id }}">
                 @csrf
                 @method('DELETE')
-                <a class="btn btn-danger" data-id="{{ $book->id }}" onclick="deleteBook(this);">
+                <a class="btn btn-danger inline" data-id="{{ $book->id }}" onclick="deleteBook(this);">
                     <i class="fas fa-trash-alt pr-1"></i>
                     削除
                 </a>
             </form>
         </div>
-
     </div>
 </section>
 
@@ -92,13 +91,76 @@
             >
             </memo-tags-input-component>
             <div class="text-center">
-                <input type="submit" class="btn btn-lg btn-success my-4 w-75">
+                <input type="submit" class="btn btn-lg btn-success my-2 w-100">
             </div>
         </div>
     </form>
 
 </section>
 
+{{--  メモ検索フォーム  --}}
+<section class="memo-search">
+    <form method="POST" action="{{ route('books.show', ['book' => $book]) }}" class="inline memo-search-form">
+        @csrf
+        @if (Session::has('search'))
+        <div class="h4 text-left mt-3">
+        「 {{ Session::get('search') }} 」を表示中 ( {{ $memos->firstItem() }} - {{ $memos->lastItem() }} /  {{ $memos->total() }} 件中 )
+        </div>
+        @endif
+        <div class="form-group">
+            <input type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワード検索">
+            {{--  <select name="tag">
+                <option value="" default>タグ検索</option>
+                @foreach($memoTags as $tag)
+                <option value="{{ $tag->name }}">{{$tag->name}}</option>
+                @endforeach
+            </select>  --}}
+            <input type="submit" class="btn btn-outline-info py-1" value="検索">
+        </div>
+    </form>
+
+</section>
+
+{{--  メモ一覧  --}}
+<section class="memos mt-5">
+@foreach ($memos as $memo)
+<article class="card mb-4 memo-item shadow">
+    <div class="card-body">
+        {{ $memo->memo }}
+    </div>
+
+    <div class="card-footer memo-info text-right">
+        <a class="inline" href="{{ route('books.memos.edit', ['book' => $book, 'memo' => $memo]) }}"><i class="far fa-edit"></i>編集</a>
+        <form class="delete-form" action="{{ route('books.memos.destroy', ['book' => $book, 'memo' => $memo]) }}" method="post" id="delete_memo_{{ $memo->id }}">
+            @csrf
+            @method('DELETE')
+            <a class="inline text-danger" data-id="{{ $memo->id }}" onclick="deleteMemo(this);">
+                <i class="fas fa-trash-alt"></i>
+                削除
+            </a>
+        </form>
+        <span>id:{{ $memo->id }}</span>
+
+        {{ $memo->created_at }}
+
+        @foreach($memo->tags as $tag)
+            <a href=" {{ route('books.show', ['book' => $book, 'tag' => $tag]) }}" class="border p-1 mr-1 mt-1 text-muted">
+            {{ $tag->hashtag }}
+            </a>
+        @endforeach
+    </div>
+</article>
+@endforeach
+
+<div class="text-center">
+    {{ $memos->appends(request()->input())->links() }}
+</div>
+
+</section>
+
+<div class="text-center py-1 mt-5">
+    Copyright © 2020 ***. All Rights Reserved.
+</div>
         {{-- 書籍メモ一覧 --}}
         {{--  <section class="memos col-md-9 col-sm-12">
 
@@ -173,12 +235,13 @@
             </div>
             @endforeach
 
-            <div class="text-center">
-                {{ $memos->appends(request()->input())->links() }}
-            </div>
+        <div class="text-center">
+            {{ $memos->appends(request()->input())->links() }}
+        </div>
         </section>
 
         </div>
     </div>
     --}}
+
 @endsection
