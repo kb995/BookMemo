@@ -3,7 +3,6 @@
     margin: 0 auto;
     padding: 20px 0;
     height: 300px;
-    background-color: gray;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -11,7 +10,6 @@
     .book-cover-wrapper {
         width: 20%;
         height: 230px;
-        background-color: lightblue;
 
         .book-cover {
             width: 100px;
@@ -31,8 +29,7 @@
         width: 50%;
         height: 230px;
         padding: 10px;
-        background-color: lightgreen;
-        overflow: hidden;
+        overflow-y: scroll;
 
         dl {
             margin: 0;
@@ -60,6 +57,53 @@
     }
 }
 
+.memo-form-wrapper {
+    background-color: #f1f1f1;
+    .memo-form {
+        width: 75%;
+        margin: 0 auto;
+        padding: 30px;
+        textarea {
+            font-size: 1.4rem;
+        }
+        .vue-tags-input {
+            font-size: 1.4rem;
+            padding: 0;
+            margin: 20px 0;
+        }
+    }
+}
+
+.memos {
+    width: 75%;
+    min-height: 1000px;
+    margin: 0 auto;
+
+    .memo-item {
+        min-height: 150px;
+        font-size: 1.3rem;
+        .delete-form {
+            display: inline!important;
+        }
+        .memo-info {
+            font-size: .8rem;
+        }
+    }
+}
+
+.memo-search {
+    width: 75%;
+    margin: 0 auto;
+
+    .memo-search-form {
+        text-align: right;
+
+        input {
+            height: 30px;
+            padding: 5px;
+        }
+    }
+}
 // .memos {
 //     background-color: lightblue;
 //     min-height: 1000px;
