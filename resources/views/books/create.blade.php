@@ -46,11 +46,11 @@
                     <th><label for="status">ステータス</label></th>
                     <td>
                         <select name="status" class="form-control" id="status" value="{{ old('status') }}">
-                            <option value="0" {{ old('rank') === '0' ? 'selected' : '' }}>-</option>
-                            <option value="1" {{ old('rank') === '1' ? 'selected' : '' }}>未読</option>
-                            <option value="2" {{ old('rank') === '2' ? 'selected' : '' }}>読書中</option>
-                            <option value="3" {{ old('rank') === '3' ? 'selected' : '' }}>積読</option>
-                            <option value="4" {{ old('rank') === '4' ? 'selected' : '' }}>読了</option>
+                            <option value="0" {{ old('status') === '0' ? 'selected' : '' }}>-</option>
+                            <option value="1" {{ old('status') === '1' ? 'selected' : '' }}>未読</option>
+                            <option value="2" {{ old('status') === '2' ? 'selected' : '' }}>読書中</option>
+                            <option value="3" {{ old('status') === '3' ? 'selected' : '' }}>積読</option>
+                            <option value="4" {{ old('status') === '4' ? 'selected' : '' }}>読了</option>
                         </select>
                     </td>
                 </tr>
@@ -58,7 +58,7 @@
                     <th><label for="rank">評価</label></th>
                     <td>
                         <select name="rank" class="form-control" id="rank" value="{{ old('rank') }}">
-                            <option value="0" {{ old('rank') === '0' ? 'selected' : '' }}>☆☆☆☆☆</option>
+                            <option value="0" {{ old('rank') === '0' ? 'selected' : '' }}>-</option>
                             <option value="1" {{ old('rank') === '1' ? 'selected' : '' }}>★☆☆☆☆</option>
                             <option value="2" {{ old('rank') === '2' ? 'selected' : '' }}>★★☆☆☆</option>
                             <option value="3" {{ old('rank') === '3' ? 'selected' : '' }}>★★★☆☆</option>
