@@ -117,16 +117,20 @@
                             <option value="3" {{ old('status') === '3' ? 'selected' : '' }}>積読</option>
                             <option value="4" {{ old('status') === '4' ? 'selected' : '' }}>読了</option>
                         </select>
-
                     </div>
                 </div>
-
                 <input type="submit" class="detail-search-btn" value="検索">
                 <input type="submit" class="detail-search-btn-clear" value="検索をクリア">
             </div>
         </form>
     </div>
 </section>
+
+@if (Session::has('search'))
+<div class="h4 text-center mt-3">
+「 {{ Session::get('search') }} 」を表示中 ( {{ $books->firstItem() }} - {{ $books->lastItem() }} /  {{ $books->total() }} 件中 )
+</div>
+@endif
 
 <section class="book-shelf">
     <div class="book-list">
