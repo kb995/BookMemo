@@ -80,13 +80,14 @@
         詳細検索<i class="fas fa-chevron-circle-down pl-2"></i>
         </button>
 
-        <form method="POST" action="" class="collapse p-5" id="input">
+        <form method="POST" action="{{ route('books.index') }}" class="collapse p-5" id="input">
+            @csrf
             <div class="form-group ml-3">
                 <div class="row">
                     <div class="col-6">
-                        <label class="detail-search-label" for="keyword">カテゴリーから探す</label>
+                        <label class="detail-search-label" for="category">カテゴリーから探す</label>
                         <select class="detail-search-input" name="category" id="category">
-                            <option value="" default>カテゴリー選択</option>
+                            <option default>カテゴリー選択</option>
                             @foreach ($category_list as $category)
                             {{--  <option value="{{ $category->category }}" {{ old('category') === $category->category ? 'selected' : '' }}>  --}}
                             <option value="{{ $category->category }}">
@@ -96,19 +97,27 @@
                         </select>
                     </div>
                     <div class="col-6">
-                        <label class="detail-search-label" for="">著者名から探す</label>
-                        <input class="detail-search-input" name="" id="" placeholder="著者名">
+                        <label class="detail-search-label" for="author">著者名から探す</label>
+                        <input class="detail-search-input" name="author" id="author" placeholder="著者名">
                     </div>
                 </div>
 
                 <div class="row mt-4">
                     <div class="col-6">
-                        <label class="detail-search-label" for="">ISBNから探す</label>
-                        <input class="detail-search-input" name="" id="" placeholder="13桁の書籍ID">
+                        <label class="detail-search-label" for="isbn">ISBNから探す</label>
+                        <input class="detail-search-input" name="isbn" id="isbn" placeholder="13桁の書籍ID">
                     </div>
                     <div class="col-6">
-                        <label class="detail-search-label" for="">読書状態から探す</label>
-                        <input class="detail-search-input" name="" id="" placeholder="未読 or 既読 or 積読">
+                        <label class="detail-search-label" for="status">読書状態から探す</label>
+                        {{--  <input class="detail-search-input" name="status" id="status" placeholder="未読 or 既読 or 積読">  --}}
+                        <select name="status" class="detail-search-input" id="status" value="{{ old('status') }}">
+                            <option value="0" {{ old('status') === '0' ? 'selected' : '' }}>-</option>
+                            <option value="1" {{ old('status') === '1' ? 'selected' : '' }}>未読</option>
+                            <option value="2" {{ old('status') === '2' ? 'selected' : '' }}>読書中</option>
+                            <option value="3" {{ old('status') === '3' ? 'selected' : '' }}>積読</option>
+                            <option value="4" {{ old('status') === '4' ? 'selected' : '' }}>読了</option>
+                        </select>
+
                     </div>
                 </div>
 
