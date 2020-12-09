@@ -20,7 +20,9 @@ class BookController extends Controller
 
         $keyword = $request->keyword;
         $category = $request->category;
-
+        $author = $request->author;
+        $isbn = $request->isbn;
+        $status = $request->status;
 
         if(!empty($keyword)) {
             $books = $user->books()
@@ -42,6 +44,36 @@ class BookController extends Controller
 
             session()->forget(['search']);
             session()->put('search', $category);
+        }
+
+        if(!empty($author)) {
+            $books = $user->books()
+            ->where('author', 'like' , '%'.$author.'%')
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+
+            session()->forget(['search']);
+            session()->put('search', $author);
+        }
+
+        if(!empty($isbn)) {
+            $books = $user->books()
+            ->where('isbn', $isbn)
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+
+            session()->forget(['search']);
+            session()->put('search', $isbn);
+        }
+
+        if(!empty($status)) {
+            $books = $user->books()
+            ->where('status', $status)
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+
+            session()->forget(['search']);
+            session()->put('search', $status);
         }
 
         if(empty($books)) {
