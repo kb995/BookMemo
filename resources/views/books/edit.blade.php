@@ -14,8 +14,8 @@
     @include('layouts.errors')
 
     <form method="POST" action="{{ route('books.update', ['book' => $book]) }}" class="card mx-auto w-50 p-5" enctype="multipart/form-data">
-        @method('PATCH')        @csrf
-
+        @method('PATCH')
+        @csrf
         <table class="table table-bordered">
             <tbody>
                 <tr>
