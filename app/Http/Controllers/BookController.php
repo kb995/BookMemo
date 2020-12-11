@@ -12,6 +12,11 @@ use App\User;
 
 class BookController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->authorizeResource(Book::class, 'book');
+    // }
+
     public function index(Request $request)
     {
         $user = User::find(Auth::id());
