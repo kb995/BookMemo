@@ -84,12 +84,6 @@
         <div class="form-group">
             <label for="memo"></label>
             <textarea class="form-control" id="memo" name="memo" value="{{ old('memo') }}" rows="4" cols="40" placeholder="読書メモ"></textarea>
-
-            <memo-tags-input-component
-            :initial-tags='@json($tagNames ?? [])'
-            :autocomplete-items='@json($allTagNames ?? [])'
-            >
-            </memo-tags-input-component>
             <div class="text-center">
                 <input type="submit" class="btn btn-lg btn-success my-2 w-100">
             </div>
@@ -109,12 +103,6 @@
         @endif
         <div class="form-group">
             <input type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワード検索">
-            {{--  <select name="tag">
-                <option value="" default>タグ検索</option>
-                @foreach($memoTags as $tag)
-                <option value="{{ $tag->name }}">{{$tag->name}}</option>
-                @endforeach
-            </select>  --}}
             <input type="submit" class="btn btn-outline-info py-1" value="検索">
         </div>
     </form>
@@ -143,11 +131,6 @@
 
         {{ $memo->created_at }}
 
-        @foreach($memo->tags as $tag)
-            <a href=" {{ route('books.show', ['book' => $book, 'tag' => $tag]) }}" class="border p-1 mr-1 mt-1 text-muted">
-            {{ $tag->hashtag }}
-            </a>
-        @endforeach
     </div>
 </article>
 @endforeach
