@@ -15,6 +15,7 @@ class MemoController extends Controller
     public function store(Book $book, Memo $memo, MemoRequest $request)
     {
         $memo->memo = $request->memo;
+        $memo->tag = $request->tag;
         $memo->book_id = $book->id;
         $memo->save();
         session()->flash('flash_message', 'メモを追加しました');
