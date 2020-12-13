@@ -12,6 +12,11 @@ use App\User;
 
 class BookController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->authorizeResource(Book::class, 'book');
+    // }
+
     public function index(Request $request)
     {
         $user = User::find(Auth::id());
@@ -93,6 +98,7 @@ class BookController extends Controller
 
     public function store(Book $book, BookRequest $request)
     {
+
         if(is_uploaded_file($_FILES['cover']['tmp_name'])){
             $upload_image = $request->file('cover');
             $file_name = time() . '_' . $upload_image->getClientOriginalName();
@@ -113,6 +119,8 @@ class BookController extends Controller
 
     public function show(Book $book, Request $request)
     {
+        $this->authorize('view', $book);
+
         $book = Book::find($book->id);
         $keyword = $request->keyword;
         $tag = $request->tag;
@@ -148,11 +156,15 @@ class BookController extends Controller
 
     public function edit(Book $book)
     {
+        $this->authorize('update', $book);
         return view('books.edit', compact('book'));
     }
 
     public function update(Book $book, BookRequest $request)
     {
+
+        $this->authorize('update', $book);
+
         if(is_uploaded_file($_FILES['cover']['tmp_name'])){
             $upload_image = $request->file('cover');
             $file_name = time() . '_' . $upload_image->getClientOriginalName();
@@ -174,6 +186,8 @@ class BookController extends Controller
 
     public function destroy(Book $book)
     {
+        $this->authorize('update', $book);
+
         $book->memos()->each(function ($memo) {
             $memo->delete();
         });
