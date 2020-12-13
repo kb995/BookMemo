@@ -18,13 +18,6 @@
     @csrf
         <div class="form-group">
             <textarea type="text" class="form-control" id="memo" name="memo">{{ $memo->memo ?? old('memo') }}</textarea>
-
-            <memo-tags-input-component
-            :initial-tags='@json($tagNames ?? [])'
-            :autocomplete-items='@json($allTagNames ?? [])'
-            >
-            </memo-tags-input-component>
-
             <input type="submit" class="btn btn-outline-success w-100 my-4" value="編集する">
         </div>
     </form>

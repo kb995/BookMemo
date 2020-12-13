@@ -7,7 +7,6 @@ use App\Http\Requests\MemoRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Book;
 use App\Models\Memo;
-use App\Models\Tag;
 use App\User;
 
 class MemoController extends Controller
@@ -20,27 +19,12 @@ class MemoController extends Controller
         $memo->save();
         session()->flash('flash_message', 'メモを追加しました');
 
-        $request->tags->each(function ($tagName) use ($memo, $book) {
-            $tag = Tag::firstOrCreate(['name' => $tagName]);
-            $tag->book_id = $book->id;
-            $tag->user_id = Auth::id();
-            $tag->save();
-            $memo->tags()->attach($tag);
-        });
-
         return redirect()->route('books.show', ['book' => $book]);
     }
 
     public function edit(Book $book, Memo $memo)
     {
-        $tagNames = $memo->tags->map(function ($tag) {
-            return ['text' => $tag->name];
-        });
-        $allTagNames = Tag::all()->map(function ($tag) {
-            return ['text' => $tag->name];
-        });
-
-        return view('memos.edit', compact('book', 'memo', 'tagNames', 'allTagNames'));
+        return view('memos.edit', compact('book', 'memo'));
     }
 
     public function update(MemoRequest $request, Book $book, Memo $memo)
@@ -48,12 +32,6 @@ class MemoController extends Controller
         $memo->memo = $request->memo;
         $memo->save();
         session()->flash('flash_message', 'メモを編集しました');
-
-        $memo->tags()->detach();
-        $request->tags->each(function ($tagName) use ($memo) {
-        $tag = Tag::firstOrCreate(['name' => $tagName]);
-        $memo->tags()->attach($tag);
-        });
 
         return redirect()->route('books.show', ['book' => $book]);
     }

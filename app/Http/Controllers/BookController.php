@@ -7,16 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\Memo;
-use App\Models\Tag;
 use App\User;
 
 class BookController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->authorizeResource(Book::class, 'book');
-    // }
-
     public function index(Request $request)
     {
         $user = User::find(Auth::id());
@@ -123,7 +117,6 @@ class BookController extends Controller
 
         $book = Book::find($book->id);
         $keyword = $request->keyword;
-        $tag = $request->tag;
 
         if(!empty($keyword)) {
             $memos = $book->memos()
@@ -134,14 +127,6 @@ class BookController extends Controller
             session()->put('search', $keyword);
         }
 
-        if(!empty($tag)) {
-            $tag = Tag::where('user_id', Auth::id())->where('name', $tag)->first();
-            $memos = $tag->tagMemos()->paginate(12);
-
-            session()->forget(['search']);
-            session()->put('search', $tag);
-        }
-
         if(empty($memos)) {
             $memos = $book->memos()
             ->orderBy('created_at', 'desc')
@@ -149,9 +134,7 @@ class BookController extends Controller
             session()->forget(['search']);
         }
 
-        $memoTags = Tag::where('book_id', $book->id)->get();
-
-        return view('books.show', compact('book', 'memos', 'memoTags'));
+        return view('books.show', compact('book', 'memos'));
     }
 
     public function edit(Book $book)

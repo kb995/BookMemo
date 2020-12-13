@@ -15,20 +15,20 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
 
     // 書籍一覧
     Route::get('/', 'BookController@index')->name('index');
-    // 書籍一覧 (キーワード&カテゴリー 検索)
+    // 書籍一覧 (検索)
     Route::post('/', 'BookController@index')->name('index');
 
-    // 書籍詳細 画面
+    // メモ一覧
     Route::get('/{book}', 'BookController@show')->name('show');
 
-    // 書籍詳細(メモ キーワード&タグ検索)
+    // メモ一覧(検索)
     Route::post('/{book}', 'BookController@show')->name('show');
 
-    // 書籍編集 画面
+    // 書籍編集
     Route::get('/{book}/edit', 'BookController@edit')->name('edit');
     Route::patch('/{book}/edit', 'BookController@update')->name('update');
 
-    // 書籍削除 機能
+    // 書籍削除
     Route::delete('/{book}/destroy', 'BookController@destroy')->name('destroy');
 
     // ===== Memo =====
