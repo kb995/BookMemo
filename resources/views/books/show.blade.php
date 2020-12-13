@@ -84,6 +84,7 @@
         <div class="form-group">
             <label for="memo"></label>
             <textarea class="form-control" id="memo" name="memo" value="{{ old('memo') }}" rows="4" cols="40" placeholder="読書メモ"></textarea>
+            <input class="form-control" type="text" name="tag" value="{{ old('tag') }}" placeholder="メモタグ">
             <div class="text-center">
                 <input type="submit" class="btn btn-lg btn-success my-2 w-100">
             </div>
@@ -111,33 +112,58 @@
 
 {{--  メモ一覧  --}}
 <section class="memos mt-5">
-@foreach ($memos as $memo)
-<article class="card mb-4 memo-item shadow">
-    <div class="card-body">
-        {{ $memo->memo }}
+    {{--  メモタブ  --}}
+    <ul class="nav nav-tabs justify-content-end" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" href="" role="tab" aria-controls="all" aria-selected="true">All</a>
+        </li>
+
+        @if($tags)
+            @foreach ($tags as $tag)
+                <form action="{{ route('books.show', ['book' => $book]) }}" method="POST" name="tagform">
+                    @csrf
+                    {{--  <a class="nav-link" href="{{ route('books.show', ['book' => $book]) }}">{{ $tag }}</a>  --}}
+                    <li class="nav-item">
+                    <input type="hidden" name="tag" value="{{ $tag }}">
+                    {{--  <input class="nav-link" type="submit" value="{{ $tag }}">  --}}
+                    <a class="nav-link" href="" onclick="document.tagform.submit();">{{ $tag }}</a>
+                    </li>
+                </form>
+            @endforeach
+        @endif
+    </ul>
+
+      {{--  メモコンテンツ  --}}
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+            @foreach ($memos as $memo)
+            <article class="card mb-4 memo-item shadow">
+                <div class="card-body">
+                    {{ $memo->memo }}
+                </div>
+                <div class="card-footer memo-info text-right">
+                    <span>
+                        {{ $memo->tag }}
+                    </span>
+                    <a class="inline" href="{{ route('books.memos.edit', ['book' => $book, 'memo' => $memo]) }}"><i class="far fa-edit"></i>編集</a>
+                    <form class="delete-form" action="{{ route('books.memos.destroy', ['book' => $book, 'memo' => $memo]) }}" method="post" id="delete_memo_{{ $memo->id }}">
+                        @csrf
+                        @method('DELETE')
+                        <a class="inline text-danger" data-id="{{ $memo->id }}" onclick="deleteMemo(this);">
+                            <i class="fas fa-trash-alt"></i>
+                            削除
+                        </a>
+                    </form>
+                    <span>id:{{ $memo->id }}</span>
+                    {{ $memo->created_at }}
+                </div>
+            </article>
+            @endforeach
+        </div>
+
+    <div class="text-center">
+        {{ $memos->appends(request()->input())->links() }}
     </div>
-
-    <div class="card-footer memo-info text-right">
-        <a class="inline" href="{{ route('books.memos.edit', ['book' => $book, 'memo' => $memo]) }}"><i class="far fa-edit"></i>編集</a>
-        <form class="delete-form" action="{{ route('books.memos.destroy', ['book' => $book, 'memo' => $memo]) }}" method="post" id="delete_memo_{{ $memo->id }}">
-            @csrf
-            @method('DELETE')
-            <a class="inline text-danger" data-id="{{ $memo->id }}" onclick="deleteMemo(this);">
-                <i class="fas fa-trash-alt"></i>
-                削除
-            </a>
-        </form>
-        <span>id:{{ $memo->id }}</span>
-
-        {{ $memo->created_at }}
-
-    </div>
-</article>
-@endforeach
-
-<div class="text-center">
-    {{ $memos->appends(request()->input())->links() }}
-</div>
 
 </section>
 
