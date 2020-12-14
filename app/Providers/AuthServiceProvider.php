@@ -6,6 +6,8 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Illuminate\Support\Facades\Gate;
 use App\Models\Book;
 use App\Policies\BookPolicy;
+use App\Models\Memo;
+use App\Policies\MemoPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -16,6 +18,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Models\Book' => 'App\Policies\BookPolicy',
+        'App\Models\Memo' => 'App\Policies\MemoPolicy',
     ];
 
     /**
