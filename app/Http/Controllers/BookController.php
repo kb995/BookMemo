@@ -182,7 +182,7 @@ class BookController extends Controller
 
     public function destroy(Book $book)
     {
-        $this->authorize('update', $book);
+        $this->authorize('delete', $book);
 
         $book->memos()->each(function ($memo) {
             $memo->delete();

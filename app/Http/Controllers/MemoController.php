@@ -25,11 +25,15 @@ class MemoController extends Controller
 
     public function edit(Book $book, Memo $memo)
     {
+        $this->authorize('update', $book);
+
         return view('memos.edit', compact('book', 'memo'));
     }
 
     public function update(MemoRequest $request, Book $book, Memo $memo)
     {
+        $this->authorize('update', $book);
+
         $memo->memo = $request->memo;
         $memo->save();
         session()->flash('flash_message', 'メモを編集しました');
@@ -40,6 +44,8 @@ class MemoController extends Controller
 
     public function destroy(Book $book, Memo $memo)
     {
+        $this->authorize('delete', $book);
+
         $memo->delete();
         session()->flash('flash_message', 'メモを削除しました');
 
