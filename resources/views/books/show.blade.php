@@ -115,24 +115,21 @@
     {{--  メモタブ  --}}
     <ul class="nav nav-tabs justify-content-end" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" href="" role="tab" aria-controls="all" aria-selected="true">All</a>
+            <a class="nav-link {{ Session::has('tag') ? '': 'active' }}" href="" role="tab" aria-controls="all" aria-selected="true">All</a>
         </li>
 
         @if($tags)
             @foreach ($tags as $tag)
-                <form action="{{ route('books.show', ['book' => $book]) }}" method="POST" name="tagform">
-                    @csrf
-                    {{--  <a class="nav-link" href="{{ route('books.show', ['book' => $book]) }}">{{ $tag }}</a>  --}}
-                    <li class="nav-item">
-                    <input type="hidden" name="tag" value="{{ $tag }}">
-                    {{--  <input class="nav-link" type="submit" value="{{ $tag }}">  --}}
-                    <a class="nav-link" href="" onclick="document.tagform.submit();">{{ $tag }}</a>
-                    </li>
-                </form>
+            <li class="nav-item">
+                <a href="javascript:tagform{{$tag->tag}}.submit()" class="nav-link {{ Session::get('tag') == $tag->tag ? 'active': '' }}" role="tab" aria-selected="true">{{ $tag->tag }}</a>
+            </li>
+            <form action="{{ route('books.show', ['book' => $book]) }}" method="POST" name="tagform{{$tag->tag}}">
+                @csrf
+                <input type="hidden" name="tag" value="{{ $tag->tag }}">
+            </form>
             @endforeach
         @endif
     </ul>
-
       {{--  メモコンテンツ  --}}
       <div class="tab-content">
         <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
