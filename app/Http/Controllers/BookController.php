@@ -116,10 +116,8 @@ class BookController extends Controller
         $this->authorize('view', $book);
 
         $book = Book::find($book->id);
-        $tags = Memo::where('book_id', $book->id)
-                ->get('tag')->unique('tag')->toArray();
-        // $tags = [ 'tag1', 'tag2', 'tag3' ];
-        dd($tags);
+        $tags = Memo::where('book_id', $book->id)->whereNotNull('tag')
+                ->get('tag')->unique('tag');
         $keyword = $request->keyword;
         $tag = $request->tag;
 
@@ -137,8 +135,8 @@ class BookController extends Controller
             ->where('tag', $tag)
             ->orderBy('created_at', 'desc')
             ->paginate(12);
-            session()->forget(['search']);
-            session()->put('search', $tag);
+            session()->forget(['tag']);
+            session()->put('tag', $tag);
         }
 
         if(empty($memos)) {
@@ -146,6 +144,7 @@ class BookController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(12);
             session()->forget(['search']);
+            session()->forget(['tag']);
         }
 
         return view('books.show', compact('book', 'memos', 'tags'));
