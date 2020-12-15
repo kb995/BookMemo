@@ -10,12 +10,14 @@ class UserController extends Controller
 {
     public function edit(User $user)
     {
+        // $this->authorize('update', $user);
+
         return view('settings.account', compact('user'));
     }
 
     public function update(UserRequest $request, User $user)
     {
-        // $this->authorize('update', $book);
+        // $this->authorize('update', $user);
 
         $user->name = $request->name;
         $user->email = $request->email;
