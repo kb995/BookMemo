@@ -10,11 +10,13 @@
 @section('content')
 <section class="info-wrapper">
     <div class="user-info">
-        <div class="user-icon">
-            <img src="{{ asset('/storage/common/default_user.jpeg') }}" alt="ユーザーアイコン">
+        <div class="row">
+            <div class="user-icon col-3">
+                <img src="{{ asset('/storage/common/default_user.jpeg') }}" alt="ユーザーアイコン">
+                <span class="user-edit"><a class="btn btn-outline-primary btn-sm ml-2 mt-3" href="{{ route('user.edit', ['user' => Auth::user()]) }}">編集</a></span>
+            </div>
+            <h1 class="user-name h4 col-9">{{ $user->name }}の本棚 </h1>
         </div>
-        <h1 class="user-name h3">{{ $user->name }}の本棚 </h1>
-        <p class="user-edit"><a href="">{{ $user->name }}さん</a><a class="btn btn-outline-primary btn-sm ml-2" href="">編集</a></p>
     </div>
 
     <div class="book-info">
@@ -164,20 +166,7 @@
     </div>
 </section>
 
-
-      {{--  <div class="text-center">
-            @if (Session::has('search'))
-            <div class="py-2 px-3 h3">
-            「 {{ Session::get('search') }} 」を表示中 ( {{ $books->firstItem() }} - {{ $books->lastItem() }} /  {{ $books->total() }} 件中 )
-            </div>
-            @endif
+    <div class="text-center py-1 mt-5">
+        Copyright © 2020 ***. All Rights Reserved.
     </div>
-
-        <div class="text-center">
-            <a href="{{ route('books.create') }}">書籍登録</a>
-        </div>  --}}
-
-        <div class="text-center py-1 mt-5">
-            Copyright © 2020 ***. All Rights Reserved.
-        </div>
 @endsection

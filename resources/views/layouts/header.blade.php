@@ -22,8 +22,8 @@
                 aria-expanded="false"
                 >
                 <div class="dropdown-menu dropdown-location" aria-labelledby="dropdown1">
-                    <a class="dropdown-item" href="">ホーム</a>
-                    <a class="dropdown-item"  href="">アカウント管理</a>
+                    <a class="dropdown-item" href="{{ route('books.index') }}">ホーム</a>
+                    <a class="dropdown-item"  href="{{ route('user.edit', ['user' => Auth::user()]) }}">アカウント管理</a>
                     <button class="dropdown-item" form="logout-form" id="logout">ログアウト</button>
                 </div>
             </li>
