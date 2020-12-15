@@ -8,6 +8,7 @@ use App\Models\Book;
 use App\Policies\BookPolicy;
 use App\Models\Memo;
 use App\Policies\MemoPolicy;
+use App\User;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         'App\Models\Book' => 'App\Policies\BookPolicy',
         'App\Models\Memo' => 'App\Policies\MemoPolicy',
+        'App\User' => 'App\Policies\UserPolicy',
     ];
 
     /**

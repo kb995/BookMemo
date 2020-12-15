@@ -5,13 +5,9 @@ Auth::routes();
 Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], function() {
 
     // ===== Book =====
-    // タグ検索
-    // Route::get('/search/{btag}', 'BookController@searchTag')->name('btag');
-
     // 書籍登録
     Route::get('/create', 'BookController@create')->name('create');
     Route::post('/create', 'BookController@store')->name('store');
-
 
     // 書籍一覧
     Route::get('/', 'BookController@index')->name('index');
@@ -46,6 +42,14 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
         Route::delete('/{memo}/destroy', 'MemoController@destroy')->name('destroy');
 
     });
+
+});
+
+// ===== User =====
+Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], function() {
+    Route::get('/{user}/edit', 'UserController@edit')->name('edit');
+    Route::patch('/{user}/edit', 'UserController@update');
+
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
