@@ -27,7 +27,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-0">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
@@ -43,12 +43,20 @@
 
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
-                                <div class="form-check text-right text-muted">
+                                <div class="form-check text-right text-muted mt-2">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
                                         {{ __('Remember Me') }}
                                     </label>
+
+                                    <div class="text-right">
+                                        @if (Route::has('password.request'))
+                                            <a class="btn btn-link px-0" href="{{ route('password.request') }}">
+                                                {{ __('Forgot Your Password?') }}
+                                            </a>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -58,26 +66,27 @@
                                 {{ __('Login') }}
                             </button>
 
-                            <div class="col-md-8 offset-md-4 text-right">
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link mr-5" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
+                            <p class="text-center h4 text-muted">or</p>
 
                         </div>
                     </form>
 
+                    <div class="text-center">
+                        <a href="{{ route('login.{provider}', ['provider' => 'google']) }}">
+                            <button class="btn btn-lg btn-danger w-75 mx-auto my-3">
+                                <i class="fab fa-google text-white mr-1"></i>Googleでログイン
+                            </button>
+                        </a>
+                    </div>
+
                     <p class="font-weight-bold py-4 text-center">アカウントをお持ちでない方はこちら</p>
 
                     <div class="text-center">
-                        <button class="register-button btn btn-lg w-75 mx-auto">
-                            <a class="register-link" href="{{ route('register') }}">
+                        <a class="register-link" href="{{ route('register') }}">
+                            <button class="register-button btn btn-lg w-75 mx-auto text-white">
                                 新規会員登録
-                            </a>
-                        </button>
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>

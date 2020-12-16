@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Laravel\Socialite\Facades\Socialite;
+use App\User;
+use Illuminate\Http\Request;
+
+
 
 class LoginController extends Controller
 {
@@ -29,6 +34,28 @@ class LoginController extends Controller
         session()->flash('flash_message', 'ログインしました');
         return '/books';
     }
+
+    /**
+     * 外部ログイン
+     */
+    public function redirectToProvider(string $provider)
+    {
+        return Socialite::driver($provider)->redirect();
+    }
+
+    public function handleProviderCallback(Request $request, string $provider)
+    {
+        $providerUser = Socialite::driver($provider)->stateless()->user();
+
+        $user = User::where('email', $providerUser->getEmail())->first();
+
+        if ($user) {
+            $this->guard()->login($user, true);
+            return $this->sendLoginResponse($request);
+        }
+
+    }
+
     /**
      * Create a new controller instance.
      *

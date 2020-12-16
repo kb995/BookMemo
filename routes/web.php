@@ -2,6 +2,11 @@
 
 Auth::routes();
 
+Route::prefix('login')->name('login.')->group(function () {
+    Route::get('/{provider}', 'Auth\LoginController@redirectToProvider')->name('{provider}');
+    Route::get('/{provider}/callback', 'Auth\LoginController@handleProviderCallback')->name('{provider}.callback');
+});
+
 Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], function() {
 
     // ===== Book =====
@@ -51,5 +56,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], func
     Route::patch('/{user}/edit', 'UserController@update');
 
 });
+
 
 Route::get('/home', 'HomeController@index')->name('home');
