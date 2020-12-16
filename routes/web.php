@@ -7,6 +7,10 @@ Route::prefix('login')->name('login.')->group(function () {
     Route::get('/{provider}/callback', 'Auth\LoginController@handleProviderCallback')->name('{provider}.callback');
 });
 
+// Route::prefix('register')->name('register.')->group(function () {
+//     Route::get('/{provider}', 'Auth\RegisterController@showProviderUserRegistrationForm')->name('{provider}');
+// });
+
 Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], function() {
 
     // ===== Book =====
