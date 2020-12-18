@@ -13,7 +13,10 @@ class BookController extends Controller
 {
     public function index(Request $request)
     {
-        $user = User::find(Auth::id());
+        $user = User::with(['books' => function ($query) {
+            $query->where('user_id', Auth::id());
+        }])->find(Auth::id());
+
         $category_list = Book::categoryList();
         $book_counts = Book::bookCounts();
 
