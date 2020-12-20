@@ -14,11 +14,11 @@
         <div class="book-cover-wrapper">
             @if($book->cover)
             <div class="book-cover">
-                <img src="{{ asset('/storage/common/'. $book->cover) }}">
+                <img src="../../storage/app/public/books/{{ $book->cover }}" alt="">
             </div>
             @else
             <div class="book-cover">
-                <i class="book-default fas fa-book"></i>
+                <img src="../../storage/app/public/common/book_default.jpg" alt="">
             </div>
             @endif
         </div>

@@ -99,7 +99,7 @@ class BookController extends Controller
         if(is_uploaded_file($_FILES['cover']['tmp_name'])){
             $upload_image = $request->file('cover');
             $file_name = time() . '_' . $upload_image->getClientOriginalName();
-            $path = $upload_image->storeAs('public', $file_name);
+            $path = $upload_image->storeAs('public/books', $file_name);
             if($path) {
                 $book->cover = $file_name;
             }

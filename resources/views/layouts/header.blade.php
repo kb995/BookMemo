@@ -15,7 +15,7 @@
                 </a>
             </li>  --}}
             <li class="navbar-item user-icon dropdown">
-                <img src="{{ asset('/storage/common/default_user.jpeg') }}" id="dropdown1"
+                <img src="../../storage/app/public/common/default_user.jpeg" id="dropdown1"
                 class="dropdown-toggle"
                 data-toggle="dropdown"
                 aria-haspopup="true"
