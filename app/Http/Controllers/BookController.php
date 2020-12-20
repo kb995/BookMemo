@@ -11,6 +11,7 @@ use App\User;
 
 class BookController extends Controller
 {
+
     public function index(Request $request)
     {
         $user = User::with(['books' => function ($query) {

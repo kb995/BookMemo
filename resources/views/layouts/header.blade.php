@@ -14,8 +14,10 @@
                     本棚
                 </a>
             </li>  --}}
+            @if(Auth::user()->thumbnail)
             <li class="navbar-item user-icon dropdown">
-                <img src="../../storage/app/public/common/default_user.jpeg" id="dropdown1"
+                <img src="../storage/app/public/user/{{Auth::user()->thumbnail}}"
+                id="dropdown1"
                 class="dropdown-toggle"
                 data-toggle="dropdown"
                 aria-haspopup="true"
@@ -27,6 +29,21 @@
                     <button class="dropdown-item" form="logout-form" id="logout">ログアウト</button>
                 </div>
             </li>
+            @elseif(Auth::user()->thumbnail == null)
+            <li class="navbar-item user-icon dropdown">
+                <img src="{{ asset('../storage/app/public/common/default_user.jpeg') }}" id="dropdown1"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >
+                <div class="dropdown-menu dropdown-location" aria-labelledby="dropdown1">
+                    <a class="dropdown-item" href="{{ route('books.index') }}">ホーム</a>
+                    <a class="dropdown-item"  href="{{ route('user.edit', ['user' => Auth::user()]) }}">アカウント管理</a>
+                    <button class="dropdown-item" form="logout-form" id="logout">ログアウト</button>
+                </div>
+            </li>
+            @endif
         </ul>
 
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
