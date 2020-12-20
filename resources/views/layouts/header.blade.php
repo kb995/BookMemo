@@ -1,6 +1,6 @@
 <header>
     <nav class="navbar navbar-expand-lg px-5 row">
-        <a class="navbar-brand logo" href="{{ route('books.index') }}">ブクメモ</a>
+        <a class="navbar-brand logo" href="{{ route('books.index') }}">BookMemo</a>
 
         @if(Auth::check())
         <ul class="navbar-nav ml-auto">

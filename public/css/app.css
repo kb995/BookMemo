@@ -10917,13 +10917,11 @@ header {
 }
 
 header .logo {
-  font-size: 20px;
-  font-weight: bold;
-  color: #fff;
-}
-
-header .logo-icon {
   font-size: 30px;
+  color: #fff;
+  font-family: myriad;
+  font-weight: bold;
+  letter-spacing: 0.5px;
 }
 
 header .nav-text {
