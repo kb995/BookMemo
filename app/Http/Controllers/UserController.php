@@ -19,6 +19,14 @@ class UserController extends Controller
     {
         // $this->authorize('update', $user);
 
+        if(is_uploaded_file($_FILES['thumb']['tmp_name'])){
+            $upload_image = $request->file('thumb');
+            $file_name = time() . '_' . $upload_image->getClientOriginalName();
+            $path = $upload_image->storeAs('public/user', $file_name);
+            if($path) {
+                $user->thumbnail = $file_name;
+            }
+        }
         $user->name = $request->name;
         $user->email = $request->email;
         $user->save();

@@ -11,10 +11,18 @@
 <section class="info-wrapper">
     <div class="user-info">
         <div class="row">
-            <div class="user-icon col-3">
-                <img src="{{ asset('/storage/common/default_user.jpeg') }}" alt="ユーザーアイコン">
-                <span class="user-edit"><a class="btn btn-outline-primary btn-sm ml-2 mt-3" href="{{ route('user.edit', ['user' => Auth::user()]) }}">編集</a></span>
-            </div>
+            @if($user->thumbnail)
+                <div class="user-icon shadow">
+                    <img src="../storage/app/public/user/{{ $user->thumbnail }}" alt="ユーザーアイコン">
+                    <span class="user-edit"><a class="btn btn-outline-primary btn-sm ml-2 mt-3" href="{{ route('user.edit', ['user' => Auth::user()]) }}">編集</a></span>
+                </div>
+            @elseif($user->thumbnail == null)
+                <div class="user-icon col-3">
+                    <img src="../storage/app/public/common/default_user.jpeg" alt="ユーザーアイコン">
+                    <span class="user-edit"><a class="btn btn-outline-primary btn-sm ml-2 mt-3" href="{{ route('user.edit', ['user' => Auth::user()]) }}">編集</a></span>
+                </div>
+            @endif
+
             <h1 class="user-name h4 col-9">{{ $user->name }}の本棚 </h1>
         </div>
     </div>
@@ -147,7 +155,9 @@
             @elseif($book->cover == null)
             <div class="book-cover">
                 <a href="{{ route('books.show', ['book' => $book]) }}">
-                    <i class="book-default fas fa-book"></i>
+                    <div>
+                        <img src="../storage/app/public/common/book_default.jpg" alt="">
+                    </div>
                 </a>
             </div>
             @endif

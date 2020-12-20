@@ -19,9 +19,13 @@
         <table class="table table-bordered">
             <tbody>
                 <tr>
-                    <th><label for="cover">サムネイル</label></th>
-                    <td><input type="file" class="form-control p-1 mb-3" id="cover" name="cover" accept="image/png,image/jpeg" value=""></td>
+                    <th><label for="thumb">サムネイル</label></th>
+                    <td><input type="file" class="form-control p-1 mb-3" id="thumb" name="thumb" accept="image/png,image/jpeg" value="{{ old('thumb')}}"></td>
                 </tr>
+                {{--  <tr>
+                    <th><label for="cover">表紙</label></th>
+                    <td><input type="file" class="form-control p-1 mb-3" id="cover" name="cover" accept="image/png,image/jpeg" value="{{ old('cover')}}"></td>
+                </tr>  --}}
                 <tr>
                     <th><label for="name">ユーザー名</label></th>
                     <td><input type="text" class="form-control" id="name" name="name" value="{{ $user->name ?? old('name') }}"></td>
