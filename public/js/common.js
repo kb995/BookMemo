@@ -11,3 +11,14 @@ function deleteMemo(e) {
         document.getElementById('delete_memo_' + e.dataset.id).submit();
     }
 }
+
+
+// 画像アップロードリアルタイム表示
+function previewImage(obj)
+{
+	var fileReader = new FileReader();
+	fileReader.onload = (function() {
+		document.getElementById('preview').src = fileReader.result;
+	});
+	fileReader.readAsDataURL(obj.files[0]);
+}
