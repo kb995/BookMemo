@@ -11351,6 +11351,18 @@ header .dropdown-location {
   padding: 5px;
 }
 
+.post_count {
+  font-size: 1.2rem;
+}
+
+.count_warning {
+  color: yellow;
+}
+
+.count_danger {
+  color: red;
+}
+
 .register-button {
   background-color: #f5b629;
 }

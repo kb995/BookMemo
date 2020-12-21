@@ -104,59 +104,15 @@
         }
     }
 }
-// .memos {
-//     background-color: lightblue;
-//     min-height: 1000px;
 
+.post_count {
+    font-size: 1.2rem;
+}
 
-//     .delete-form {
-//         display: inline!important;
-//     }
-// }
+.count_warning {
+    color: yellow;
+}
 
-// .side {
-//     background-color: lightcyan;
-//     min-height: 1000px;
-//     padding-right: 0;
-
-//     .book-cover {
-//         width: 80%;
-//         height: 280px;
-//         background-color: #f1f1f1;
-//         margin: 70px auto 0 auto;
-//         text-align: center;
-
-//         img {
-//             width: 100%;
-//         }
-
-//         .book-default {
-//             padding-top: 40%;
-//             font-size: 5rem;
-//             text-align: center;
-//             color: #fff;
-//         }
-//     }
-//     .star-empty {
-//         font-size: 1.3rem;
-//         color: lightyellow;
-//         text-align: center;
-//     }
-//     .star {
-//         font-size: 1.3rem;
-//         color: yellow;
-//         text-align: center;
-//     }
-
-//     .deleteform {
-//         display: inline!important;
-//     }
-//     .book-edit {
-//         margin: 30px auto;
-//         text-align: center;
-//         }
-//     .book-info {
-//         padding: 0 30px;
-//     }
-
-// }
+.count_danger {
+    color: red;
+}

@@ -20,11 +20,14 @@
             <tbody>
                 <tr>
                     <th><label for="cover">表紙</label></th>
-                    <td><input type="file" class="form-control p-1 mb-3" id="cover" name="cover" accept="image/png,image/jpeg" value="{{ old('cover')}}"></td>
+                    <td>
+                        <img id="preview" src="" style="max-width:200px;" class="m-3">
+                        <input type="file" class="form-control p-1 mb-3" id="cover" name="cover" accept="image/*" value="{{ old('cover')}}" onchange="previewImage(this);">
+                    </td>
                 </tr>
                 <tr>
                     <th><label for="title">書籍タイトル</label></th>
-                    <td><input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}"></td>
+                    <td><input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" onchange="previewImage(this);"></td>
                 </tr>
                 <tr>
                     <th><label for="author">著者</label></th>

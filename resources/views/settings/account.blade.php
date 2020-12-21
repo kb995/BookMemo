@@ -20,12 +20,11 @@
             <tbody>
                 <tr>
                     <th><label for="thumb">サムネイル</label></th>
-                    <td><input type="file" class="form-control p-1 mb-3" id="thumb" name="thumb" accept="image/png,image/jpeg" value="{{ old('thumb')}}"></td>
+                    <td>
+                        <img id="preview" src="" style="max-width:100px;" class="m-3">
+                        <input type="file" class="form-control p-1 mb-3" id="thumb" name="thumb" accept="image/*" value="{{ old('thumb')}}" onchange="previewImage(this);">
+                    </td>
                 </tr>
-                {{--  <tr>
-                    <th><label for="cover">表紙</label></th>
-                    <td><input type="file" class="form-control p-1 mb-3" id="cover" name="cover" accept="image/png,image/jpeg" value="{{ old('cover')}}"></td>
-                </tr>  --}}
                 <tr>
                     <th><label for="name">ユーザー名</label></th>
                     <td><input type="text" class="form-control" id="name" name="name" value="{{ $user->name ?? old('name') }}"></td>
