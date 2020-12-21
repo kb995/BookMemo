@@ -22,3 +22,25 @@ function previewImage(obj)
 	});
 	fileReader.readAsDataURL(obj.files[0]);
 }
+
+// 文字数カウント
+function strLimit($limit) {
+    'use strict';
+
+    var memo = document.getElementById('memo');
+    var label = document.getElementById('label');
+
+    var LIMIT = $limit;
+    var WARNING = 30;
+
+    var remaining = LIMIT - memo.value.length;
+    label.innerHTML = remaining;
+    if (remaining < WARNING) {
+        label.className = 'count_warning';
+    } else {
+        label.className = '';
+    }
+    if(remaining < 0) {
+        label.className = 'count_danger';
+    }
+}

@@ -83,7 +83,10 @@
         @csrf
         <div class="form-group">
             <label for="memo"></label>
-            <textarea class="form-control" id="memo" name="memo" value="{{ old('memo') }}" rows="4" cols="40" placeholder="読書メモ"></textarea>
+            <textarea class="form-control" id="memo" name="memo" value="{{ old('memo') }}" rows="4" cols="40" placeholder="読書メモ" onkeyup="strLimit(300);"></textarea>
+            <div class="text-right my-2">
+                <span class="post_count">残り文字数 <span id="label">300</span>/300</span>
+            </div>
             <input class="form-control" type="text" name="tag" value="{{ old('tag') }}" placeholder="メモタグ">
             <div class="text-center">
                 <input type="submit" class="btn btn-lg btn-success my-2 w-100">
