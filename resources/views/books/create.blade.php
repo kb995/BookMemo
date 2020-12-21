@@ -21,7 +21,7 @@
                 <tr>
                     <th><label for="cover">表紙</label></th>
                     <td>
-                        <img id="preview" src="" style="max-width:200px;">
+                        <img id="preview" src="" style="max-width:200px;" class="m-3">
                         <input type="file" class="form-control p-1 mb-3" id="cover" name="cover" accept="image/*" value="{{ old('cover')}}" onchange="previewImage(this);">
                     </td>
                 </tr>
