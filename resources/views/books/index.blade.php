@@ -8,6 +8,7 @@
 @endsection
 
 @section('content')
+
 <section class="info-wrapper">
     <div class="user-info">
         <div class="row">
