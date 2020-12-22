@@ -9,6 +9,11 @@
 
 @section('content')
 <section class="conteiner">
+
+    @section('breadcrumbs')
+    {{ Breadcrumbs::render('user.edit', $user) }}
+    @endsection
+
     <h1 class="text-left w-50 my-5 mx-auto h2">アカウント管理</h1>
 
     @include('layouts.errors')

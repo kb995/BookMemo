@@ -8,6 +8,11 @@
 @endsection
 
 @section('content')
+
+    @section('breadcrumbs')
+        {{ Breadcrumbs::render('book.show', $book) }}
+    @endsection
+
 <section>
     <div class="book-show-info shadow">
 

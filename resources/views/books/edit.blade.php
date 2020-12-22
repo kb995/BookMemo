@@ -8,6 +8,11 @@
 @endsection
 
 @section('content')
+
+    @section('breadcrumbs')
+    {{ Breadcrumbs::render('book.edit', $book) }}
+    @endsection
+
 <section class="conteiner">
     <h1 class="text-left w-50 my-5 mx-auto h2">書籍編集</h1>
 
