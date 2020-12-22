@@ -24,9 +24,8 @@ class MemoRequest extends FormRequest
     public function rules()
     {
         return [
-            'memo' => 'required|max:1000',
-            'tags' => 'json|regex:/^(?!.*\s).+$/u|regex:/^(?!.*\/).*$/u',
-            // 正規表現は半角スペース・スラッシュがないことの確認
+            'memo' => 'required|string|max:1000',
+            'tag' => 'max:15',
         ];
     }
 
@@ -34,16 +33,7 @@ class MemoRequest extends FormRequest
     {
         return [
             'memo' => 'メモ',
-            'tags' => 'タグ',
+            'tag' => 'タグ',
         ];
-    }
-
-    public function passedValidation()
-    {
-        $this->tags = collect(json_decode($this->tags))
-            ->slice(0, 5)
-            ->map(function ($requestTag) {
-                return $requestTag->text;
-            });
     }
 }

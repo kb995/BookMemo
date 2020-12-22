@@ -17,9 +17,9 @@
     @method('PATCH')
     @csrf
         <div class="form-group">
-            <textarea type="text" class="form-control" id="memo" name="memo" onkeyup="strLimit(300);">{{ $memo->memo ?? old('memo') }}</textarea>
+            <textarea type="text" class="form-control" id="memo" name="memo" onkeyup="strLimit(1000);">{{ $memo->memo ?? old('memo') }}</textarea>
             <div class="text-right my-2">
-                <span class="post_count">残り文字数 <span id="label">300</span>/300</span>
+                <span class="post_count">残り文字数 <span id="label">1000</span>/1000</span>
             </div>
             <input type="submit" class="btn btn-outline-success w-100 my-4" value="編集する">
         </div>

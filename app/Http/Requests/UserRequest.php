@@ -24,9 +24,9 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => 'required',
-            // 'thumbnail' => 'required',
+            'name' => 'required|string|min:3|max:20',
+            'email' => 'required|string|email',
+            'thumbnail' => 'file|image|mimes:jpeg,jpg,png,gif|max:2048',
         ];
     }
 
@@ -35,7 +35,7 @@ class UserRequest extends FormRequest
         return [
             'name' => 'ユーザー名',
             'email' => 'メールアドレス',
-            // 'title' => 'タイトル',
+            'thumbnail' => 'サムネイル',
         ];
     }
 }
