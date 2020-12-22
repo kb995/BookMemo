@@ -15,8 +15,8 @@ class CreateMemosTable extends Migration
     {
         Schema::create('memos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('memo');
-            $table->text('tag')->nullable();
+            $table->text('memo', 1000);
+            $table->text('tag', 15)->nullable();
             $table->bigInteger('book_id')->unsigned();
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
             $table->timestamps();
