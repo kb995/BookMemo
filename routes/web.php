@@ -18,6 +18,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
     Route::get('/create', 'BookController@create')->name('create');
     Route::post('/create', 'BookController@store')->name('store');
 
+    // API検索フォーム
+    Route::get('/api', 'BookController@api')->name('api');
+    Route::post('/api', 'BookController@search');
+    // Route::get('/search', 'BookController@search')->name('search');
+    // Route::get('/api', 'BookController@api')->name('api');
+
     // 書籍一覧
     Route::get('/', 'BookController@index')->name('index');
     // 書籍一覧 (検索)

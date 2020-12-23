@@ -270,4 +270,18 @@ class BookController extends Controller
         return redirect()->route('books.index');
     }
 
+    public function api() {
+        return view('books.api_form');
+    }
+
+    public function search(Request $request) {
+
+        $keyword = $request->keyword;
+        $url = "https://www.googleapis.com/books/v1/volumes?country=JP&maxResults=10&orderBy=relevance&q=${keyword}";
+        $json = file_get_contents($url);
+        $json_decode = json_decode($json, true);
+        $books = $json_decode['items'];
+
+        return view('books.searchResult', compact('books'));
+    }
 }
