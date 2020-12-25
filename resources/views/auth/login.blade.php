@@ -1,15 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+{{-- <img src="../storage/app/public/common/desk.jpg" alt=""> --}}
+<section
+style="background-image: url('../storage/app/public/common/desk.jpg');
+background-size: cover;
+padding: 100px 0;
+">
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h1 class="text-center my-5">ログイン</h1>
-
-            <p class="text-center mb-3">ブクメモに登録している方は、下記からログインしてください。</br>
-                まだ登録していない方は<a href="{{ route('register') }}">コチラ</a>から登録してください。</p>
-
-            <div class="card">
+            <div class="card" style="opacity: 0.95;">
+                <div class="card-header h5">
+                    ログイン
+                </div>
                 <div class="card-body p-5">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -66,7 +71,7 @@
                                 {{ __('Login') }}
                             </button>
 
-                            <p class="text-center h4 text-muted">or</p>
+                            <p class="font-weight-bold py-4  text-center">ソーシャルログイン</p>
 
                         </div>
                     </form>
@@ -79,7 +84,7 @@
                         </a>
                     </div>
 
-                    <p class="font-weight-bold py-4 text-center">アカウントをお持ちでない方はこちら</p>
+                    {{-- <p class="font-weight-bold py-4 text-center">アカウントをお持ちでない方はこちら</p>
 
                     <div class="text-center">
                         <a class="register-link" href="{{ route('register') }}">
@@ -87,14 +92,17 @@
                                 新規会員登録
                             </button>
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="text-center py-1 mt-5">
+</section>
+
+
+<div class="text-center py-3 text-white bg-dark">
     Copyright © 2020 ***. All Rights Reserved.
 </div>
 @endsection
