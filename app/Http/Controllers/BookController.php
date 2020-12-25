@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
@@ -270,18 +271,36 @@ class BookController extends Controller
         return redirect()->route('books.index');
     }
 
-    public function api() {
-        return view('books.api_form');
+    public function showSearchForm() {
+        return view('books.search');
     }
 
     public function search(Request $request) {
-
         $keyword = $request->keyword;
+
         $url = "https://www.googleapis.com/books/v1/volumes?country=JP&maxResults=10&orderBy=relevance&q=${keyword}";
         $json = file_get_contents($url);
-        $json_decode = json_decode($json, true);
-        $books = $json_decode['items'];
+        $books = json_decode($json, true);
+        $books = $books['items'];
 
-        return view('books.searchResult', compact('books'));
+        // $all_num = count($books['items']);
+        // $disp_limit = 2;
+        // $page = 1;
+        // $books = collect($json_decode['items']);
+        // dd(collect($books['items']));
+
+        // dd(collect($books['items']));
+
+        // $books = new LengthAwarePaginator(
+        //     $books->forPage($request->page, 5),
+        //     $all_num,
+        //     $disp_limit,
+        //     $request->page,
+        //     array('path'=> $request->url)
+        // );
+
+        return view('books.search', compact('books'));
     }
+
+
 }
