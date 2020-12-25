@@ -19,8 +19,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
     Route::post('/create', 'BookController@store')->name('store');
 
     // API検索フォーム
-    Route::get('/api', 'BookController@api')->name('api');
-    Route::post('/api', 'BookController@search');
+    Route::get('/search/{page}', 'BookController@showSearchForm')->name('search');
+    Route::post('/search', 'BookController@search');
     // Route::get('/search', 'BookController@search')->name('search');
     // Route::get('/api', 'BookController@api')->name('api');
 

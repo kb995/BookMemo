@@ -67,7 +67,7 @@
 
     <div class="link-info">
         <p><a href="{{ route('books.create') }}" class="btn px-5 py-2 btn-outline-success"><i class="fas fa-pen pr-2"></i>入力して本を登録</a></p>
-        <p><a href="{{ route('books.api') }}" class="btn px-5 py-2 btn-outline-primary"><i class="fas fa-pen pr-2"></i>検索して本を登録</a></p>
+        <p><a href="{{ route('books.search') }}" class="btn px-5 py-2 btn-outline-primary"><i class="fas fa-pen pr-2"></i>検索して本を登録</a></p>
     </div>
 </section>
 

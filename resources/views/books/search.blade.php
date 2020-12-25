@@ -1,6 +1,6 @@
 @extends('layouts/layout')
 
-@section('title', '検索結果')
+@section('title', 'Googleブックス検索')
 
 @section('styles')
     {{-- @include('libs.flatpickr.styles') --}}
@@ -10,10 +10,11 @@
 @section('content')
 
 <section class="shelf-serach" style="border-color: blue;">
-    <form method="POST" action="{{ route('books.api') }}" class="text-center my-3">
+    <form method="POST" action="{{ route('books.search') }}" class="text-center my-3">
         @csrf
         <div class="form-group ml-3">
             <label class="shelf-serach-label block" for="keyword">Googleから探す</label>
+            {{-- <input type="hidden" name="page" value="{{ $pages->currentPage ?? 1 }}"> --}}
             <input class="shelf-serach-input" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワードで検索">
             <input type="submit" class="shelf-serach-btn" value="検索" style="background-color: blue;">
         </div>
@@ -21,6 +22,7 @@
 </section>
 
 <section class="book-shelf">
+    @if(!empty($books))
     @foreach ($books as $book)
     <div class="card my-4 p-5">
 
@@ -51,7 +53,13 @@
         @endif
     </div>
     @endforeach
+    @endif
 </section>
+
+@if(!empty($books))
+{{-- {{ $books->links() }} --}}
+@endif
+
 
     <div class="text-center py-1 mt-5">
         Copyright © 2020 ***. All Rights Reserved.
