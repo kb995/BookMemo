@@ -1,12 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
+<section
+style="background-image: url('../storage/app/public/common/desk.jpg');
+background-size: cover;
+padding: 100px 0;
+">
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h1 class="text-center my-4">ユーザー登録</h1>
-            <h4 class="text-center mb-4 text-muted">読書をアウトプットしましょう</h4>
-            <div class="card">
+            {{-- <h1 class="text-center my-4">ユーザー登録</h1> --}}
+            {{-- <h4 class="text-center mb-4 text-muted">読書をアウトプットしましょう</h4> --}}
+            <div class="card" style="opacity: 0.95;">
+                <div class="card-header h5">
+                    新規登録
+                </div>
                 <div class="card-body p-5">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
@@ -73,8 +82,6 @@
     </div>
 </div>
 
-<div class="text-center py-1 mt-5">
-    Copyright © 2020 ***. All Rights Reserved.
-</div>
+</section>
 
 @endsection
