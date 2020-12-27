@@ -178,29 +178,29 @@
 </div>
 @endif
 
-<section class="book-shelf">
+<section class="book">
     <div class="book-list">
         @foreach( $books as $book)
         <div class="book-item shadow">
             @if($book->cover)
-            <div class="book-cover">
+            <div class="book-item-cover">
                 <a href="{{ route('books.show', ['book' => $book]) }}">
                     <img src="{{ asset('/storage/common/'. $book->cover) }}">
                 </a>
             </div>
             @elseif($book->cover == null)
-            <div class="book-cover">
+            <div class="book-item-cover">
                 <a href="{{ route('books.show', ['book' => $book]) }}">
                     <div>
-                        <img src="../storage/app/public/common/book_default.jpg" alt="">
+                        <img src="../storage/app/public/common/book.jpg" alt="">
                     </div>
                 </a>
             </div>
             @endif
 
-            <div class="book-item-info">
-                <p class="book-title">{{ $book->title }}</p>
-                <p class="text-muted mb-0">{{ $book->author }}</p>
+            <div class="book-item-body">
+                <p class="title">{{ $book->title }}</p>
+                <p class="author text-muted mb-0">{{ $book->author }}</p>
                 <p class="text-muted text-right mx-3"><i class="far fa-comment pr-1"></i>{{ $book->memo_count }}</p>
             </div>
         </div>
