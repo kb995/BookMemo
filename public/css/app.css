@@ -11057,6 +11057,10 @@ header .dropdown-location {
   text-overflow: ellipsis;
 }
 
+.book .book-item:hover {
+  opacity: 0.8;
+}
+
 .pagination {
   justify-content: center !important;
   margin-top: 50px !important;
