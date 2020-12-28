@@ -9,10 +9,10 @@
 
 @section('content')
 
-<section class="book">
+<section class="book-info">
     <div class="row w-75 mx-auto">
         {{-- カバー --}}
-       <div class="book-cover text-center">
+       <div class="book-info-cover text-center">
            <img class="img-thumbnail" src="../../storage/app/public/common/book.jpg" alt="">
            <a class="text-white" href="{{ route('books.edit', ['book' => $book]) }}"><i class="far fa-edit text-white pr-1"></i>編集</a>
        </div>
@@ -136,9 +136,9 @@
     </section>
 </div>{{-- col-3 --}}
 
-<div class="col-7">
+<div class="col-7 memos-wrapper">
 {{-- メモ検索フォーム  --}}
-    <div class="memo-search">
+    <div class="memo-search mb-5">
         <form method="POST" action="{{ route('books.show', ['book' => $book]) }}" class="inline memo-search-form">
             @csrf
             @if (Session::has('search'))
@@ -155,7 +155,7 @@
 
     <section class="memos">
         {{--  メモタブ  --}}
-        <ul class="nav nav-tabs justify-content-end" role="tablist">
+        <ul class="nav nav-tabs justify-content-end mb-5" role="tablist">
             <li class="nav-item">
                 <a class="nav-link {{ Session::has('tag') ? '': 'active' }}" href="" role="tab" aria-controls="all" aria-selected="true">All</a>
             </li>
@@ -178,35 +178,34 @@
             @foreach ($memos as $memo)
             <article class="card mb-4 memo-item shadow">
 
+                <div class="card-header text-right p-2">
+                    <span class="inline-block pr-2 text-muted">#{{ $memo->tag }}</span>
+                    <a class="inline-block pr-1" href="{{ route('books.memos.edit', ['book' => $book, 'memo' => $memo]) }}"><i class="far fa-edit"></i>編集</a>
+                    <a class="text-danger inline-block pr-1" data-id="{{ $memo->id }}" onclick="deleteMemo(this);">
+                        <i class="fas fa-trash-alt"></i>削除
+                    </a>
+                    <span class="inline-block pr-1">{{ $memo->created_at->format('Y/m/d H:i') }}</span>
+                    <form class="delete-form inline-block" action="{{ route('books.memos.destroy', ['book' => $book, 'memo' => $memo]) }}" method="post" id="delete_memo_{{ $memo->id }}">
+                        @csrf
+                        @method('DELETE')
+                    </form>
+                </div>
                 <div class="card-body">
                     {{ $memo->memo }}
                 </div>
 
-                <div class="card-footer memo-info text-right">
-                    <span>{{ $memo->tag }}</span>
-                    <a class="inline" href="{{ route('books.memos.edit', ['book' => $book, 'memo' => $memo]) }}"><i class="far fa-edit"></i>編集</a>
-                    <form class="delete-form" action="{{ route('books.memos.destroy', ['book' => $book, 'memo' => $memo]) }}" method="post" id="delete_memo_{{ $memo->id }}">
-                        @csrf
-                        @method('DELETE')
-                        <a class="inline text-danger" data-id="{{ $memo->id }}" onclick="deleteMemo(this);">
-                            <i class="fas fa-trash-alt"></i>
-                            削除
-                        </a>
-                    </form>
-                    <span>{{ $memo->created_at }}</span>
-                </div>
             </article>
             @endforeach
         </div>
 
-        <div class="text-center">
-            {{ $memos->appends(request()->input())->links() }}
-        </div>
     </section>
 
 </div>{{-- col-7 --}}
 
 </div>{{-- row --}}
 
+<div class="text-center">
+    {{ $memos->appends(request()->input())->links() }}
+</div>
 
 @endsection

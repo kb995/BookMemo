@@ -1,18 +1,18 @@
 /**
 * 書籍情報
 **/
-.book {
+.book-info {
     background-color: rgba(34, 34, 34, 0.9);
     padding-top: 10px;
 
-    .book-cover {
+    .book-info-cover {
         width: 100px;
         img {
             width: 100%;
         }
     }
 
-    .book-cover-full {
+    .book-info-cover-full {
         width: 300px;
         text-align: center;
         margin: 50px auto;
@@ -137,7 +137,7 @@
 .memo-form {
     width: 90%;
     margin: 0 auto;
-    padding: 30px;
+    padding-top: 120px;
 
     textarea {
         font-size: 1.2em;
@@ -154,13 +154,16 @@
     .count_danger {
         color: red;
     }
-
-
 }
 
 /**
 * メモ検索
 **/
+
+.memos-wrapper {
+    padding: 30px;
+}
+
 
 .memo-search {
     width: 90%;
@@ -175,7 +178,6 @@
         }
     }
 }
-
 
 /**
 * メモ一覧
