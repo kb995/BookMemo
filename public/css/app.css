@@ -11132,55 +11132,55 @@ header .dropdown-location {
 * 書籍情報
 **/
 
-.book {
+.book-info {
   background-color: rgba(34, 34, 34, 0.9);
   padding-top: 10px;
 }
 
-.book .book-cover {
+.book-info .book-info-cover {
   width: 100px;
 }
 
-.book .book-cover img {
+.book-info .book-info-cover img {
   width: 100%;
 }
 
-.book .book-cover-full {
+.book-info .book-info-cover-full {
   width: 300px;
   text-align: center;
   margin: 50px auto;
 }
 
-.book .book-cover-full img {
+.book-info .book-info-cover-full img {
   width: 100%;
 }
 
-.book .title {
+.book-info .title {
   font-size: 1.7em;
   font-weight: bold;
   color: #fff;
 }
 
-.book .author {
+.book-info .author {
   color: #fff;
 }
 
-.book-detail {
+.book-info-detail {
   color: #fff;
 }
 
-.book-detail dl {
+.book-info-detail dl {
   padding-bottom: 10px;
   border-bottom: 1px solid #f1f1f1;
 }
 
-.book-detail dt {
+.book-info-detail dt {
   font-weight: bold;
   font-size: 1.7em;
   text-align: center;
 }
 
-.book-detail dd {
+.book-info-detail dd {
   font-size: 1.5em;
 }
 
@@ -11212,7 +11212,7 @@ header .dropdown-location {
 .memo-form {
   width: 90%;
   margin: 0 auto;
-  padding: 30px;
+  padding-top: 120px;
 }
 
 .memo-form textarea {
@@ -11234,6 +11234,10 @@ header .dropdown-location {
 /**
 * メモ検索
 **/
+
+.memos-wrapper {
+  padding: 30px;
+}
 
 .memo-search {
   width: 90%;

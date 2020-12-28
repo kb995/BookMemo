@@ -108,7 +108,7 @@
     </div>
 </section> --}}
 
-<section class="shelf-serach">
+{{-- <section class="shelf-serach">
     <form method="POST" action="{{ route('books.index') }}" class="text-center my-3">
         @csrf
         <div class="form-group ml-3">
@@ -116,18 +116,18 @@
             <input class="shelf-serach-input" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワードで検索">
             <input type="submit" class="shelf-serach-btn" value="検索">
         </div>
-    </form>
+    </form> --}}
 
     {{--  詳細検索フォーム  --}}
-    <div class="text-center detail-search">
+    {{-- <div class="text-center detail-search">
         <button class="btn btn-link btn-detail"
         data-toggle="collapse"
         data-target="#input"
         aria-expand="false"
         aria-controls="input-1">
         詳細検索<i class="fas fa-chevron-circle-down pl-2"></i>
-        </button>
-
+        </button> --}}
+{{--
         <form method="POST" action="{{ route('books.index') }}" class="collapse p-5" id="input">
             @csrf
             <div class="form-group ml-3">
@@ -168,15 +168,15 @@
                 <input type="submit" class="detail-search-btn" value="検索">
                 <input type="submit" class="detail-search-btn-clear" value="検索をクリア">
             </div>
-        </form>
-    </div>
-</section>
+        </form> --}}
+    {{-- </div> --}}
+{{-- </section> --}}
 
-@if (Session::has('search'))
+{{-- @if (Session::has('search'))
 <div class="h4 text-center mt-3">
 「 {{ Session::get('search') }} 」を表示中 ( {{ $books->firstItem() }} - {{ $books->lastItem() }} /  {{ $books->total() }} 件中 )
 </div>
-@endif
+@endif --}}
 
 <section class="book">
     <div class="book-list">
