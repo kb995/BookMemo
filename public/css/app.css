@@ -11066,117 +11066,197 @@ header .dropdown-location {
   margin-top: 50px !important;
 }
 
-.book-show-info {
-  width: 80%;
-  margin: 0 auto;
-  padding: 20px 0;
-  height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.detail-search-label {
+  width: 100%;
+  font-size: 0.9rem;
+  text-align: left;
+  font-weight: bold;
+  margin: 0 10px 0 0;
+  padding-bottom: 3px;
 }
 
-.book-show-info .book-cover-wrapper {
-  width: 20%;
-  height: 230px;
+.detail-search-input {
+  width: 100%;
+  height: 40px;
+  padding: 2px 10px;
+  font-size: 1.3rem;
+  color: #333;
+  border: 1px solid #666;
+  border-radius: 3px;
 }
 
-.book-show-info .book-cover-wrapper .book-cover {
+.detail-search-input:focus {
+  border: 2px solid #F3993E;
+}
+
+.detail-search-input:hover {
+  border: 1px solid #F3993E;
+}
+
+.detail-search-btn {
+  width: 30%;
+  background-color: #F3993E;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.3rem;
+  border: none;
+  padding: 9px 15px;
+  margin-top: 50px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.detail-search-btn:hover {
+  opacity: 0.8;
+}
+
+.detail-search-btn-clear {
+  width: 30%;
+  background-color: #f1f1f1;
+  color: #555;
+  font-weight: bold;
+  font-size: 1.3rem;
+  border: none;
+  padding: 9px 15px;
+  margin-top: 50px;
+  margin-left: 20px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.detail-search-btn-clear:hover {
+  opacity: 0.8;
+}
+
+/**
+* 書籍情報
+**/
+
+.book {
+  background-color: rgba(34, 34, 34, 0.9);
+  padding-top: 10px;
+}
+
+.book .book-cover {
   width: 100px;
-  height: 100px;
-  display: block;
-  margin: 0 auto;
+}
+
+.book .book-cover img {
+  width: 100%;
+}
+
+.book .book-cover-full {
+  width: 300px;
+  text-align: center;
+  margin: 50px auto;
+}
+
+.book .book-cover-full img {
+  width: 100%;
+}
+
+.book .title {
+  font-size: 1.7em;
+  font-weight: bold;
+  color: #fff;
+}
+
+.book .author {
+  color: #fff;
+}
+
+.book-detail {
+  color: #fff;
+}
+
+.book-detail dl {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.book-detail dt {
+  font-weight: bold;
+  font-size: 1.7em;
   text-align: center;
 }
 
-.book-show-info .book-cover-wrapper .book-cover img {
-  width: 150px;
-  height: auto;
+.book-detail dd {
+  font-size: 1.5em;
 }
 
-.book-show-info .book-info-wrapper {
-  width: 50%;
-  height: 230px;
-  padding: 10px;
-  overflow-y: scroll;
+.btn-detail {
+  font-weight: bold;
+  color: #666;
+  position: relative;
+  top: -25px;
+  display: block;
+  margin: 0 auto;
 }
 
-.book-show-info .book-info-wrapper dl {
-  margin: 0;
+.btn-detail:hover {
+  text-decoration: none;
+  border: none;
+  box-shadow: none;
 }
 
-.book-show-info .book-info-wrapper dt {
-  float: left;
-  padding-right: 5px;
+.btn-detail:focus {
+  text-decoration: none;
+  border: none;
+  box-shadow: none;
 }
 
-.book-show-info .book-info-wrapper dd {
-  margin: 0;
-}
+/**
+* メモ登録フォーム
+**/
 
-.memo-form-wrapper {
-  background-color: #f1f1f1;
-}
-
-.memo-form-wrapper .memo-form {
-  width: 75%;
+.memo-form {
+  width: 90%;
   margin: 0 auto;
   padding: 30px;
 }
 
-.memo-form-wrapper .memo-form textarea {
-  font-size: 1.4rem;
+.memo-form textarea {
+  font-size: 1.2em;
 }
 
-.memo-form-wrapper .memo-form .vue-tags-input {
-  font-size: 1.4rem;
-  padding: 0;
-  margin: 20px 0;
+.memo-form .post_count {
+  font-size: 0.9rem;
 }
 
-.memos {
-  width: 75%;
-  min-height: 1000px;
-  margin: 0 auto;
+.memo-form .count_warning {
+  color: yellow;
 }
 
-.memos .memo-item {
-  min-height: 150px;
-  font-size: 1.3rem;
+.memo-form .count_danger {
+  color: red;
 }
 
-.memos .memo-item .delete-form {
-  display: inline !important;
-}
-
-.memos .memo-item .memo-info {
-  font-size: 0.8rem;
-}
+/**
+* メモ検索
+**/
 
 .memo-search {
-  width: 75%;
+  width: 90%;
   margin: 0 auto;
 }
 
-.memo-search .memo-search-form {
+.memo-search-form {
   text-align: right;
 }
 
-.memo-search .memo-search-form input {
+.memo-search-form input {
   height: 30px;
   padding: 5px;
 }
 
-.post_count {
-  font-size: 1.2rem;
-}
+/**
+* メモ一覧
+**/
 
-.count_warning {
-  color: yellow;
-}
-
-.count_danger {
-  color: red;
+.memos {
+  width: 100%;
+  min-height: 500px;
+  margin: 0 auto;
 }
 
 .register-button {
