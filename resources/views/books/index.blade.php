@@ -108,18 +108,18 @@
     </div>
 </section> --}}
 
-{{-- <section class="shelf-serach"> --}}
-    {{-- <form method="POST" action="{{ route('books.index') }}" class="text-center my-3">
+<section class="shelf-serach">
+    <form method="POST" action="{{ route('books.index') }}" class="text-center my-3">
         @csrf
         <div class="form-group ml-3">
             <label class="shelf-serach-label block" for="keyword">本棚から探す</label>
             <input class="shelf-serach-input" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワードで検索">
             <input type="submit" class="shelf-serach-btn" value="検索">
         </div>
-    </form> --}}
+    </form>
 
     {{--  詳細検索フォーム  --}}
-    {{-- <div class="text-center detail-search">
+    <div class="text-center detail-search">
         <button class="btn btn-link btn-detail"
         data-toggle="collapse"
         data-target="#input"
@@ -169,8 +169,8 @@
                 <input type="submit" class="detail-search-btn-clear" value="検索をクリア">
             </div>
         </form>
-    </div> --}}
-{{-- </section> --}}
+    </div>
+</section>
 
 @if (Session::has('search'))
 <div class="h4 text-center mt-3">
