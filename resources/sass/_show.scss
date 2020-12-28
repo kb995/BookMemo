@@ -72,66 +72,6 @@
     box-shadow: none;
 }
 
-
-// .book-show-info {
-//     width: 80%;
-//     margin: 0 auto;
-//     padding: 20px 0;
-//     height: 300px;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-
-//     .book-cover-wrapper {
-//         width: 20%;
-//         height: 230px;
-
-//         .book-cover {
-//             width: 100px;
-//             height: 100px;
-//             display: block;
-//             margin: 0 auto;
-//             text-align: center;
-
-//             img {
-//                 width: 150px;
-//                 height: auto;
-//             }
-//         }
-//     }
-
-//     .book-info-wrapper {
-//         width: 50%;
-//         height: 230px;
-//         padding: 10px;
-//         overflow-y: scroll;
-
-//         dl {
-//             margin: 0;
-//         }
-//         dt {
-//             float: left;
-//             padding-right: 5px;
-//         }
-//         dd {
-//             margin: 0;
-//         }
-
-//         .star-empty {
-//             font-size: .8rem;
-//             color: lightyellow;
-//             text-align: left;
-//         }
-//         .star {
-//             font-size: .8rem;
-//             color: yellow;
-//             text-align: left;
-//         }
-//     }
-
-
-// }
-
 /**
 * メモ登録フォーム
 **/
@@ -191,21 +131,3 @@
     margin: 0 auto;
 
 }
-// .memos {
-//     width: 100%;
-//     min-height: 1000px;
-//     margin: 0 auto;
-
-//     .memo-item {
-//         min-height: 150px;
-//         font-size: 1.3rem;
-
-//         .delete-form {
-//             display: inline!important;
-//         }
-
-//         .memo-info {
-//             font-size: .8rem;
-//         }
-//     }
-// }
