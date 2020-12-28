@@ -1,101 +1,172 @@
-.book-show-info {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px 0;
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/**
+* 書籍情報
+**/
+.book {
+    background-color: rgba(34, 34, 34, 0.9);
+    padding-top: 10px;
 
-    .book-cover-wrapper {
-        width: 20%;
-        height: 230px;
-
-        .book-cover {
-            width: 100px;
-            height: 100px;
-            display: block;
-            margin: 0 auto;
-            text-align: center;
-
-            img {
-                width: 150px;
-                height: auto;
-            }
+    .book-cover {
+        width: 100px;
+        img {
+            width: 100%;
         }
     }
 
-    .book-info-wrapper {
-        width: 50%;
-        height: 230px;
-        padding: 10px;
-        overflow-y: scroll;
+    .book-cover-full {
+        width: 300px;
+        text-align: center;
+        margin: 50px auto;
+        img {
+            width: 100%;
+        }
+    }
 
+    .title {
+        font-size: 1.7em;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .author {
+        color: #fff;
+    }
+
+    &-detail {
+        color: #fff;
         dl {
-            margin: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f1f1f1;
         }
         dt {
-            float: left;
-            padding-right: 5px;
+            font-weight: bold;
+            font-size: 1.7em;
+            text-align: center;
         }
         dd {
-            margin: 0;
-        }
-
-        // .star-empty {
-        //     font-size: .8rem;
-        //     color: lightyellow;
-        //     text-align: left;
-        // }
-        // .star {
-        //     font-size: .8rem;
-        //     color: yellow;
-        //     text-align: left;
-        // }
-
-
-    }
-}
-
-.memo-form-wrapper {
-    background-color: #f1f1f1;
-    .memo-form {
-        width: 75%;
-        margin: 0 auto;
-        padding: 30px;
-        textarea {
-            font-size: 1.4rem;
-        }
-        .vue-tags-input {
-            font-size: 1.4rem;
-            padding: 0;
-            margin: 20px 0;
+            font-size: 1.5em;
         }
     }
 }
 
-.memos {
-    width: 75%;
-    min-height: 1000px;
+.btn-detail {
+    font-weight: bold;
+    color: #666;
+    position: relative;
+    top: -25px;
+    display: block;
     margin: 0 auto;
-
-    .memo-item {
-        min-height: 150px;
-        font-size: 1.3rem;
-        .delete-form {
-            display: inline!important;
-        }
-        .memo-info {
-            font-size: .8rem;
-        }
-    }
 }
+
+.btn-detail:hover {
+    text-decoration: none;
+    border: none;
+    box-shadow: none;
+
+}
+
+.btn-detail:focus {
+    text-decoration: none;
+    border: none;
+    box-shadow: none;
+}
+
+
+// .book-show-info {
+//     width: 80%;
+//     margin: 0 auto;
+//     padding: 20px 0;
+//     height: 300px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+
+//     .book-cover-wrapper {
+//         width: 20%;
+//         height: 230px;
+
+//         .book-cover {
+//             width: 100px;
+//             height: 100px;
+//             display: block;
+//             margin: 0 auto;
+//             text-align: center;
+
+//             img {
+//                 width: 150px;
+//                 height: auto;
+//             }
+//         }
+//     }
+
+//     .book-info-wrapper {
+//         width: 50%;
+//         height: 230px;
+//         padding: 10px;
+//         overflow-y: scroll;
+
+//         dl {
+//             margin: 0;
+//         }
+//         dt {
+//             float: left;
+//             padding-right: 5px;
+//         }
+//         dd {
+//             margin: 0;
+//         }
+
+//         .star-empty {
+//             font-size: .8rem;
+//             color: lightyellow;
+//             text-align: left;
+//         }
+//         .star {
+//             font-size: .8rem;
+//             color: yellow;
+//             text-align: left;
+//         }
+//     }
+
+
+// }
+
+/**
+* メモ登録フォーム
+**/
+
+.memo-form {
+    width: 90%;
+    margin: 0 auto;
+    padding: 30px;
+
+    textarea {
+        font-size: 1.2em;
+    }
+
+    .post_count {
+        font-size: .9rem;
+    }
+
+    .count_warning {
+        color: yellow;
+    }
+
+    .count_danger {
+        color: red;
+    }
+
+
+}
+
+/**
+* メモ検索
+**/
 
 .memo-search {
-    width: 75%;
+    width: 90%;
     margin: 0 auto;
 
-    .memo-search-form {
+    &-form {
         text-align: right;
 
         input {
@@ -105,14 +176,32 @@
     }
 }
 
-.post_count {
-    font-size: 1.2rem;
-}
 
-.count_warning {
-    color: yellow;
-}
+/**
+* メモ一覧
+**/
 
-.count_danger {
-    color: red;
+.memos {
+    width: 100%;
+    min-height: 500px;
+    margin: 0 auto;
+
 }
+// .memos {
+//     width: 100%;
+//     min-height: 1000px;
+//     margin: 0 auto;
+
+//     .memo-item {
+//         min-height: 150px;
+//         font-size: 1.3rem;
+
+//         .delete-form {
+//             display: inline!important;
+//         }
+
+//         .memo-info {
+//             font-size: .8rem;
+//         }
+//     }
+// }
