@@ -11137,21 +11137,11 @@ header .dropdown-location {
   padding-top: 10px;
 }
 
-.book-info .book-info-cover {
+.book-info-cover {
   width: 100px;
 }
 
-.book-info .book-info-cover img {
-  width: 100%;
-}
-
-.book-info .book-info-cover-full {
-  width: 300px;
-  text-align: center;
-  margin: 50px auto;
-}
-
-.book-info .book-info-cover-full img {
+.book-info-cover img {
   width: 100%;
 }
 
@@ -11165,23 +11155,33 @@ header .dropdown-location {
   color: #fff;
 }
 
-.book-info-detail {
+.book-detail {
   color: #fff;
 }
 
-.book-info-detail dl {
+.book-detail dl {
   padding-bottom: 10px;
   border-bottom: 1px solid #f1f1f1;
 }
 
-.book-info-detail dt {
+.book-detail dt {
   font-weight: bold;
   font-size: 1.7em;
   text-align: center;
 }
 
-.book-info-detail dd {
+.book-detail dd {
   font-size: 1.5em;
+}
+
+.book-cover-full {
+  width: 300px;
+  text-align: center;
+  margin: 50px auto;
+}
+
+.book-cover-full img {
+  width: 100%;
 }
 
 .btn-detail {

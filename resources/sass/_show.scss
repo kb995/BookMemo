@@ -5,17 +5,8 @@
     background-color: rgba(34, 34, 34, 0.9);
     padding-top: 10px;
 
-    .book-info-cover {
+    &-cover {
         width: 100px;
-        img {
-            width: 100%;
-        }
-    }
-
-    .book-info-cover-full {
-        width: 300px;
-        text-align: center;
-        margin: 50px auto;
         img {
             width: 100%;
         }
@@ -31,22 +22,33 @@
         color: #fff;
     }
 
-    &-detail {
-        color: #fff;
-        dl {
-            padding-bottom: 10px;
-            border-bottom: 1px solid #f1f1f1;
-        }
-        dt {
-            font-weight: bold;
-            font-size: 1.7em;
-            text-align: center;
-        }
-        dd {
-            font-size: 1.5em;
-        }
+}
+
+.book-detail {
+    color: #fff;
+    dl {
+        padding-bottom: 10px;
+        border-bottom: 1px solid #f1f1f1;
+    }
+    dt {
+        font-weight: bold;
+        font-size: 1.7em;
+        text-align: center;
+    }
+    dd {
+        font-size: 1.5em;
     }
 }
+
+.book-cover-full {
+    width: 300px;
+    text-align: center;
+    margin: 50px auto;
+    img {
+        width: 100%;
+    }
+}
+
 
 .btn-detail {
     font-weight: bold;

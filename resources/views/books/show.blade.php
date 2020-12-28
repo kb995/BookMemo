@@ -16,8 +16,6 @@
            <img class="img-thumbnail" src="../../storage/app/public/common/book.jpg" alt="">
            <a class="text-white" href="{{ route('books.edit', ['book' => $book]) }}"><i class="far fa-edit text-white pr-1"></i>編集</a>
        </div>
-       <p>
-       </p>
        {{-- 書籍詳細 --}}
        <div class="col-9">
             <h1 class="title">{{ $book->title }}</h1>
