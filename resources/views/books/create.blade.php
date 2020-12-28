@@ -96,9 +96,6 @@ padding: 100px 0;
             </div>
         </div>
     </div>
-
-
-
 </section>
 
 @endsection
