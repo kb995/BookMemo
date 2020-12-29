@@ -52,48 +52,48 @@ class BookController extends Controller
         }
 
         // カテゴリー検索
-        if(!empty($category)) {
-            $books = $user->books()
-            ->where('category', $category)
-            ->orderBy('created_at', 'desc')
-            ->paginate(12);
+        // if(!empty($category)) {
+        //     $books = $user->books()
+        //     ->where('category', $category)
+        //     ->orderBy('created_at', 'desc')
+        //     ->paginate(12);
 
-            session()->forget(['search']);
-            session()->put('search', $category);
-        }
+        //     session()->forget(['search']);
+        //     session()->put('search', $category);
+        // }
 
         // 著者検索
-        if(!empty($author)) {
-            $books = $user->books()
-            ->where('author', 'like' , '%'.$author.'%')
-            ->orderBy('created_at', 'desc')
-            ->paginate(12);
+        // if(!empty($author)) {
+        //     $books = $user->books()
+        //     ->where('author', 'like' , '%'.$author.'%')
+        //     ->orderBy('created_at', 'desc')
+        //     ->paginate(12);
 
-            session()->forget(['search']);
-            session()->put('search', $author);
-        }
+        //     session()->forget(['search']);
+        //     session()->put('search', $author);
+        // }
 
         // ISBN検索
-        if(!empty($isbn)) {
-            $books = $user->books()
-            ->where('isbn', $isbn)
-            ->orderBy('created_at', 'desc')
-            ->paginate(12);
+        // if(!empty($isbn)) {
+        //     $books = $user->books()
+        //     ->where('isbn', $isbn)
+        //     ->orderBy('created_at', 'desc')
+        //     ->paginate(12);
 
-            session()->forget(['search']);
-            session()->put('search', $isbn);
-        }
+        //     session()->forget(['search']);
+        //     session()->put('search', $isbn);
+        // }
 
         // 書籍状態検索
-        if(!empty($status)) {
-            $books = $user->books()
-            ->where('status', $status)
-            ->orderBy('created_at', 'desc')
-            ->paginate(12);
+        // if(!empty($status)) {
+        //     $books = $user->books()
+        //     ->where('status', $status)
+        //     ->orderBy('created_at', 'desc')
+        //     ->paginate(12);
 
-            session()->forget(['search']);
-            session()->put('search', $status);
-        }
+        //     session()->forget(['search']);
+        //     session()->put('search', $status);
+        // }
 
         // デフォルト時の書籍一覧
         if(empty($books)) {
