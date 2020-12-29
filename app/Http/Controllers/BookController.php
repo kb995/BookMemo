@@ -299,6 +299,9 @@ class BookController extends Controller
         //     array('path'=> $request->url)
         // );
 
+        session()->forget(['search']);
+        session()->put('search', $keyword);
+
         return view('books.search', compact('books'));
     }
 

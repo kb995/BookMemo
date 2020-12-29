@@ -9,19 +9,27 @@
 
 @section('content')
 
-{{-- <section class="">
+<section class="">
     <form method="POST" action="{{ route('books.search') }}" class="text-center my-3">
         @csrf
         <div class="form-group ml-3">
-            <label class="shelf-serach-label block" for="keyword">Googleから探す</label> --}}
+            <label class="shelf-serach-label block" for="keyword">Googleから探す</label>
             {{-- <input type="hidden" name="page" value="{{ $pages->currentPage ?? 1 }}"> --}}
-            {{-- <input class="shelf-serach-input" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワードで検索">
+            <input class="shelf-serach-input" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワードで検索">
             <input type="submit" class="shelf-serach-btn" value="検索" style="background-color: blue;">
         </div>
     </form>
-</section> --}}
+</section>
 
-<section class="container bg-white">
+<section class="container bg-white pt-3">
+
+    @if (Session::has('search'))
+    <p class="h4 text-left card p-2 bg-light">
+        「 {{ Session::get('search') }} 」の検索結果
+    {{-- 「 {{ Session::get('search') }} 」を表示中 ( {{ $books->firstItem() }} - {{ $books->lastItem() }} /  {{ $books->total() }} 件中 ) --}}
+    </p>
+    @endif
+
     @if(!empty($books))
         @foreach ($books as $book)
         <div class="mb-4 p-5 w-75 mx-auto search-results border-bottom">
@@ -33,8 +41,8 @@
                     </p>
                     @endif
 
-                    <button class="btn btn-warning my-3">Amazon</button>
                     <button class="btn btn-success">この書籍を本棚登録</button>
+                    <a href="https://www.amazon.co.jp/s?k={{ $book['volumeInfo']['title'] }}" target="_blank" class="bg-warning text-dark btn btn-sm my-2"><i class="fab fa-amazon"></i>Amazonで購入</a>
 
                 </div>
                 <div class="col-9 px-2">
