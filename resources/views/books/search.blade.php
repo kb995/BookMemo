@@ -37,12 +37,14 @@
                 <div class="col-3 text-center">
                     @if (array_key_exists('imageLinks', $book['volumeInfo']))
                     <p>
-                        <img src="{{ $book['volumeInfo']['imageLinks']['thumbnail']}}"><br>
+                        <img class="shadow" src="{{ $book['volumeInfo']['imageLinks']['thumbnail']}}"><br>
                     </p>
                     @endif
 
-                    <button class="btn btn-success">この書籍を本棚登録</button>
-                    <a href="https://www.amazon.co.jp/s?k={{ $book['volumeInfo']['title'] }}" target="_blank" class="bg-warning text-dark btn btn-sm my-2"><i class="fab fa-amazon"></i>Amazonで購入</a>
+                    <div class="w-75 mx-auto mt-4">
+                        <a class="btn btn-sm btn-success w-100">書籍を本棚登録</a>
+                        <a class="btn btn-sm my-2bg-warning text-dark w-100" href="https://www.amazon.co.jp/s?k={{ $book['volumeInfo']['title'] }}" target="_blank"><i class="fab fa-amazon pr-1"></i>Amazonで購入</a>
+                    </div>
 
                 </div>
                 <div class="col-9 px-2">
