@@ -10911,6 +10911,10 @@ table tbody td {
   padding: 0;
 }
 
+.breadcrumb {
+  margin: 0;
+}
+
 header {
   padding: 0 50px;
 }
