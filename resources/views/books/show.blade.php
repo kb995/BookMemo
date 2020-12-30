@@ -13,7 +13,12 @@
     <div class="row w-75 mx-auto">
         {{-- カバー --}}
        <div class="book-info-cover text-center">
-           <img class="img-thumbnail" src="../../storage/app/public/common/book.jpg" alt="">
+        @if($book->cover)
+            <img src="../../storage/app/public/books/{{$book->cover}}">
+        @elseif($book->cover == null)
+            <img src="../storage/app/public/books/default_book.jpg" alt="">
+        @endif
+
            <a class="text-white" href="{{ route('books.edit', ['book' => $book]) }}"><i class="far fa-edit text-white pr-1"></i>編集</a>
        </div>
        {{-- 書籍詳細 --}}
@@ -41,9 +46,13 @@
             詳細検索<i class="fas fa-chevron-circle-down pl-2"></i>
             </button>
 
-            <div class="collapse p-5 book-detail" id="input">
+            <div class="collapse p-3 book-detail" id="input">
                 <div class="book-cover-full">
-                    <img src="../../storage/app/public/common/book.jpg" alt="">
+                    @if($book->cover)
+                        <img src="../../storage/app/public/books/{{$book->cover}}">
+                    @elseif($book->cover == null)
+                        <img src="../../storage/app/public/books/default_book.jpg" alt="">
+                    @endif
                 </div>
 
                 <dl class="row">
@@ -55,34 +64,42 @@
                     <dd class="col-9">{{ $book->author }}</dd>
                 </dl>
                 <dl class="row">
-                    <dt class="col-3">出版日</dt>
-                    <dd class="col-9"></dd>
-                </dl>
-                <dl class="row">
                     <dt class="col-3">概要</dt>
-                    <dd class="col-9">{{ $book->description }}</dd>
-                </dl>
-                <dl class="row">
-                    <dt class="col-3">カテゴリー</dt>
-                    <dd class="col-9">{{ $book->isbn }}</dd>
+                    <dd class="col-9 text-justify">{{ $book->description }}</dd>
                 </dl>
                 <dl class="row">
                     <dt class="col-3">ISBN</dt>
+                    <dd class="col-9">{{ $book->isbn }}</dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-3">出版社</dt>
+                    <dd class="col-9">{{ $book->publisher }}</dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-3">出版日</dt>
+                    <dd class="col-9">{{ $book->published_at }}</dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-3">ページ</dt>
+                    <dd class="col-9">{{ $book->page }}</dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-3">カテゴリー</dt>
                     <dd class="col-9">{{ $book->category }}</dd>
                 </dl>
                 <dl class="row">
                     <dt class="col-3">評価</dt>
                     <dd class="col-9">
                         @if($book->rank === 0)
-                        <span class="star-empty">★★★★★</span>
+                        <span class="star-empty">☆☆☆☆☆</span>
                         @elseif($book->rank === 1)
-                        <span class="star">★</span><span class="star-empty">★★★★</span>
+                        <span class="star">★</span><span class="star-empty">☆☆☆☆</span>
                         @elseif($book->rank === 2)
-                        <span class="star">★★</span><span class="star-empty">★★★</span>
+                        <span class="star">★★</span><span class="star-empty">☆☆☆</span>
                         @elseif($book->rank === 3)
-                        <span class="star">★★★</span><span class="star-empty">★★</span>
+                        <span class="star">★★★</span><span class="star-empty">☆☆</span>
                         @elseif($book->rank === 4)
-                        <dd class="star">★★★★</dd><dd class="star-empty">★</dd>
+                        <dd class="star">★★★★</dd><dd class="star-empty">☆</dd>
                         @elseif($book->rank === 5)
                         <span class="star">★★★★★</span>
                         @endif

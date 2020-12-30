@@ -69,14 +69,14 @@
             @if($book->cover)
             <div class="book-item-cover">
                 <a href="{{ route('books.show', ['book' => $book]) }}">
-                    <img src="{{ asset('/storage/common/'. $book->cover) }}">
+                    <img src="{{ asset('../storage/app/public/books/kirawareruyuuki.jpeg') }}">
                 </a>
             </div>
             @elseif($book->cover == null)
             <div class="book-item-cover">
                 <a href="{{ route('books.show', ['book' => $book]) }}">
                     <div>
-                        <img src="../storage/app/public/common/book.jpg" alt="">
+                        <img src="../storage/app/public/books/default_book.jpg" alt="">
                     </div>
                 </a>
             </div>
