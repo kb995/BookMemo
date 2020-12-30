@@ -34,8 +34,16 @@ padding: 100px 0;
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
+
                                 <th><label for="cover">表紙</label></th>
-                                <td><input type="file" class="form-control p-1 mb-3" id="cover" name="cover" accept="image/png,image/jpeg" value="{{ old('cover')}}"></td>
+                                <td>
+                                    @if($book->cover)
+                                    <img class="p-1 mb-3" id="preview" src="../../../storage/app/public/books/{{$book->cover}}" style="max-width:200px;">
+                                    @elseif($book->cover == null)
+                                    <img class="p-1 mb-3" id="preview" src="../../../storage/app/public/books/default_book.jpg" style="max-width:200px;">
+                                    @endif
+                                    <input type="file" class="form-control p-1 mb-3" id="cover" name="cover" accept="image/*" value="{{ $book->cover ?? old('cover') }}" onchange="previewImage(this);">
+                                </td>
                             </tr>
                             <tr>
                                 <th><label for="title">書籍タイトル</label></th>

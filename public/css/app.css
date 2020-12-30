@@ -11044,7 +11044,7 @@ header .dropdown-location {
 }
 
 .book-item-cover img {
-  width: 75%;
+  width: 50%;
   height: auto;
   margin: 10% 5% 5% 5%;
   overflow: hidden;
@@ -11179,7 +11179,7 @@ header .dropdown-location {
 }
 
 .book-cover-full {
-  width: 300px;
+  width: 200px;
   text-align: center;
   margin: 50px auto;
 }
