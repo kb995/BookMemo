@@ -62,8 +62,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
 
 // ===== User =====
 Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], function() {
+    // ユーザー更新
     Route::get('/{user}/edit', 'UserController@edit')->name('edit');
     Route::patch('/{user}/edit', 'UserController@update');
+
+    // ユーザー削除
+    Route::delete('/{user}/destroy', 'BookController@destroy')->name('destroy');
 
 });
 
