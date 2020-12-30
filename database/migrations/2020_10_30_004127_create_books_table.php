@@ -19,6 +19,8 @@ class CreateBooksTable extends Migration
             $table->string('cover')->nullable();
             $table->string('author', 100)->nullable();
             $table->string('isbn', 13)->nullable();
+            $table->integer('page')->nullable();
+            $table->string('publisher')->nullable();
             $table->text('description')->nullable();
             $table->text('category')->nullable();
             $table->integer('status')->default(0);
