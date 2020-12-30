@@ -12,6 +12,14 @@ function deleteMemo(e) {
     }
 }
 
+function deleteUser(e) {
+    'use strict';
+    if (confirm('本当に退会しますか?')) {
+        document.getElementById('delete_user_' + e.dataset.id).submit();
+    }
+}
+
+
 
 // 画像アップロードリアルタイム表示
 function previewImage(obj)

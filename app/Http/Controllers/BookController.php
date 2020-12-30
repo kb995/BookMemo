@@ -133,10 +133,12 @@ class BookController extends Controller
         }
         // リクエスト取得 & 保存
         $book->fill($request->all());
+
         $book->user_id = Auth::id();
         if($path) {
             $book->cover = $file_name;
         }
+
         $book->save();
 
         session()->flash('flash_message', '書籍を登録しました');
@@ -228,16 +230,18 @@ class BookController extends Controller
         if(is_uploaded_file($_FILES['cover']['tmp_name'])){
             $upload_image = $request->file('cover');
             $file_name = time() . '_' . $upload_image->getClientOriginalName();
-            $path = $upload_image->storeAs('public', $file_name);
+            $path = $upload_image->storeAs('public/books/', $file_name);
+
+            $book->fill($request->all());
+
             if($path) {
-                $delete_img_path = storage_path() . '/app/public/' . $book->cover;
+                $delete_img_path = storage_path() . '/app/public/books/' . $book->cover;
                 \File::delete($delete_img_path);
                 $book->cover = $file_name;
             }
         }
 
         // リクエスト取得
-        $book->fill($request->all());
         $book->save();
 
         session()->flash('flash_message', '書籍を編集しました');
