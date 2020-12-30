@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Policies;
+// namespace App\Policies;
 
-use App\User;
-use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
+// use App\User;
+// use Illuminate\Auth\Access\HandlesAuthorization;
+// use Illuminate\Support\Facades\Auth;
 
-class UserPolicy
-{
-    use HandlesAuthorization;
+// class UserPolicy
+// {
+//     use HandlesAuthorization;
 
-    public function viewAny(User $user)
-    {
-        return true;
-    }
+//     public function viewAny(User $user)
+//     {
+//         return true;
+//     }
 
     // public function update(User $user)
     // {
@@ -25,4 +25,4 @@ class UserPolicy
     //     return $user->id == $book->user_id;
     // }
 
-}
+// }
