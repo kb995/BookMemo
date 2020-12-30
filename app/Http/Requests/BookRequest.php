@@ -25,8 +25,7 @@ class BookRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'cover' => 'file|image|mimes:jpeg,jpg,png,gif|max:2048',
-            'isbn' => 'numeric|digits:13',
+            'cover' => 'file|image|mimes:jpeg,jpg,png,gif',
         ];
     }
 
@@ -37,6 +36,9 @@ class BookRequest extends FormRequest
             'cover' => '表紙',
             'author' => '著者',
             'isbn' => 'ISBN',
+            'page' => 'ページ',
+            'publisher' => '出版社',
+            'published_at' => '出版年月',
             'description' => '詳細',
             'status' =>'状態',
             'rank' =>'評価',

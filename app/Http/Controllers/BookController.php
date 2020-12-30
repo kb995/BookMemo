@@ -129,13 +129,14 @@ class BookController extends Controller
             $upload_image = $request->file('cover');
             $file_name = time() . '_' . $upload_image->getClientOriginalName();
             $path = $upload_image->storeAs('public/books', $file_name);
-            if($path) {
-                $book->cover = $file_name;
-            }
+
         }
         // リクエスト取得 & 保存
         $book->fill($request->all());
         $book->user_id = Auth::id();
+        if($path) {
+            $book->cover = $file_name;
+        }
         $book->save();
 
         session()->flash('flash_message', '書籍を登録しました');
