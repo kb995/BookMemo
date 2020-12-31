@@ -35,7 +35,7 @@ padding: 100px 0;
                         <tbody>
                             <tr>
 
-                                <th class="text-center"><label for="cover">表紙</label></th>
+                                <th><label for="cover">表紙</label></th>
                                 <td>
                                     @if($book->cover)
                                     <img class="p-1 mb-3" id="preview" src="../../../storage/app/public/books/{{$book->cover}}" style="max-width:200px;">
@@ -46,39 +46,27 @@ padding: 100px 0;
                                 </td>
                             </tr>
                             <tr>
-                                <th class="text-center"><label for="title">書籍タイトル</label></th>
+                                <th><label for="title">書籍タイトル</label></th>
                                 <td><input type="text" class="form-control" id="title" name="title" value="{{ $book->title ?? old('title') }}"></td>
                             </tr>
                             <tr>
-                                <th class="text-center"><label for="author">著者</label></th>
+                                <th><label for="author">著者</label></th>
                                 <td><input type="text" class="form-control" id="author" name="author" value="{{ $book->author ?? old('author') }}"></td>
                             </tr>
                             <tr>
-                                <th class="text-center"><label for="isbn">ISBN</label></th>
+                                <th><label for="isbn">ISBN</label></th>
                                 <td><input type="text" class="form-control" id="isbn" name="isbn" value="{{ $book->isbn ?? old('isbn') }}"></td>
                             </tr>
                             <tr>
-                                <th class="text-center"><label for="page">ページ数</label></th>
-                                <td><input type="text" class="form-control" id="page" name="page" value="{{ $book->page ?? old('page') }}"></td>
-                            </tr>
-                            <tr>
-                                <th class="text-center"><label for="publisher">出版社</label></th>
-                                <td><input type="text" class="form-control" id="publisher" name="publisher" value="{{ $book->publisher ?? old('publisher') }}"></td>
-                            </tr>
-                            <tr>
-                                <th class="text-center"><label for="published_at">発売年月</label></th>
-                                <td><input type="date" name="published_at" id="published_at" class="form-control" value="{{ $book->published_at ?? old('published_at') }}"></td>
-                            </tr>
-                            <tr>
-                                <th class="text-center"><label for="description">詳細</label></th>
+                                <th><label for="description">詳細</label></th>
                                 <td><input type="text" class="form-control" id="description" name="description" value="{{ $book->description ?? old('description') }}"></td>
                             </tr>
                             <tr>
-                                <th class="text-center"><label for="category">カテゴリー</label></th>
+                                <th><label for="category">カテゴリー</label></th>
                                 <td><input type="text" class="form-control" id="category" name="category" value="{{ $book->category ?? old('category') }}"></td>
                             </tr>
                             <tr>
-                                <th class="text-center"><label for="rank">評価</label></th>
+                                <th><label for="rank">評価</label></th>
                                 <td>
                                     <select name="rank" class="form-control" id="rank" value="{{ old('rank') }}">
                                         <option value="0" {{ $book->rank == 0 ? 'selected' : '' }}>-</option>
@@ -91,7 +79,7 @@ padding: 100px 0;
                                         </td>
                             </tr>
                             <tr>
-                                <th class="text-center"><label for="status">ステータス</label></th>
+                                <th><label for="status">ステータス</label></th>
                                 <td>
                                     <select name="status" class="form-control" id="status" value="{{ old('status') }}">
                                         <option value="0" {{ $book->status == 0 ? 'selected' : '' }}>-</option>
@@ -103,25 +91,15 @@ padding: 100px 0;
                                 </td>
                             </tr>
                             <tr>
-                                <th class="text-center"><label for="read_at">読了日</label></th>
+                                <th><label for="read_at">読了日</label></th>
                                 <td><input type="date" name="read_at" id="read_at" class="form-control" value="{{ $book->read_at ?? old('read_at') }}"></td>
                             </tr>
                         </tbody>
                     </table>
-                    <p class="text-right">
-                        <a class="text-danger inline" data-id="{{ $book->id }}" onclick="deleteBook(this);">
-                            <i class="fas fa-trash-alt pr-1"></i>削除
-                        </a>
-                    </p>
 
-                    <input type="submit" class="btn btn-lg btn-outline-success my-4 w-100" value="編集する">
+                    <input type="submit" class="btn btn-outline-success my-4" value="編集する">
+
                 </form>
-
-                <form class="deleteform" action="{{ route('books.destroy', ['book' => $book]) }}" method="post" id="delete_book_{{ $book->id }}">
-                    @csrf
-                    @method('DELETE')
-                </form>
-
             </div>
         </div>
     </div>
