@@ -19,7 +19,9 @@
             <img src="../storage/app/public/books/default_book.jpg" alt="">
         @endif
 
-           <a class="text-white" href="{{ route('books.edit', ['book' => $book]) }}"><i class="far fa-edit text-white pr-1"></i>編集</a>
+        <p class="py-2">
+            <a class="text-white" href="{{ route('books.edit', ['book' => $book]) }}"><i class="far fa-edit text-white pr-1"></i>編集</a>
+        </p>
        </div>
        {{-- 書籍詳細 --}}
        <div class="col-9">
@@ -113,17 +115,6 @@
 
 {{-- パンくずリスト --}}
 {{ Breadcrumbs::render('book.show', $book) }}
-
-{{-- 書籍削除
-    <form class="deleteform" action="{{ route('books.destroy', ['book' => $book]) }}" method="post" id="delete_book_{{ $book->id }}">
-        @csrf
-        @method('DELETE')
-        <a class="btn btn-danger inline" data-id="{{ $book->id }}" onclick="deleteBook(this);">
-            <i class="fas fa-trash-alt pr-1"></i>
-            削除
-        </a>
-    </form>
- --}}
 
 {{-- メモフォーム --}}
 <div class="row m-0">
