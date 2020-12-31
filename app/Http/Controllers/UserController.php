@@ -53,4 +53,22 @@ class UserController extends Controller
         return redirect()->route('books.index');
     }
 
+
+    public function destroy(User $user)
+    {
+        // 認可
+        // $this->authorize('delete', $book);
+
+        // 書籍画像削除
+        // $user_cover = $user->thumbnail;
+        // $delete_img_path = storage_path() . '/app/public/users' . $user->thumbnail;
+        // \File::delete($delete_img_path);
+
+        $user->delete();
+
+        session()->flash('flash_message', 'ユーザーを削除しました');
+
+        return redirect()->route('login');
+    }
+
 }
