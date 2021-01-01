@@ -38,7 +38,7 @@ padding: 100px 0;
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th class="text-center"><label for="title">書籍タイトル</label></th>
+                                        <th class="text-center"><label for="title">書籍タイトル<span class="badge badge-danger ml-2 p-1">必須</span></label></th>
                                         <td><input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" onchange="previewImage(this);"></td>
                                     </tr>
                                     <tr>
@@ -64,7 +64,9 @@ padding: 100px 0;
 
                                     <tr>
                                         <th class="text-center"><label for="description">詳細</label></th>
-                                        <td><input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}"></td>
+                                        <td>
+                                            <textarea class="form-control" name="description" id="description" cols="30" rows="10">{{ old('description') }}</textarea>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th class="text-center"><label for="category">カテゴリー</label></th>
