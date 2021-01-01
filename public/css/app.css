@@ -10915,6 +10915,11 @@ table tbody td {
   margin: 0;
 }
 
+main {
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+
 header {
   padding: 0 50px;
 }
