@@ -72,7 +72,7 @@
         flex-wrap: wrap;
     }
 
-    &::after{
+    &-list::after{
         content: "";
         display: block;
         width: 29%;
