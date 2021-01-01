@@ -11079,7 +11079,7 @@ header .header-search-button {
   flex-wrap: wrap;
 }
 
-.book::after {
+.book-list::after {
   content: "";
   display: block;
   width: 29%;
