@@ -32,4 +32,42 @@ header {
         left: -100px;
     }
 
+    .header-search-container {
+        position: relative;
+        &:focus {
+            border-radius: 20px;
+            border-color: #3879D9;
+        }
+    }
+
+    .header-search {
+        background-color: #fff;
+        border: 1px solid #999;
+        display: block;
+        padding: 3px 10px;
+        border-radius: 20px;
+        height: 2.3em;
+        width: 260px;
+        overflow: hidden;
+        &:focus {
+            border-radius: 20px;
+            border-color: #3879D9;
+        }
+
+        &-button {
+            cursor: pointer;
+            font-size: 1.3em;
+            border: none;
+            background: none;
+            color: #3879D9;
+            width: 2em;
+            height: 2em;
+            position: absolute;
+            right: 0;
+            top: 0;
+            outline : none;
+
+        }
+    }
+
 }

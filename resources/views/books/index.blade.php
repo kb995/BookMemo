@@ -47,21 +47,22 @@
 
 <section class="book">
 
-    <section class="shelf-serach">
-        <form method="POST" action="{{ route('books.index') }}" class="text-right mt-4 mr-5 pr-2">
-            @csrf
-            @if (Session::has('search'))
-            <p class="h4 text-center">
-            「 {{ Session::get('search') }} 」を表示中 ( {{ $books->firstItem() }} - {{ $books->lastItem() }} /  {{ $books->total() }} 件中 )
-            </p>
-            @endif
+    <form method="POST" action="{{ route('books.index') }}" class="text-right mt-4 mr-5 pr-2">
+        @csrf
+        @if (Session::has('search'))
+        <p class="h4 text-center">
+        「 {{ Session::get('search') }} 」を表示中 ( {{ $books->firstItem() }} - {{ $books->lastItem() }} /  {{ $books->total() }} 件中 )
+        </p>
+        @endif
 
-            <div class="form-group ml-3">
-                <input class="shelf-serach-input" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="本棚内を検索">
-                <input type="submit" class="shelf-serach-btn" value="検索">
-            </div>
-        </form>
-    </section>
+        <div class="form-group shelf-search-container">
+            <input class="shelf-serach-input" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="本棚からさがす">
+            {{-- <input type="submit" class="shelf-serach-button" value="検索"> --}}
+            <button type="submit" class="shelf-search-button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </form>
 
     <div class="book-list">
         @foreach( $books as $book)
