@@ -38,7 +38,7 @@ padding: 100px 0;
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th class="text-center"><label for="title">書籍タイトル</label></th>
+                                        <th class="text-center"><label for="title">書籍タイトル<span class="badge badge-danger ml-2 p-1">必須</span></label></th>
                                         <td><input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" onchange="previewImage(this);"></td>
                                     </tr>
                                     <tr>
