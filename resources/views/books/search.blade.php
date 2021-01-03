@@ -34,20 +34,20 @@
         @foreach ($books as $book)
         <div class="mb-4 p-5 w-75 mx-auto search-results border-bottom">
             <div class="row">
-                <div class="col-3 text-center">
+                <div class="col-4 text-center">
                     @if (array_key_exists('imageLinks', $book['volumeInfo']))
                     <p>
                         <img class="shadow" src="{{ $book['volumeInfo']['imageLinks']['thumbnail']}}"><br>
                     </p>
                     @endif
 
-                    <div class="w-75 mx-auto mt-4">
-                        <a class="btn btn-sm btn-success w-100">書籍を本棚登録</a>
-                        <a class="btn btn-sm my-2bg-warning text-dark w-100" href="https://www.amazon.co.jp/s?k={{ $book['volumeInfo']['title'] }}" target="_blank"><i class="fab fa-amazon pr-1"></i>Amazonで購入</a>
+                    <div class="w-100 mx-auto mt-4">
+                        <a class="btn mt-5 btn-success w-100" href="{{ route('books.apiRegister', [ 'book_id' => $book['id'] ]) }}">書籍を本棚登録</a>
+                        <a class="btn mt-3 bg-warning text-dark w-100" href="https://www.amazon.co.jp/s?k={{ $book['volumeInfo']['title'] }}" target="_blank"><i class="fab fa-amazon pr-1"></i>Amazonで購入</a>
                     </div>
 
                 </div>
-                <div class="col-9 px-2">
+                <div class="col-8 px-2">
                     @if (array_key_exists('title', $book['volumeInfo']))
                     <h3 class="mb-2">{{ $book['volumeInfo']['title'] }}</h3>
                     @endif
