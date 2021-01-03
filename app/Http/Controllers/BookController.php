@@ -135,6 +135,7 @@ class BookController extends Controller
         $book->fill($request->all());
 
         $book->user_id = Auth::id();
+
         if($path) {
             $book->cover = $file_name;
         }
@@ -309,6 +310,29 @@ class BookController extends Controller
 
         return view('books.search', compact('books'));
     }
+    public function apiRegister(string $book_id, Book $book) {
+        $url = "https://www.googleapis.com/books/v1/volumes?country=JP&maxResults=1&orderBy=relevance&q=${book_id}";
+        $json = file_get_contents($url);
+        $data = json_decode($json, true);
+        $data = $data['items'][0]['volumeInfo'];
+
+        $book->title = $data['title'];
+        $book->author = $data['authors'][0];
+        $book->isbn = $data['industryIdentifiers'][0]['identifier'];
+        $book->page = $data['pageCount'];
+        $book->publisher = $data['publisher'];
+        $book->published_at = $data['publishedDate'];
+        $book->description = $data['description'];
+        $book->user_id = Auth::id();
+        $book->save();
+
+        session()->flash('flash_message', '書籍を登録しました');
+
+        return redirect()->route('books.show', ['book' => $book]);
 
 
+        // dd($data['imageLinks']['thumbnail']);
+        // $img = file_get_contents($data['imageLinks']['thumbnail']);
+        // echo $img;
+    }
 }
