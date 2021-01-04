@@ -6,9 +6,12 @@
     padding-top: 10px;
 
     &-cover {
-        width: 100px;
+        width: 60px;
+        height: 70px;
+        overflow: hidden;
         img {
-            width: 100%;
+            width: 60px;
+            height: 70px;
         }
     }
 

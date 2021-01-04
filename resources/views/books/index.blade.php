@@ -67,22 +67,11 @@
     <div class="book-list">
         @foreach( $books as $book)
         <div class="book-item shadow">
-            @if($book->cover)
             <div class="book-item-cover">
                 <a href="{{ route('books.show', ['book' => $book]) }}">
                     <img class="shadow" src="../storage/app/public/books/{{$book->cover}}">
                 </a>
             </div>
-            @elseif($book->cover == null)
-            <div class="book-item-cover">
-                <a href="{{ route('books.show', ['book' => $book]) }}">
-                    <div>
-                        <img src="../storage/app/public/books/default_book.jpg" alt="">
-                    </div>
-                </a>
-            </div>
-            @endif
-
             <div class="book-item-body">
                 <p class="title">{{ $book->title }}</p>
                 <p class="author text-muted mb-0">{{ $book->author }}</p>

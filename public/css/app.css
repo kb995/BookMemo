@@ -11097,10 +11097,14 @@ header .header-search-button {
 
 .book-item-cover img {
   width: 50%;
-  height: auto;
+  height: 250px;
   margin: 10% 5% 5% 5%;
   overflow: hidden;
   background: cover;
+}
+
+.book-item-cover .book-img-default {
+  background: repeat-y;
 }
 
 .book-item-body .title {
@@ -11158,11 +11162,14 @@ header .header-search-button {
 }
 
 .book-info-cover {
-  width: 100px;
+  width: 60px;
+  height: 70px;
+  overflow: hidden;
 }
 
 .book-info-cover img {
-  width: 100%;
+  width: 60px;
+  height: 70px;
 }
 
 .book-info .title {
