@@ -129,17 +129,13 @@ class BookController extends Controller
             $upload_image = $request->file('cover');
             $file_name = time() . '_' . $upload_image->getClientOriginalName();
             $path = $upload_image->storeAs('public/books', $file_name);
-
+            if($path) {
+                $book->cover = $file_name;
+            }
         }
         // リクエスト取得 & 保存
         $book->fill($request->all());
-
         $book->user_id = Auth::id();
-
-        if($path) {
-            $book->cover = $file_name;
-        }
-
         $book->save();
 
         session()->flash('flash_message', '書籍を登録しました');
@@ -316,6 +312,12 @@ class BookController extends Controller
         $data = json_decode($json, true);
         $data = $data['items'][0]['volumeInfo'];
 
+        // $url = $data['imageLinks']['thumbnail'];
+        // $img = file_get_contents($url);
+        // $imginfo = pathinfo($url);
+        // $img_name = time() .'_'. $data['title'];
+        // $path = file_put_contents('./../storage/app/public/upload_books/' . $img_name, $img);
+
         $book->title = $data['title'];
         $book->author = $data['authors'][0];
         $book->isbn = $data['industryIdentifiers'][0]['identifier'];
@@ -324,15 +326,11 @@ class BookController extends Controller
         $book->published_at = $data['publishedDate'];
         $book->description = $data['description'];
         $book->user_id = Auth::id();
+        // $book->cover = $img_link;
         $book->save();
 
         session()->flash('flash_message', '書籍を登録しました');
 
         return redirect()->route('books.show', ['book' => $book]);
-
-
-        // dd($data['imageLinks']['thumbnail']);
-        // $img = file_get_contents($data['imageLinks']['thumbnail']);
-        // echo $img;
     }
 }
