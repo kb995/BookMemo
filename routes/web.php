@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
     Route::post('/', 'BookController@index')->name('index');
 
     // メモ一覧
-    Route::get('/{book}/{$img}', 'BookController@show')->name('show');
+    Route::get('/{book}', 'BookController@show')->name('show');
 
     // メモ一覧(検索)
     Route::post('/{book}', 'BookController@show')->name('show');

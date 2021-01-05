@@ -274,7 +274,7 @@ class BookController extends Controller
     }
 
     public function showSearchForm() {
-        return view('books.search');
+        return view('books.api_form');
     }
 
     public function search(Request $request) {
