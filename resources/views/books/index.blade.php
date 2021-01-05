@@ -14,7 +14,11 @@
         <div class="row w-75 mx-auto py-2">
             {{-- サムネイル --}}
            <div class="col-2 user-thumbnail">
+               @if ($user->thumbnail)
+               <img class="img-thumbnail" src="../storage/app/public/user/{{$user->thumbnail}}" alt="ユーザーアイコン">
+               @else
                <img class="img-thumbnail" src="../storage/app/public/common/default_user.jpeg" alt="ユーザーアイコン">
+               @endif
                <p class="mt-2"><a class="user-edit-link" href="{{ route('user.edit', ['user' => Auth::user()]) }}">{{ $user->name }}さん</a></p>
            </div>
            {{-- 本棚名 --}}
