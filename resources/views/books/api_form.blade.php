@@ -9,13 +9,13 @@
 
 @section('content')
 
-<section class="shelf-serach" style="border-color: blue;">
-    <form method="POST" action="{{ route('books.api') }}" class="text-center my-3">
+<section class="shelf-serach w-75 mx-auto">
+    <form method="POST" action="" class="text-center my-3 mx-auto pt-5">
         @csrf
         <div class="form-group ml-3">
-            <label class="shelf-serach-label block" for="keyword">Googleから探す</label>
-            <input class="shelf-serach-input" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワードで検索">
-            <input type="submit" class="shelf-serach-btn" value="検索" style="background-color: blue;">
+            <h2 class="google-search-label block" for="keyword">GoogleBooksから探す</h2>
+            <input class="google-search-input mt-4" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワードを入力">
+            <input type="submit" class="btn btn-lg btn-primary" value="検索">
         </div>
     </form>
 </section>
