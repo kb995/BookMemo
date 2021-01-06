@@ -11303,6 +11303,10 @@ header .header-search-button {
   text-decoration: none;
 }
 
+.header-login {
+  flex-direction: row;
+}
+
 .google-search-label {
   font-size: 2.5em;
 }
