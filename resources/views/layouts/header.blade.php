@@ -1,4 +1,4 @@
-<header class="bg-dark p-0 px-md-4">
+<header class="bg-dark p-0 px-sm-4 px-md-5">
     <nav class="navbar navbar-expand-sm navbar-light bg-dark">
         <a class="navbar-brand text-white" href="{{ route('books.index') }}">BookMemo</a>
 
@@ -31,7 +31,7 @@
                 @csrf
             </form>
         @else
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto header-login">
             <li class="navbar-item"><a class="nav-text nav-link btn btn-md font-weight-bold text-white" href="{{ route('login') }}">ログイン</a></li>
             <li class="navbar-item"><a class="nav-text nav-link btn register-button text-white" href="{{ route('register') }}">新規会員登録(無料)</a></li>
         </ul>

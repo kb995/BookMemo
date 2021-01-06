@@ -15,18 +15,16 @@ background-size: cover;
 padding: 100px 0;
 "
 >
-    @include('layouts.errors')
-
     <div class="row justify-content-center my-5">
-        <div class="col-md-8">
+        <div class="col-md-8 col-11">
             <div class="card" style="opacity: 0.95;">
-
                 <div class="card-header h5">
                     書籍登録
                 </div>
 
-                <div class="card-body p-5">
-                    <form method="POST" action="{{ route('books.store') }}" class="mx-auto p-5" enctype="multipart/form-data">
+                <div class="card-body">
+                    <form method="POST" action="{{ route('books.store') }}" class="mx-auto" enctype="multipart/form-data">
+                        @include('layouts.errors')
                         @csrf
                             <table class="table table-bordered">
                                 <tbody>
