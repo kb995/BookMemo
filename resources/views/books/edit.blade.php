@@ -11,26 +11,25 @@
 
 {{ Breadcrumbs::render('book.edit', $book) }}
 
-<section class="conteiner"
+<section class="conteiner p-3 py-sm-5 "
 style="background-image: url('../../../storage/app/public/common/desk.jpg');
 background-size: cover;
-padding: 100px 0;
 "
 >
 
 <div class="row justify-content-center my-5">
-    <div class="col-md-8">
+    <div class="col-md-9 col-sm-11">
         <div class="card" style="opacity: 0.95;">
             <div class="card-header h5">
                 書籍編集
             </div>
 
             <div class="card-body p-5">
-                @include('layouts.errors')
 
                 <form method="POST" action="{{ route('books.update', ['book' => $book]) }}" class="card mx-auto p-5" enctype="multipart/form-data">
                     @method('PATCH')
                     @csrf
+                    @include('layouts.errors')
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
@@ -113,11 +112,11 @@ padding: 100px 0;
                     </table>
                     <p class="text-right">
                         <a class="text-danger inline" data-id="{{ $book->id }}" onclick="deleteBook(this);">
-                            <i class="fas fa-trash-alt pr-1"></i>削除
+                            <i class="fas fa-trash-alt pr-1"></i>削除 &gt;&gt;
                         </a>
                     </p>
 
-                    <input type="submit" class="btn btn-lg btn-outline-success my-4 w-100" value="編集する">
+                    <input type="submit" class="btn btn-lg btn-outline-success my-2 w-100" value="編集する">
                 </form>
 
                 <form class="deleteform" action="{{ route('books.destroy', ['book' => $book]) }}" method="post" id="delete_book_{{ $book->id }}">
