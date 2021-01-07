@@ -8,26 +8,27 @@
 @endsection
 
 @section('content')
-<section class="conteiner"
+
+{{ Breadcrumbs::render('user.edit', $user) }}
+
+<section class="conteiner p-3 py-sm-5"
 style="background-image: url('../../../storage/app/public/common/desk.jpg');
 background-size: cover;
 "
 >
 
-    {{ Breadcrumbs::render('user.edit', $user) }}
-
     <div class="row justify-content-center py-5">
-        <div class="col-md-8">
+        <div class="col-md-9 col-sm-11">
             <div class="card" style="opacity: 0.95;">
                 <div class="card-header h5">
                     アカウント管理
                 </div>
 
                 <div class="card-body p-5">
-                    @include('layouts.errors')
                     <form method="POST" action="" class="card mx-autop-5 p-5" enctype="multipart/form-data">
                         @method('PATCH')
                         @csrf
+                        @include('layouts.errors')
                         <table class="table table-bordered">
                             <tbody>
                                 <tr>
