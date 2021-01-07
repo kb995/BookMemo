@@ -9,7 +9,7 @@
 
 @section('content')
 
-<section class="conteiner"
+<section class="conteiner py-2 py-md-5"
 style="background-image: url('../../storage/app/public/common/desk.jpg');
 background-size: cover;
 padding: 100px 0;
