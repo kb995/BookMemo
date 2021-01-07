@@ -18,11 +18,11 @@
         @elseif($book->cover == null)
             <img src="../storage/app/public/books/default_book.jpg" alt="">
         @endif
-
-        <p class="py-2">
-            <a class="text-white" href="{{ route('books.edit', ['book' => $book]) }}"><i class="far fa-edit text-white pr-1"></i>編集</a>
-        </p>
        </div>
+
+       <p class="py-2">
+            <a class="text-white" href="{{ route('books.edit', ['book' => $book]) }}"><i class="far fa-edit text-white pr-1"></i>編集</a>
+       </p>
        {{-- 書籍詳細 --}}
        <div class="col-9">
             <h1 class="title">{{ $book->title }}</h1>

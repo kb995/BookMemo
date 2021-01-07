@@ -11,7 +11,7 @@
 
 {{ Breadcrumbs::render('book.edit', $book) }}
 
-<section class="conteiner p-3 py-sm-5 "
+<section class="conteiner p-3 py-sm-5"
 style="background-image: url('../../../storage/app/public/common/desk.jpg');
 background-size: cover;
 "
@@ -33,7 +33,6 @@ background-size: cover;
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
-
                                 <th class="text-center"><label for="cover">表紙</label></th>
                                 <td>
                                     @if($book->cover)
