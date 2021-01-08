@@ -3,7 +3,7 @@
 @section('content')
 {{-- <img src="../storage/app/public/common/desk.jpg" alt=""> --}}
 <section
-style="background-image: url('../storage/app/public/common/desk.jpg');
+style="background-image: url('../storage/app/common/default_img/desk.jpg');
 background-size: cover;
 padding: 100px 0;
 ">

@@ -17,7 +17,7 @@
                @if ($user->thumbnail)
                <img class="img-thumbnail" src="../storage/app/public/user/{{$user->thumbnail}}" alt="ユーザーアイコン">
                @else
-               <img class="img-thumbnail" src="../storage/app/public/common/default_user.jpeg" alt="ユーザーアイコン">
+               <img class="img-thumbnail" src="../storage/app/common/default_img/default_user.jpg" alt="ユーザーアイコン">
                @endif
                <p class="mt-2"><a class="user-edit-link" href="{{ route('user.edit', ['user' => Auth::user()]) }}">{{ $user->name }}さん</a></p>
            </div>

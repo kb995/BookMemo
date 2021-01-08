@@ -12,7 +12,7 @@
 {{ Breadcrumbs::render('book.edit', $book) }}
 
 <section class="conteiner p-3 py-sm-5"
-style="background-image: url('../../../storage/app/public/common/desk.jpg');
+style="background-image: url('../../../storage/app/common/default_img/desk.jpg');
 background-size: cover;
 "
 >
