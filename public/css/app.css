@@ -11008,18 +11008,16 @@ header .header-search-button {
 **/
 
 .user {
-  background-color: #222;
+  background-color: lightblue;
+  border-radius: 6px;
 }
 
 .user-mask {
   height: 100%;
-  background: rgba(255, 255, 255, 0.1);
 }
 
 .user-thumbnail {
   text-align: center;
-  padding: 10px 0;
-  margin: 10px 0;
 }
 
 .user-thumbnail img {
@@ -11039,28 +11037,26 @@ header .header-search-button {
   text-align: center;
 }
 
-.user-info dl {
-  background: rgba(34, 34, 34, 0.9);
+.user-book-count dl {
+  background: rgba(90, 88, 88, 0.308);
   padding: 5px 10px;
   margin: 0 5px;
   border-radius: 5px;
 }
 
-.user-info dl:hover {
+.user-book-count dl:hover {
   opacity: 0.7;
 }
 
-.user-info dt {
+.user-book-count dt {
   font-size: 1em;
   color: #fff;
 }
 
-.user-info dd {
+.user-book-count dd {
   font-size: 1.3em;
   font-weight: bold;
   color: #fff;
-  padding: 4px;
-  margin: 0;
 }
 
 /**
