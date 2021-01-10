@@ -56,7 +56,7 @@
     </div>
 </section>
 
-<section class="book">
+<section class="book container">
 
     <form method="POST" action="{{ route('books.index') }}" class="text-right mt-4 mr-5 pr-2">
         @csrf
@@ -74,18 +74,20 @@
         </div>
     </form>
 
-    <div class="book-list">
+    <div class="book-list row mt-5">
         @foreach( $books as $book)
-        <div class="book-item shadow">
-            <div class="book-item-cover">
-                <a href="{{ route('books.show', ['book' => $book]) }}">
-                    <img class="shadow" src="../storage/app/public/books/{{$book->cover}}">
-                </a>
-            </div>
-            <div class="book-item-body">
-                <p class="title">{{ $book->title }}</p>
-                <p class="author text-muted mb-0">{{ $book->author }}</p>
-                <p class="text-muted text-right mx-3"><i class="far fa-comment pr-1"></i>{{ $book->memo_count }}</p>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="book-item mb-5 shadow">
+                <div class="book-item-cover">
+                    <a href="{{ route('books.show', ['book' => $book]) }}">
+                        <img class="shadow" src="../storage/app/public/books/{{$book->cover}}">
+                    </a>
+                </div>
+                <div class="book-item-body">
+                    <p class="title">{{ $book->title }}</p>
+                    <p class="author text-muted mb-0">{{ $book->author }}</p>
+                    <p class="text-muted text-right mx-3"><i class="far fa-comment pr-1"></i>{{ $book->memo_count }}</p>
+                </div>
             </div>
         </div>
         @endforeach
