@@ -11067,14 +11067,6 @@ header .header-search-button {
   background-color: #F8FAFC;
 }
 
-.book-list {
-  width: 95%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
 .book-list::after {
   content: "";
   display: block;
@@ -11084,15 +11076,11 @@ header .header-search-button {
 }
 
 .book-item {
-  width: 29%;
-  margin: 2%;
-  height: auto;
   background-color: #fff;
   text-align: center;
 }
 
 .book-item-cover img {
-  width: 50%;
   height: 250px;
   margin: 10% 5% 5% 5%;
   overflow: hidden;

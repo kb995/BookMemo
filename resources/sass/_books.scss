@@ -66,11 +66,11 @@
     background-color: #F8FAFC;
 
     &-list {
-        width: 95%;
-        margin: 0 auto;
-        display: flex;
-        justify-content:space-between;
-        flex-wrap: wrap;
+        // width: 95%;
+        // margin: 0 auto;
+        // display: flex;
+        // justify-content:space-between;
+        // flex-wrap: wrap;
     }
 
     &-list::after{
@@ -82,15 +82,15 @@
         }
 
     &-item {
-        width: 29%;
-        margin: 2%;
-        height: auto;
+        // width: 29%;
+        // margin: 2%;
+        // height: auto;
         background-color: #fff;
         text-align: center;
 
         &-cover {
             img {
-        width: 50%;
+        // width: 50%;
         height: 250px;
         margin: 10% 5% 5% 5%;
         overflow: hidden;
