@@ -9,20 +9,20 @@
 
 @section('content')
 
-<section class="user">
+{{-- <section class="user">
     <div class="user-mask">
-        <div class="row w-75 mx-auto py-2">
+        <div class="row w-75 mx-auto py-2"> --}}
             {{-- サムネイル --}}
-           <div class="col-2 user-thumbnail">
+           {{-- <div class="col-2 user-thumbnail">
                @if ($user->thumbnail)
                <img class="img-thumbnail" src="../storage/app/public/user/{{$user->thumbnail}}" alt="ユーザーアイコン">
                @else
                <img class="img-thumbnail" src="../storage/app/common/default_img/default_user.jpg" alt="ユーザーアイコン">
                @endif
                <p class="mt-2"><a class="user-edit-link" href="{{ route('user.edit', ['user' => Auth::user()]) }}">{{ $user->name }}さん</a></p>
-           </div>
+           </div> --}}
            {{-- 本棚名 --}}
-           <div class="col-3 text-center">
+           {{-- <div class="col-3 text-center">
                <h1 class="h5 user-title ml-4 mb-3 row">{{ $user->name }}の本棚</h1>
                <div class="user-info row">
                     <dl>
@@ -46,6 +46,14 @@
             </div>
            </div>
         </div>
+    </div>
+</section> --}}
+
+<section class="container user">
+    <div class="user-mask row">
+        <div class="col-md-2 bg-danger">aaa</div>
+        <div class="col-md-2 bg-dark">bbb</div>
+        <div class="col-md-8 bg-primary">ccc</div>
     </div>
 </section>
 
