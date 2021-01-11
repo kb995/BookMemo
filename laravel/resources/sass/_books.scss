@@ -1,0 +1,146 @@
+/**
+* ユーザー情報
+**/
+
+.user {
+    background-color: lightblue;
+    border-radius: 6px;
+
+    &-mask {
+        height: 100%;
+    }
+    &-thumbnail {
+        text-align: center;
+        // padding: 10px 0;
+        // margin: 10px 0;
+
+
+        img {
+            width: 70px;
+        }
+
+        &-link {
+            font-size: .6em;
+            color: #fff;
+        }
+    }
+
+    &-title {
+        color: #fff;
+        font-size: 1.5em;
+        padding-top: 5px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    &-book-count {
+        dl {
+            background: rgba(90, 88, 88, 0.308);
+            padding: 5px 10px;
+            margin: 0 5px;
+            border-radius: 5px;
+            &:hover {
+                opacity: .7;
+            }
+        }
+        dt {
+            font-size: 1em;
+            color: #fff;
+        }
+        dd {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #fff;
+            // padding: 4px;
+            // margin: 0;
+        }
+    }
+}
+
+
+/**
+* 書籍一覧
+**/
+
+.book {
+    background-color: #F8FAFC;
+
+    &-list::after{
+        content: "";
+        display: block;
+        width: 29%;
+        margin: 2%;
+        height: auto;
+        }
+
+    &-item {
+        // width: 29%;
+        // margin: 2%;
+        // height: auto;
+        background-color: #fff;
+        text-align: center;
+
+        &-cover {
+            img {
+        // width: 50%;
+        height: 250px;
+        margin: 10% 5% 5% 5%;
+        overflow: hidden;
+        background: cover;
+            }
+
+            .book-img-default {
+                background: repeat-y;
+            }
+        }
+
+        &-body {
+            .title {
+                    font-size: 1.2em;
+                    font-weight: bold;
+                    margin: 0 20px;
+                    text-align: center;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+            }
+        }
+    }
+
+    .book-item:hover {
+            opacity: .8;
+    }
+}
+
+
+.shelf-search-container {
+    position: relative;
+}
+
+.shelf-serach-input {
+    width: 350px;
+    height: 3.2em;
+    border: 1px solid #999;
+    padding: 3px 15px;
+    border-radius: 20px;
+
+}
+
+.shelf-search-button {
+    cursor: pointer;
+    font-size: 1.5em;
+    border: none;
+    background: none;
+    color: #3879D9;
+    width: 2em;
+    height: 2em;
+    outline : none;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.pagination {
+    justify-content: center!important;
+    margin-top: 50px!important;
+}
