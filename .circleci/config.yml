@@ -72,8 +72,8 @@ jobs:
           command: composer install -n --prefer-dist
       - save_cache:
         key: composer-v1-{{ checksum "composer.lock" }}
-          paths:
-            - laravel/vendor
+        paths:
+          - laravel/vendor
       - run:
           working_directory: laravel
           command: npm install
