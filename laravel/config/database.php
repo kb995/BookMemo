@@ -91,22 +91,6 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
         ],
-            // CircleCI テスト用
-        'circle_testing' => [
-            'driver' => 'mysql',
-            'host' => 'db',
-            'port' => '3306',
-            'database' => 'laravel_local',
-            'username' => 'phper',
-            'password' => 'secret',
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
-            'prefix_indexes' => true,
-            'strict' => true,
-            'engine' => null,
-        ],
-
 
     ],
 
