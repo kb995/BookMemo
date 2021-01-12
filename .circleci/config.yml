@@ -65,9 +65,16 @@ jobs:
     steps:
       - checkout
       - run: sudo composer self-update --1
-      - run: composer install -n --prefer-dist --working-dir=./laravel
-      - run: npm install
-      # - run: npm run dev
+      - run:
+        working_directory: laravel
+        command: composer install -n --prefer-dist
+      - run:
+        working_directory: laravel
+        command: npm install
+      - run:
+        working_directory: laravel
+        command: npm run dev
       - run:
           name: php test
+          working_directory: laravel
           command: vendor/bin/phpunit
