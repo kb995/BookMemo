@@ -66,7 +66,7 @@ jobs:
       - checkout
       - run: sudo composer self-update --1
       - run: composer install -n --prefer-dist --working-dir=./laravel
-      - run: npm ci
+      - run: npm install
       - run: npm run dev
       - run:
           name: php test
