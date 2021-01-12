@@ -65,7 +65,7 @@ jobs:
     steps:
       - checkout
       - run: sudo composer self-update --1
-      - run: composer install -n --prefer-dist --working-dir=./laravel
+      - run: composer install -n --prefer-dist
       - run: npm install
       - run: npm run dev
       - run:
