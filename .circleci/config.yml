@@ -73,7 +73,7 @@ jobs:
       - save_cache:
         key: composer-v1-{{ checksum "composer.lock" }}
         paths:
-          - laravel/vendor
+         - laravel/vendor
       - run:
           working_directory: laravel
           command: npm install
