@@ -89,7 +89,7 @@ jobs:
       - save_cache:
          key: npm-v1-{{ checksum "./laravel/package-lock.json" }}
          paths:
-           - ./laravel/node_modules
+          - ./laravel/node_modules
       - run:
           working_directory: laravel
           command: npm run dev
