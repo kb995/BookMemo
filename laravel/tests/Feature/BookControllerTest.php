@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class BookControllerTest extends TestCase
 {
-    // use RefreshDatabase;
+    use RefreshDatabase;
 
     public function testGuest()
     {
