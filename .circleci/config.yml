@@ -81,13 +81,13 @@ jobs:
          key: npm-v1-{{ checksum "./laravel/package-lock.json" }}
       - run:
          working_directory: laravel
-         name: npm ci
+         name: npm install
          command: |
            if [ ! -d node_modules ]; then
-             npm ci
+             npm install
            fi
       - save_cache:
-         key: npm-v1-{{ checksum ".laravel/package-lock.json" }}
+         key: npm-v1-{{ checksum "./laravel/package-lock.json" }}
          paths:
            - node_modules
       - run:
