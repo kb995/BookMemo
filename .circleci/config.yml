@@ -1,3 +1,4 @@
+#1 =====================================================
 # # PHP CircleCI 2.0 configuration file
 # #
 # # Check https://circleci.com/docs/2.0/language-php/ for more details
@@ -57,6 +58,8 @@
 #       - run: ./vendor/bin/codecept build
 #       - run: ./vendor/bin/codecept run
 
+#2 ========================================
+
 version: 2.1
 jobs:
   build:
@@ -66,11 +69,13 @@ jobs:
       - checkout
       - run: sudo composer self-update --1
       - restore_cache:
+         working_directory: laravel
          key: composer-v1-{{ checksum "composer.lock" }}
       - run:
           working_directory: laravel
           command: composer install -n --prefer-dist
       - save_cache:
+         working_directory: laravel
          key: composer-v1-{{ checksum "composer.lock" }}
          paths:
           - ./laravel/vendor
@@ -84,3 +89,26 @@ jobs:
           name: php test
           working_directory: laravel
           command: vendor/bin/phpunit
+
+#3 ================================================
+# version: 2
+# jobs:
+#   build:
+#     machine: true
+#     steps:
+#       - checkout
+#       - run:
+#           name: Build Docker Image
+#           command: docker-compose build
+#       - run:
+#           name: Run tests
+#           command: |
+#             docker-compose run \
+#             docker-compose exec app bash \
+#             docker-compose
+#             docker-compose run sample-laravel-app /bin/bash -c '\
+#             cp .env.example .env && \
+#             composer install --no-interaction && \
+#             php artisan key:generate && \
+#             ./artisan migrate:refresh && \
+#             ./vendor/bin/phpunit -c phpunit.circle.xml'
