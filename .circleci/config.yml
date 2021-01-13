@@ -83,7 +83,7 @@ jobs:
          working_directory: laravel
          name: npm install
          command: |
-           if [ ! -d node_modules ]; then
+           if [ ! -d ./laravel/node_modules ]; then
              npm install
            fi
       - save_cache:
