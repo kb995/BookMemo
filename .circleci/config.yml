@@ -87,7 +87,8 @@ jobs:
         #     npm install
         #   fi
       - run:
-         name: npm ci
+         working_directory: laravel
+         name: npm install
          command: |
           if [ ! -d node_modules ]; then
             npm install
