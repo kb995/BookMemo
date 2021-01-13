@@ -79,8 +79,15 @@ jobs:
           - ./laravel/vendor
       - restore_cache:
          key: npm-v1-{{ checksum "./laravel/package-lock.json" }}
+      # - run:
+        #  working_directory: laravel
+        #  name: npm install
+        #  command: |
+        #   if [ ! -d node_modules ]; then
+        #     npm install
+        #   fi
       - run:
-         name: npm install
+         name: npm ci
          command: |
           if [ ! -d node_modules ]; then
             npm install
