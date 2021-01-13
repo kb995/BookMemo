@@ -69,10 +69,10 @@ jobs:
       - checkout
       - run: sudo composer self-update --1
       - restore_cache:
-         working_directory: laravel
+        #  working_directory: laravel
          key: composer-v1-{{ checksum "./laravel/composer.lock" }}
       - run:
-          # working_directory: laravel
+          working_directory: laravel
           command: composer install -n --prefer-dist
       - save_cache:
         #  working_directory: laravel
