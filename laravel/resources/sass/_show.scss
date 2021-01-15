@@ -6,12 +6,14 @@
     padding-top: 10px;
 
     &-cover {
-        width: 60px;
-        height: 70px;
+        width: 100px;
+        height: 120px;
+        text-align: center;
+        margin: auto auto;
         overflow: hidden;
         img {
-            width: 60px;
-            height: 70px;
+            width: 100%;
+            height: auto;
         }
     }
 
@@ -57,7 +59,7 @@
     font-weight: bold;
     color: #666;
     position: relative;
-    top: -25px;
+    bottom: 0;
     display: block;
     margin: 0 auto;
 }
@@ -82,7 +84,6 @@
 .memo-form {
     width: 90%;
     margin: 0 auto;
-    padding-top: 120px;
 
     textarea {
         font-size: 1.2em;
@@ -104,10 +105,6 @@
 /**
 * メモ検索
 **/
-
-.memos-wrapper {
-    padding: 30px;
-}
 
 
 .memo-search {
