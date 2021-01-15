@@ -9,22 +9,126 @@
 
 @section('content')
 
-<section class="book-info">
+<section class="book-info py-4">
     <div class="row w-75 mx-auto">
+        <div class="col-md-3">
+            <div class="book-info-cover bg-danger text-center">
+                @if($book->cover)
+                    <img src="../../storage/app/public/books/{{$book->cover}}">
+                @elseif($book->cover == null)
+                    <img src="../storage/app/public/books/default_book.jpg" alt="">
+                @endif
+            </div>
+            <div class="text-center text-white">
+                編集
+            </div>
+            <div class="text-center">
+                @if($book->status === 0)
+                <p class="badge badge-secondary p-2 m-0">ステータス</p>
+                @elseif($book->status === 1)
+                <p class="badge badge-danger p-2 m-0">未読</p>
+                @elseif($book->status === 2)
+                <p class="badge badge-primary p-2 m-0">読書中</p>
+                @elseif($book->status === 3)
+                <p class="badge badge-warning p-2 m-0">積読</p>
+                @elseif($book->status === 4)
+                <p class="badge badge-success p-2 m-0">読了</p>
+                @endif
+            </div>
+        </div>
+        <div class="col-md-9">
+            <h1 class="title">{{ $book->title }}</h1>
+
+            <p class="author mb-0">{{ $book->author }}</p>
+
+            <button class="btn btn-link btn-detail pt-5"
+            data-toggle="collapse"
+            data-target="#input"
+            aria-expand="false"
+            aria-controls="input-1">
+            詳細検索<i class="fas fa-chevron-circle-down pl-2"></i>
+            </button>
+
+
+        </div>
+        <div class="collapse p-3 book-detail" id="input">
+            <div class="book-cover-full">
+                @if($book->cover)
+                    <img src="../../storage/app/public/books/{{$book->cover}}">
+                @elseif($book->cover == null)
+                    <img src="../../storage/app/public/books/default_book.jpg" alt="">
+                @endif
+            </div>
+
+            <dl class="row">
+                <dt class="col-3">タイトル</dt>
+                <dd class="col-9">{{ $book->title }}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-3">著者</dt>
+                <dd class="col-9">{{ $book->author }}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-3">概要</dt>
+                <dd class="col-9 text-justify">{{ $book->description }}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-3">ISBN</dt>
+                <dd class="col-9">{{ $book->isbn }}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-3">出版社</dt>
+                <dd class="col-9">{{ $book->publisher }}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-3">出版日</dt>
+                <dd class="col-9">{{ $book->published_at }}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-3">ページ</dt>
+                <dd class="col-9">{{ $book->page }}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-3">カテゴリー</dt>
+                <dd class="col-9">{{ $book->category }}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-3">評価</dt>
+                <dd class="col-9">
+                    @if($book->rank === 0)
+                    <span class="star-empty">☆☆☆☆☆</span>
+                    @elseif($book->rank === 1)
+                    <span class="star">★</span><span class="star-empty">☆☆☆☆</span>
+                    @elseif($book->rank === 2)
+                    <span class="star">★★</span><span class="star-empty">☆☆☆</span>
+                    @elseif($book->rank === 3)
+                    <span class="star">★★★</span><span class="star-empty">☆☆</span>
+                    @elseif($book->rank === 4)
+                    <dd class="star">★★★★</dd><dd class="star-empty">☆</dd>
+                    @elseif($book->rank === 5)
+                    <span class="star">★★★★★</span>
+                    @endif
+                </dd>
+            </dl>
+        </div>
+    </div>
+</section>
+{{--  <section class="book-info">
+    <div class="row w-75 mx-auto">  --}}
         {{-- カバー --}}
-       <div class="book-info-cover text-center">
+       {{--  <div class="book-info-cover text-center">
         @if($book->cover)
             <img src="../../storage/app/public/books/{{$book->cover}}">
         @elseif($book->cover == null)
             <img src="../storage/app/public/books/default_book.jpg" alt="">
         @endif
-       </div>
+       </div>  --}}
 
-       <p class="py-2">
+       {{--  <p class="py-2">
             <a class="text-white" href="{{ route('books.edit', ['book' => $book]) }}"><i class="far fa-edit text-white pr-1"></i>編集</a>
-       </p>
+       </p>  --}}
        {{-- 書籍詳細 --}}
-       <div class="col-9">
+       {{--  <div class="col-9">
             <h1 class="title">{{ $book->title }}</h1>
             <p class="author mb-0">{{ $book->author }}</p>
 
@@ -111,16 +215,16 @@
             </div>
         </div>
     </div>
-</section>
+</section>  --}}
 
 {{-- パンくずリスト --}}
 {{ Breadcrumbs::render('book.show', $book) }}
 
 {{-- メモフォーム --}}
 <div class="row m-0">
-<div class="col-5">
+<div class="col-md-5">
     @include('layouts.errors')
-    <section class="memo-form">
+    <section class="memo-form pt-md-5 mt-md-5">
         <form method="POST" action="{{ route('books.memos.store', ['book' => $book]) }}">
             @csrf
             <div class="form-group">
@@ -139,7 +243,7 @@
     </section>
 </div>{{-- col-3 --}}
 
-<div class="col-7 memos-wrapper">
+<div class="col-md-7">
 {{-- メモ検索フォーム  --}}
     <div class="memo-search mb-5">
         <form method="POST" action="{{ route('books.show', ['book' => $book]) }}" class="inline memo-search-form">
@@ -149,7 +253,7 @@
             「 {{ Session::get('search') }} 」を表示中 ( {{ $memos->firstItem() }} - {{ $memos->lastItem() }} /  {{ $memos->total() }} 件中 )
             </div>
             @endif
-            <div class="form-group">
+            <div class="form-group pt-3">
                 <input type="text" name="keyword" value="{{ old('keyword') }}" placeholder="メモ内を検索">
                 <input type="submit" class="btn btn-outline-info py-1" value="検索">
             </div>
