@@ -80,7 +80,7 @@
             <div class="book-item mb-5 shadow">
                 <div class="book-item-cover">
                     <a href="{{ route('books.show', ['book' => $book]) }}">
-                        <img class="shadow" src="../storage/app/public/books/{{$book->cover}}">
+                        <img src="{{ asset('/laravel/storage/app/common/default_img/default_user.jpg') }}">
                     </a>
                 </div>
                 <div class="book-item-body">
