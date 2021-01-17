@@ -9,16 +9,15 @@
 
 @section('content')
 
-<section class="">
-    <form method="POST" action="{{ route('books.search') }}" class="text-center my-3">
-        @csrf
-        <div class="form-group ml-3">
-            <label class="shelf-serach-label block" for="keyword">Googleから探す</label>
-            {{-- <input type="hidden" name="page" value="{{ $pages->currentPage ?? 1 }}"> --}}
-            <input class="shelf-serach-input" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワードで検索">
-            <input type="submit" class="shelf-serach-btn" value="検索" style="background-color: blue;">
-        </div>
-    </form>
+<section class="container">
+    <h3 class="mt-5 p-2 text-center" for="keyword">Googleから探す</h3>
+        <form method="POST" action="{{ route('books.search') }}" class="text-center">
+            @csrf
+            <div class="form-group row justify-content-center mx-3 mb-5">
+                <input class="google-search-input col-10 col-md-6" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワードで検索">
+                <input type="submit" class="google-search-btn col-2 col-md-1 ml-1" value="検索">
+            </div>
+        </form>
 </section>
 
 <section class="container bg-white pt-3">
@@ -26,7 +25,6 @@
     @if (Session::has('search'))
     <p class="h4 text-left card p-2 bg-light">
         「 {{ Session::get('search') }} 」の検索結果
-    {{-- 「 {{ Session::get('search') }} 」を表示中 ( {{ $books->firstItem() }} - {{ $books->lastItem() }} /  {{ $books->total() }} 件中 ) --}}
     </p>
     @endif
 
