@@ -14,7 +14,7 @@
         <form method="POST" action="{{ route('books.search') }}" class="text-center">
             @csrf
             <div class="form-group row justify-content-center mx-3 mb-5">
-                <input class="google-search-input col-10 col-md-6" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワードで検索">
+                <input class="google-search-input col-9 col-md-6" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワードで検索">
                 <input type="submit" class="google-search-btn col-2 col-md-1 ml-1" value="検索">
             </div>
         </form>
