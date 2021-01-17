@@ -20,19 +20,19 @@
         </form>
 </section>
 
-<section class="container bg-white pt-3">
+<section class="container bg-white p-5">
 
     @if (Session::has('search'))
-    <p class="h4 text-left card p-2 bg-light">
+    <p class="h4 text-left card p-3 bg-light">
         「 {{ Session::get('search') }} 」の検索結果
     </p>
     @endif
 
     @if(!empty($books))
         @foreach ($books as $book)
-        <div class="mb-4 p-5 w-75 mx-auto search-results border-bottom">
+        <div class="mb-4 p-5 mx-auto search-results border-bottom">
             <div class="row">
-                <div class="col-4 text-center">
+                <div class="col-md-4 text-center">
                     @if (array_key_exists('imageLinks', $book['volumeInfo']))
                     <p>
                         <img class="shadow" src="{{ $book['volumeInfo']['imageLinks']['thumbnail']}}"><br>
@@ -45,28 +45,29 @@
                     </div>
 
                 </div>
-                <div class="col-8 px-2">
+
+                <div class="col-md-8 pl-4">
                     @if (array_key_exists('title', $book['volumeInfo']))
-                    <h3 class="mb-2">{{ $book['volumeInfo']['title'] }}</h3>
+                    <h3 class="mb-4 pt-4 pt-md-0">{{ $book['volumeInfo']['title'] }}</h3>
                     @endif
 
                     @if (array_key_exists('authors', $book['volumeInfo']))
-                        <p class="mb-1"><span class="font-weight-bold">著者:</span> {{ $book['volumeInfo']['authors'][0] }}</p>
+                        <p class="mb-2"><span class="font-weight-bold">著者:</span> {{ $book['volumeInfo']['authors'][0] }}</p>
                     @endif
 
                     @if (array_key_exists('publisher', $book['volumeInfo']))
-                        <p class="mb-1"><span class="font-weight-bold">出版社:</span> {{ $book['volumeInfo']['publisher'] }}</p>
+                        <p class="mb-2"><span class="font-weight-bold">出版社:</span> {{ $book['volumeInfo']['publisher'] }}</p>
                     @endif
 
                     @if (array_key_exists('publishedDate', $book['volumeInfo']))
-                        <p class="mb-1"><span class="font-weight-bold">発売年月: </span>{{ str_replace( '-' , '/' ,$book['volumeInfo']['publishedDate'])}}</p>
+                        <p class="mb-2"><span class="font-weight-bold">発売年月: </span>{{ str_replace( '-' , '/' ,$book['volumeInfo']['publishedDate'])}}</p>
                     @endif
                     @if (array_key_exists('pageCount', $book['volumeInfo']))
-                        <p class="mb-1"><span class="font-weight-bold">ページ: </span>{{ $book['volumeInfo']['pageCount'] }}</p>
+                        <p class="mb-2"><span class="font-weight-bold">ページ: </span>{{ $book['volumeInfo']['pageCount'] }}</p>
                     @endif
 
                     @if (array_key_exists('description', $book['volumeInfo']))
-                        <p class="mb-1 text-justify"><span class="font-weight-bold">概要: </span> {{ $book['volumeInfo']['description'] }}</p>
+                        <p class="mb-2 text-justify"><span class="font-weight-bold">概要: </span> {{ $book['volumeInfo']['description'] }}</p>
                     @endif
                 </div>
             </div>
