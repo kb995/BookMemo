@@ -64,7 +64,7 @@ jobs:
       - run:
           name: deploy
           command: |
-            ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "cd BookQuote && \
+            ssh -o StrictHostKeyChecking=no -t webapp@$HOST_NAME "cd BookQuote && \
               git pull origin develop && \
               composer install -n --no-dev --prefer-dist && \
               npm install && \
