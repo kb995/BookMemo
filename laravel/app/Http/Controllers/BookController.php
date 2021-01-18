@@ -9,6 +9,8 @@ use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\Memo;
 use App\User;
+use Storage;
+
 
 class BookController extends Controller
 {
@@ -126,12 +128,12 @@ class BookController extends Controller
     {
         // 画像アップロード処理
         if(is_uploaded_file($_FILES['cover']['tmp_name'])){
-            $upload_image = $request->file('cover');
-            $file_name = time() . '_' . $upload_image->getClientOriginalName();
-            $path = $upload_image->storeAs('public/books', $file_name);
-            if($path) {
-                $book->cover = $file_name;
-            }
+            $image = $request->file('cover');
+            $path = Storage::disk('s3')->put('/', $image, 'public');
+            $book->cover = Storage::disk('s3')->url($path);;
+            // $file_name = time() . '_' . $upload_image->getClientOriginalName();
+            // $path = $upload_image->storeAs('public/books', $file_name);
+            // e
         }
         // リクエスト取得 & 保存
         $book->fill($request->all());
