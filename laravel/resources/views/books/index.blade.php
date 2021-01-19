@@ -12,14 +12,23 @@
     <div class="user-mask row">
         <h1 class="col-12 text-white h3 my-4 pl-5">{{ $user->name }}の本棚</h1>
         <div class="col-md-3">
-            <div class="user-thumbnail">
+            {{--  <div class="user-thumbnail">
                 @if ($user->thumbnail)
                 <img class="img-thumbnail" src="../storage/app/public/user/{{$user->thumbnail}}" alt="ユーザーアイコン">
                 @else
                 <img class="img-thumbnail" src="../storage/app/common/default_img/default_user.jpg" alt="ユーザーアイコン">
                 @endif
                 <p class="mt-2"><a class="user-edit-link" href="{{ route('user.edit', ['user' => Auth::user()]) }}">{{ $user->name }}さん</a></p>
+            </div>  --}}
+            <div class="user-thumbnail">
+                @if($user->thumbnail === null)
+                    <img class="img-thumbnail" src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/default_user.jpg" alt="ユーザーサムネイル">
+                @else
+                    <img class="img-thumbnail" src="{{ $user->thumbnail }}" alt="ユーザーサムネイル">
+                @endif
+            <p class="mt-2"><a class="user-edit-link" href="{{ route('user.edit', ['user' => Auth::user()]) }}">{{ $user->name }}さん</a></p>
             </div>
+
         </div>
 
         <div class="col-md-3 p-2">
@@ -79,9 +88,19 @@
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="book-item mb-5 shadow">
                 <div class="book-item-cover">
-                    <a href="{{ route('books.show', ['book' => $book]) }}">
-                        <img src="{{ asset('/laravel/storage/app/common/default_img/default_user.jpg') }}">
-                    </a>
+                    @if($book->cover === null)
+                    <div class="">
+                        <a href="{{ route('books.show', ['book' => $book]) }}">
+                            <img src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/book-default.jpg">
+                        </a>
+                    </div>
+                    @else
+                    <div class="">
+                        <a href="{{ route('books.show', ['book' => $book]) }}">
+                            <img src="{{ $book->cover }}">
+                        </a>
+                    </div>
+                    @endif
                 </div>
                 <div class="book-item-body">
                     <p class="title">{{ $book->title }}</p>
