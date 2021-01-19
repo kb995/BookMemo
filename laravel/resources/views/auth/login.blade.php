@@ -3,7 +3,7 @@
 @section('content')
 {{-- <img src="../storage/app/public/common/desk.jpg" alt=""> --}}
 <section
-style="background-image: url('../storage/app/common/default_img/desk.jpg');
+style="background-image: url('https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/desk.jpg');
 background-size: cover;
 padding: 100px 0;
 ">
@@ -22,7 +22,7 @@ padding: 100px 0;
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="test@email.com" required autocomplete="email" autofocus>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="kb995@email.com" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">

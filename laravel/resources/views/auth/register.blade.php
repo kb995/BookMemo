@@ -2,7 +2,7 @@
 
 @section('content')
 <section
-style="background-image: url('../storage/app/common/default_img/desk.jpg');
+style="background-image: url('https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/desk.jpg');
 background-size: cover;
 padding: 100px 0;
 ">
