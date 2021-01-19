@@ -227,21 +227,25 @@ class BookController extends Controller
 
         // 画像アップロード処理
         if(is_uploaded_file($_FILES['cover']['tmp_name'])){
-            $upload_image = $request->file('cover');
-            $file_name = time() . '_' . $upload_image->getClientOriginalName();
-            $path = $upload_image->storeAs('public/books/', $file_name);
-
-            $book->fill($request->all());
-
-            if($path) {
-                $delete_img_path = storage_path() . '/app/public/books/' . $book->cover;
-                \File::delete($delete_img_path);
-                $book->cover = $file_name;
+            $image = $request->file('cover');
+            $path = Storage::disk('s3')->put('/book-cover', $image, 'public');
+            // $upload_image = $request->file('cover');
+            // $file_name = time() . '_' . $upload_image->getClientOriginalName();
+            // $path = $upload_image->storeAs('public/books/', $file_name);
+            if($book->cover) {
+                // $delete_img_path = storage_path() . '/app/public/books/' . $book->cover;
+                // \File::delete($delete_img_path);
+                // $book->cover = $file_name;
+                $disk = Storage::disk('s3');
+                $disk->delete('/book-cover/' . basename($book->cover));
             }
         }
 
-        // リクエスト取得
+        // 保存
+        $book->cover = Storage::disk('s3')->url($path);
+        $book->fill($request->all());
         $book->save();
+
 
         session()->flash('flash_message', '書籍を編集しました');
 
@@ -264,9 +268,11 @@ class BookController extends Controller
             $memo->delete();
         });
         // 書籍画像削除
-        $book_cover = $book->cover;
-        $delete_img_path = storage_path() . '/app/public/' . $book->cover;
-        \File::delete($delete_img_path);
+        $disk = Storage::disk('s3');
+        $disk->delete('/book-cover/' . basename($book->cover));
+        // $book_cover = $book->cover;
+        // $delete_img_path = storage_path() . '/app/public/' . $book->cover;
+        // \File::delete($delete_img_path);
 
         $book->delete();
 
