@@ -12,7 +12,7 @@
 {{ Breadcrumbs::render('book.edit', $book) }}
 
 <section class="conteiner p-3 py-sm-5"
-style="background-image: url('../../../storage/app/common/default_img/desk.jpg');
+style="background-image: url('https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/desk.jpg');
 background-size: cover;
 "
 >
@@ -35,11 +35,12 @@ background-size: cover;
                             <tr>
                                 <th class="text-center"><label for="cover">表紙</label></th>
                                 <td>
-                                    @if($book->cover)
-                                    <img class="p-1 mb-3" id="preview" src="../../../storage/app/public/books/{{$book->cover}}" style="max-width:200px;">
-                                    @elseif($book->cover == null)
-                                    <img class="p-1 mb-3" id="preview" src="../../../storage/app/public/books/default_book.jpg" style="max-width:200px;">
+                                    @if($book->cover === null)
+                                        <img class="p-1 mb-3" id="preview" style="max-width:200px;" src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/book-default.jpg">
+                                    @else
+                                        <img class="p-1 mb-3" id="preview" style="max-width:200px;" src="{{ $book->cover }}">
                                     @endif
+
                                     <input type="file" class="form-control p-1 mb-3" id="cover" name="cover" accept="image/*" value="{{ $book->cover ?? old('cover') }}" onchange="previewImage(this);">
                                 </td>
                             </tr>
