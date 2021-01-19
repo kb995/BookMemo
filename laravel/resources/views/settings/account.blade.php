@@ -12,7 +12,7 @@
 {{ Breadcrumbs::render('user.edit', $user) }}
 
 <section class="conteiner p-3 py-sm-5"
-style="background-image: url('../../../storage/app/public/common/desk.jpg');
+style="background-image: url('https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/desk.jpg');
 background-size: cover;
 "
 >
@@ -34,7 +34,13 @@ background-size: cover;
                                 <tr>
                                     <th class="text-center"><label for="thumb">サムネイル</label></th>
                                     <td>
-                                        <img id="preview" src="" style="max-width:100px;" class="m-3">
+                                        {{--  <img id="preview" src="" style="max-width:100px;" class="m-3">  --}}
+                                        @if($user->thumbnail === null)
+                                        <img class="p-1 mb-3" id="preview" style="max-width:100px;" src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/default_user.jpg">
+                                        @else
+                                        <img class="p-1 mb-3" id="preview" style="max-width:100px;" src="{{ $user->thumbnail }}">
+                                        @endif
+
                                         <input type="file" class="form-control p-1 mb-3" id="thumb" name="thumb" accept="image/*" value="{{ old('thumb')}}" onchange="previewImage(this);">
                                     </td>
                                 </tr>
@@ -55,7 +61,7 @@ background-size: cover;
                         <p class="text-right"><a class="text-danger" data-id="{{ $user->id }}" onclick="deleteUser(this);">退会する &gt;&gt;</a></p>
                     </form>
 
-                    <form class="deleteform" action="{{ route('user.destroy', ['user' => $user->id]) }}" method="post" id="delete_user_{{ $user->id }}">
+                    <form class="deleteform" action="{{ route('user.destroy', ['user' => $user]) }}" method="post" id="delete_user_{{ $user->id }}">
                         @csrf
                         @method('DELETE')
                     </form>

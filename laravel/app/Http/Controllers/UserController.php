@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\User;
+use Storage;
 
 class UserController extends Controller
 {
@@ -36,16 +37,18 @@ class UserController extends Controller
 
         // 画像アップロード
         if(is_uploaded_file($_FILES['thumb']['tmp_name'])){
-            $upload_image = $request->file('thumb');
-            $file_name = time() . '_' . $upload_image->getClientOriginalName();
-            $path = $upload_image->storeAs('public/user', $file_name);
-            if($path) {
-                $user->thumbnail = $file_name;
+            $image = $request->file('thumb');
+            $path = Storage::disk('s3')->put('/user-thumbnail', $image, 'public');
+
+            if($user->thumbnail) {
+                $disk = Storage::disk('s3');
+                $disk->delete('/user-thumbnail/' . basename($user->thumbnail));
             }
         }
         // リクエスト取得
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->thumbnail = Storage::disk('s3')->url($path);
         $user->save();
 
         session()->flash('flash_message', 'アカウント情報を編集しました');
@@ -59,7 +62,12 @@ class UserController extends Controller
         // 認可
         // $this->authorize('delete', $book);
 
-        // 書籍画像削除
+        // サムネイル画像削除
+        if($user->thumbnail) {
+            $disk = Storage::disk('s3');
+            $disk->delete('/user-thumbnail/' . basename($user->thumbnail));
+        }
+
         // $user_cover = $user->thumbnail;
         // $delete_img_path = storage_path() . '/app/public/users' . $user->thumbnail;
         // \File::delete($delete_img_path);

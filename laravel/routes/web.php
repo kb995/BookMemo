@@ -68,7 +68,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], func
     Route::patch('/{user}/edit', 'UserController@update');
 
     // ユーザー削除
-    Route::delete('/{user}/destroy', 'BookController@destroy')->name('destroy');
+    Route::delete('/{user}/destroy', 'UserController@destroy')->name('destroy');
 
 });
 
