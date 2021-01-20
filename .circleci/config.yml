@@ -40,7 +40,7 @@ jobs:
       - save_cache:
          key: npm-v1-{{ checksum "./laravel/package-lock.json" }}
          paths:
-           - node_modules
+           - ./laravel/node_modules
       - run:
           working_directory: laravel
           command: npm run dev
@@ -55,21 +55,57 @@ jobs:
           name: php test
           working_directory: laravel
           command: vendor/bin/phpunit
+
   deploy:
     docker:
       - image: circleci/php:7.3-node-browsers
+    environment:
+      AWS_DEFAULT_REGION: ap-northeast-1
     steps:
-      - add_ssh_keys
+      - checkout
+      - run: sudo composer self-update --1
+      - restore_cache:
+          key: composer-no-dev-v1-{{ checksum "./laravel/composer.lock" }}
       - run:
-          name: deploy
+          working_directory: laravel
+          command: composer install -n --no-dev --prefer-dist
+      - save_cache:
+          key: composer-no-dev-v1-{{ checksum "./laravel/composer.lock" }}
+          paths:
+            - ./laravel/vendor
+      - restore_cache:
+          key: npm-v1-{{ checksum "./laravel/package-lock.json" }}
+      - run:
+          working_directory: laravel
+          name: npm install
           command: |
-            ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "cd BookQuote && \
-              git pull origin develop && \
-              composer install -n --no-dev --prefer-dist && \
-              npm install && \
-              npm run prod && \
-              php artisan migrate --force && \
-              php artisan config:cache"
+            if [ ! -d ./laravel/node_modules ]; then
+              npm install
+            fi
+      - save_cache:
+          key: npm-v1-{{ checksum "./laravel/package-lock.json" }}
+          paths:
+            - ./laravel/node_modules
+      - run:
+          working_directory: laravel
+          command: npm run prod
+      - run:
+          name: archive artifacts
+          command: zip -ryq BookQuote.zip .
+      - aws-cli/install
+      - run:
+          name: upload artifacts to s3
+          command: aws s3 cp BookQuote.zip s3://${AWS_S3_BUCKET_NAME}
+      - run:
+          name: deploy to prod
+          command: |
+            aws deploy create-deployment \
+            --application-name book-quote \
+            --deployment-group-name book-quote \
+            --s3-location bucket=${AWS_S3_BUCKET_NAME},key=BookQuote.zip,bundleType=zip
+orbs:
+  aws-cli: circleci/aws-cli@1.0.0
+
 workflows:
   version: 2
   build_deploy:
