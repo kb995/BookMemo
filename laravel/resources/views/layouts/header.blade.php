@@ -1,6 +1,6 @@
 <header class="bg-dark p-0 px-sm-4 px-md-5">
     <nav class="navbar navbar-expand-sm navbar-light bg-dark">
-        <a class="navbar-brand text-white" href="{{ route('books.index') }}">Book Quote</a>
+        <a class="navbar-brand text-white" href="{{ route('books.index') }}">Book Quote test</a>
 
         @if(Auth::check())
             <div class="navbar-nav mr-auto"></div>
