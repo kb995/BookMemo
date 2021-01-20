@@ -1,0 +1,16 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/webapp/BookQuote
+
+permissions:
+  - object: /home/webapp/BookQuote
+    owner: webapp
+    group: webapp
+
+hooks:
+  AfterInstall:
+    - location: ./scripts/after_install.sh
+      timeout: 60
+      runas: webapp
