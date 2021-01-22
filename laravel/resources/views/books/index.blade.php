@@ -81,11 +81,11 @@
                 <div class="book-item-cover">
                     @if($book->cover === null)
                     <a href="{{ route('books.show', ['book' => $book]) }}">
-                        <img src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/book-default.jpg">
+                        <img class="shadow" src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/book-default.jpg">
                     </a>
                     @else
                     <a href="{{ route('books.show', ['book' => $book]) }}">
-                        <img src="{{ $book->cover }}">
+                        <img class="shadow"  src="{{ $book->cover }}">
                     </a>
                     @endif
                 </div>

@@ -13,7 +13,9 @@
         text-align: center;
 
         img {
-            width: 70px;
+            width: 100px;
+            height: 100px;
+            object-position: 50% 50%
         }
 
         &-link {
