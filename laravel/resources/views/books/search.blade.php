@@ -13,8 +13,8 @@
     <h3 class="mt-5 p-2 text-center" for="keyword">Googleから探す</h3>
         <form method="POST" action="{{ route('books.search') }}" class="text-center">
             @csrf
-            <div class="form-group row justify-content-center mx-3 mb-5">
-                <input class="google-search-input col-9 col-md-6" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワードで検索">
+            <div class="form-group row justify-content-center mb-5">
+                <input class="google-search-input col-9 col-md-5" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="キーワードで検索">
                 <input type="submit" class="google-search-btn col-2 col-md-1 ml-1" value="検索">
             </div>
         </form>
@@ -30,7 +30,7 @@
 
     @if(!empty($books))
         @foreach ($books as $book)
-        <div class="mb-4 p-5 mx-auto search-results border-bottom">
+        <div class="mb-4 p-2 p-md-4 mx-auto search-results border-bottom">
             <div class="row">
                 <div class="col-md-4 text-center">
                     @if (array_key_exists('imageLinks', $book['volumeInfo']))
@@ -39,8 +39,8 @@
                     </p>
                     @endif
 
-                    <div class="w-100 mx-auto mt-4">
-                        <a class="btn mt-5 btn-success w-100" href="{{ route('books.apiRegister', [ 'book_id' => $book['id'] ]) }}">書籍を本棚登録</a>
+                    <div class="w-75 mx-auto">
+                        <a class="btn mt-2 btn-success w-100" href="{{ route('books.apiRegister', [ 'book_id' => $book['id'] ]) }}">書籍を本棚登録</a>
                         <a class="btn mt-3 bg-warning text-dark w-100" href="https://www.amazon.co.jp/s?k={{ $book['volumeInfo']['title'] }}" target="_blank"><i class="fab fa-amazon pr-1"></i>Amazonで購入</a>
                     </div>
 

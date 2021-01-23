@@ -19,10 +19,8 @@
                     <img src="{{ $book->cover }}">
                 @endif
             </div>
-            <div class="text-center">
-                <a class="text-white" href="{{ route('books.edit', ['book' => $book]) }}">編集</a>
-            </div>
-            <div class="text-center">
+
+            <div class="text-center mt-3">
                 @if($book->status === 0)
                 <p class="badge badge-secondary p-2 m-0">ステータス</p>
                 @elseif($book->status === 1)
@@ -35,11 +33,15 @@
                 <p class="badge badge-success p-2 m-0">読了</p>
                 @endif
             </div>
+
+            <div class="text-center mt-2">
+                <a class="text-white" href="{{ route('books.edit', ['book' => $book]) }}">編集</a>
+            </div>
         </div>
         <div class="col-md-9">
-            <h1 class="title">{{ $book->title }}</h1>
+            <h1 class="title my-4 my-md-0">{{ $book->title }}</h1>
 
-            <p class="author mb-0">{{ $book->author }}</p>
+            <p class="author mb-0 text-center text-md-left py-2">{{ $book->author }}</p>
 
             <button class="btn btn-link btn-detail pt-5"
             data-toggle="collapse"
@@ -60,56 +62,58 @@
             @endif
         </div>
 
-        <dl class="row">
-            <dt class="col-3">タイトル</dt>
-            <dd class="col-9 w-100">{{ $book->title }}</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-3">著者</dt>
-            <dd class="col-9">{{ $book->author }}</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-3">概要</dt>
-            <dd class="col-9 text-justify">{{ $book->description }}</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-3">ISBN</dt>
-            <dd class="col-9">{{ $book->isbn }}</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-3">出版社</dt>
-            <dd class="col-9">{{ $book->publisher }}</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-3">出版日</dt>
-            <dd class="col-9">{{ $book->published_at }}</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-3">ページ</dt>
-            <dd class="col-9">{{ $book->page }}</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-3">カテゴリー</dt>
-            <dd class="col-9">{{ $book->category }}</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-3">評価</dt>
-            <dd class="col-9">
-                @if($book->rank === 0)
-                <span class="star-empty">☆☆☆☆☆</span>
-                @elseif($book->rank === 1)
-                <span class="star">★</span><span class="star-empty">☆☆☆☆</span>
-                @elseif($book->rank === 2)
-                <span class="star">★★</span><span class="star-empty">☆☆☆</span>
-                @elseif($book->rank === 3)
-                <span class="star">★★★</span><span class="star-empty">☆☆</span>
-                @elseif($book->rank === 4)
-                <dd class="star">★★★★</dd><dd class="star-empty">☆</dd>
-                @elseif($book->rank === 5)
-                <span class="star">★★★★★</span>
-                @endif
-            </dd>
-        </dl>
+        <div class="w-75 mx-auto">
+            <dl class="row">
+                <dt class="col-3">タイトル</dt>
+                <dd class="col-9 w-100">{{ $book->title }}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-3">著者</dt>
+                <dd class="col-9">{{ $book->author }}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-3">概要</dt>
+                <dd class="col-9 text-justify">{{ $book->description }}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-3">ISBN</dt>
+                <dd class="col-9">{{ $book->isbn }}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-3">出版社</dt>
+                <dd class="col-9">{{ $book->publisher }}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-3">出版日</dt>
+                <dd class="col-9">{{ $book->published_at }}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-3">ページ</dt>
+                <dd class="col-9">{{ $book->page }}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-3">カテゴリー</dt>
+                <dd class="col-9">{{ $book->category }}</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-3">評価</dt>
+                <dd class="col-9">
+                    @if($book->rank === 0)
+                    <span class="star-empty">☆☆☆☆☆</span>
+                    @elseif($book->rank === 1)
+                    <span class="star">★</span><span class="star-empty">☆☆☆☆</span>
+                    @elseif($book->rank === 2)
+                    <span class="star">★★</span><span class="star-empty">☆☆☆</span>
+                    @elseif($book->rank === 3)
+                    <span class="star">★★★</span><span class="star-empty">☆☆</span>
+                    @elseif($book->rank === 4)
+                    <dd class="star">★★★★</dd><dd class="star-empty">☆</dd>
+                    @elseif($book->rank === 5)
+                    <span class="star">★★★★★</span>
+                    @endif
+                </dd>
+            </dl>
+        </div>
     </div>
 </section>
 
