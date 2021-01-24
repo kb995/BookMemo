@@ -19,7 +19,7 @@ class BooksTableSeeder extends Seeder
         DB::table('books')->insert([
         //    [
         //         'title' => '',
-        //         'cover' => '',
+        //         'img_url' => '',
         //         'author' => '',
         //         'isbn' => '',
         //         'page' => '',
@@ -33,7 +33,7 @@ class BooksTableSeeder extends Seeder
         //    ],
         [
         'title' => '嫌われる勇気―――自己啓発の源流「アドラー」の教え',
-        'cover' => 'https://book-quote.s3-ap-northeast-1.amazonaws.com/book-cover/kirawareruyuuki.jpeg',
+        'img_url' => 'https://book-quote.s3-ap-northeast-1.amazonaws.com/book-cover/kirawareruyuuki.jpeg',
         'author' => '岸見 一郎',
         'isbn' => '9784478025819',
         'page' => 294,
@@ -47,7 +47,7 @@ class BooksTableSeeder extends Seeder
         ],
         [
         'title' => '反応しない練習: あらゆる悩みが消えていくブッダの超・合理的な「考え方」',
-        'cover' => 'https://book-quote.s3-ap-northeast-1.amazonaws.com/book-cover/hannnousinairennsyuu.jpeg',
+        'img_url' => 'https://book-quote.s3-ap-northeast-1.amazonaws.com/book-cover/hannnousinairennsyuu.jpeg',
         'author' => '草薙龍瞬',
         'isbn' => '9784041030400',
         'page' => '222',
@@ -61,7 +61,7 @@ class BooksTableSeeder extends Seeder
        ],
        [
         'title' => 'ゼロ秒思考: 頭がよくなる世界一シンプルなトレーニング',
-        'cover' => 'https://book-quote.s3-ap-northeast-1.amazonaws.com/book-cover/zerobyousikou.jpeg',
+        'img_url' => 'https://book-quote.s3-ap-northeast-1.amazonaws.com/book-cover/zerobyousikou.jpeg',
         'author' => '赤羽雄二',
         'isbn' => '9784478020999',
         'page' => '214',
@@ -75,7 +75,7 @@ class BooksTableSeeder extends Seeder
    ],
     [
         'title' => 'チーズはどこへ消えた？',
-        'cover' => 'https://book-quote.s3-ap-northeast-1.amazonaws.com/book-cover/tiizuhadokonikieta.jpeg',
+        'img_url' => 'https://book-quote.s3-ap-northeast-1.amazonaws.com/book-cover/tiizuhadokonikieta.jpeg',
         'author' => 'スペンサー・ジョンソン',
         'isbn' => '',
         'page' => '96',
@@ -89,7 +89,7 @@ class BooksTableSeeder extends Seeder
     ],
     [
         'title' => '時間革命: 1秒もムダに生きるな',
-        'cover' => 'https://book-quote.s3-ap-northeast-1.amazonaws.com/book-cover/jikannkakumei.jpeg',
+        'img_url' => 'https://book-quote.s3-ap-northeast-1.amazonaws.com/book-cover/jikannkakumei.jpeg',
         'author' => '堀江貴文',
         'isbn' => '9784023318304',
         'page' => '235',
@@ -103,7 +103,7 @@ class BooksTableSeeder extends Seeder
     ],
     [
         'title' => 'PHPﾌﾚｰﾑﾜｰｸLaravel入門第2版',
-        'cover' => 'https://book-quote.s3-ap-northeast-1.amazonaws.com/book-cover/laravel_1.jpeg',
+        'img_url' => 'https://book-quote.s3-ap-northeast-1.amazonaws.com/book-cover/laravel_1.jpeg',
         'author' => '掌田津耶乃',
         'isbn' => '9784798060996',
         'page' => '356',
@@ -117,7 +117,7 @@ class BooksTableSeeder extends Seeder
     ],
     [
         'title' => 'PHPフレームワーク Laravel Webアプリケーション開発バージョン5.5LTS対応',
-        'cover' => 'https://book-quote.s3-ap-northeast-1.amazonaws.com/book-cover/laravel_2.jpeg',
+        'img_url' => 'https://book-quote.s3-ap-northeast-1.amazonaws.com/book-cover/laravel_2.jpeg',
         'author' => '竹澤有貴, 栗生和明, 新原雅司, 大村創太郎',
         'isbn' => '9784802611848',
         'page' => '531',
@@ -131,7 +131,7 @@ class BooksTableSeeder extends Seeder
     ],
     // [
     //     'title' => '',
-    //     'cover' => '',
+    //     'img_url' => '',
     //     'author' => '',
     //     'isbn' => '',
     //     'page' => '',
