@@ -67,6 +67,7 @@ class UserController extends Controller
             $disk = Storage::disk('s3');
             $disk->delete('/user-thumbnail/' . basename($user->thumbnail));
         }
+        // 登録書籍画像削除
 
         // $user_cover = $user->thumbnail;
         // $delete_img_path = storage_path() . '/app/public/users' . $user->thumbnail;

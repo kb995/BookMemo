@@ -127,10 +127,10 @@ class BookController extends Controller
     public function store(Book $book, BookRequest $request)
     {
         // 画像アップロード処理
-        if(is_uploaded_file($_FILES['cover']['tmp_name'])){
-            $image = $request->file('cover');
+        if(is_uploaded_file($_FILES['img_url']['tmp_name'])){
+            $image = $request->file('img_url');
             $path = Storage::disk('s3')->put('/book-cover', $image, 'public');
-            $book->cover = Storage::disk('s3')->url($path);
+            $book->img_url = Storage::disk('s3')->url($path);
             // $file_name = time() . '_' . $upload_image->getClientOriginalName();
             // $path = $upload_image->storeAs('public/books', $file_name);
         }
@@ -226,23 +226,23 @@ class BookController extends Controller
         $this->authorize('update', $book);
 
         // 画像アップロード処理
-        if(is_uploaded_file($_FILES['cover']['tmp_name'])){
-            $image = $request->file('cover');
+        if(is_uploaded_file($_FILES['img_url']['tmp_name'])){
+            $image = $request->file('img_url');
             $path = Storage::disk('s3')->put('/book-cover', $image, 'public');
             // $upload_image = $request->file('cover');
             // $file_name = time() . '_' . $upload_image->getClientOriginalName();
             // $path = $upload_image->storeAs('public/books/', $file_name);
-            if($book->cover) {
+            if($book->img_url) {
                 // $delete_img_path = storage_path() . '/app/public/books/' . $book->cover;
                 // \File::delete($delete_img_path);
                 // $book->cover = $file_name;
                 $disk = Storage::disk('s3');
-                $disk->delete('/book-cover/' . basename($book->cover));
+                $disk->delete('/book-cover/' . basename($book->img_url));
             }
         }
 
         // 保存
-        $book->cover = Storage::disk('s3')->url($path);
+        $book->img_url = Storage::disk('s3')->url($path);
         $book->fill($request->all());
         $book->save();
 
@@ -269,7 +269,7 @@ class BookController extends Controller
         });
         // 書籍画像削除
         $disk = Storage::disk('s3');
-        $disk->delete('/book-cover/' . basename($book->cover));
+        $disk->delete('/book-cover/' . basename($book->img_url));
         // $book_cover = $book->cover;
         // $delete_img_path = storage_path() . '/app/public/' . $book->cover;
         // \File::delete($delete_img_path);

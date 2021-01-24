@@ -33,15 +33,16 @@ background-size: cover;
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
-                                <th class="text-center"><label for="cover">表紙</label></th>
+                                <th class="text-center"><label for="img_url">表紙</label></th>
                                 <td>
-                                    @if($book->cover === null)
+                                    @if($book->img_url === null)
                                         <img class="p-1 mb-3" id="preview" style="max-width:200px;" src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/book-default.jpg">
                                     @else
-                                        <img class="p-1 mb-3" id="preview" style="max-width:200px;" src="{{ $book->cover }}">
+                                        <img class="p-1 mb-3" id="preview" style="max-width:200px;" src="{{ $book->img_url }}">
                                     @endif
+                                    {{--  <input type="file" class="form-control p-1 mb-3" id="img_url" name="img_url" accept="image/*" value="{{ old('img_url')}}" onchange="previewImage(this);">  --}}
 
-                                    <input type="file" class="form-control p-1 mb-3" id="cover" name="cover" accept="image/*" value="{{ $book->cover ?? old('cover') }}" onchange="previewImage(this);">
+                                    <input type="file" class="form-control p-1 mb-3" id="img_url" name="img_url" accept="image/*" value="{{ $book->img_url }}" onchange="previewImage(this);">
                                 </td>
                             </tr>
                             <tr>
