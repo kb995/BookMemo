@@ -33,7 +33,7 @@ class BookRequest extends FormRequest
     {
         return [
             'title' => 'タイトル',
-            'cover' => '表紙',
+            'img_url' => '表紙',
             'author' => '著者',
             'isbn' => 'ISBN',
             'page' => 'ページ',

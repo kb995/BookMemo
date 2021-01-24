@@ -21,8 +21,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
     // API検索フォーム
     Route::get('/search', 'BookController@showSearchForm')->name('search');
     Route::post('/search', 'BookController@search');
+
     // 検索から書籍登録
-    Route::get('/api_register/{book_id}', 'BookController@apiRegister')->name('apiRegister');
+    Route::get('/api_create/{book}', 'BookController@showApiCreate')->name('api.create');
     // Route::get('/api', 'BookController@api')->name('api');
 
     // 書籍一覧

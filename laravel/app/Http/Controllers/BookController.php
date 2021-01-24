@@ -127,14 +127,17 @@ class BookController extends Controller
     public function store(Book $book, BookRequest $request)
     {
         // 画像アップロード処理
-        if(is_uploaded_file($_FILES['img_url']['tmp_name'])){
-            $image = $request->file('img_url');
+        if(is_uploaded_file($_FILES['cover']['tmp_name'])){
+            $image = $request->file('cover');
             $path = Storage::disk('s3')->put('/book-cover', $image, 'public');
             $book->img_url = Storage::disk('s3')->url($path);
             // $file_name = time() . '_' . $upload_image->getClientOriginalName();
             // $path = $upload_image->storeAs('public/books', $file_name);
-        }
+        } elseif($request->img_url) {
+            $book->img_url = $request->img_url;
+        }else {
 
+        }
         // リクエスト取得 & 保存
         $book->fill($request->all());
         $book->user_id = Auth::id();
@@ -226,23 +229,23 @@ class BookController extends Controller
         $this->authorize('update', $book);
 
         // 画像アップロード処理
-        if(is_uploaded_file($_FILES['img_url']['tmp_name'])){
-            $image = $request->file('img_url');
+        if(is_uploaded_file($_FILES['cover']['tmp_name'])){
+            $image = $request->file('cover');
             $path = Storage::disk('s3')->put('/book-cover', $image, 'public');
             // $upload_image = $request->file('cover');
             // $file_name = time() . '_' . $upload_image->getClientOriginalName();
             // $path = $upload_image->storeAs('public/books/', $file_name);
-            if($book->img_url) {
+            if($book->cover) {
                 // $delete_img_path = storage_path() . '/app/public/books/' . $book->cover;
                 // \File::delete($delete_img_path);
                 // $book->cover = $file_name;
                 $disk = Storage::disk('s3');
-                $disk->delete('/book-cover/' . basename($book->img_url));
+                $disk->delete('/book-cover/' . basename($book->cover));
             }
         }
 
         // 保存
-        $book->img_url = Storage::disk('s3')->url($path);
+        $book->cover = Storage::disk('s3')->url($path);
         $book->fill($request->all());
         $book->save();
 
@@ -269,7 +272,7 @@ class BookController extends Controller
         });
         // 書籍画像削除
         $disk = Storage::disk('s3');
-        $disk->delete('/book-cover/' . basename($book->img_url));
+        $disk->delete('/book-cover/' . basename($book->cover));
         // $book_cover = $book->cover;
         // $delete_img_path = storage_path() . '/app/public/' . $book->cover;
         // \File::delete($delete_img_path);
@@ -314,31 +317,40 @@ class BookController extends Controller
 
         return view('books.search', compact('books'));
     }
-    public function apiRegister(string $book_id, Book $book) {
+
+    public function showApiCreate($book) {
+        dd($book);
         $url = "https://www.googleapis.com/books/v1/volumes?country=JP&maxResults=1&orderBy=relevance&q=${book_id}";
         $json = file_get_contents($url);
         $data = json_decode($json, true);
-        $data = $data['items'][0]['volumeInfo'];
-
-        // $url = $data['imageLinks']['thumbnail'];
+        $result = $data['items'][0]['volumeInfo'];
+        // dd($result);
+        $img = $result['imageLinks']['thumbnail'];
+        // dd($img);
         // $img = file_get_contents($url);
+        // $enc_img = base64_encode($img);
+        // $imginfo = getimagesize('data:application/octet-stream;base64,' . $enc_img);
+        // $img_src = 'data:' . $imginfo['mime'] . ';base64,' . $enc_img;
+
         // $imginfo = pathinfo($url);
         // $img_name = time() .'_'. $data['title'];
         // $path = file_put_contents('./../storage/app/public/upload_books/' . $img_name, $img);
 
-        $book->title = $data['title'];
-        $book->author = $data['authors'][0];
-        $book->isbn = $data['industryIdentifiers'][0]['identifier'];
-        $book->page = $data['pageCount'];
-        $book->publisher = $data['publisher'];
-        $book->published_at = $data['publishedDate'];
-        $book->description = $data['description'];
-        $book->user_id = Auth::id();
+        // $book->title = $data['title'];
+        // $book->author = $data['authors'][0];
+        // $book->isbn = $data['industryIdentifiers'][0]['identifier'];
+        // $book->page = $data['pageCount'];
+        // $book->publisher = $data['publisher'];
+        // $book->published_at = $data['publishedDate'];
+        // $book->description = $data['description'];
+        // $book->user_id = Auth::id();
         // $book->cover = $img_link;
-        $book->save();
+        // $book->save();
 
-        session()->flash('flash_message', '書籍を登録しました');
+        // session()->flash('flash_message', '書籍を登録しました');
 
-        return redirect()->route('books.show', ['book' => $book]);
+        return view('books.api_register', compact('result','img'));
+
+        // return redirect()->route('books.show', ['book' => $book]);
     }
 }
