@@ -13,10 +13,10 @@
     <div class="row w-75 mx-auto">
         <div class="col-md-3">
             <div class="book-info-cover text-center">
-                @if($book->cover === null)
+                @if($book->img_url === null)
                     <img src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/book-default.jpg">
                 @else
-                    <img src="{{ $book->cover }}">
+                    <img src="{{ $book->img_url }}">
                 @endif
             </div>
 
@@ -55,10 +55,10 @@
 
     <div class="collapse p-3 book-detail w-75 mx-auto" id="input">
         <div class="book-cover-full">
-            @if($book->cover === null)
+            @if($book->img_url === null)
                 <img src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/book-default.jpg">
             @else
-                <img src="{{ $book->cover }}">
+                <img src="{{ $book->img_url }}">
             @endif
         </div>
 

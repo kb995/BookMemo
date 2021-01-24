@@ -29,10 +29,10 @@ padding: 100px 0;
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <th class="text-center"><label for="cover">表紙</label></th>
+                                        <th class="text-center"><label for="img_url">表紙</label></th>
                                         <td>
                                             <img id="preview" src="" style="max-width:200px;" class="m-3">
-                                            <input type="file" class="form-control p-1 mb-3" id="cover" name="cover" accept="image/*" value="{{ old('cover')}}" onchange="previewImage(this);">
+                                            <input type="file" class="form-control p-1 mb-3" id="img_url" name="img_url" accept="image/*" value="{{ old('img_url')}}" onchange="previewImage(this);">
                                         </td>
                                     </tr>
                                     <tr>
