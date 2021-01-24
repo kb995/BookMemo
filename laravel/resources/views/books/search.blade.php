@@ -40,10 +40,7 @@
                     @endif
 
                     <div class="w-75 mx-auto">
-                        {{--  <a class="btn mt-2 btn-success w-100" href="{{ route('books.api.create', [ 'book_id' => $book['id'] ]) }}">書籍を本棚登録</a>  --}}
-                        <a href="{{ route('books.show', ['book' => $book]) }}">
-
-                        <a class="btn mt-2 btn-success w-100" href="{{ route('books.api.create', [ 'book' => $book ]) }}">書籍を本棚登録</a>
+                        <a class="btn mt-2 btn-success w-100" href="{{ route('books.api.create', [ 'book_id' => $book['id'] ]) }}">書籍を本棚登録</a>
                         <a class="btn mt-3 bg-warning text-dark w-100" href="https://www.amazon.co.jp/s?k={{ $book['volumeInfo']['title'] }}" target="_blank"><i class="fab fa-amazon pr-1"></i>Amazonで購入</a>
                     </div>
 

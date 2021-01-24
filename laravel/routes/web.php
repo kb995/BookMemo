@@ -23,8 +23,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
     Route::post('/search', 'BookController@search');
 
     // 検索から書籍登録
-    Route::get('/api_create/{book}', 'BookController@showApiCreate')->name('api.create');
-    // Route::get('/api', 'BookController@api')->name('api');
+    Route::get('/api_create/{book_id}', 'BookController@showApiCreate')->name('api.create');
+    Route::post('/api_create', 'BookController@storeApi')->name('api.store');
 
     // 書籍一覧
     Route::get('/', 'BookController@index')->name('index');

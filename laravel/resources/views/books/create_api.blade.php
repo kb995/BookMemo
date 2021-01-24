@@ -19,11 +19,11 @@ padding: 100px 0;
         <div class="col-md-8 col-11">
             <div class="card" style="opacity: 0.95;">
                 <div class="card-header h5">
-                    書籍登録
+                    書籍登録(API)
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('books.store') }}" class="mx-auto" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('books.api.store') }}" class="mx-auto" enctype="multipart/form-data">
                         @include('layouts.errors')
                         @csrf
                             <table class="table table-bordered">
@@ -31,8 +31,8 @@ padding: 100px 0;
                                     <tr>
                                         <th class="text-center"><label for="cover">表紙</label></th>
                                         <td>
-                                            <img id="preview" src="{{ $img }}" style="max-width:200px;" class="m-3">
-                                            <input type="hidden" class="form-control p-1 mb-3" name="img_url" value="{{ $img ?? '' }}">
+                                            <img src="{{ $img }}" style="max-width:200px;" class="m-3">
+                                            <input type="hidden" class="form-control p-1 mb-3" name="img_url" value="{{ $img }}">
                                         </td>
                                     </tr>
                                     <tr>

@@ -127,8 +127,8 @@ class BookController extends Controller
     public function store(Book $book, BookRequest $request)
     {
         // 画像アップロード処理
-        if(is_uploaded_file($_FILES['cover']['tmp_name'])){
-            $image = $request->file('cover');
+        if(is_uploaded_file($_FILES['img_url']['tmp_name'])){
+            $image = $request->file('img_url');
             $path = Storage::disk('s3')->put('/book-cover', $image, 'public');
             $book->img_url = Storage::disk('s3')->url($path);
             // $file_name = time() . '_' . $upload_image->getClientOriginalName();
@@ -318,13 +318,11 @@ class BookController extends Controller
         return view('books.search', compact('books'));
     }
 
-    public function showApiCreate($book) {
-        dd($book);
+    public function showApiCreate(string $book_id) {
         $url = "https://www.googleapis.com/books/v1/volumes?country=JP&maxResults=1&orderBy=relevance&q=${book_id}";
         $json = file_get_contents($url);
         $data = json_decode($json, true);
         $result = $data['items'][0]['volumeInfo'];
-        // dd($result);
         $img = $result['imageLinks']['thumbnail'];
         // dd($img);
         // $img = file_get_contents($url);
@@ -349,8 +347,23 @@ class BookController extends Controller
 
         // session()->flash('flash_message', '書籍を登録しました');
 
-        return view('books.api_register', compact('result','img'));
+        return view('books.create_api', compact('result','img'));
 
         // return redirect()->route('books.show', ['book' => $book]);
+    }
+
+    public function storeApi(Request $request, Book $book) {
+        dd($request->img_url);
+        $book->title = $request->title;
+        $book->author = $request->author;
+        $book->isbn = $request->isbn;
+        $book->page = $request->page;
+        $book->publisher = $request->publisher;
+        $book->published_at = $request->published_at;
+        $book->description = $request->description;
+        $book->user_id = Auth::id();
+        $book->img_url = $request->img_url;
+        $book->save();
+
     }
 }
