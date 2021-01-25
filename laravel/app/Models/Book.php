@@ -49,12 +49,12 @@ class Book extends Model
         return $counts;
     }
 
-     static public function categoryList() {
-        $category = Book::where('user_id', Auth::id())->get();
-        $category_list = $category->unique('category');
+    //  static public function categoryList() {
+    //     $category = Book::where('user_id', Auth::id())->get();
+    //     $category_list = $category->unique('category');
 
-        return $category_list;
-    }
+    //     return $category_list;
+    // }
 
     public function getMemoCountAttribute() {
         $book = Book::find($this->id);

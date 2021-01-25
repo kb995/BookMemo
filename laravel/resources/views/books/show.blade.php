@@ -133,8 +133,8 @@
                 <div class="text-right mt-1">
                     <span class="post_count">残り文字数 <span id="label">1000</span>/1000</span>
                 </div>
-                <label for="tag"></label>
-                <input class="form-control" type="text" name="tag" value="{{ old('tag') }}" placeholder="タグを入力">
+                {{--  <label for="tag"></label>
+                <input class="form-control" type="text" name="tag" value="{{ old('tag') }}" placeholder="タグを入力">  --}}
                 <div class="text-center">
                     <input value="登録" type="submit" class="btn btn-success mt-5 w-100">
                 </div>
@@ -166,7 +166,7 @@
             <li class="nav-item">
                 <a class="nav-link {{ Session::has('tag') ? '': 'active' }}" href="" role="tab" aria-controls="all" aria-selected="true">All</a>
             </li>
-            @if($tags)
+            {{--  @if($tags)
                 @foreach ($tags as $tag)
                 <li class="nav-item">
                     <a href="javascript:tagform{{$tag->tag}}.submit()" class="nav-link {{ Session::get('tag') == $tag->tag ? 'active': '' }}" role="tab" aria-selected="true">{{ $tag->tag }}</a>
@@ -176,7 +176,7 @@
                     <input type="hidden" name="tag" value="{{ $tag->tag }}">
                 </form>
                 @endforeach
-            @endif
+            @endif  --}}
         </ul>
 
     {{--  メモ一覧  --}}
@@ -186,7 +186,7 @@
             <article class="card mb-4 memo-item shadow">
 
                 <div class="card-header text-right p-2">
-                    <span class="inline-block pr-2 text-muted">#{{ $memo->tag }}</span>
+                    {{--  <span class="inline-block pr-2 text-muted">#{{ $memo->tag }}</span>  --}}
                     <a class="inline-block pr-1" href="{{ route('books.memos.edit', ['book' => $book, 'memo' => $memo]) }}"><i class="far fa-edit"></i>編集</a>
                     <a class="text-danger inline-block pr-1" data-id="{{ $memo->id }}" onclick="deleteMemo(this);">
                         <i class="fas fa-trash-alt"></i>削除

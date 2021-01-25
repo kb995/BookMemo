@@ -24,7 +24,7 @@ class CreateBooksTable extends Migration
             $table->string('publisher')->nullable();
             $table->string('published_at')->nullable();
             $table->text('description')->nullable();
-            $table->text('category')->nullable();
+            // $table->text('category')->nullable();
             $table->integer('status')->default(0);
             $table->integer('rank')->default(0);
             $table->date('read_at')->nullable();

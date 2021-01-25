@@ -30,7 +30,7 @@ class BookController extends Controller
         }])->find(Auth::id());
 
         // カテゴリーリスト取得
-        $category_list = Book::categoryList();
+        // $category_list = Book::categoryList();
         // 登録書籍カウントリスト取得
         $book_counts = Book::bookCounts();
         // リクエストを変数に格納
@@ -105,7 +105,7 @@ class BookController extends Controller
             session()->forget(['search']);
         }
 
-        return view('books.index', compact('books', 'user', 'book_counts', 'category_list'));
+        return view('books.index', compact('books', 'user', 'book_counts'));
     }
 
     /**
@@ -164,11 +164,11 @@ class BookController extends Controller
 
         $book = Book::find($book->id);
         // タグ一覧取得
-        $tags = Memo::where('book_id', $book->id)->whereNotNull('tag')
-                ->get('tag')->unique('tag');
+        // $tags = Memo::where('book_id', $book->id)->whereNotNull('tag')
+        //         ->get('tag')->unique('tag');
         // リクエスト取得
         $keyword = $request->keyword;
-        $tag = $request->tag;
+        // $tag = $request->tag;
 
         // キーワード検索
         if(!empty($keyword)) {
@@ -181,14 +181,14 @@ class BookController extends Controller
         }
 
         // タグ検索
-        if(!empty($tag)) {
-            $memos = $book->memos()
-            ->where('tag', $tag)
-            ->orderBy('created_at', 'desc')
-            ->paginate(12);
-            session()->forget(['tag']);
-            session()->put('tag', $tag);
-        }
+        // if(!empty($tag)) {
+        //     $memos = $book->memos()
+        //     ->where('tag', $tag)
+        //     ->orderBy('created_at', 'desc')
+        //     ->paginate(12);
+        //     session()->forget(['tag']);
+        //     session()->put('tag', $tag);
+        // }
 
         // デフォルト時メモ一覧
         if(empty($memos)) {
@@ -196,10 +196,10 @@ class BookController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(12);
             session()->forget(['search']);
-            session()->forget(['tag']);
+            // session()->forget(['tag']);
         }
 
-        return view('books.show', compact('book', 'memos', 'tags'));
+        return view('books.show', compact('book', 'memos'));
     }
 
     /**
