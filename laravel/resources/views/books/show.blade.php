@@ -178,6 +178,11 @@
                 @endforeach
             @endif  --}}
         </ul>
+        <form action="{{ route('books.folders.create') }}" method="POST">
+            @csrf
+            <input type="text" name="folder">
+            <input type="submit" value="作成">
+        </form>
 
     {{--  メモ一覧  --}}
     <div class="tab-content">

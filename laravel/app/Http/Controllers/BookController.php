@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\Memo;
+use App\Models\Folder;
 use App\User;
 use Storage;
 
@@ -31,6 +32,7 @@ class BookController extends Controller
 
         // カテゴリーリスト取得
         // $category_list = Book::categoryList();
+
         // 登録書籍カウントリスト取得
         $book_counts = Book::bookCounts();
         // リクエストを変数に格納
@@ -166,6 +168,11 @@ class BookController extends Controller
         // タグ一覧取得
         // $tags = Memo::where('book_id', $book->id)->whereNotNull('tag')
         //         ->get('tag')->unique('tag');
+
+        // フォルダーリスト取得
+        $folders = Folder::where('user_id', Auth::id())->get();
+        dd($folders);
+
         // リクエスト取得
         $keyword = $request->keyword;
         // $tag = $request->tag;
@@ -199,7 +206,7 @@ class BookController extends Controller
             // session()->forget(['tag']);
         }
 
-        return view('books.show', compact('book', 'memos'));
+        return view('books.show', compact('book', 'memos', 'folders'));
     }
 
     /**
