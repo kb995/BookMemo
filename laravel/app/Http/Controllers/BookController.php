@@ -353,17 +353,25 @@ class BookController extends Controller
     }
 
     public function storeApi(Request $request, Book $book) {
-        dd($request->img_url);
-        $book->title = $request->title;
-        $book->author = $request->author;
-        $book->isbn = $request->isbn;
-        $book->page = $request->page;
-        $book->publisher = $request->publisher;
-        $book->published_at = $request->published_at;
-        $book->description = $request->description;
+
+        // $book->title = $request->title;
+        // $book->author = $request->author;
+        // $book->isbn = $request->isbn;
+        // $book->page = $request->page;
+        // $book->publisher = $request->publisher;
+        // $book->published_at = $request->published_at;
+        // $book->description = $request->description;
+        // $book->img_url = $request->img_url;
+        // $book->user_id = Auth::id();
+        // $book->save();
+
+        $book->fill($request->all());
         $book->user_id = Auth::id();
-        $book->img_url = $request->img_url;
         $book->save();
+
+        session()->flash('flash_message', '書籍を登録しました');
+
+        return redirect()->route('books.show', ['book' => $book]);
 
     }
 }
