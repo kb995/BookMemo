@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\FolderRequest;
 use App\Models\Folder;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +14,7 @@ class FolderController extends Controller
         return view('folders/create');
     }
 
-    public function create(Folder $folder,Request $request)
+    public function create(Folder $folder, FolderRequest $request)
     {
         $folder->name = $request->name;
         $folder->user_id = Auth::id();

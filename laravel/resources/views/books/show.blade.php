@@ -123,8 +123,8 @@
 {{-- メモフォーム --}}
 <div class="row m-0">
 <div class="col-md-5">
-    @include('layouts.errors')
     <section class="memo-form pt-md-5 mt-md-5">
+        @include('layouts.errors')
         <form method="POST" action="{{ route('books.memos.store', ['book' => $book]) }}">
             @csrf
             <div class="form-group">
@@ -133,8 +133,6 @@
                 <div class="text-right mt-1">
                     <span class="post_count"><span id="label">1000</span>/1000</span>
                 </div>
-                {{--  <label for="tag"></label>
-                <input class="form-control" type="text" name="tag" value="{{ old('tag') }}" placeholder="タグを入力">  --}}
                 <div class="text-center">
                     <input value="登録" type="submit" class="btn btn-success mt-5 w-100">
                 </div>
@@ -178,7 +176,6 @@
                 @endforeach
             @endif
             <li class="nav-item">
-                {{--  <a class="nav-link {{ Session::has('current_folder')  ? '': 'active' }}" href="" role="tab" aria-controls="all" aria-selected="true">All</a>  --}}
                 <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-folder-plus"></i></button>
             </li>
         </ul>
