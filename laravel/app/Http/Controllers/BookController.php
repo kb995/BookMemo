@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\Memo;
+use App\Models\Folder;
 use App\User;
 use Storage;
 
@@ -30,7 +31,8 @@ class BookController extends Controller
         }])->find(Auth::id());
 
         // カテゴリーリスト取得
-        $category_list = Book::categoryList();
+        // $category_list = Book::categoryList();
+
         // 登録書籍カウントリスト取得
         $book_counts = Book::bookCounts();
         // リクエストを変数に格納
@@ -105,7 +107,7 @@ class BookController extends Controller
             session()->forget(['search']);
         }
 
-        return view('books.index', compact('books', 'user', 'book_counts', 'category_list'));
+        return view('books.index', compact('books', 'user', 'book_counts'));
     }
 
     /**
@@ -163,12 +165,14 @@ class BookController extends Controller
         $this->authorize('view', $book);
 
         $book = Book::find($book->id);
-        // タグ一覧取得
-        $tags = Memo::where('book_id', $book->id)->whereNotNull('tag')
-                ->get('tag')->unique('tag');
+
+        // フォルダーリスト取得
+        session()->forget(['current_folder']);
+        $folders = Folder::where('user_id', Auth::id())->get();
+
         // リクエスト取得
         $keyword = $request->keyword;
-        $tag = $request->tag;
+        $current_folder = $request->current_folder;
 
         // キーワード検索
         if(!empty($keyword)) {
@@ -180,14 +184,14 @@ class BookController extends Controller
             session()->put('search', $keyword);
         }
 
-        // タグ検索
-        if(!empty($tag)) {
+        // フォルダー選択
+        if(!empty($current_folder)) {
             $memos = $book->memos()
-            ->where('tag', $tag)
+            ->where('folder', $current_folder)
             ->orderBy('created_at', 'desc')
             ->paginate(12);
-            session()->forget(['tag']);
-            session()->put('tag', $tag);
+            session()->forget(['current_folder']);
+            session()->put('current_folder', $current_folder);
         }
 
         // デフォルト時メモ一覧
@@ -196,10 +200,10 @@ class BookController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(12);
             session()->forget(['search']);
-            session()->forget(['tag']);
+            session()->forget(['folder']);
         }
 
-        return view('books.show', compact('book', 'memos', 'tags'));
+        return view('books.show', compact('book', 'memos', 'folders'));
     }
 
     /**

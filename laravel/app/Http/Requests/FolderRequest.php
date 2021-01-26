@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MemoRequest extends FormRequest
+class FolderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,15 @@ class MemoRequest extends FormRequest
     public function rules()
     {
         return [
-            'memo' => 'required|string|max:1000',
+            'folder' => 'required|max:10',
         ];
     }
 
     public function attributes()
     {
         return [
-            'memo' => 'メモ',
+            'folder' => 'フォルダー',
         ];
     }
+
 }

@@ -14,6 +14,10 @@ Route::prefix('login')->name('login.')->group(function () {
 Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], function() {
 
     // ===== Book =====
+    // フォルダー作成
+    Route::get('/folders/create', 'FolderController@showCreateForm')->name('folders.create');
+    Route::post('/folders/create', 'FolderController@create')->name('folders.create');
+
     // 書籍登録
     Route::get('/create', 'BookController@create')->name('create');
     Route::post('/create', 'BookController@store')->name('store');
@@ -32,7 +36,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
     Route::post('/', 'BookController@index')->name('index');
 
     // メモ一覧
-    Route::get('/{book}', 'BookController@show')->name('show');
+    Route::get('/{book}/{folder?}', 'BookController@show')->name('show');
 
     // メモ一覧(検索)
     Route::post('/{book}', 'BookController@show')->name('show');

@@ -123,18 +123,16 @@
 {{-- メモフォーム --}}
 <div class="row m-0">
 <div class="col-md-5">
-    @include('layouts.errors')
     <section class="memo-form pt-md-5 mt-md-5">
+        @include('layouts.errors')
         <form method="POST" action="{{ route('books.memos.store', ['book' => $book]) }}">
             @csrf
             <div class="form-group">
                 <label for="memo"></label>
                 <textarea class="form-control" id="memo" name="memo" rows="4" cols="40" placeholder="読書メモを入力" onkeyup="strLimit(1000);">{{ old('memo') }}</textarea>
                 <div class="text-right mt-1">
-                    <span class="post_count">残り文字数 <span id="label">1000</span>/1000</span>
+                    <span class="post_count"><span id="label">1000</span>/1000</span>
                 </div>
-                <label for="tag"></label>
-                <input class="form-control" type="text" name="tag" value="{{ old('tag') }}" placeholder="タグを入力">
                 <div class="text-center">
                     <input value="登録" type="submit" class="btn btn-success mt-5 w-100">
                 </div>
@@ -162,22 +160,51 @@
 
     <section class="memos">
         {{--  メモタブ  --}}
-        <ul class="nav nav-tabs justify-content-end mb-5" role="tablist">
+        <ul class="nav nav-tabs justify-content-end mb-5">
             <li class="nav-item">
-                <a class="nav-link {{ Session::has('tag') ? '': 'active' }}" href="" role="tab" aria-controls="all" aria-selected="true">All</a>
+                <a class="nav-link {{ Session::has('current_folder')  ? '': 'active' }}" href="" role="tab" aria-controls="all" aria-selected="true">All</a>
             </li>
-            @if($tags)
-                @foreach ($tags as $tag)
+            @if($folders)
+                @foreach ($folders as $folder)
                 <li class="nav-item">
-                    <a href="javascript:tagform{{$tag->tag}}.submit()" class="nav-link {{ Session::get('tag') == $tag->tag ? 'active': '' }}" role="tab" aria-selected="true">{{ $tag->tag }}</a>
+                    <a href="javascript:tagform{{$folder->name}}.submit()" class="nav-link {{ Session::get('current_folder') == $folder->name ? 'active': '' }}">{{ $folder->name }}</a>
                 </li>
-                <form action="{{ route('books.show', ['book' => $book]) }}" method="POST" name="tagform{{$tag->tag}}">
+                <form action="{{ route('books.show', ['book' => $book]) }}" method="POST" name="tagform{{$folder->name}}">
                     @csrf
-                    <input type="hidden" name="tag" value="{{ $tag->tag }}">
+                    <input type="hidden" name="current_folder" value="{{ $folder->name }}">
                 </form>
                 @endforeach
             @endif
+            <li class="nav-item">
+                <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-folder-plus"></i></button>
+            </li>
         </ul>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">フォルダー作成</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('books.folders.create') }}" method="POST" id="folder_create">
+                            @csrf
+                            <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">フォルダー名</label>
+                            <input type="text" name="name" class="form-control" id="recipient-name">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                        <button type="submit" class="btn btn-primary" form="folder_create">作成</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     {{--  メモ一覧  --}}
     <div class="tab-content">
@@ -186,7 +213,7 @@
             <article class="card mb-4 memo-item shadow">
 
                 <div class="card-header text-right p-2">
-                    <span class="inline-block pr-2 text-muted">#{{ $memo->tag }}</span>
+                    {{--  <span class="inline-block pr-2 text-muted">#{{ $memo->tag }}</span>  --}}
                     <a class="inline-block pr-1" href="{{ route('books.memos.edit', ['book' => $book, 'memo' => $memo]) }}"><i class="far fa-edit"></i>編集</a>
                     <a class="text-danger inline-block pr-1" data-id="{{ $memo->id }}" onclick="deleteMemo(this);">
                         <i class="fas fa-trash-alt"></i>削除
@@ -200,7 +227,6 @@
                 <div class="card-body">
                     {{ $memo->memo }}
                 </div>
-
             </article>
             @endforeach
         </div>

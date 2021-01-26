@@ -24,7 +24,7 @@ class MemoController extends Controller
     {
         // リクエスト
         $memo->memo = $request->memo;
-        $memo->tag = $request->tag;
+        // $memo->tag = $request->tag;
         $memo->book_id = $book->id;
         $memo->save();
 
