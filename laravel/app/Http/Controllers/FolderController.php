@@ -15,9 +15,11 @@ class FolderController extends Controller
 
     public function create(Folder $folder,Request $request)
     {
-        $folder->folder = $request->folder;
-        $folder->user_id = 2;
+        $folder->name = $request->name;
+        $folder->user_id = Auth::id();
         $folder->save();
+
+        session()->flash('flash_message', 'フォルダーを作成しました');
 
         return back();
     }
