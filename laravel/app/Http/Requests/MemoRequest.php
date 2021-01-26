@@ -25,7 +25,6 @@ class MemoRequest extends FormRequest
     {
         return [
             'memo' => 'required|string|max:1000',
-            'tag' => 'max:15',
         ];
     }
 
@@ -33,7 +32,6 @@ class MemoRequest extends FormRequest
     {
         return [
             'memo' => 'メモ',
-            'tag' => 'タグ',
         ];
     }
 }
