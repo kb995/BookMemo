@@ -15,8 +15,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
 
     // ===== Book =====
     // フォルダー作成
-    Route::get('/folders/create', 'FolderController@showCreateForm')->name('folders.create');
-    Route::post('/folders/create', 'FolderController@create')->name('folders.create');
+    // Route::get('/folders/create', 'FolderController@showCreateForm')->name('folders.create');
+    Route::post('/folders/store', 'FolderController@store')->name('folders.store');
+    // Route::post('/folders/store', 'FolderController@store')->name('folders.store');
 
     // 書籍登録
     Route::get('/create', 'BookController@create')->name('create');
