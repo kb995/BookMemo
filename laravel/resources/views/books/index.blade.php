@@ -51,7 +51,6 @@
                     <a href="{{ route('books.create') }}" class="btn btn-lg p-3 btn-outline-success d-inline-block col-12 col-md-8 mb-3"><i class="fas fa-pen pr-2"></i>入力して本を登録</a>
                 </div>
             </div>
-
         </div>
     </div>
 </section>

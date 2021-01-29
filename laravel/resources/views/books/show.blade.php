@@ -176,12 +176,13 @@
                 @endforeach
             @endif
             <li class="nav-item">
-                <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-folder-plus"></i></button>
+                <a href="{{ route('books.folders.create', ['book' => $book]) }}" class="btn"><i class="fas fa-folder-plus"></i></a>
+                {{--  <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-folder-plus"></i></button>  --}}
             </li>
         </ul>
 
         {{--  フォルダー追加 モーダル  --}}
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        {{--  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -191,24 +192,22 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('books.folders.create') }}" method="POST" id="folder_create">
+                        <form action="{{ route('books.folders.store') }}" method="POST" id="folder_create">
                             @csrf
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">フォルダー名</label>
                                 <input type="text" name="name" class="form-control" id="recipient-name">
-                                <input type="submit" class="btn btn-primary" form="folder_create" form="folder_create">作成</input>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                                <button type="submit" class="btn btn-primary" form="folder_create">作成</button>
                             </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                        <button type="submit" class="btn btn-primary" form="folder_create">作成</button>
-                    </div>
                 </div>
             </div>
-        </div>
+        </div>  --}}
+
     {{--  メモ一覧  --}}
     <div class="tab-content">
         <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
