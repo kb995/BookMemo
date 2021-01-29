@@ -15,9 +15,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
 
     // ===== Book =====
     // フォルダー作成
-    // Route::get('/folders/create', 'FolderController@showCreateForm')->name('folders.create');
-    Route::post('/folders/store', 'FolderController@store')->name('folders.store');
-    // Route::post('/folders/store', 'FolderController@store')->name('folders.store');
+    Route::get('/folders/create/{book}', 'FolderController@showCreateForm')->name('folders.create');
+    Route::post('/folders/store/{book}', 'FolderController@store')->name('folders.store');
 
     // 書籍登録
     Route::get('/create', 'BookController@create')->name('create');
@@ -37,7 +36,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
     Route::post('/', 'BookController@index')->name('index');
 
     // メモ一覧
-    Route::get('/{book}/{folder?}', 'BookController@show')->name('show');
+    Route::get('/{book}', 'BookController@show')->name('show');
 
     // メモ一覧(検索)
     Route::post('/{book}', 'BookController@show')->name('show');
