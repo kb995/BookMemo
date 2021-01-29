@@ -129,10 +129,17 @@
             @csrf
             <div class="form-group">
                 <label for="memo"></label>
-                <textarea class="form-control" id="memo" name="memo" rows="4" cols="40" placeholder="読書メモを入力" onkeyup="strLimit(1000);">{{ old('memo') }}</textarea>
+                <textarea class="form-control" id="memo" name="memo" rows="4" cols="70" placeholder="読書メモを入力" onkeyup="strLimit(1000);">{{ old('memo') }}</textarea>
                 <div class="text-right mt-1">
                     <span class="post_count"><span id="label">1000</span>/1000</span>
                 </div>
+                <label for="memo"></label>
+                <select class="form-control" name="folder" id="memo">
+                    <option class="" value="" default>フォルダーを選択</option>
+                    @foreach ($folders as $folder)
+                        <option value="{{ $folder->name }}">{{ $folder->name }}</option>
+                    @endforeach
+                </select>
                 <div class="text-center">
                     <input value="登録" type="submit" class="btn btn-success mt-5 w-100">
                 </div>
@@ -213,14 +220,12 @@
         <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
             @foreach ($memos as $memo)
             <article class="card mb-4 memo-item shadow">
-
                 <div class="card-header text-right p-2">
-                    {{--  <span class="inline-block pr-2 text-muted">#{{ $memo->tag }}</span>  --}}
+                    <span class="inline-block pr-1">{{ $memo->created_at->format('Y/m/d H:i') }}</span>
                     <a class="inline-block pr-1" href="{{ route('books.memos.edit', ['book' => $book, 'memo' => $memo]) }}"><i class="far fa-edit"></i>編集</a>
                     <a class="text-danger inline-block pr-1" data-id="{{ $memo->id }}" onclick="deleteMemo(this);">
                         <i class="fas fa-trash-alt"></i>削除
                     </a>
-                    <span class="inline-block pr-1">{{ $memo->created_at->format('Y/m/d H:i') }}</span>
                     <form class="delete-form inline-block" action="{{ route('books.memos.destroy', ['book' => $book, 'memo' => $memo]) }}" method="post" id="delete_memo_{{ $memo->id }}">
                         @csrf
                         @method('DELETE')
