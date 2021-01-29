@@ -219,20 +219,25 @@
     <div class="tab-content">
         <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
             @foreach ($memos as $memo)
-            <article class="card mb-4 memo-item shadow">
-                <div class="card-header text-right p-2">
-                    <span class="inline-block pr-1">{{ $memo->created_at->format('Y/m/d H:i') }}</span>
-                    <a class="inline-block pr-1" href="{{ route('books.memos.edit', ['book' => $book, 'memo' => $memo]) }}"><i class="far fa-edit"></i>編集</a>
-                    <a class="text-danger inline-block pr-1" data-id="{{ $memo->id }}" onclick="deleteMemo(this);">
-                        <i class="fas fa-trash-alt"></i>削除
-                    </a>
-                    <form class="delete-form inline-block" action="{{ route('books.memos.destroy', ['book' => $book, 'memo' => $memo]) }}" method="post" id="delete_memo_{{ $memo->id }}">
-                        @csrf
-                        @method('DELETE')
-                    </form>
-                </div>
+            <article class="card mb-5 memo-item shadow">
                 <div class="card-body">
                     {{ $memo->memo }}
+                </div>
+                <div class="card-footer p-2">
+                    <div class="d-flex justify-content-between">
+                        <span class="badge badge-secondary ml-2" style="line-height: 1.8;">{{ $memo->folder }}</span>
+                        <div>
+                            <span class="inline-block pr-3">{{ $memo->created_at->format('Y/m/d H:i') }}</span>
+                            <a class="inline-block pr-3" href="{{ route('books.memos.edit', ['book' => $book, 'memo' => $memo]) }}"><i class="far fa-edit"></i>編集</a>
+                            <a class="text-danger inline-block pr-3" data-id="{{ $memo->id }}" onclick="deleteMemo(this);">
+                                <i class="fas fa-trash-alt"></i>削除
+                            </a>
+                            <form class="delete-form inline-block" action="{{ route('books.memos.destroy', ['book' => $book, 'memo' => $memo]) }}" method="post" id="delete_memo_{{ $memo->id }}">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </article>
             @endforeach

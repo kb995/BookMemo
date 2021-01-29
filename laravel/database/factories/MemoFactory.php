@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Memo::class, function (Faker $faker) {
     return [
         'memo' => $faker->sentence,
-        // 'tag' => 'タグ',
+        'folder' => null,
         'book_id' => 1,
     ];
 });
