@@ -129,7 +129,7 @@
             @csrf
             <div class="form-group">
                 <label for="memo"></label>
-                <textarea class="form-control" id="memo" name="memo" rows="4" cols="70" placeholder="読書メモを入力" onkeyup="strLimit(1000);">{{ old('memo') }}</textarea>
+                <textarea class="form-control p-3" id="memo" name="memo" rows="20" cols="10" placeholder="読書メモを入力" onkeyup="strLimit(1000);">{{ old('memo') }}</textarea>
                 <div class="text-right mt-1">
                     <span class="post_count"><span id="label">1000</span>/1000</span>
                 </div>
@@ -225,7 +225,9 @@
                 </div>
                 <div class="card-footer p-2">
                     <div class="d-flex justify-content-between">
-                        <span class="badge badge-secondary ml-2" style="line-height: 1.8;">{{ $memo->folder }}</span>
+                        <div>
+                            <span class="badge badge-secondary ml-2" style="line-height: 1.8;">{{ $memo->folder }}</span>
+                        </div>
                         <div>
                             <span class="inline-block pr-3">{{ $memo->created_at->format('Y/m/d H:i') }}</span>
                             <a class="inline-block pr-3" href="{{ route('books.memos.edit', ['book' => $book, 'memo' => $memo]) }}"><i class="far fa-edit"></i>編集</a>
