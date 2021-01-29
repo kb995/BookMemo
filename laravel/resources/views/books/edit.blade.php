@@ -77,10 +77,6 @@ background-size: cover;
                                 </td>
                             </tr>
                             <tr>
-                                <th class="text-center"><label for="category">カテゴリー</label></th>
-                                <td><input type="text" class="form-control" id="category" name="category" value="{{ $book->category ?? old('category') }}"></td>
-                            </tr>
-                            <tr>
                                 <th class="text-center"><label for="rank">評価</label></th>
                                 <td>
                                     <select name="rank" class="form-control" id="rank" value="{{ old('rank') }}">

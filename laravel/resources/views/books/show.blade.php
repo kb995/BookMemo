@@ -92,10 +92,6 @@
                 <dd class="col-9">{{ $book->page }}</dd>
             </dl>
             <dl class="row">
-                <dt class="col-3">カテゴリー</dt>
-                <dd class="col-9">{{ $book->category }}</dd>
-            </dl>
-            <dl class="row">
                 <dt class="col-3">評価</dt>
                 <dd class="col-9">
                     @if($book->rank === 0)
