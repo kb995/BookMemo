@@ -67,10 +67,6 @@ padding: 100px 0;
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th class="text-center"><label for="category">カテゴリー</label></th>
-                                        <td><input type="text" class="form-control" id="category" name="category" value="{{ old('category') }}"></td>
-                                    </tr>
-                                    <tr>
                                         <th class="text-center"><label for="status">ステータス</label></th>
                                         <td>
                                             <select name="status" class="form-control" id="status" value="{{ old('status') }}">
