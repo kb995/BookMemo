@@ -20,10 +20,11 @@
             </div>
         </div>
     </form>  --}}
-    <form action="post" action="{{ route('books.folders.store') }}">
+    {{--  {{ $book->title }}  --}}
+    <form method="post" action="{{ route('books.folders.store', ['book' => $book]) }}">
         @csrf
         <input type="text" name="name" >
-        <input type="submit"z>
+        <input type="submit">
     </form>
 </section>
 
