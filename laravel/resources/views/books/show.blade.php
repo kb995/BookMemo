@@ -13,7 +13,7 @@
         <div class="col-md-3">
             <div class="book-info-cover text-center">
                 @if($book->img_url === null)
-                    <img src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/book-default.jpg">
+                    <img src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/default_cover.png">
                 @else
                     <img src="{{ $book->img_url }}">
                 @endif
@@ -55,7 +55,7 @@
     <div class="collapse p-3 book-detail w-75 mx-auto" id="input">
         <div class="book-cover-full">
             @if($book->img_url === null)
-                <img src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/book-default.jpg">
+                <img src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/default_cover.png">
             @else
                 <img src="{{ $book->img_url }}">
             @endif
