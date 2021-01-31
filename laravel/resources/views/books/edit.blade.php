@@ -35,7 +35,7 @@ background-size: cover;
                                 <th class="text-center"><label for="img_url">表紙</label></th>
                                 <td>
                                     @if($book->img_url === null)
-                                        <img class="p-1 mb-3" id="preview" style="max-width:200px;" src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/book-default.jpg">
+                                        <img class="p-1 mb-3" id="preview" style="max-width:200px;" src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/default_cover.png">
                                     @else
                                         <img class="p-1 mb-3" id="preview" style="max-width:200px;" src="{{ $book->img_url }}">
                                     @endif

@@ -76,15 +76,19 @@
         @foreach( $books as $book)
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="book-item mb-5 shadow">
-                <div class="book-item-cover">
+                <div class="book-item-cover border shadow">
                     @if($book->img_url === null)
-                    <a href="{{ route('books.show', ['book' => $book]) }}">
-                        <img class="shadow fadein" src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/book-default.jpg">
-                    </a>
+                    <div>
+                        <a href="{{ route('books.show', ['book' => $book]) }}">
+                            <img src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/default_cover.png">
+                        </a>
+                    </div>
                     @else
-                    <a href="{{ route('books.show', ['book' => $book]) }}">
-                        <img class="shadow fadein"  src="{{ $book->img_url }}">
-                    </a>
+                    <div>
+                        <a href="{{ route('books.show', ['book' => $book]) }}">
+                            <img src="{{ $book->img_url }}">
+                        </a>
+                    </div>
                     @endif
                 </div>
                 <div class="book-item-body">
