@@ -30,9 +30,6 @@ class BookController extends Controller
             $query->where('user_id', Auth::id());
         }])->find(Auth::id());
 
-        // カテゴリーリスト取得
-        // $category_list = Book::categoryList();
-
         // 登録書籍カウントリスト取得
         $book_counts = Book::bookCounts();
         // リクエストを変数に格納
@@ -54,50 +51,6 @@ class BookController extends Controller
             session()->forget(['search']);
             session()->put('search', $keyword);
         }
-
-        // カテゴリー検索
-        // if(!empty($category)) {
-        //     $books = $user->books()
-        //     ->where('category', $category)
-        //     ->orderBy('created_at', 'desc')
-        //     ->paginate(12);
-
-        //     session()->forget(['search']);
-        //     session()->put('search', $category);
-        // }
-
-        // 著者検索
-        // if(!empty($author)) {
-        //     $books = $user->books()
-        //     ->where('author', 'like' , '%'.$author.'%')
-        //     ->orderBy('created_at', 'desc')
-        //     ->paginate(12);
-
-        //     session()->forget(['search']);
-        //     session()->put('search', $author);
-        // }
-
-        // ISBN検索
-        // if(!empty($isbn)) {
-        //     $books = $user->books()
-        //     ->where('isbn', $isbn)
-        //     ->orderBy('created_at', 'desc')
-        //     ->paginate(12);
-
-        //     session()->forget(['search']);
-        //     session()->put('search', $isbn);
-        // }
-
-        // 書籍状態検索
-        // if(!empty($status)) {
-        //     $books = $user->books()
-        //     ->where('status', $status)
-        //     ->orderBy('created_at', 'desc')
-        //     ->paginate(12);
-
-        //     session()->forget(['search']);
-        //     session()->put('search', $status);
-        // }
 
         // デフォルト時の書籍一覧
         if(empty($books)) {
@@ -159,6 +112,7 @@ class BookController extends Controller
      * TODO: Request => MemoRequest
      * TODO: 検索機能をメソッドに
      */
+
     public function show(Book $book, Request $request)
     {
         // 認可
@@ -236,13 +190,7 @@ class BookController extends Controller
         if(is_uploaded_file($_FILES['cover']['tmp_name'])){
             $image = $request->file('cover');
             $path = Storage::disk('s3')->put('/book-cover', $image, 'public');
-            // $upload_image = $request->file('cover');
-            // $file_name = time() . '_' . $upload_image->getClientOriginalName();
-            // $path = $upload_image->storeAs('public/books/', $file_name);
             if($book->cover) {
-                // $delete_img_path = storage_path() . '/app/public/books/' . $book->cover;
-                // \File::delete($delete_img_path);
-                // $book->cover = $file_name;
                 $disk = Storage::disk('s3');
                 $disk->delete('/book-cover/' . basename($book->cover));
             }
@@ -277,10 +225,6 @@ class BookController extends Controller
         // 書籍画像削除
         $disk = Storage::disk('s3');
         $disk->delete('/book-cover/' . basename($book->cover));
-        // $book_cover = $book->cover;
-        // $delete_img_path = storage_path() . '/app/public/' . $book->cover;
-        // \File::delete($delete_img_path);
-
         $book->delete();
 
         session()->flash('flash_message', '書籍を削除しました');
@@ -304,9 +248,7 @@ class BookController extends Controller
         // $disp_limit = 2;
         // $page = 1;
         // $books = collect($json_decode['items']);
-        // dd(collect($books['items']));
 
-        // dd(collect($books['items']));
 
         // $books = new LengthAwarePaginator(
         //     $books->forPage($request->page, 5),
@@ -328,46 +270,11 @@ class BookController extends Controller
         $data = json_decode($json, true);
         $result = $data['items'][0]['volumeInfo'];
         $img = $result['imageLinks']['thumbnail'];
-        // dd($img);
-        // $img = file_get_contents($url);
-        // $enc_img = base64_encode($img);
-        // $imginfo = getimagesize('data:application/octet-stream;base64,' . $enc_img);
-        // $img_src = 'data:' . $imginfo['mime'] . ';base64,' . $enc_img;
-
-        // $imginfo = pathinfo($url);
-        // $img_name = time() .'_'. $data['title'];
-        // $path = file_put_contents('./../storage/app/public/upload_books/' . $img_name, $img);
-
-        // $book->title = $data['title'];
-        // $book->author = $data['authors'][0];
-        // $book->isbn = $data['industryIdentifiers'][0]['identifier'];
-        // $book->page = $data['pageCount'];
-        // $book->publisher = $data['publisher'];
-        // $book->published_at = $data['publishedDate'];
-        // $book->description = $data['description'];
-        // $book->user_id = Auth::id();
-        // $book->cover = $img_link;
-        // $book->save();
-
-        // session()->flash('flash_message', '書籍を登録しました');
 
         return view('books.create_api', compact('result','img'));
-
-        // return redirect()->route('books.show', ['book' => $book]);
     }
 
     public function storeApi(Request $request, Book $book) {
-
-        // $book->title = $request->title;
-        // $book->author = $request->author;
-        // $book->isbn = $request->isbn;
-        // $book->page = $request->page;
-        // $book->publisher = $request->publisher;
-        // $book->published_at = $request->published_at;
-        // $book->description = $request->description;
-        // $book->img_url = $request->img_url;
-        // $book->user_id = Auth::id();
-        // $book->save();
 
         $book->fill($request->all());
         $book->user_id = Auth::id();
