@@ -27,5 +27,21 @@ class FolderController extends Controller
         return redirect()->route('books.show', ['book' => $book]);
     }
 
+    public function destroy(Book $book, Folder $folder)
+    {
+
+        $current_folder = session()->get('current_folder');
+        $folder = Folder::where('name', $current_folder)->where('user_id', Auth::id())->delete();
+
+        $memos = $book->memos()->where('folder', $current_folder)->get();
+
+        foreach($memos as $memo) {
+            $memo->folder = '';
+            $memo->save();
+        }
+        session()->flash('flash_message', 'フォルダーを削除しました');
+        return redirect()->route('books.show', ['book' => $book]);
+
+    }
 
 }

@@ -162,7 +162,7 @@
 
     <section class="memos">
         {{--  メモタブ  --}}
-        <ul class="nav nav-tabs justify-content-end mb-5">
+        <ul class="nav nav-tabs justify-content-end">
             <li class="nav-item">
                 <a class="nav-link {{ Session::has('current_folder')  ? '': 'active' }}" href="" role="tab" aria-controls="all" aria-selected="true">All</a>
             </li>
@@ -182,6 +182,24 @@
                 {{--  <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-folder-plus"></i></button>  --}}
             </li>
         </ul>
+
+        <form class="text-right" method="POST" action="{{ route('books.folders.destroy', ['book' => $book]) }}">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn"><i class="fas fa-folder-minus"></i></button>
+        </form>
+        {{--  <div class="text-right">
+            <a href="{{ route('books.folders.destroy', ['book' => $book]) }}" class="btn text-right"><i class="fas fa-folder-minus"></i></a>
+        </div>  --}}
+
+        {{--  <a class="text-danger inline-block pr-3" data-id="{{ $memo->id }}" onclick="deleteMemo(this);">
+            <i class="fas fa-trash-alt"></i>削除
+        </a>
+        <form class="delete-form inline-block" action="{{ route('books.memos.destroy', ['book' => $book, 'memo' => $memo]) }}" method="post" id="delete_memo_{{ $memo->id }}">
+            @csrf
+            @method('DELETE')
+        </form>  --}}
+
 
         {{--  フォルダー追加 モーダル  --}}
         {{--  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
