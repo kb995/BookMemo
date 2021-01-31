@@ -18,6 +18,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
     Route::get('/folders/create/{book}', 'FolderController@showCreateForm')->name('folders.create');
     Route::post('/folders/store/{book}', 'FolderController@store')->name('folders.store');
 
+    // フォルダー削除
+    Route::delete('{book}/folders/destroy', 'FolderController@destroy')->name('folders.destroy');
+
     // 書籍登録
     Route::get('/create', 'BookController@create')->name('create');
     Route::post('/create', 'BookController@store')->name('store');
