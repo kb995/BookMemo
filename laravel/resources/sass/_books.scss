@@ -80,15 +80,15 @@
 
         &-cover {
             width: 180px;
-            height: 280px!important;
-            margin: 0 auto;
-            overflow: hidden;
+            height: 250px!important;
+            margin: 10px auto;
+            // overflow: hidden;
             display: inline-block;
 
             img {
                 width: 100%;
                 height: 100%;
-                margin: 15% 5%;
+                margin: 20% 5%;
                 overflow: hidden;
                 object-position: 50% 50%
                 }
@@ -99,6 +99,7 @@
         }
 
         &-body {
+            margin: 50px 0;
             .title {
                     font-size: 1.2em;
                     font-weight: bold;
