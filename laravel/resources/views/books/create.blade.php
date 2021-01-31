@@ -3,8 +3,7 @@
 @section('title', '書籍登録')
 
 @section('styles')
-    {{-- @include('libs.flatpickr.styles') --}}
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"> --}}
+
 @endsection
 
 @section('content')
