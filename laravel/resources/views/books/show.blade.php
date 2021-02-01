@@ -11,7 +11,7 @@
 <section class="book-info py-4">
     <div class="row w-75 mx-auto">
         <div class="col-md-3">
-            <div class="book-info-cover text-center">
+            <div class="book-info-cover text-center fadein">
                 @if($book->img_url === null)
                     <img src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/default_cover.png">
                 @else
@@ -53,7 +53,7 @@
     </div>
 
     <div class="collapse p-3 book-detail w-75 mx-auto" id="input">
-        <div class="book-cover-full">
+        <div class="book-cover-full fadein">
             @if($book->img_url === null)
                 <img src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/default_cover.png">
             @else

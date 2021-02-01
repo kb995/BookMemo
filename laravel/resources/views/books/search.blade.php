@@ -34,7 +34,7 @@
                 <div class="col-md-4 text-center">
                     @if (array_key_exists('imageLinks', $book['volumeInfo']))
                     <p>
-                        <img class="shadow" src="{{ $book['volumeInfo']['imageLinks']['thumbnail']}}"><br>
+                        <img class="shadow fadein" src="{{ $book['volumeInfo']['imageLinks']['thumbnail']}}"><br>
                     </p>
                     @endif
 

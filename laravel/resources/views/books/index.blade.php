@@ -76,7 +76,7 @@
         @foreach( $books as $book)
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="book-item mb-5 shadow">
-                <div class="book-item-cover border shadow">
+                <div class="book-item-cover shadow fadein">
                     @if($book->img_url === null)
                     <div>
                         <a href="{{ route('books.show', ['book' => $book]) }}">
