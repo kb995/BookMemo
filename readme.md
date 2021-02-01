@@ -21,19 +21,16 @@
 * フロントエンド
     * マークアップ( HTML / CSS / SASS / Bootstrap )
     * jQuery 3.3.1
-
 * バックエンド
     * PHP 7.3.23
     * Laravel 6.19.1
     * mysql 5.5.68
-
 * インフラ
     * AWS( VPC / EC2 / RDS / Route53 / CodeDeploy / S3 / IAM / CloudWatch)
     * Docker(開発) 19.03.12
     * DockerCompose(開発) 1.27.2,
     * CircleCI/CD 2.1
     * nginx 1.18.0
-
 * 他ツール
     * VisualStudioCode
     * iTerm
