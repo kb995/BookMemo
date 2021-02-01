@@ -19,7 +19,6 @@ class MemoController extends Controller
      * @param App\Models\Memo
      * @param App\Http\Requests\MemoRequest;
      *
-     * todo: リクエストをfillに
      */
     public function store(Book $book, Memo $memo, MemoRequest $request)
     {
@@ -49,7 +48,7 @@ class MemoController extends Controller
     }
 
     /**
-     * メモを修正する
+     * メモを編集する
      *
      * @param App\Http\Requests\MemoRequest
      * @param App\Models\Book
