@@ -26,10 +26,6 @@ class UserController extends Controller
      *
      * @param App\Http\Requests\UserRequest;
      *
-     * todo: 画像アップロードをメソッドに
-     *       画像パス修正
-     *       リクエストをfillに
-     *
      */
     public function update(UserRequest $request, User $user)
     {
@@ -45,6 +41,7 @@ class UserController extends Controller
                 $disk->delete('/user-thumbnail/' . basename($user->thumbnail));
             }
         }
+
         // リクエスト取得
         $user->name = $request->name;
         $user->email = $request->email;
@@ -56,7 +53,12 @@ class UserController extends Controller
         return redirect()->route('books.index');
     }
 
-
+    /**
+     * 退会する
+     *
+     * @param  App\User;
+     *
+     */
     public function destroy(User $user)
     {
         // 認可
@@ -67,14 +69,8 @@ class UserController extends Controller
             $disk = Storage::disk('s3');
             $disk->delete('/user-thumbnail/' . basename($user->thumbnail));
         }
-        // 登録書籍画像削除
-
-        // $user_cover = $user->thumbnail;
-        // $delete_img_path = storage_path() . '/app/public/users' . $user->thumbnail;
-        // \File::delete($delete_img_path);
 
         $user->delete();
-
         session()->flash('flash_message', 'ユーザーを削除しました');
 
         return redirect()->route('login');

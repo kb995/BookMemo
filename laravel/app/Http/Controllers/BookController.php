@@ -19,9 +19,8 @@ class BookController extends Controller
     /**
      * 書籍一覧を表示する
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      *
-     * TODO:検索機能をモデルメソッドに
      */
     public function index(Request $request)
     {
@@ -32,6 +31,7 @@ class BookController extends Controller
 
         // 登録書籍カウントリスト取得
         $book_counts = Book::bookCounts();
+
         // リクエストを変数に格納
         $keyword = $request->keyword;
         $category = $request->category;
@@ -39,7 +39,7 @@ class BookController extends Controller
         $isbn = $request->isbn;
         $status = $request->status;
 
-        // キーワード検索
+        // 本棚キーワード検索
         if(!empty($keyword)) {
             $books = $user->books()
             ->where('title', 'like' , '%'.$keyword.'%')
@@ -77,7 +77,6 @@ class BookController extends Controller
      * @param App\Models\Book;
      * @param App\Http\Requests\BookRequest;
      *
-     * TODO: 画像アップロードをメソッド化
      */
     public function store(Book $book, BookRequest $request)
     {
@@ -86,8 +85,6 @@ class BookController extends Controller
             $image = $request->file('img_url');
             $path = Storage::disk('s3')->put('/book-cover', $image, 'public');
             $book->img_url = Storage::disk('s3')->url($path);
-            // $file_name = time() . '_' . $upload_image->getClientOriginalName();
-            // $path = $upload_image->storeAs('public/books', $file_name);
         } elseif($request->img_url) {
             $book->img_url = $request->img_url;
         }else {
@@ -107,10 +104,8 @@ class BookController extends Controller
      * 書籍詳細を表示する (メモ一覧)
      *
      * @param App\Models\Book;
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      *
-     * TODO: Request => MemoRequest
-     * TODO: 検索機能をメソッドに
      */
 
     public function show(Book $book, Request $request)
@@ -128,7 +123,7 @@ class BookController extends Controller
         $keyword = $request->keyword;
         $current_folder = $request->current_folder;
 
-        // キーワード検索
+        // メモキーワード検索
         if(!empty($keyword)) {
             $memos = $book->memos()
             ->where('memo', 'like' , '%'.$keyword.'%')
@@ -165,9 +160,9 @@ class BookController extends Controller
      *
      * @param App\Models\Book;
      */
+
     public function edit(Book $book)
     {
-        // 認可
         $this->authorize('update', $book);
 
         return view('books.edit', compact('book'));
@@ -179,11 +174,9 @@ class BookController extends Controller
      * @param App\Models\Book;
      * @param App\Http\Requests\BookRequest;
      *
-     * TODO: 画像アップロードをメソッドに
      */
     public function update(Book $book, BookRequest $request)
     {
-        //　認可
         $this->authorize('update', $book);
 
         // 画像アップロード処理
@@ -196,7 +189,6 @@ class BookController extends Controller
             }
         }
 
-        // 保存
         $book->cover = Storage::disk('s3')->url($path);
         $book->fill($request->all());
         $book->save();
@@ -212,16 +204,16 @@ class BookController extends Controller
      *
      * @param App\Models\Book;
      *
-     * todo:削除先パスの修正
      */
     public function destroy(Book $book)
     {
-        // 認可
         $this->authorize('delete', $book);
+
         // リレーション先(メモ)削除
         $book->memos()->each(function ($memo) {
             $memo->delete();
         });
+
         // 書籍画像削除
         $disk = Storage::disk('s3');
         $disk->delete('/book-cover/' . basename($book->cover));
@@ -232,9 +224,17 @@ class BookController extends Controller
         return redirect()->route('books.index');
     }
 
+    /**
+     * GoogleAPI検索フォームを表示する
+     */
+
     public function showSearchForm() {
         return view('books.api_form');
     }
+
+    /**
+     * API検索結果を表示する
+     */
 
     public function search(Request $request) {
         $keyword = $request->keyword;
@@ -244,11 +244,11 @@ class BookController extends Controller
         $books = json_decode($json, true);
         $books = $books['items'];
 
+
         // $all_num = count($books['items']);
         // $disp_limit = 2;
         // $page = 1;
         // $books = collect($json_decode['items']);
-
 
         // $books = new LengthAwarePaginator(
         //     $books->forPage($request->page, 5),
@@ -264,6 +264,10 @@ class BookController extends Controller
         return view('books.search', compact('books'));
     }
 
+    /**
+     * API情報から書籍登録時のフォームを表示
+     */
+
     public function showApiCreate(string $book_id) {
         $url = "https://www.googleapis.com/books/v1/volumes?country=JP&maxResults=1&orderBy=relevance&q=${book_id}";
         $json = file_get_contents($url);
@@ -274,6 +278,12 @@ class BookController extends Controller
         return view('books.create_api', compact('result','img'));
     }
 
+    /**
+     * API情報から書籍を登録する
+     *
+     * @param App\Models\Book;
+     *
+     */
     public function storeApi(Request $request, Book $book) {
 
         $book->fill($request->all());
