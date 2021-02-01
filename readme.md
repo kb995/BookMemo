@@ -22,7 +22,7 @@
     * マークアップ( HTML / CSS / SASS / Bootstrap )
     * jQuery 3.3.1
 
-* バックエンド
+* バックエンド
     * PHP 7.3.23
     * Laravel 6.19.1
     * mysql 5.5.68
