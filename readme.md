@@ -1,6 +1,6 @@
 # BookQuote
-アプリ名: BookQuote<br>
-URL: (準備中)
+**アプリ名: BookQuote**<br>
+**URL: (準備中)**
 
 
 ## 概要
