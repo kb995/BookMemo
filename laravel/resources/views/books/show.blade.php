@@ -124,7 +124,7 @@
             @csrf
             <div class="form-group">
                 <label for="memo"></label>
-                <textarea class="form-control p-3" id="memo" name="memo" rows="20" cols="10" placeholder="読書メモを入力" onkeyup="strLimit(1000);">{{ old('memo') }}</textarea>
+                <textarea class="form-control p-3" wrap="hard" id="memo" name="memo" rows="10" cols="10" placeholder="読書メモを入力" onkeyup="strLimit(1000);">{{ old('memo') }}</textarea>
                 <div class="text-right mt-1">
                     <span class="post_count"><span id="label">1000</span>/1000</span>
                 </div>
@@ -234,7 +234,7 @@
             @foreach ($memos as $memo)
             <article class="card mb-5 memo-item shadow">
                 <div class="card-body">
-                    {{ $memo->memo }}
+                    <p style="white-space: pre-wrap;">{{ $memo->memo }}</p>
                 </div>
                 <div class="card-footer p-2">
                     <div class="d-flex justify-content-between">

@@ -7,6 +7,7 @@ use App\Http\Requests\MemoRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Book;
 use App\Models\Memo;
+use App\Models\Folder;
 use App\User;
 
 class MemoController extends Controller
@@ -22,7 +23,6 @@ class MemoController extends Controller
      */
     public function store(Book $book, Memo $memo, MemoRequest $request)
     {
-        // リクエスト
         $memo->memo = $request->memo;
         $memo->folder = $request->folder;
         $memo->book_id = $book->id;
@@ -41,10 +41,11 @@ class MemoController extends Controller
      */
     public function edit(Book $book, Memo $memo)
     {
-        // 認可
         $this->authorize('update', $book);
 
-        return view('memos.edit', compact('book', 'memo'));
+        $folders = Folder::where('user_id', Auth::id())->get();
+
+        return view('memos.edit', compact('book', 'memo', 'folders'));
     }
 
     /**
@@ -56,11 +57,10 @@ class MemoController extends Controller
      */
     public function update(MemoRequest $request, Book $book, Memo $memo)
     {
-        // 認可
         $this->authorize('update', $book);
 
-        // リクエスト
         $memo->memo = $request->memo;
+        $memo->folder = $request->folder;
         $memo->save();
 
         session()->flash('flash_message', 'メモを編集しました');
@@ -76,7 +76,6 @@ class MemoController extends Controller
      */
     public function destroy(Book $book, Memo $memo)
     {
-        // 認可
         $this->authorize('delete', $book);
 
         $memo->delete();
