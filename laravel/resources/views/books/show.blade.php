@@ -11,7 +11,7 @@
 <section class="book-info py-4">
     <div class="row w-75 mx-auto">
         <div class="col-md-3">
-            <div class="book-info-cover text-center fadein">
+            <div class="book-info-cover text-center">
                 @if($book->img_url === null)
                     <img src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/default_cover.png">
                 @else
