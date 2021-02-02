@@ -7,7 +7,52 @@
 @endsection
 
 @section('content')
-<section class="container user mt-3">
+<section class="user-mask p-2 shadow">
+    <div class="container">
+        <div class="row mx-auto bg-white pt-2">
+            <div class="col-3 text-center p-0">
+                <div class="user-thumbnail mx-auto">
+                    @if($user->thumbnail === null)
+                        <img class="img-thumbnail" src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/default_user.jpg" alt="ユーザーサムネイル">
+                    @else
+                        <img class="img-thumbnail" src="{{ $user->thumbnail }}" alt="ユーザーサムネイル">
+                    @endif
+                </div>
+                <p class="my-2"><a class="user-edit-link" href="{{ route('user.edit', ['user' => Auth::user()]) }}">{{ $user->name }}さん</a></p>
+            </div>
+
+            <div class="col-4 p-0">
+                <div>
+                    <h1 class="h4 bold">{{ $user->name }}の本棚</h1>
+                </div>
+                <div class="row">
+                    <dl class="text-center d-inline-block card p-1 m-1 ml-4">
+                        <dt>登録本</dt>
+                        <dd>{{ $book_counts['books_all'] }} <small class="text-muted">冊</small></dd>
+                    </dl>
+                    <dl class="text-center d-inline-block card p-1 m-1">
+                        <dt>読了本</dt>
+                        <dd>{{ $book_counts['books_read'] }} <small class="text-muted">冊</small></dd>
+                    </dl>
+
+                    <dl class="text-center d-inline-block card p-1 m-1">
+                        <dt>積読本</dt>
+                        <dd>{{ $book_counts['books_pile'] }} <small class="text-muted">冊</small></dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="col-5 d-flex align-items-center">
+                <div>
+                    <a href="{{ route('books.search') }}" class="btn btn-lg p-3 mr-2 btn-outline-primary d-inline-block"><i class="fas fa-search pr-2"></i></i>検索して本を登録</a>
+                    <a href="{{ route('books.create') }}" class="btn btn-lg p-3 btn-outline-success d-inline-block"><i class="fas fa-pen pr-2"></i>入力して本を登録</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+{{--  <section class="container user mt-3">
     <div class="user-mask row">
         <h1 class="col-12 text-white h3 my-4 pl-5">{{ $user->name }}の本棚</h1>
         <div class="col-md-3">
@@ -52,7 +97,7 @@
             </div>
         </div>
     </div>
-</section>
+</section>  --}}
 
 <section class="book container">
 
