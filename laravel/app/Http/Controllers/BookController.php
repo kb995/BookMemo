@@ -273,7 +273,11 @@ class BookController extends Controller
         $json = file_get_contents($url);
         $data = json_decode($json, true);
         $result = $data['items'][0]['volumeInfo'];
-        $img = $result['imageLinks']['thumbnail'];
+        if(isset($result['imageLinks']['thumbnail'])) {
+            $img = $result['imageLinks']['thumbnail'];
+        }else{
+            $img = '';
+        }
 
         return view('books.create_api', compact('result','img'));
     }
