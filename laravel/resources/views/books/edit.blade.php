@@ -4,8 +4,6 @@
 
 @section('styles')
 
-@endsection
-
 @section('content')
 
 {{ Breadcrumbs::render('book.edit', $book) }}
@@ -39,7 +37,6 @@ background-size: cover;
                                     @else
                                         <img class="p-1 mb-3" id="preview" style="max-width:200px;" src="{{ $book->img_url }}">
                                     @endif
-                                    {{--  <input type="file" class="form-control p-1 mb-3" id="img_url" name="img_url" accept="image/*" value="{{ old('img_url')}}" onchange="previewImage(this);">  --}}
 
                                     <input type="file" class="form-control p-1 mb-3" id="img_url" name="img_url" accept="image/*" value="{{ $book->img_url }}" onchange="previewImage(this);">
                                 </td>

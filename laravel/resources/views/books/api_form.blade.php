@@ -4,8 +4,6 @@
 
 @section('styles')
 
-@endsection
-
 @section('content')
 
 <section class="container">

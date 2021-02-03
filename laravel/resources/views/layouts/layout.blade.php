@@ -17,7 +17,6 @@
     @include('layouts.header')
 
     <main id="app">
-        {{-- @yield('breadcrumbs') --}}
         @yield('content')
     </main>
 

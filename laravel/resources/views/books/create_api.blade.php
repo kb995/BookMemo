@@ -4,8 +4,6 @@
 
 @section('styles')
 
-@endsection
-
 @section('content')
 
 <section class="conteiner py-2 py-md-5"

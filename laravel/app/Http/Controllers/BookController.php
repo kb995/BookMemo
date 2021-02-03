@@ -23,7 +23,7 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request $request
      *
      */
-    public function index(BookRequest $request)
+    public function index(Request $request)
     {
         // ユーザー取得
         $user = User::with(['books' => function ($query) {
@@ -114,7 +114,7 @@ class BookController extends Controller
 
         // フォルダーリスト取得
         session()->forget(['current_folder']);
-        $folders = Folder::where('user_id', Auth::id())->get();
+        $folders = Folder::where('user_id', Auth::id())->where('book_id', $book->id)->get();
 
         // リクエスト取得
         $keyword = $request->keyword;
