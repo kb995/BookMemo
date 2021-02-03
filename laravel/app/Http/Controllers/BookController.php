@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 use App\Http\Requests\BookRequest;
+use App\Http\Requests\MemoRequest;
 use App\Models\Book;
 use App\Models\Memo;
 use App\Models\Folder;
@@ -34,10 +35,6 @@ class BookController extends Controller
 
         // リクエストを変数に格納
         $keyword = $request->keyword;
-        $category = $request->category;
-        $author = $request->author;
-        $isbn = $request->isbn;
-        $status = $request->status;
 
         // 本棚キーワード検索
         if(!empty($keyword)) {
@@ -117,7 +114,7 @@ class BookController extends Controller
 
         // フォルダーリスト取得
         session()->forget(['current_folder']);
-        $folders = Folder::where('user_id', Auth::id())->get();
+        $folders = Folder::where('user_id', Auth::id())->where('book_id', $book->id)->get();
 
         // リクエスト取得
         $keyword = $request->keyword;
@@ -288,7 +285,8 @@ class BookController extends Controller
      * @param App\Models\Book;
      *
      */
-    public function storeApi(Request $request, Book $book) {
+
+    public function storeApi(BookRequest $request, Book $book) {
 
         $book->fill($request->all());
         $book->user_id = Auth::id();
