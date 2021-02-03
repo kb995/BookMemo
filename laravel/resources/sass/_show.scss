@@ -2,25 +2,25 @@
 * 書籍情報
 **/
 .book-info {
-    background-color: rgba(34, 34, 34, 0.9);
-    padding-top: 10px;
+    background-color: rgba(205, 235, 243, 0.4);
+    padding-top: 5px;
 
     &-cover {
-        width: 100px;
-        height: 120px;
+        width: 60px!important;
+        height: 80px!important;
         text-align: center;
         margin: auto auto;
         overflow: hidden;
         img {
-            width: 100%;
-            height: auto;
+            width: 60px!important;
+            height: 80px!important;
         }
     }
 
     .title {
-        font-size: 1.7em;
+        font-size: 1.4em;
         font-weight: bold;
-        color: #fff;
+        color: #444;
     }
 
     .author {
@@ -31,24 +31,22 @@
 
 .book-detail {
     min-width: 100%;
-    color: #fff;
 
     dl {
         padding-bottom: 10px;
-        border-bottom: 1px solid #f1f1f1;
+        border-bottom: 1px solid #666;
     }
     dt {
-        font-weight: bold;
-        font-size: 1.7em;
+        font-size: 1.2em;
         text-align: center;
     }
     dd {
-        font-size: 1.5em;
+        font-size: 1.0em;
     }
 }
 
 .book-cover-full {
-    width: 200px;
+    width: 140px;
     text-align: center;
     margin: 50px auto;
     img {
