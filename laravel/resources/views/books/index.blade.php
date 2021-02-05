@@ -4,8 +4,6 @@
 
 @section('styles')
 
-@endsection
-
 @section('content')
 <section class="user-mask p-2 shadow">
     <div class="container">

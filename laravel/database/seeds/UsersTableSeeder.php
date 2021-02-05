@@ -26,6 +26,16 @@ class UsersTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'name' => 'sub (サブユーザ)',
+                'thumbnail' => null,
+                'email' => 'sub@email.com',
+                'email_verified_at' => now(),
+                'password' => bcrypt('22222222'),
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }
