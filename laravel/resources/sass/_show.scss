@@ -106,17 +106,34 @@
 * メモ検索
 **/
 
-
 .memo-search {
     width: 90%;
     margin: 0 auto;
 
     &-form {
         text-align: right;
+        position: relative;
 
-        input {
-            height: 30px;
-            padding: 5px;
+        &-input {
+            width: 300px;
+            height: 3.2em;
+            margin-top: 15px;
+            border: 1px solid #999;
+            padding: 3px 15px;
+            border-radius: 20px;
+        }
+        &-button {
+            cursor: pointer;
+            font-size: 1.5em;
+            border: none;
+            background: none;
+            color: #3879D9;
+            width: 2em;
+            height: 2em;
+            outline : none;
+            position: absolute;
+            top: 33px;
+            right: 0;
         }
     }
 }

@@ -159,8 +159,10 @@
                 </div>
                 @endif
                 <div class="form-group pt-3">
-                    <input type="text" name="keyword" value="{{ old('keyword') }}" placeholder="メモ内を検索">
-                    <input type="submit" class="btn btn-outline-info py-1" value="検索">
+                    <input class="memo-search-form-input" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="メモ内を検索">
+                    <button class="memo-search-form-button" type="submit" class="btn btn-outline-info py-1">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
             </form>
         </div>
