@@ -24,6 +24,11 @@ class FoldersTableSeeder extends Seeder
                 'user_id' => '1',
                 'book_id' => '1'
             ],
+            [
+                'name' => '思考',
+                'user_id' => '1',
+                'book_id' => '1'
+            ],
         ]);
     }
 }
