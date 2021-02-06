@@ -5,16 +5,16 @@
 use App\Models\Book;
 use Faker\Generator as Faker;
 
-$factory->define(Book::class, function (Faker $faker) {
-    return [
-        'title' => $faker->sentence,
-        'img_url' => null,
-        'author' => $faker->name,
-        'isbn' => '123456789',
-        'description' => $faker->paragraph,
-        'category' => 'カテゴリー',
-        'status' => '0',
-        'rank' => '0',
-        'user_id' => 1,
-    ];
-});
+// $factory->define(Book::class, function (Faker $faker) {
+//     return [
+//         'title' => $faker->sentence,
+//         'img_url' => null,
+//         'author' => $faker->name,
+//         'isbn' => '123456789',
+//         'description' => $faker->paragraph,
+//         'category' => 'カテゴリー',
+//         'status' => '0',
+//         'rank' => '0',
+//         'user_id' => 1,
+//     ];
+// });
