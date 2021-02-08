@@ -15,14 +15,19 @@ class UserPolicy
         return true;
     }
 
+    public function view(User $user)
+    {
+        return $user->id == Auth::id();
+    }
+
     public function update(User $user)
     {
         return $user->id == Auth::id();
     }
 
-    public function delete(User $user, Book $book)
+    public function delete(User $user)
     {
-        return $user->id == $book->user_id;
+        return $user->id == Auth::id();
     }
 
 }
