@@ -224,6 +224,10 @@
 
         {{--  メモ一覧  --}}
         <div class="tab-content">
+            @if($memos->isEmpty())
+            <h3 class="mx-auto font-italic text-secondary">メモを登録してみましょう</h3>
+            @endif
+
             <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
                 @foreach ($memos as $memo)
                 <article class="card mb-5 memo-item shadow">
