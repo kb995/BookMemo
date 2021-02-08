@@ -9,6 +9,7 @@ use App\Policies\BookPolicy;
 use App\Models\Memo;
 use App\Policies\MemoPolicy;
 use App\User;
+use App\Policies\UserPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {

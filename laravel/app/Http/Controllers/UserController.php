@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use Storage;
 
@@ -16,7 +17,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        // $this->authorize('update', $user);
+        $this->authorize('view', $user);
 
         return view('settings.account', compact('user'));
     }
@@ -29,7 +30,7 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        // $this->authorize('update', $user);
+        $this->authorize('update', $user);
 
         // 画像アップロード
         if(is_uploaded_file($_FILES['thumb']['tmp_name'])){
@@ -45,7 +46,9 @@ class UserController extends Controller
         // リクエスト取得
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->thumbnail = Storage::disk('s3')->url($path);
+        if(!empty($path)) {
+            $user->thumbnail = Storage::disk('s3')->url($path);
+        }
         $user->save();
 
         session()->flash('flash_message', 'アカウント情報を編集しました');
@@ -62,7 +65,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         // 認可
-        // $this->authorize('delete', $book);
+        $this->authorize('delete', $user);
 
         // サムネイル画像削除
         if($user->thumbnail) {
