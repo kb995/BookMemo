@@ -69,8 +69,12 @@
         </div>
     </form>
 
+    @if($books->isEmpty())
+        <h2 class="mx-auto font-italic text-secondary">本を登録してみましょう</h2>
+    @endif
+
     <div class="book-list row mt-5">
-        @foreach( $books as $book)
+        @foreach( $books as $book )
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="book-item mb-5 shadow">
                 <div class="book-item-cover shadow fadein">
