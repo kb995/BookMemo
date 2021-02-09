@@ -129,7 +129,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="memo"></label>
-                    <textarea class="form-control p-3" wrap="hard" id="memo" name="memo" rows="10" cols="10" placeholder="読書メモを入力" onkeyup="strLimit(1000);">{{ old('memo') }}</textarea>
+                    <textarea class="form-control p-3" wrap="soft" id="memo" name="memo" rows="10" cols="10" placeholder="読書メモを入力" onkeyup="strLimit(1000);">{{ old('memo') }}</textarea>
                     <div class="text-right mt-1">
                         <span class="post_count"><span id="label">1000</span>/1000</span>
                     </div>
