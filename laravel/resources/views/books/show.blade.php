@@ -228,11 +228,26 @@
             <h3 class="mx-auto font-italic text-secondary">メモを登録してみましょう</h3>
             @endif
 
+            {{--  <p>
+                <div class="grad-wrap">
+                    <input id="trigger1" class="grad-trigger" type="checkbox">
+                    <div class="grad-item"></div>
+                    <label class="grad-btn" for="trigger1"></label>
+                </div>
+            </p>  --}}
+
             <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
                 @foreach ($memos as $memo)
                 <article class="card mb-5 memo-item shadow">
                     <div class="card-body">
-                        <p style="white-space: pre-wrap;">{{ $memo->memo }}</p>
+                        <div class="grad-wrap">
+                            <input id="trigger{{$memo->id}}" class="grad-trigger" type="checkbox">
+                            <div class="grad-item">
+                                <p style="white-space: pre-wrap;">{{ $memo->memo }}</p>
+                            </div>
+                            <label class="grad-btn" for="trigger{{$memo->id}}"></label>
+                        </div>
+                        {{--  <p style="white-space: pre-wrap;">{{ $memo->memo }}</p>  --}}
                     </div>
                     <div class="card-footer p-2">
                         <div class="d-flex justify-content-between">
