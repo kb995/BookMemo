@@ -129,7 +129,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="memo"></label>
-                    <textarea class="form-control p-3" wrap="hard" id="memo" name="memo" rows="10" cols="10" placeholder="読書メモを入力" onkeyup="strLimit(1000);">{{ old('memo') }}</textarea>
+                    <textarea class="form-control p-3" wrap="soft" id="memo" name="memo" rows="10" cols="10" placeholder="読書メモを入力" onkeyup="strLimit(1000);">{{ old('memo') }}</textarea>
                     <div class="text-right mt-1">
                         <span class="post_count"><span id="label">1000</span>/1000</span>
                     </div>
@@ -228,11 +228,19 @@
             <h3 class="mx-auto font-italic text-secondary">メモを登録してみましょう</h3>
             @endif
 
+            {{--  <div id="summary">
+                <p style="white-space: pre-wrap;" class="collapse" id="collapseSummary">
+                    {{ $memo->memo }}
+                </p>
+                <a class="collapsed" data-toggle="collapse" href="#collapseSummary" aria-expanded="false" aria-controls="collapseSummary"></a>
+            </div>  --}}
+
             <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
                 @foreach ($memos as $memo)
                 <article class="card mb-5 memo-item shadow">
-                    <div class="card-body">
-                        <p style="white-space: pre-wrap;">{{ $memo->memo }}</p>
+                    <div class="card-body pb-1" id="summary">
+                        <p style="white-space: pre-wrap;" class="collapse" id="collapseSummary{{$memo->id}}">{{ $memo->memo }}</p>
+                        <a class="collapsed text-muted" data-toggle="collapse" href="#collapseSummary{{$memo->id}}" aria-expanded="false" aria-controls="collapseSummary"></a>
                     </div>
                     <div class="card-footer p-2">
                         <div class="d-flex justify-content-between">

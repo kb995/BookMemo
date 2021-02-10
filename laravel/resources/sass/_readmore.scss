@@ -1,0 +1,28 @@
+
+#summary {
+    font-size: 14px;
+    // line-height: 1.5;
+  }
+
+  #summary p.collapse:not(.show) {
+      height: 42px !important;
+      overflow: hidden;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+  }
+
+  #summary p.collapsing {
+      min-height: 42px !important;
+  }
+
+  #summary a.collapsed:after  {
+      content: '+ 全て表示';
+      font-size: .3em;
+  }
+
+  #summary a:not(.collapsed):after {
+      content: '- 閉じる';
+      font-size: .3em;
+  }
