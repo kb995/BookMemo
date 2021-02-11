@@ -17,9 +17,9 @@
         <div class="col-md-2">
             <div class="book-info-cover text-center shadow">
                 @if($book->img_url === null)
-                    <img src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/default_cover.png">
+                    <img class="shadow" src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/default_cover.png">
                 @else
-                    <img src="{{ $book->img_url }}">
+                    <img class="shadow" src="{{ $book->img_url }}">
                 @endif
             </div>
 
@@ -227,13 +227,6 @@
             @if($memos->isEmpty())
             <h3 class="mx-auto font-italic text-secondary">メモを登録してみましょう</h3>
             @endif
-
-            {{--  <div id="summary">
-                <p style="white-space: pre-wrap;" class="collapse" id="collapseSummary">
-                    {{ $memo->memo }}
-                </p>
-                <a class="collapsed" data-toggle="collapse" href="#collapseSummary" aria-expanded="false" aria-controls="collapseSummary"></a>
-            </div>  --}}
 
             <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
                 @foreach ($memos as $memo)
