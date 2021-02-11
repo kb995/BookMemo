@@ -10,16 +10,23 @@
         height: 100%;
         background-color: #E4E4E4;
     }
+
     &-thumbnail {
         text-align: center;
         width: 70px;
         height: 70px;
+        position: relative;
+        overflow: hidden;
+
 
         img {
-            text-align: center;
-            width: 70px;
-            height: 70px;
-            object-position: 50% 50%
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         &-link {
@@ -54,8 +61,6 @@
             font-size: 1.3em;
             font-weight: bold;
             color: #fff;
-            // padding: 4px;
-            // margin: 0;
         }
     }
 }
@@ -79,26 +84,23 @@
     &-item {
         background-color: #fff;
         text-align: center;
-        padding: 10px;
-        min-height: 450px;
+        padding: 50px 20px 10px 10px;
+        min-height: 360px;
 
         &-cover {
-            width: 190px;
-            height: 260px!important;
-            margin: 35px auto 10px auto;
-            // overflow: hidden;
-            display: inline-block;
-
-            img {
+            .img-trim {
+                position: relative;
+                overflow: hidden;
+              }
+              .img-trim img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
                 width: 100%;
-                height: 260px!important;
-                // overflow: hidden;
-                object-position: 50% 50%
-                }
-
-            .book-img-default {
-                background: repeat-y;
-            }
+                height: 100%;
+                object-fit: cover;
+              }
         }
 
         &-body {
