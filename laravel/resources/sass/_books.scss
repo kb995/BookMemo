@@ -79,26 +79,40 @@
     &-item {
         background-color: #fff;
         text-align: center;
-        padding: 10px;
-        min-height: 450px;
+        padding: 50px 20px 10px 10px;
+        min-height: 360px;
 
         &-cover {
-            width: 190px;
-            height: 260px!important;
-            margin: 35px auto 10px auto;
-            // overflow: hidden;
-            display: inline-block;
-
-            img {
+            .img-trim {
+                position: relative;
+                overflow: hidden;
+              }
+              .img-trim img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
                 width: 100%;
-                height: 260px!important;
-                // overflow: hidden;
-                object-position: 50% 50%
-                }
+                height: 100%;
+                object-fit: cover;
+              }
 
-            .book-img-default {
-                background: repeat-y;
-            }
+            // width: 190px;
+            // height: 260px!important;
+            // margin: 35px auto 10px auto;
+            // overflow: hidden;
+            // display: inline-block;
+
+            // img {
+            //     width: 100%;
+            //     height: 260px!important;
+            //     // overflow: hidden;
+            //     object-position: 50% 50%
+            //     }
+
+            // .book-img-default {
+            //     background: repeat-y;
+            // }
         }
 
         &-body {
