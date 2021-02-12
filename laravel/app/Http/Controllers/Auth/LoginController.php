@@ -38,25 +38,6 @@ class LoginController extends Controller
     /**
      * 外部ログイン
      */
-    // public function redirectToProvider(string $provider)
-    // {
-    //     return Socialite::driver($provider)->redirect();
-    // }
-
-    // public function handleProviderCallback(Request $request, string $provider)
-    // {
-    //     $providerUser = Socialite::driver($provider)->stateless()->user();
-
-    //     $user = User::where('email', $providerUser->getEmail())->first();
-
-    //     if ($user) {
-    //         $this->guard()->login($user, true);
-    //         return $this->sendLoginResponse($request);
-    //     }
-
-        // $userがnullの場合の処理は次のパートでここに書く予定
-    // }
-
     /**
      * Create a new controller instance.
      *
