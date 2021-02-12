@@ -70,6 +70,7 @@ padding: 100px 0;
                             <button type="submit" class="btn btn-lg btn-outline-primary w-75 mx-auto my-3">
                                 {{ __('Login') }}
                             </button>
+<<<<<<< Updated upstream
                         </div>
                     </form>
 
@@ -80,6 +81,28 @@ padding: 100px 0;
                     {{--  <div class="text-center">
                         <a href="{{ route('login.{provider}', ['provider' => 'google']) }}">
                             <button class="btn btn-lg btn-danger w-75 mx-auto">
+=======
+
+                            <p class="font-weight-bold py-4  text-center">ソーシャルログイン</p>
+
+                            <div class="form-group row bg-success">
+                                <label for="name" class="col-sm-4 col-form-label text-md-right">Login With</label>
+                                    <div class="col-md-6">
+                                        <a href="{{ url('login/facebook')}}" class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i>facebook</a>
+                                        <a href="{{ url('login/twitter')}}" class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i>twetter</a>
+                                        <a href="{{ url('login/google')}}" class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i>google</a>
+                                        {{--  <a href="{{ route('login/google', ['social' => 'google']) }}" class="btn btn-social-icon btn-google"><i class="fa fa-google"></i>google</a>  --}}
+                                    </div>
+                            </div>
+
+                        </div>
+                    </form>
+
+                    {{--  <div class="text-center">
+                        <a href="{{ route('login.{provider}', ['provider' => 'google']) }}">
+
+                            <button class="btn btn-lg btn-danger w-75 mx-auto my-3">
+>>>>>>> Stashed changes
                                 <i class="fab fa-google text-white mr-1"></i>Googleでログイン
                             </button>
                         </a>

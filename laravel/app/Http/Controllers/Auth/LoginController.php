@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\User;
 use Illuminate\Http\Request;
@@ -38,24 +39,42 @@ class LoginController extends Controller
     /**
      * 外部ログイン
      */
-    // public function redirectToProvider(string $provider)
-    // {
-    //     return Socialite::driver($provider)->redirect();
-    // }
+        //ログインボタンからリンク
+        // public function socialLogin($social)
+        // {
+        //     return Socialite::driver($social)->redirect();
+        // }
 
-    // public function handleProviderCallback(Request $request, string $provider)
-    // {
-    //     $providerUser = Socialite::driver($provider)->stateless()->user();
+        //Callback処理
+        // public function handleProviderCallback($social)
+        // {
+        //     //ソーシャルサービス（情報）を取得
+        //     $userSocial = Socialite::driver($social)->stateless()->user();
+        //     //emailで登録を調べる
+        //     $user = User::where(['email' => $userSocial->getEmail()])->first();
 
-    //     $user = User::where('email', $providerUser->getEmail())->first();
+        //     //登録（email）の有無で分岐
+        //     if($user){
 
-    //     if ($user) {
-    //         $this->guard()->login($user, true);
-    //         return $this->sendLoginResponse($request);
-    //     }
+        //         //登録あればそのままログイン（2回目以降）
+        //         Auth::login($user);
+        //         return redirect('/books');
 
-        // $userがnullの場合の処理は次のパートでここに書く予定
-    // }
+        //     }else{
+
+        //         //なければ登録（初回）
+        //         $newuser = new User;
+        //         $newuser->name = $userSocial->getName();
+        //         $newuser->email = $userSocial->getEmail();
+        //         $newuser->save();
+
+        //         //そのままログイン
+        //         Auth::login($newuser);
+        //         return redirect('/books');
+
+        //     }
+        // }
+
 
     /**
      * Create a new controller instance.
