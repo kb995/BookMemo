@@ -70,19 +70,20 @@ padding: 100px 0;
                             <button type="submit" class="btn btn-lg btn-outline-primary w-75 mx-auto my-3">
                                 {{ __('Login') }}
                             </button>
-
-                            <p class="font-weight-bold py-4  text-center">ソーシャルログイン</p>
-
                         </div>
                     </form>
 
-                    <div class="text-center">
+                    {{--  <a href="{{ route('login.{provider}', ['provider' => 'google']) }}" class="btn btn-block btn-danger">
+                        <i class="fab fa-google mr-1"></i>Googleでログイン
+                    </a>  --}}
+
+                    {{--  <div class="text-center">
                         <a href="{{ route('login.{provider}', ['provider' => 'google']) }}">
-                            <button class="btn btn-lg btn-danger w-75 mx-auto my-3">
+                            <button class="btn btn-lg btn-danger w-75 mx-auto">
                                 <i class="fab fa-google text-white mr-1"></i>Googleでログイン
                             </button>
                         </a>
-                    </div>
+                    </div>  --}}
 
                     {{-- <p class="font-weight-bold py-4 text-center">アカウントをお持ちでない方はこちら</p>
 
