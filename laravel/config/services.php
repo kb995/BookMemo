@@ -33,6 +33,13 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => env('GOOGLE_CALLBACK_URL'),
+        'redirect' => 'http://localhost:10080/login/google/callback',
+        // 'redirect' => env('GOOGLE_CALLBACK_URL'),
     ],
+    // 'facebook' => [
+    //     'client_id' => env('FACEBOOK_API_ID'),
+    //     'client_secret' => env('FACEBOOK_API_SECRET'),
+    //     'redirect' => 'http://localhost:10080/login/facebook/callback',
+        // 'redirect' => env('FACEBOOK_CALLBACKURL'),
+    // ],
 ];

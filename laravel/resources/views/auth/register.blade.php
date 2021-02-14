@@ -4,7 +4,7 @@
 <section
 style="background-image: url('https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/desk.jpg');
 background-size: cover;
-padding: 100px 0;
+padding: 200px 0;
 ">
 
 <div class="container">
