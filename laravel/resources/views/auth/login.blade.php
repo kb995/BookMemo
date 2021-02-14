@@ -5,7 +5,7 @@
 <section
 style="background-image: url('https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/desk.jpg');
 background-size: cover;
-padding: 100px 0;
+padding: 200px 0;
 ">
 
 <div class="container">
@@ -72,6 +72,20 @@ padding: 100px 0;
                             </button>
                         </div>
                     </form>
+
+                    {{--  <a href="{{ route('login.{provider}', ['provider' => 'google']) }}" class="btn btn-block btn-danger">
+                        <i class="fab fa-google mr-1"></i>Googleでログイン
+                    </a>  --}}
+
+                    <div class="form-group row col-md-12 mx-auto text-center">
+                        <div class="col-md-10">
+                            <label for="name" class="mx-auto pt-3 pr-3 h6">外部サイトからのログイン</label>
+                                <a href="{{ route('login.{provider}', ['provider' => 'google']) }}" class="btn btn-sm mr-2" style="color: #fff; background-color:#DD4B39;"><i class="fa fa-google"></i>Google</a>
+                                <a href="{{ route('login.{provider}', ['provider' => 'facebook']) }}" class="btn btn-sm mr-2" style="color: #fff; background-color:#3B5998 ;"><i class="fa fa-facebook"></i>Facebook</a>
+                                <a href="{{ route('login.{provider}', ['provider' => 'twitter']) }}" class="btn btn-sm mr-2" style="color: #fff; background-color:#55ACEE ;"><i class="fab fa-twitter"></i>Twitter</a>
+                            </div>
+                    </div>
+
                 </div>
             </div>
         </div>
