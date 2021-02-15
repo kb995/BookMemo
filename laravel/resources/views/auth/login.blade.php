@@ -81,8 +81,8 @@ padding: 200px 0;
                         <div class="col-md-10">
                             <label for="name" class="mx-auto pt-3 pr-3 h6">外部サイトからのログイン</label>
                                 <a href="{{ route('login.{provider}', ['provider' => 'google']) }}" class="btn btn-sm mr-2" style="color: #fff; background-color:#DD4B39;"><i class="fa fa-google"></i>Google</a>
-                                <a href="{{ route('login.{provider}', ['provider' => 'facebook']) }}" class="btn btn-sm mr-2" style="color: #fff; background-color:#3B5998 ;"><i class="fa fa-facebook"></i>Facebook</a>
                                 <a href="{{ route('login.{provider}', ['provider' => 'twitter']) }}" class="btn btn-sm mr-2" style="color: #fff; background-color:#55ACEE ;"><i class="fab fa-twitter"></i>Twitter</a>
+                                <a href="{{ route('login.{provider}', ['provider' => 'facebook']) }}" class="btn btn-sm mr-2" style="color: #fff; background-color:#3B5998 ;"><i class="fa fa-facebook"></i>Facebook</a>
                             </div>
                     </div>
 
