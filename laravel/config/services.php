@@ -36,10 +36,9 @@ return [
         'redirect' => 'http://localhost:10080/login/google/callback',
         // 'redirect' => env('GOOGLE_CALLBACK_URL'),
     ],
-    // 'facebook' => [
-    //     'client_id' => env('FACEBOOK_API_ID'),
-    //     'client_secret' => env('FACEBOOK_API_SECRET'),
-    //     'redirect' => 'http://localhost:10080/login/facebook/callback',
-        // 'redirect' => env('FACEBOOK_CALLBACKURL'),
-    // ],
+    'facebook' => [
+        'client_id' => env('FACEBOOK_APP_ID'),
+        'client_secret' => env('FACEBOOK_APP_SECRET'),
+        'redirect' => env('FACEBOOK_CALLBACK_URL'),
+    ],
 ];
