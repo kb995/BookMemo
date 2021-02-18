@@ -1,12 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+<section
+style="background-image: url('https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/desk.jpg');
+background-size: cover;
+padding-bottom: 500px;
+">
+>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <h1 class="text-center my-5">パスワード再設定メール送信</h1>
-            <div class="card">
-                <div class="card-body">
+        <div class="col-md-8 py-5">
+            <div class="card"　style="opacity: 0.95;">
+                <div class="card-header h5">
+                    パスワード再設定メール送信
+                </div>
+                <div class="card-body p-5">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -40,4 +48,5 @@
         </div>
     </div>
 </div>
+</section>
 @endsection
