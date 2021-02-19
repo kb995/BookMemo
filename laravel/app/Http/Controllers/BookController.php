@@ -35,6 +35,9 @@ class BookController extends Controller
 
         // リクエストを変数に格納
         $keyword = $request->keyword;
+        if(!empty($_GET['status'])) {
+            $book_status = $_GET['status'];
+        }
 
         // 本棚キーワード検索
         if(!empty($keyword)) {
@@ -47,6 +50,14 @@ class BookController extends Controller
 
             session()->forget(['search']);
             session()->put('search', $keyword);
+        }
+
+        // 本棚ステータス検索
+        if(!empty($book_status)) {
+            $books = $user->books()
+            ->where('status', $book_status)
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
         }
 
         // デフォルト時の書籍一覧
@@ -84,9 +95,8 @@ class BookController extends Controller
             $book->img_url = Storage::disk('s3')->url($path);
         } elseif($request->img_url) {
             $book->img_url = $request->img_url;
-        }else {
-
         }
+
         // リクエスト取得 & 保存
         $book->fill($request->all());
         $book->user_id = Auth::id();
