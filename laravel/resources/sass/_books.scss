@@ -45,8 +45,16 @@
 
     &-book-count {
         dl {
+            min-width: 50px;
+
             &:hover {
                 opacity: .7;
+            }
+            a {
+                color: #777;
+            }
+            a:hover {
+                text-decoration: none;
             }
         }
         dt {
@@ -55,7 +63,6 @@
         }
         dd {
             font-size: 1.1em;
-            font-weight: bold;
             margin-bottom: 0;
         }
     }

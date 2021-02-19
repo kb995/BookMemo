@@ -24,18 +24,32 @@
                     <h1 class="h4 bold">{{ $user->name }}の本棚</h1>
                 </div>
                 <div class="row user-book-count">
-                    <dl class="text-center d-inline-block card px-2 py-1 m-1 ml-4">
-                        <dt>登録本</dt>
-                        <dd>{{ $book_counts['books_all'] }} <small class="text-muted">冊</small></dd>
-                    </dl>
-                    <dl class="text-center d-inline-block card px-2 py-1 m-1">
-                        <dt>読了本</dt>
-                        <dd>{{ $book_counts['books_read'] }} <small class="text-muted">冊</small></dd>
+                    <dl class="text-center d-inline-block card ml-4 p-1 mr-1">
+                        <a href="{{ route('books.index') }}">
+                            <dt>全て</dt>
+                            <dd>{{ $book_counts['books_all'] }} <small class="text-muted">冊</small></dd>
+                        </a>
                     </dl>
 
-                    <dl class="text-center d-inline-block card px-2 py-1 m-1">
-                        <dt>積読本</dt>
-                        <dd>{{ $book_counts['books_pile'] }} <small class="text-muted">冊</small></dd>
+                    <dl class="text-center d-inline-block card p-1 mr-1">
+                        <a href="{{ route('books.index') }}?status=2">
+                            <dt>読書</dt>
+                            <dd>{{ $book_counts['books_reading'] }} <small class="text-muted">冊</small></dd>
+                        </a>
+                    </dl>
+
+                    <dl class="text-center d-inline-block card p-1 mr-1">
+                        <a href="{{ route('books.index') }}?status=3">
+                            <dt>積読</dt>
+                            <dd>{{ $book_counts['books_pile'] }} <small class="text-muted">冊</small></dd>
+                        </a>
+                    </dl>
+
+                    <dl class="text-center d-inline-block card p-1 mr-1">
+                        <a href="{{ route('books.index') }}?status=4">
+                            <dt>読了</dt>
+                            <dd>{{ $book_counts['books_read'] }} <small class="text-muted">冊</small></dd>
+                        </a>
                     </dl>
                 </div>
             </div>
