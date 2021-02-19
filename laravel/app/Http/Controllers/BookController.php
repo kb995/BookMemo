@@ -35,7 +35,7 @@ class BookController extends Controller
 
         // リクエストを変数に格納
         $keyword = $request->keyword;
-        if(!emtpy($_GET['status'])) {
+        if(!empty($_GET['status'])) {
             $book_status = $_GET['status'];
         }
 
