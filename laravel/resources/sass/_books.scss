@@ -45,22 +45,18 @@
 
     &-book-count {
         dl {
-            background: rgba(90, 88, 88, 0.308);
-            padding: 5px 10px;
-            margin: 0 5px;
-            border-radius: 5px;
             &:hover {
                 opacity: .7;
             }
         }
         dt {
             font-size: 1em;
-            color: #fff;
+            color: #666;
         }
         dd {
-            font-size: 1.3em;
+            font-size: 1.1em;
             font-weight: bold;
-            color: #fff;
+            margin-bottom: 0;
         }
     }
 }

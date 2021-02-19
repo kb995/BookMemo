@@ -23,17 +23,17 @@
                 <div>
                     <h1 class="h4 bold">{{ $user->name }}の本棚</h1>
                 </div>
-                <div class="row">
-                    <dl class="text-center d-inline-block card p-1 m-1 ml-4">
+                <div class="row user-book-count">
+                    <dl class="text-center d-inline-block card px-2 py-1 m-1 ml-4">
                         <dt>登録本</dt>
                         <dd>{{ $book_counts['books_all'] }} <small class="text-muted">冊</small></dd>
                     </dl>
-                    <dl class="text-center d-inline-block card p-1 m-1">
+                    <dl class="text-center d-inline-block card px-2 py-1 m-1">
                         <dt>読了本</dt>
                         <dd>{{ $book_counts['books_read'] }} <small class="text-muted">冊</small></dd>
                     </dl>
 
-                    <dl class="text-center d-inline-block card p-1 m-1">
+                    <dl class="text-center d-inline-block card px-2 py-1 m-1">
                         <dt>積読本</dt>
                         <dd>{{ $book_counts['books_pile'] }} <small class="text-muted">冊</small></dd>
                     </dl>
