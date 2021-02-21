@@ -187,16 +187,16 @@ class BookController extends Controller
         $this->authorize('update', $book);
 
         // 画像アップロード処理
-        if(is_uploaded_file($_FILES['cover']['tmp_name'])){
-            $image = $request->file('cover');
-            $path = Storage::disk('s3')->put('/book-cover', $image, 'public');
-            if($book->cover) {
-                $disk = Storage::disk('s3');
-                $disk->delete('/book-cover/' . basename($book->cover));
-            }
-        }
+        // if(is_uploaded_file($_FILES['cover']['tmp_name'])){
+        //     $image = $request->file('cover');
+        //     $path = Storage::disk('s3')->put('/book-cover', $image, 'public');
+        //     if($book->cover) {
+        //         $disk = Storage::disk('s3');
+        //         $disk->delete('/book-cover/' . basename($book->cover));
+        //     }
+        // }
 
-        $book->cover = Storage::disk('s3')->url($path);
+        // $book->cover = Storage::disk('s3')->url($path);
         $book->fill($request->all());
         $book->save();
 
