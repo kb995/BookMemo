@@ -25,7 +25,7 @@ class BookRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'cover' => 'file|image|mimes:jpeg,jpg,png,gif',
+            'img_url' => 'file|image|mimes:jpeg,jpg,png,gif',
         ];
     }
 
