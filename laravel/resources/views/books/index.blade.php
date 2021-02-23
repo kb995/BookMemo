@@ -92,19 +92,11 @@
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="book-item mb-5 shadow">
                 <div class="book-item-cover fadein">
-                    @if($book->img_url === null)
-                    <div class="img-trim">
-                        <a href="{{ route('books.show', ['book' => $book]) }}">
-                            <img class="shadow" src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/default_cover.png">
-                        </a>
-                    </div>
-                    @else
                     <div>
                         <a href="{{ route('books.show', ['book' => $book]) }}">
-                            <img class="shadow" src="{{ $book->img_url }}">
+                            <img class="shadow" id="img-item" src="{{ $book->img_url }}">
                         </a>
                     </div>
-                    @endif
                 </div>
                 <div class="book-item-body">
                     <p class="title mt-3">{{ $book->title }}</p>
