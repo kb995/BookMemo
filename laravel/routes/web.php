@@ -63,8 +63,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
         Route::delete('/{memo}/destroy', 'MemoController@destroy')->name('destroy');
 
     });
-
 });
+
+Route::group(['middleware' => 'auth', 'as' => 'books.'], function() {
+    Route::get('/', 'BookController@index')->name('index');
+});
+
 
 // ===== User =====
 Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], function() {
