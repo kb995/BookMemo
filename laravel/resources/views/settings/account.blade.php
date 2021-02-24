@@ -35,9 +35,9 @@ background-size: cover;
                                     <th class="text-center"><label for="thumb">サムネイル</label></th>
                                     <td>
                                         @if($user->thumbnail === null)
-                                        <img class="p-1 mb-3" id="preview" src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/default_user.jpg">
+                                        <img class="p-1 mb-3" id="preview" width="100px" src="https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/default_user.jpg">
                                         @else
-                                        <img class="p-1 mb-3" id="preview" src="{{ $user->thumbnail }}">
+                                        <img class="p-1 mb-3" id="preview" width="100px" src="{{ $user->thumbnail }}">
                                         @endif
 
                                         <input type="file" class="form-control p-1 mb-3" id="thumb" name="thumb" accept="image/*" value="{{ old('thumb')}}" onchange="previewImage(this);">
