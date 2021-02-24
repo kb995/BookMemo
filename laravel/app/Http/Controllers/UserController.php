@@ -47,7 +47,9 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         if(!empty($path)) {
-            $user->thumbnail = Storage::disk('s3')->url($path);
+            $user->img_url = Storage::disk('s3')->url($path);
+        }else{
+            $user->img_url = 'https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/default_user.jpg';
         }
         $user->save();
 
