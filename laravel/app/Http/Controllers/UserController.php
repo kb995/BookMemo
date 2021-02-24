@@ -48,6 +48,8 @@ class UserController extends Controller
         $user->email = $request->email;
         if(!empty($path)) {
             $user->thumbnail = Storage::disk('s3')->url($path);
+        }else{
+            $user->thumbnail = 'https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/default_user.jpg';
         }
         $user->save();
 
