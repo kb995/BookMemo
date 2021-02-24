@@ -200,7 +200,11 @@ class BookController extends Controller
         }
 
         $book->fill($request->all());
-        $book->img_url = Storage::disk('s3')->url($path);
+        if(!empty($path)) {
+            $book->img_url = Storage::disk('s3')->url($path);
+        }else{
+            $book->img_url = 'https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/default_cover.png';
+        }
         $book->save();
 
 
