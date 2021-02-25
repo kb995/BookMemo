@@ -43,14 +43,12 @@ class UserController extends Controller
             }
         }
 
-        // リクエスト取得
-        $user->name = $request->name;
-        $user->email = $request->email;
         if(!empty($path)) {
             $user->thumbnail = Storage::disk('s3')->url($path);
-        }else{
-            $user->thumbnail = 'https://book-quote.s3-ap-northeast-1.amazonaws.com/layouts/default_user.jpg';
         }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
         $user->save();
 
         session()->flash('flash_message', 'アカウント情報を編集しました');
