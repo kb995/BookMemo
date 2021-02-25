@@ -65,8 +65,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'books', 'as' => 'books.'], fu
     });
 });
 
-Route::group(['middleware' => 'auth', 'as' => 'books.'], function() {
-    Route::get('/', 'BookController@index')->name('index');
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/', 'BookController@index');
 });
 
 
