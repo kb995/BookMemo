@@ -33,7 +33,7 @@
 
                     <dl class="text-center d-inline-block card p-1 mr-1">
                         <a href="{{ route('books.index') }}?status=2">
-                            <dt>読書</dt>
+                            <dt>読書中</dt>
                             <dd>{{ $book_counts['books_reading'] }} <small class="text-muted">冊</small></dd>
                         </a>
                     </dl>
