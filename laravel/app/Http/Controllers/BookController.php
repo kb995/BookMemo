@@ -259,20 +259,6 @@ class BookController extends Controller
         $books = json_decode($json, true);
         $books = $books['items'];
 
-
-        // $all_num = count($books['items']);
-        // $disp_limit = 2;
-        // $page = 1;
-        // $books = collect($json_decode['items']);
-
-        // $books = new LengthAwarePaginator(
-        //     $books->forPage($request->page, 5),
-        //     $all_num,
-        //     $disp_limit,
-        //     $request->page,
-        //     array('path'=> $request->url)
-        // );
-
         session()->forget(['search']);
         session()->put('search', $keyword);
 

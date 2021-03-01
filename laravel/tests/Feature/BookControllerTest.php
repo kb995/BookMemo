@@ -10,22 +10,22 @@ class BookControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testGuest()
-    {
-        $response = $this->get(route('books.index'));
+    // public function testGuest()
+    // {
+    //     $response = $this->get(route('books.index'));
 
-        $response->assertRedirect(route('login'));
-    }
+    //     $response->assertRedirect(route('login'));
+    // }
 
-    public function testAuth()
-    {
-        $user = factory(User::class)->create();
+    // public function testAuth()
+    // {
+    //     $user = factory(User::class)->create();
 
-        $response = $this->actingAs($user)
-            ->get(route('books.index'));
+    //     $response = $this->actingAs($user)
+    //         ->get(route('books.index'));
 
-        $response->assertStatus(200)
-            ->assertViewIs('books.index');
-    }
+    //     $response->assertStatus(200)
+    //         ->assertViewIs('books.index');
+    // }
 
 }
