@@ -14,7 +14,7 @@ class FoldersTableSeeder extends Seeder
     {
         DB::table('folders')->insert([
             [
-                'name' => '引用',
+                'name' => 'マーカー',
                 'user_id' => '1',
                 'book_id' => '1'
 
@@ -25,7 +25,7 @@ class FoldersTableSeeder extends Seeder
                 'book_id' => '1'
             ],
             [
-                'name' => '思考',
+                'name' => '疑問',
                 'user_id' => '1',
                 'book_id' => '1'
             ],
