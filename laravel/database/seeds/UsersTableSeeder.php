@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
         // factory(User::class, 5)->create();
         DB::table('users')->insert([
             [
-                'name' => 'kb995 (デモ用ユーザー)',
+                'name' => 'kb995 (デモユーザー)',
                 'thumbnail' => null,
                 'email' => 'kb995@email.com',
                 'email_verified_at' => now(),
