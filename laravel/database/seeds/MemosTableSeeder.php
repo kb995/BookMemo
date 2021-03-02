@@ -14,7 +14,7 @@ class MemosTableSeeder extends Seeder
     {
         // factory(Memo::class, 100)->create();
 
-        DB::table('users')->insert([
+        DB::table('memos')->insert([
             [
                 'memo' => '・短期的な視点でなく長期的な視点・部分的な視点でなく全体的な視点・一つひとつの個別の視点でなく一貫性のある視点こういう視点を持って、事業の将来を考えることを「戦略的である」',
                 'folder' => 'マーカー',
@@ -50,34 +50,34 @@ class MemosTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            [
-                'memo' => '',
-                'folder' => 'マーカー',
-                'book_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'memo' => '',
-                'folder' => 'マーカー',
-                'book_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'memo' => '',
-                'folder' => 'マーカー',
-                'book_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'memo' => '',
-                'folder' => 'マーカー',
-                'book_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+            // [
+            //     'memo' => '',
+            //     'folder' => 'マーカー',
+            //     'book_id' => 1,
+            //     'created_at' => now(),
+            //     'updated_at' => now(),
+            // ],
+            // [
+            //     'memo' => '',
+            //     'folder' => 'マーカー',
+            //     'book_id' => 1,
+            //     'created_at' => now(),
+            //     'updated_at' => now(),
+            // ],
+            // [
+            //     'memo' => '',
+            //     'folder' => 'マーカー',
+            //     'book_id' => 1,
+            //     'created_at' => now(),
+            //     'updated_at' => now(),
+            // ],
+            // [
+            //     'memo' => '',
+            //     'folder' => 'マーカー',
+            //     'book_id' => 1,
+            //     'created_at' => now(),
+            //     'updated_at' => now(),
+            // ],
 
         ]);
 
