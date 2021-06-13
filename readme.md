@@ -1,6 +1,6 @@
 # BookQuote
 **アプリ名: BookQuote**<br>
-**URL:** <http://book-quote.work>
+**URL:** ~~http://book-quote.work~~ (現在非公開中)
 
 
 ## 概要
